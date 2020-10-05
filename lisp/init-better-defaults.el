@@ -50,13 +50,26 @@
 
 ;; remove "^"
 (setq ivy-initial-inputs-alist nil)
+(defun eli-org-fill-prefix ()
+  "Set `fill-prefix' to the empty string."
+  (setq fill-prefix ""))
+
+(add-hook 'org-mode-hook #'eli-org-fill-prefix)
+
+(setq url-proxy-services '(
+                           ("http" . "127.0.0.1:8889")
+                           ;; ("https" . "127.0.0.1:8889")
+                           ;; ("socks5" . "127.0.0.1:1089")
+                           ))
+
 
 (use-package auto-save
   :load-path "~/.emacs.d/private/auto-save"
   :config
   (auto-save-enable)
   (setq auto-save-silent t)   ; quietly save
-  (setq auto-save-delete-trailing-whitespace nil))
+  (setq auto-save-delete-trailing-whitespace nil)
+  (setq auto-save-idle 5))
 
 (use-package dired-x
   :config
@@ -98,4 +111,4 @@
   :config
   (popwin-mode t))
 
-(provide 'init-better-defaults) 
+(provide 'init-better-defaults)
