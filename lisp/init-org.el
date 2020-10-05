@@ -85,7 +85,127 @@
                            (match-string 1 org-read-date-final-answer)))))
               ))
 
+;; appt
+(require 'appt)
+;; 每小时同步一次appt,并且现在就开始同步
+(run-at-time nil 3600 'org-agenda-to-appt)
+;; 更新agenda时，同步appt
+(add-hook 'org-agenda-mode-hook  'org-agenda-to-appt)
+(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
+;; 激活提醒
+(appt-activate 1)
+;; 提前半小时提醒
+(setq appt-message-warning-time 30)
+(setq appt-display-interval 5)
+(require 'notifications)
+
+(defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
+  (if (atom min-to-appt)
+      (notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
+                            :title (format "%s分钟内有新的任务" min-to-appt)
+                            :body appt-msg)
+    (dolist (i (number-sequence 0 (1- (length min-to-appt))))
+      (notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
+                            :title (format "%s分钟内有新的任务" (nth i min-to-appt))
+                            :body (nth i appt-msg))))
+  ;; (appt-disp-window min-to-appt current-time appt-msg)
+  ) ;同时也调用原有的提醒函数
+(setq appt-display-format 'window) ;; 只有这样才能使用自定义的通知函数
+(setq appt-disp-window-function #'appt-disp-window-and-notification)
+
+(server-start)
+(require 'org-protocol)
+
+;; org-refile
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-targets
+      '((nil :maxlevel . 3)
+        (org-agenda-files :maxlevel . 3)))
+
+;; custom org agenda view
+(setq org-agenda-log-mode-items '(clock))
+(setq org-agenda-log-mode-add-notes nil)
+
+(setq org-agenda-custom-commands
+      '(("g" "GTD"
+         ((agenda "" nil)
+          (tags  "+INBOX/+TODO|+PROJECT/+TODO"
+                 ((org-agenda-overriding-header "Inbox")
+                  (org-tags-match-list-sublevels t)
+                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp))))
+          (tags-todo "/+NEXT"
+                     ((org-agenda-overriding-header "Next")))
+          (tags-todo "/+STARTED"
+                     ((org-agenda-overriding-header "Started")))
+          (tags-todo "/+PROJECT"
+                     ((org-agenda-overriding-header "Projects")))
+          (tags-todo "/+WAITING"
+                     ((org-agenda-overriding-header "Waiting")))
+          (tags-todo "/+SOMEDAY"
+                     ((org-agenda-overriding-header "Someday/Maybe")))
+          ))))
+
+;; a TODO entry automatically change to DONE when all children are done
+(defun eli/org-summary-todo (n-done n-not-done)
+  "Switch entry to DONE when all subentries are done, to TODO otherwise."
+  (let (org-log-done org-log-states)   ; turn off logging
+    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
+(add-hook 'org-after-todo-statistics-hook 'eli/org-summary-todo)
+
+;; org-pdftools
+(use-package org-pdftools
+  :ensure t
+  :hook (pdf-view-mode . org-pdftools-setup-link))
+
+(use-package org-noter-pdftools
+  :ensure t
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+
+;; save last pdf position
+(use-package saveplace-pdf-view
+  :ensure t
+  :config (save-place-mode 1))
 
 
+;; rime
+(defun +rime-predicate-is-back-quote-or-tilde ()
+  (or (equal rime--current-input-key ?`)
+      (equal rime--current-input-key ?~)))
 
+(use-package rime
+  :ensure t
+  :hook
+  ('kill-emacs . (lambda ()
+                   (when (fboundp 'rime-lib-sync-user-data)
+                     (ignore-errors (rime-sync)))))
+  :custom
+  ((default-input-method "rime")
+   (rime-user-data-dir "~/.emacs.d/rime")
+   (rime-disable-predicates '(rime-predicate-prog-in-code-p
+                              ;; rime-predicate-space-after-ascii-p
+                              rime-predicate-after-ascii-char-p
+                              ;; rime-predicate-punctuation-line-begin-p
+                              rime-predicate-org-in-src-block-p
+                              rime-predicate-space-after-cc-p
+                              ))
+   ;; (rime-inline-predicates '(rime-predicate-space-after-cc-p))
+   )
+  )
+(setq default-input-method "rime"
+      rime-show-candidate 'posframe)
+(setq mode-line-mule-info '((:eval (rime-lighter))))
+(setq rime-inline-ascii-trigger 'shift-l)
+(define-key rime-active-mode-map (kbd "s-k") 'rime-inline-ascii)
+(define-key rime-mode-map (kbd "s-j") 'rime-force-enable)
+(add-hook 'org-mode-hook 'toggle-input-method)
+
+;; chinese fonts
+(dolist (charset '(kana han cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font) charset
+                    (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
 (provide 'init-org)
