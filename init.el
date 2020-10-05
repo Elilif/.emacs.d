@@ -7,6 +7,7 @@
 (require 'init-ui)
 (require 'init-org)
 (require 'init-elfeed)
+(require 'init-vc)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load-file custom-file)
