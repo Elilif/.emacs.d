@@ -7,9 +7,9 @@
   :ensure t
   :init (doom-modeline-mode t))
 
-;; (setq default-frame-alist '((font . "Source Code Pro-16")))
+
 ;; Setting English Font
-(set-face-attribute 'default nil :font "Source Code Pro-16")
+(set-face-attribute 'default nil :font "Source Code Pro-13")
 
 ;; chinese fonts
 (dolist (charset '(kana han cjk-misc bopomofo))

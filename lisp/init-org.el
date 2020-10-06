@@ -156,18 +156,22 @@
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
 (add-hook 'org-after-todo-statistics-hook 'eli/org-summary-todo)
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install))
 
 ;; org-pdftools
 (use-package org-pdftools
   :ensure t
   :hook (pdf-view-mode . org-pdftools-setup-link))
 
-(use-package org-noter-pdftools
-  :ensure t
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+;; (use-package org-noter-pdftools
+;;   :ensure t
+;;   :after org-noter
+;;   :config
+;;   (with-eval-after-load 'pdf-annot
+;;     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
 ;; save last pdf position
 (use-package saveplace-pdf-view

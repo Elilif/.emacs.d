@@ -21,11 +21,6 @@
 (blink-cursor-mode -1)
 (setq auto-save-list-file-prefix nil)
 
-(setq url-proxy-services '(
-                           ("http" . "127.0.0.1:8889")
-                           ;; ("https" . "127.0.0.1:8889")
-                           ;; ("socks5" . "127.0.0.1:1089")
-                           ))
 ;; http://emacs.stackexchange.com/questions/1051/copy-region-from-emacs-without-newlines
 ;; improve copy
 (defun my-copy-simple (&optional beg end)
@@ -62,6 +57,53 @@
                            ;; ("socks5" . "127.0.0.1:1089")
                            ))
 
+(setq hippie-expand-try-function-list '(try-expand-debbrev
+					try-expand-debbrev-all-buffers
+					try-expand-debbrev-from-kill
+					try-complete-file-name-partially
+					try-complete-file-name
+					try-expand-all-abbrevs
+					try-expand-list
+					try-expand-line
+					try-complete-lisp-symbol-partially
+					try-complete-lisp-symbol))
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(defun occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+	    (buffer-substring-no-properties
+	     (region-beginning)
+	     (region-end))
+	  (let ((sym (thing-at-point 'symbol)))
+	    (when (stringp sym)
+	      (regexp-quote sym))))
+	regexp-history)
+  (call-interactively 'occur))
+(global-set-key (kbd "M-s o") 'occur-dwim)
+
+(use-package iedit
+  :ensure t)
+
+(use-package wgrep
+  :ensure t)
+
+(use-package grab-x-link
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c i") 'grab-x-link-chromium-insert-link)
+  (global-set-key (kbd "C-c o") 'grab-x-link-chromium-insert-org-link))
+
+(use-package expand-region
+  :ensure t
+  :config
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 
 (use-package auto-save
   :load-path "~/.emacs.d/private/auto-save"
