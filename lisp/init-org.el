@@ -52,10 +52,10 @@
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
          "* %? \n\n%a \n%i \n%U"
          :empty-lines 1)
-        ("j" "Journals" entry (file+datetree org-agenda-file-journal)
+        ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
          "* %? "
          :empty-lines 1)
-        ("d" "Digests" entry (file+datetree org-agenda-file-notes)
+        ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
          "* %a \n%i \n%U"
          :empty-lines 1)
         ("l" "Chrome" entry (file+headline org-agenda-file-inbox "Notes")

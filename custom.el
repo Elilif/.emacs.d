@@ -11,7 +11,7 @@
  '(org-log-into-drawer t)
  '(org-startup-folded t)
  '(package-selected-packages
-   '(beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls irony-eldoc flycheck-irony company-irony company-irony-c-headers irony yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
+   '(dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls irony-eldoc flycheck-irony company-irony company-irony-c-headers irony yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
  '(popwin:popup-window-position 'right)
  '(popwin:popup-window-width 80)
  '(which-key-idle-delay 0.5))

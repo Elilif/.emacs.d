@@ -12,6 +12,13 @@
   :config
   (beacon-mode 1))
 
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-center-content t)
+  )
+
 ;; Setting English Font
 (set-face-attribute 'default nil :font "Source Code Pro-13")
 

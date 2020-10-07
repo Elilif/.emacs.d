@@ -1,19 +1,23 @@
+;; disable ring bell when cussor at bottom 
 (setq ring-bell-function 'ignore)
+
+;; remove some bars
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+
+
 (setq inhibit-splash-screen t)
+
+;; auto sync files
 (global-auto-revert-mode 1)
-(defun eli/open-init-file()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-(global-set-key (kbd "<f2>") 'eli/open-init-file)
+
+;; disable backup
 (setq make-backup-files nil)
 (setq auto-save-default nil)
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(global-set-key (kbd "\C-c \C-r") 'recentf-open-files)
+
+
+
 (delete-selection-mode 1)
 (setq initial-frame-alist '((fullscreen . maximized)))
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
@@ -45,18 +49,22 @@
 
 ;; remove "^"
 (setq ivy-initial-inputs-alist nil)
+
+;; fix M-j
 (defun eli-org-fill-prefix ()
   "Set `fill-prefix' to the empty string."
   (setq fill-prefix ""))
-
 (add-hook 'org-mode-hook #'eli-org-fill-prefix)
 
+
+;; use proxy
 (setq url-proxy-services '(
                            ("http" . "127.0.0.1:8889")
                            ;; ("https" . "127.0.0.1:8889")
                            ;; ("socks5" . "127.0.0.1:1089")
                            ))
 
+;; improve hippie-expand
 (setq hippie-expand-try-function-list '(try-expand-debbrev
 					try-expand-debbrev-all-buffers
 					try-expand-debbrev-from-kill
@@ -67,7 +75,10 @@
 					try-expand-line
 					try-complete-lisp-symbol-partially
 					try-complete-lisp-symbol))
+;; simplify yes-or-no-p
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(setq load-prefer-newer t)
 
 (defun occur-dwim ()
   "Call `occur' with a sane default."
@@ -82,6 +93,12 @@
 	regexp-history)
   (call-interactively 'occur))
 (global-set-key (kbd "M-s o") 'occur-dwim)
+
+
+(defun eli/open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(global-set-key (kbd "<f5>") 'eli/open-init-file)
 
 (use-package iedit
   :ensure t)
@@ -126,6 +143,7 @@
   :ensure t
   :config
   (global-hungry-delete-mode))
+
 (use-package counsel
   :ensure t)
 
