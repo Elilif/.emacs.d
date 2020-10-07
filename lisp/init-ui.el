@@ -17,6 +17,7 @@
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-center-content t)
+  (setq dashboard-startup-banner 2)
   )
 
 ;; Setting English Font
