@@ -91,10 +91,13 @@
 ;; appt
 (require 'appt)
 ;; 每小时同步一次appt,并且现在就开始同步
-(run-at-time nil 3600 'org-agenda-to-appt)
+(run-at-time nil 3600 'org-agenda-to-appt t)
 ;; 更新agenda时，同步appt
-(add-hook 'org-agenda-mode-hook  'org-agenda-to-appt)
-(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
+(defun eli/org-agenda-to-appt ()
+  "call org-agenda-to-appt with refresh."
+  (org-agenda-to-appt t))
+(add-hook 'org-agenda-mode-hook  'eli/org-agenda-to-appt)
+(add-hook 'org-finalize-agenda-hook 'eli/org-agenda-to-appt)
 ;; 激活提醒
 (appt-activate 1)
 ;; 提前半小时提醒

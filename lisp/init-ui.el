@@ -7,6 +7,10 @@
   :ensure t
   :init (doom-modeline-mode t))
 
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1))
 
 ;; Setting English Font
 (set-face-attribute 'default nil :font "Source Code Pro-13")
@@ -15,5 +19,7 @@
 (dolist (charset '(kana han cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font) charset
                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
+
+
 
 (provide 'init-ui)
