@@ -5,7 +5,11 @@
   :bind(("\C-c c" . 'org-capture)
 	("\C-c a" . 'org-agenda))
   :config
-  (setq org-src-fontify-natively t)) 
+  (setq org-src-fontify-natively t)
+  (setq org-agenda-span 'day)
+  (setq org-agenda-window-setup 'only-window)
+  ;; Change task state to STARTED when clocking in
+  (setq org-clock-in-switch-to-state "STARTED")) 
 
 (use-package org-habit
   :init
@@ -19,12 +23,6 @@
       (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
               (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
               (sequence "WAITING(w@/!)" "NEXT(n)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
-
-(setq org-agenda-span 'day)
-(setq org-agenda-window-setup 'only-window)
-
-;; Change task state to STARTED when clocking in
-(setq org-clock-in-switch-to-state "STARTED")
 
 ;;org capture
 (setq org-agenda-dir "~/Dropbox/org")
@@ -193,6 +191,7 @@
   ('kill-emacs . (lambda ()
                    (when (fboundp 'rime-lib-sync-user-data)
                      (ignore-errors (rime-sync)))))
+  (org-mode . toggle-input-method)
   :custom
   ((default-input-method "rime")
    (rime-user-data-dir "~/.emacs.d/rime")
@@ -203,16 +202,16 @@
                               rime-predicate-org-in-src-block-p
                               rime-predicate-space-after-cc-p
                               ))
-   ;; (rime-inline-predicates '(rime-predicate-space-after-cc-p))
+   ;; (rime-inline-predicates '(rime-predicate-space-after-cc-p)))
    )
+  :config
+  (setq default-input-method "rime"
+	rime-show-candidate 'posframe)
+  (setq mode-line-mule-info '((:eval (rime-lighter))))
+  (setq rime-inline-ascii-trigger 'shift-l)
+  (define-key rime-active-mode-map (kbd "M-s-k") 'rime-inline-ascii)
+  (define-key rime-mode-map (kbd "M-s-j") 'rime-force-enable)
   )
-(setq default-input-method "rime"
-      rime-show-candidate 'posframe)
-(setq mode-line-mule-info '((:eval (rime-lighter))))
-(setq rime-inline-ascii-trigger 'shift-l)
-(define-key rime-active-mode-map (kbd "M-s-k") 'rime-inline-ascii)
-(define-key rime-mode-map (kbd "M-s-j") 'rime-force-enable)
-(add-hook 'org-mode-hook 'toggle-input-method)
 
 (use-package org-superstar
   :ensure t
@@ -259,4 +258,5 @@
         ("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "${slug}" :head "#+roam_tags:
 * ${title}" :unnarrowed t)
         ))
+
 (provide 'init-org)
