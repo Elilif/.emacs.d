@@ -100,6 +100,18 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f5>") 'eli/open-init-file)
 
+
+(use-package avy
+  :ensure t
+  :bind
+  ("C-c f" . 'avy-goto-char-in-line)
+  ("C-c g" . 'avy-goto-char))
+
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :hook (after-init . ivy-mode))
+
 (use-package iedit
   :ensure t)
 
