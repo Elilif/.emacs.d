@@ -1,7 +1,10 @@
 (use-package company
   :ensure t
   :config
-  (global-company-mode 1))
+  (global-company-mode 1)
+  (setq company-show-numbers t)
+  (setq company-idle-delay 0.1))
+
 
 (use-package smartparens
   :ensure t

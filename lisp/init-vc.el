@@ -1,5 +1,7 @@
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1))
 
 
 (provide 'init-vc)

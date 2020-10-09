@@ -132,7 +132,8 @@
 (use-package which-key
   :ensure t
   :config
-  (which-key-mode))
+  (which-key-mode)
+  (setq which-key-idle-delay 0.5))
 
 (use-package auto-save
   :load-path "~/.emacs.d/private/auto-save"
@@ -181,6 +182,8 @@
 (use-package popwin
   :ensure t
   :config
-  (popwin-mode t))
+  (popwin-mode t)
+  (setq popwin:popup-window-position 'right)
+  (setq popwin:popup-window-width 80))
 
 (provide 'init-better-defaults)

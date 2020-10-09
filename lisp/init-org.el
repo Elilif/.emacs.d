@@ -9,7 +9,9 @@
   (setq org-agenda-span 'day)
   (setq org-agenda-window-setup 'only-window)
   ;; Change task state to STARTED when clocking in
-  (setq org-clock-in-switch-to-state "STARTED")) 
+  (setq org-clock-in-switch-to-state "STARTED")
+  (setq org-log-into-drawer t)
+  (setq org-startup-folded t))
 
 (use-package org-habit
   :init
@@ -196,9 +198,9 @@
   ((default-input-method "rime")
    (rime-user-data-dir "~/.emacs.d/rime")
    (rime-disable-predicates '(rime-predicate-prog-in-code-p
-                              rime-predicate-space-after-ascii-p
+                              ;; rime-predicate-space-after-ascii-p
                               rime-predicate-after-ascii-char-p
-                              rime-predicate-punctuation-line-begin-p
+                              ;; rime-predicate-punctuation-line-begin-p
                               rime-predicate-org-in-src-block-p
                               rime-predicate-space-after-cc-p
                               ))
@@ -209,7 +211,7 @@
 	rime-show-candidate 'posframe)
   (setq mode-line-mule-info '((:eval (rime-lighter))))
   (setq rime-inline-ascii-trigger 'shift-l)
-  (define-key rime-active-mode-map (kbd "M-s-k") 'rime-inline-ascii)
+  (global-set-key (kbd "M-s-k") 'rime-inline-ascii)
   (define-key rime-mode-map (kbd "M-s-j") 'rime-force-enable)
   )
 
