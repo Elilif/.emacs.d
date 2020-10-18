@@ -11,7 +11,13 @@
   ;; Change task state to STARTED when clocking in
   (setq org-clock-in-switch-to-state "STARTED")
   (setq org-log-into-drawer t)
-  (setq org-startup-folded t))
+  (setq org-startup-folded t)
+  ;; pdf exporting
+  (setq org-latex-pdf-process
+      '("xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"))
+  )
 
 (use-package org-habit
   :init
@@ -26,6 +32,11 @@
               (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
               (sequence "WAITING(w@/!)" "NEXT(n)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
 
+;; disable company-mode in org-mode
+(defun eli/org-mode-hook ()
+  (company-mode -1)
+  (flycheck-mode -1))
+(add-hook 'org-mode-hook 'eli/org-mode-hook)
 ;;org capture
 (setq org-agenda-dir "~/Dropbox/org")
 
@@ -224,7 +235,7 @@
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/Dropbox/org-roam")
+      (org-roam-directory "~/Dropbox/org/roam")
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)

@@ -100,7 +100,8 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f5>") 'eli/open-init-file)
 
-
+;; use winnder-mode
+(winner-mode 1)
 (use-package avy
   :ensure t
   :bind
