@@ -13,10 +13,27 @@
   (setq org-log-into-drawer t)
   (setq org-startup-folded t)
   ;; pdf exporting
-  (setq org-latex-pdf-process
-      '("xelatex -interaction nonstopmode -output-directory %o %f"
-        "xelatex -interaction nonstopmode -output-directory %o %f"
-        "xelatex -interaction nonstopmode -output-directory %o %f"))
+  ;; (setq org-latex-pdf-process
+  ;;     '("xelatex -interaction nonstopmode -output-directory %o %f"
+  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"
+  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"))
+  (setq org-latex-pdf-process (list "latexmk -pdf -bibtex %f"))
+
+)
+(use-package org-mind-map
+  :init
+  (require 'ox-org)
+  :ensure t
+  ;; Uncomment the below if 'ensure-system-packages` is installed
+  ;;:ensure-system-package (gvgen . graphviz)
+  :config
+  (setq org-mind-map-engine "dot")       ; Default. Directed Graph
+  ;; (setq org-mind-map-engine "neato")  ; Undirected Spring Graph
+  ;; (setq org-mind-map-engine "twopi")  ; Radial Layout
+  ;; (setq org-mind-map-engine "fdp")    ; Undirected Spring Force-Directed
+  ;; (setq org-mind-map-engine "sfdp")   ; Multiscale version of fdp for the layout of large graphs
+  ;; (setq org-mind-map-engine "twopi")  ; Radial layouts
+  ;; (setq org-mind-map-engine "circo")  ; Circular Layout
   )
 
 (use-package org-habit
@@ -207,11 +224,12 @@
   (org-mode . toggle-input-method)
   :custom
   ((default-input-method "rime")
+
    (rime-user-data-dir "~/.emacs.d/rime")
    (rime-disable-predicates '(rime-predicate-prog-in-code-p
                               ;; rime-predicate-space-after-ascii-p
                               rime-predicate-after-ascii-char-p
-                              ;; rime-predicate-punctuation-line-begin-p
+                              rime-predicate-punctuation-line-begin-p
                               rime-predicate-org-in-src-block-p
                               rime-predicate-space-after-cc-p
                               ))

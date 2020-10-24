@@ -19,6 +19,8 @@
 (require 'init-elfeed)
 (require 'init-vc)
 (require 'init-lang)
+(require 'init-bib)
+(require 'init-spell)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load-file custom-file)

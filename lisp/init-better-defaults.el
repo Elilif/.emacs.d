@@ -16,6 +16,13 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+;; better fill region in capture
+(defun eli/fill-region ()
+  (interactive)
+  (let* ((min (point-min))
+	 (max (- (point-max) 25)))
+    (fill-region min max)))
+(global-set-key (kbd "M-s-q") 'eli/fill-region)
 
 
 (delete-selection-mode 1)
@@ -156,6 +163,7 @@
 (use-package hungry-delete
   :ensure t
   :config
+  (setq hungry-delete-join-reluctantly t)
   (global-hungry-delete-mode))
 
 (use-package counsel
