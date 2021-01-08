@@ -3,12 +3,18 @@
   :config
   (global-company-mode 1)
   (setq company-show-numbers t)
-  (setq company-idle-delay 0.1))
+  (setq company-idle-delay 0.1)
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 
 (use-package smartparens
   :ensure t
   :config
+  (sp-pair "（" "）")
+  (sp-pair "“" "”")
   (require 'smartparens-config)
   (smartparens-global-mode)
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)

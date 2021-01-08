@@ -9,13 +9,13 @@
 				  ))
   )
 
-(use-package org-ref
-  :ensure t
-  :config
-  (setq calibredb-ref-default-bibliography (concat (file-name-as-directory calibredb-root-dir) "catalog.bib"))
-  (setq org-ref-default-bibliography '("~/Documents/Exported-Items.bib"))
-  ;; (add-to-list 'org-ref-default-bibliography calibredb-ref-default-bibliography)
-  ;; (setq org-ref-get-pdf-filename-function 'org-ref-get-mendeley-filename)
-  )
+;; (use-package org-ref
+;;   :ensure t
+;;   :config
+;;   (setq calibredb-ref-default-bibliography (concat (file-name-as-directory calibredb-root-dir) "catalog.bib"))
+;;   (setq org-ref-default-bibliography '("~/Documents/Exported-Items.bib"))
+;;   ;; (add-to-list 'org-ref-default-bibliography calibredb-ref-default-bibliography)
+;;   ;; (setq org-ref-get-pdf-filename-function 'org-ref-get-mendeley-filename)
+;;   )
 
 (provide 'init-bib)

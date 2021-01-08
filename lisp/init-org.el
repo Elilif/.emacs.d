@@ -13,11 +13,12 @@
   (setq org-log-into-drawer t)
   (setq org-startup-folded t)
   ;; pdf exporting
-  ;; (setq org-latex-pdf-process
-  ;;     '("xelatex -interaction nonstopmode -output-directory %o %f"
-  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"
-  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"))
-  (setq org-latex-pdf-process (list "latexmk -pdf -bibtex %f"))
+  (setq org-latex-pdf-process
+      '("xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"
+		))
+  ;; (setq org-latex-pdf-process (list "latexmk -pdf -bibtex %f"))
 
 )
 (use-package org-mind-map
@@ -326,5 +327,12 @@
          :completion-function eli/push-to-gitpage
          )))
 ;;----------------------------------------------------------------------------
+
+(use-package youdao-dictionary
+  :ensure t
+  :bind (("C-c y" . youdao-dictionary-search-at-point-posframe))
+  :config
+  (setq url-automatic-caching t))
+
 
 (provide 'init-org)

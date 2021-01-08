@@ -63,6 +63,8 @@
   (setq fill-prefix ""))
 (add-hook 'org-mode-hook #'eli-org-fill-prefix)
 
+;; winner undo
+(global-set-key (kbd "C-c u") 'winner-undo)
 
 ;; use proxy
 (setq url-proxy-services '(

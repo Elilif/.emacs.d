@@ -70,5 +70,10 @@
 (use-package dap-mode
   :ensure t)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+(use-package quickrun
+  :ensure t)
+
 (provide 'init-lang)
+
 
