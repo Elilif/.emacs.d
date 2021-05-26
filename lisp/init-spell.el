@@ -10,6 +10,10 @@
   :ensure t
   :after flyspell-correct)
 
+(use-package goldendict
+  :ensure t
+  :bind ("C-c p" . goldendict-dwim))
+
 
 
 

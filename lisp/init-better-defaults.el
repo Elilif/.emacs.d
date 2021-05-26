@@ -68,9 +68,9 @@
 
 ;; use proxy
 (setq url-proxy-services '(
-                           ("http" . "127.0.0.1:8889")
-                           ;; ("https" . "127.0.0.1:8889")
-                           ;; ("socks5" . "127.0.0.1:1089")
+                           ("http" . "127.0.0.1:7890")
+                           ("https" . "127.0.0.1:7890")
+                           ;; ("socks5" . "127.0.0.1:7891")
                            ))
 
 ;; improve hippie-expand
