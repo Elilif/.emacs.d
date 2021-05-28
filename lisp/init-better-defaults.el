@@ -168,6 +168,10 @@
   (setq hungry-delete-join-reluctantly t)
   (global-hungry-delete-mode))
 
+(use-package recentf
+  :config
+  (add-to-list 'recentf-exclude "\\.txt"))
+
 (use-package counsel
   :ensure t)
 
