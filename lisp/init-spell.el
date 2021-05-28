@@ -21,7 +21,13 @@
     (counsel-rg INIT-INPUT BASEDIR)))
 
 (global-set-key (kbd "C-c d") 'Eli/dict-search)
+(defun Eli/te-search ()
+  (interactive)
+  (let ((BASEDIR "~/Documents/TEdict")
+	(INIT-INPUT))
+    (counsel-ag INIT-INPUT BASEDIR)))
 
+(global-set-key (kbd "C-c s") 'Eli/te-search)
 
 
 
