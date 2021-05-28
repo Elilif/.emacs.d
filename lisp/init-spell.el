@@ -14,6 +14,14 @@
   :ensure t
   :bind ("C-c p" . goldendict-dwim))
 
+(defun Eli/dict-search ()
+  (interactive)
+  (let ((BASEDIR "~/Documents/txtdict/")
+	(INIT-INPUT))
+    (counsel-rg INIT-INPUT BASEDIR)))
+
+(global-set-key (kbd "C-c d") 'Eli/dict-search)
+
 
 
 
