@@ -24,11 +24,11 @@
 (defun Eli/te-search ()
   (interactive)
   (let ((BASEDIR "~/Documents/TEdict")
-	(INIT-INPUT))
+	(INIT-INPUT "\\b"))
     (counsel-rg INIT-INPUT BASEDIR)))
 
 (global-set-key (kbd "C-c s") 'Eli/te-search)
-
+(add-hook 'minibuffer-setup-hook 'yas-minor-mode)
 
 
 (provide 'init-spell)

@@ -143,7 +143,9 @@
   :ensure t
   :config
   (which-key-mode)
-  (setq which-key-idle-delay 0.5))
+  (setq which-key-idle-delay 0.1)
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l"))
 
 (use-package auto-save
   :load-path "~/.emacs.d/private/auto-save"

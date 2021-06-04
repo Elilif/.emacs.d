@@ -1,7 +1,8 @@
 (use-package org
   :ensure t
   :hook ((org-mode . org-indent-mode)
-	 (org-mode . auto-fill-mode))
+	 (org-mode . auto-fill-mode)
+	 (org-mode . column-number-mode))
   :bind(("\C-c c" . 'org-capture)
 	("\C-c a" . 'org-agenda))
   :config
