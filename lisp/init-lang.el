@@ -45,7 +45,7 @@
   (setq ccls-executable "/usr/bin/ccls"))
 
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-(setq lsp-keymap-prefix "C-c l")
+;; (setq lsp-keymap-prefix "C-c l")
 
 (use-package lsp-mode
   :ensure t

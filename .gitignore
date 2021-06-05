@@ -10,3 +10,5 @@ recentf
 places
 /private
 org-roam.db
+.dap-breakpoints
+.lsp-session-v1

@@ -246,7 +246,16 @@
 (use-package all-the-icons
   :ensure t)
 
+(use-package term
+  :ensure nil
+  :bind (:map term-raw-map
+         ("M-:" . nil)
+         ("M-x" . nil)))
 
+(use-package golden-ratio
+  :ensure t
+  :config
+  (golden-ratio-mode 1))
 
 (use-package popwin
   :ensure t
