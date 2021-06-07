@@ -252,6 +252,11 @@
          ("M-:" . nil)
          ("M-x" . nil)))
 
+(defun my-swiper-hack (&optional arg)
+  (ignore arg)
+  (if (region-active-p) (deactivate-mark)))
+(advice-add 'swiper :before #'my-swiper-hack)
+
 (use-package golden-ratio
   :ensure t
   :config
