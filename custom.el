@@ -12,7 +12,7 @@
  '(org-agenda-window-setup 'current-window)
  '(org-fontify-done-headline t)
  '(package-selected-packages
-   '(golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
+   '(org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
  '(rime-deactivate-when-exit-minibuffer nil)
  '(send-mail-function 'smtpmail-send-it)
  '(which-key-idle-delay 0.1))
