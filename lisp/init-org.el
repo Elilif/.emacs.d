@@ -199,12 +199,12 @@
   :ensure t
   :hook (pdf-view-mode . org-pdftools-setup-link))
 
-;; (use-package org-noter-pdftools
-;;   :ensure t
-;;   :after org-noter
-;;   :config
-;;   (with-eval-after-load 'pdf-annot
-;;     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+(use-package org-noter-pdftools
+  :ensure t
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
 ;; save last pdf position
 (use-package saveplace-pdf-view
