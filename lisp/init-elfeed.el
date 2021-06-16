@@ -3,7 +3,6 @@
   :init
   (setq elfeed-curl-extra-arguments '("-x" "http://127.0.0.1:8889"))
   :bind
-  ("C-c e" . elfeed)
   :config
   (setq elfeed-search-filter "@2-days-ago +unread +A")
   )

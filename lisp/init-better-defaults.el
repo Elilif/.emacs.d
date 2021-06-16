@@ -261,7 +261,7 @@
 (use-package golden-ratio
   :ensure t
   :config
-  (golden-ratio-mode 1))
+  (golden-ratio-mode 0))
 
 (use-package popwin
   :ensure t

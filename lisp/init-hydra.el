@@ -8,24 +8,53 @@
   :bind
   (("C-c o" . hydra-org/body)
    ("C-c w" . jp-window/body)
-   ("C-c i" . hydra-org-clock/body)
+   ("C-c b" . hydra-bibtex/body)
+   ("C-c n" . hydra-news/body)
+   ("C-c e" . hydra-emacs/body)
+   ("C-c [" . hydra-skan-user-buffers-prev/body)
+   ("C-c ]" . hydra-skan-user-buffers-next/body)
    :map org-agenda-mode-map
    ("C-c a" . hydra-org-agenda/body)
+   :map pdf-view-mode-map
+   ("C-c n" . hydra-org-noter/body)
    ))
-(pretty-hydra-define hydra-org-clock
-  (:color amaranth :exit t :quit-key "q")
-  ("Org-clock"
-   (("i" org-clock-in)
-   ("c" org-clock-in-last)
-   ("o" org-clock-out)
-   
-   ("e" org-clock-modify-effort-estimate)
-   ("q" org-clock-cancel)
 
-   ("g" org-clock-goto)
-   ("d" org-clock-display)
-   ("r" org-clock-report)
-   ("?" (org-info "Clocking commands")))
+(pretty-hydra-define hydra-emacs
+  (:color amaranth :exit t :quit-key "q")
+  ("basic"
+   (("E" eval-buffer))
+   "Search"
+   (("g" counsel-git-grep))
+   "Bookmark"
+   (("bs" bookmark-set "set bookmark")
+    ("bj" bookmark-jump "jump bookmark")
+    ("bl" bookmark-bmenu-list "list bookmark"))
+   ))
+
+(pretty-hydra-define hydra-org
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (setq which-key-inhibit t)
+          :post (setq which-key-inhibit nil))
+  ("Basic"
+   (("a" org-agenda "org agenda")
+    ("c" org-capture "org capture")
+    ("h" org-mode "org mode"))
+   "Org link"
+   (("li" grab-x-link-chromium-insert-link "insert web link")
+    ("lo" grab-x-link-chromium-insert-org-link "insert org link")
+    ("ls" org-store-link "store link"))
+   "Org-clock"
+   (("i" org-clock-in)
+    ("c" org-clock-in-last)
+    ("o" org-clock-out)
+    
+    ("e" org-clock-modify-effort-estimate)
+    ("q" org-clock-cancel)
+
+    ("g" org-clock-goto)
+    ("d" org-clock-display)
+    ("r" org-clock-report)
+    ("?" (org-info "Clocking commands")))
    "Org-timer"
    (("r" org-timer-start)
     ("n" org-timer-set-timer)
@@ -34,21 +63,13 @@
 
     ("m" org-timer)
     ("t" org-timer-item)
-    ("z" (org-info "Timers")))))
-
-(pretty-hydra-define hydra-org
-  (:color amaranth :quit-key "q")
-  ("Basic"
-   (("a" org-agenda "org agenda")
-    ("c" org-capture "org capture")
-    ("m" org-mode "org mode"))
-   "Org link"
-   (("i" grab-x-link-chromium-insert-link "insert web link")
-    ("o" grab-x-link-chromium-insert-org-link "insert org link"))
+    ("z" (org-info "Timers")))
    ))
 
 (pretty-hydra-define jp-window
-  (:foreign-keys warn :quit-key "q")
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (setq which-key-inhibit t)
+          :post (setq which-key-inhibit nil))
   ("Actions"
    (("TAB" other-window "switch")
     ("x" ace-delete-window "delete")
@@ -67,7 +88,7 @@
    "Split"
    (("b" split-window-right "horizontally")
     ("v" split-window-below "vertically")
-        )
+    )
 
    "Zoom"
    (("=" text-scale-increase "in")
@@ -79,7 +100,9 @@
 ;;                                  :post (setq which-key-inhibit nil)
 ;;                                  :hint none))
 (pretty-hydra-define hydra-org-agenda
-  (:color amaranth :exit t :quit-key "q")
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (setq which-key-inhibit t)
+          :post (setq which-key-inhibit nil))
   ("Entry"
    (("hA" org-agenda-archive-default "archive default")
     ("hk" org-agenda-kill "kill")
@@ -108,28 +131,86 @@
     ("vn" org-agenda-later "later")
     ("vp" org-agenda-earlier "earlier")
     ("vr" org-agenda-reset-view "reset view"))
-    "Toggle mode"
-    (("ta" org-agenda-archives-mode "archives mode")
-     ("tA" (org-agenda-archives-mode 'files))
-     ("tr" org-agenda-clockreport-mode "clockreport mode")
-     ("tf" org-agenda-follow-mode "follow mode")
-     ("tl" org-agenda-log-mode "log mode")
-     ("td" org-agenda-toggle-diary "toggle diary"))
-    "Filter"
-    (("fc" org-agenda-filter-by-category "by category")
-     ("fx" org-agenda-filter-by-regexp "by regexp")
-     ("ft" org-agenda-filter-by-tag "by tag")
-     ("fr" org-agenda-filter-by-tag-refine "by rag refine")
-     ("fh" org-agenda-filter-by-top-headline "by top headline")
-     ("fd" org-agenda-filter-remove-all "remove all"))
-    "Clock"
-    (("cq" org-agenda-clock-cancel "cancel")
-     ("cj" org-agenda-clock-goto "goto" :exit t)
-     ("ci" org-agenda-clock-in "clock in" :exit t)
-     ("co" org-agenda-clock-out "clock out"))
-    "Other"
-    (("q" nil :exit t)
-     ("gd" org-agenda-goto-date "goto date")
-     ("." org-agenda-goto-today "goto today")
-     ("gr" org-agenda-redo "redo"))))
+   "Toggle mode"
+   (("ta" org-agenda-archives-mode "archives mode")
+    ("tA" (org-agenda-archives-mode 'files))
+    ("tr" org-agenda-clockreport-mode "clockreport mode")
+    ("tf" org-agenda-follow-mode "follow mode")
+    ("tl" org-agenda-log-mode "log mode")
+    ("td" org-agenda-toggle-diary "toggle diary"))
+   "Filter"
+   (("fc" org-agenda-filter-by-category "by category")
+    ("fx" org-agenda-filter-by-regexp "by regexp")
+    ("ft" org-agenda-filter-by-tag "by tag")
+    ("fr" org-agenda-filter-by-tag-refine "by rag refine")
+    ("fh" org-agenda-filter-by-top-headline "by top headline")
+    ("fd" org-agenda-filter-remove-all "remove all"))
+   "Clock"
+   (("cq" org-agenda-clock-cancel "cancel")
+    ("cj" org-agenda-clock-goto "goto" :exit t)
+    ("ci" org-agenda-clock-in "clock in" :exit t)
+    ("co" org-agenda-clock-out "clock out"))
+   "Other"
+   (("q" nil :exit t)
+    ("gd" org-agenda-goto-date "goto date")
+    ("." org-agenda-goto-today "goto today")
+    ("gr" org-agenda-redo "redo"))))
+
+(pretty-hydra-define hydra-bibtex
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (setq which-key-inhibit t)
+          :post (setq which-key-inhibit nil))
+  ("Reference"
+   (("i" org-ref-insert-link "insert ref link"))
+   "Calibre"
+   (("b" calibredb "calibre")
+    )
+   )
+  )
+(pretty-hydra-define hydra-org-noter
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (setq which-key-inhibit t)
+          :post (setq which-key-inhibit nil))
+  ("Noter"
+   (("n" org-noter "noter")
+    ("c" org-noter-create-skeleton "create skeleton")
+    )
+   "Noter Pdftools"
+   (("pc" org-noter-pdftools-create-skeleton "create skeleton"))
+   "PDF Annotation"
+   (("l" pdf-annot-list-annotations "list annotations")
+    )
+   ))
+(pretty-hydra-define hydra-news
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (setq which-key-inhibit t)
+          :post (setq which-key-inhibit nil))
+  ("Elfeed"
+   (("e" elfeed "elfeed"))
+   "Mu4e"
+   (("m" mu4e "mu4e"))
+   ))
+
+(pretty-hydra-define hydra-skan-user-buffers-next
+  (:body-pre (next-buffer)
+	     :hint nil
+	     :quit-key "q")
+  ("skan user buffers"
+   (("]" next-buffer)
+    ("[" previous-buffer)
+    ("k" kill-this-buffer)
+    ("q" nil))))
+(pretty-hydra-define hydra-skan-user-buffers-prev
+  (:body-pre (next-buffer)
+	     :hint nil
+	     :quit-key "q")
+  ("skan user buffers"
+   (("]" next-buffer)
+  ("[" previous-buffer)
+  ("k" kill-this-buffer)
+  ("q" nil))))
+(defadvice switch-to-buffer (before save-buffer-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice ido-switch-buffer (before save-buffer-now activate)
+  (when buffer-file-name (save-buffer)))
 (provide 'init-hydra)

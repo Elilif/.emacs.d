@@ -298,12 +298,12 @@ With a prefix ARG, remove start location."
       :custom
       (org-roam-directory "~/Dropbox/org/roam")
       :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-graph))
+              (("C-c r l" . org-roam)
+               ("C-c r f" . org-roam-find-file)
+               ("C-c r g" . org-roam-graph))
               :map org-mode-map
-              (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
+              (("C-c r i" . org-roam-insert))
+              (("C-c r I" . org-roam-insert-immediate))))
 
 (use-package org-roam-server
   :ensure t
@@ -376,5 +376,4 @@ With a prefix ARG, remove start location."
   :config
   (setq url-automatic-caching t))
 
-(global-set-key (kbd "<f7>") 'org-store-link)
 (provide 'init-org)
