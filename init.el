@@ -22,6 +22,7 @@
 (require 'init-bib)
 (require 'init-spell)
 (require 'init-anki)
+(require 'init-hydra)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load-file custom-file)

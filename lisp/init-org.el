@@ -376,5 +376,5 @@ With a prefix ARG, remove start location."
   :config
   (setq url-automatic-caching t))
 
-
+(global-set-key (kbd "<f7>") 'org-store-link)
 (provide 'init-org)

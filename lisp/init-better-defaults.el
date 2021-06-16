@@ -131,8 +131,9 @@
 (use-package grab-x-link
   :ensure t
   :config
-  (global-set-key (kbd "C-c i") 'grab-x-link-chromium-insert-link)
-  (global-set-key (kbd "C-c o") 'grab-x-link-chromium-insert-org-link))
+  ;; (global-set-key (kbd "C-c i") 'grab-x-link-chromium-insert-link)
+  ;; (global-set-key (kbd "C-c o") 'grab-x-link-chromium-insert-org-link)
+  )
 
 (use-package expand-region
   :ensure t
