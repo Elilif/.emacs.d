@@ -14,3 +14,4 @@ org-roam.db
 .lsp-session-v1
 network-security.data
 /request
+/quelpa

@@ -161,7 +161,9 @@
 	  :pre (setq which-key-inhibit t)
           :post (setq which-key-inhibit nil))
   ("Reference"
-   (("i" org-ref-insert-link "insert ref link"))
+   (("i" org-ref-insert-link "insert ref link")
+    ("g" org-ref-insert-bibliography-link "insert bibliography")
+    ("s" org-ref-insert-bibliographystyle-link "insert bibliographystyle"))
    "Calibre"
    (("b" calibredb "calibre")
     )
@@ -209,8 +211,8 @@
   ("[" previous-buffer)
   ("k" kill-this-buffer)
   ("q" nil))))
-(defadvice switch-to-buffer (before save-buffer-now activate)
-  (when buffer-file-name (save-buffer)))
-(defadvice ido-switch-buffer (before save-buffer-now activate)
-  (when buffer-file-name (save-buffer)))
+;; (defadvice switch-to-buffer (before save-buffer-now activate)
+;;   (when buffer-file-name (save-buffer)))
+;; (defadvice ido-switch-buffer (before save-buffer-now activate)
+;;   (when buffer-file-name (save-buffer)))
 (provide 'init-hydra)

@@ -14,14 +14,30 @@
   (setq org-log-into-drawer t)
   (setq org-startup-folded t)
   ;; pdf exporting
-  (setq org-latex-pdf-process
-      '("xelatex -interaction nonstopmode -output-directory %o %f"
-        "xelatex -interaction nonstopmode -output-directory %o %f"
-        "xelatex -interaction nonstopmode -output-directory %o %f"
-		))
+  ;; (setq org-latex-pdf-process
+  ;;     '("xelatex -interaction nonstopmode -output-directory %o %f"
+  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"
+  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"
+  ;; 		))
   ;; (setq org-latex-pdf-process (list "latexmk -pdf -bibtex %f"))
+  (setq org-latex-pdf-process
+	'("xelatex -interaction nonstopmode %f"
+	  "bibtex %b"
+	  "xelatex -interaction nonstopmode %f"
+	  "xelatex -interaction nonstopmode %f"
+	  "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"
+	  ))
+  )
+(use-package ox-beamer)
+(use-package ox-latex
+  :config
+  (add-to-list 'org-latex-classes
+	       '("beamer"
+		 "\\documentclass[ignorenonframetext,presentation]{beamer}"
+		 ("\\section{%s}" . "\\section*{%s}")
+		 ("\\subsection{%s}" . "\\subsection*{%s}"))
+	       ))
 
-)
 (use-package org-mind-map
   :init
   (require 'ox-org)
@@ -264,7 +280,7 @@ With a prefix ARG, remove start location."
   ('kill-emacs . (lambda ()
                    (when (fboundp 'rime-lib-sync-user-data)
                      (ignore-errors (rime-sync)))))
-  (org-mode . toggle-input-method)
+  ;; (org-mode . toggle-input-method)
   :custom
   ((default-input-method "rime")
 

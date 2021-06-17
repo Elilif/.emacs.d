@@ -270,4 +270,5 @@
   (setq popwin:popup-window-position 'right)
   (setq popwin:popup-window-width 80))
 
+(global-set-key (kbd "C-x b") 'counsel-ibuffer)
 (provide 'init-better-defaults)
