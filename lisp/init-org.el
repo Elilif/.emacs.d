@@ -29,6 +29,7 @@
 	  ))
   )
 (use-package ox-beamer)
+(use-package org-tempo)
 (use-package ox-latex
   :config
   (add-to-list 'org-latex-classes
@@ -81,7 +82,8 @@
 (setq org-agenda-file-notes (expand-file-name "notes.org" org-agenda-dir))
 (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
 (setq org-agenda-file-code-snippets (expand-file-name "snippets.org" org-agenda-dir))
-(setq org-agenda-file-posts (expand-file-name "posts.org" org-agenda-dir))
+(setq org-agenda-file-te (expand-file-name "TE.org" org-agenda-dir))
+(setq org-agenda-file-lists (expand-file-name "lists.org" org-agenda-dir))
 (setq org-agenda-files (list org-agenda-dir))
 
 (setq org-capture-templates
@@ -93,7 +95,7 @@
          "* PROJECT %? "
          :empty-lines 1)
         ("h" "Habit" entry (file org-agenda-file-habit)
-         "* TODO %? \n  :PROPERTIES:\n  :STYLE:    habit\n  :END:\n\n%U"
+         "* TODO %? \nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n  :PROPERTIES:\n  :STYLE:    habit\n  :END:\n\n%U"
          :empty-lines 1)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
          "* %? \n\n%a \n%i \n%U"
@@ -107,6 +109,12 @@
         ("l" "Chrome" entry (file+headline org-agenda-file-inbox "Notes")
          "* %? \n%i \n\n%:annotation \n\n%U"
          :empty-lines 1)
+	("T" "TE" entry (file org-agenda-file-te)
+	 "* TODO %u\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d> \n %?")
+	("b" "Book" entry (file+headline org-agenda-file-lists "Books")
+	 "* TODO %?\n  %^{Title}p %^{Isbn}p %^{Types}p %^{Authors}p %^{Translator}p %^{Publisher}p %^{Nation}p %^{Lang}p %^{Rating}p")
+	("m" "Movies and Musicals" entry (file+headline org-agenda-file-lists "Movies and Musicals")
+	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Types}p %^{Time}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
         ))
 
 
@@ -391,5 +399,9 @@ With a prefix ARG, remove start location."
   :bind (("C-c y" . youdao-dictionary-search-at-point-posframe))
   :config
   (setq url-automatic-caching t))
+(global-set-key (kbd "<f8>") (fset 'genius
+   (kmacro-lambda-form [?\C-c ?\C-, ?v ?\C-j ?\C-p ?\C-x ?n ?b ?\C-y ?\M-< ?\M-x ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?\\ ?\( ?\\ ?\[ ?. ?* ?\\ ?\] ?\\ ?\) return ?* ?\\ ?1 ?* return ?\C-x ?n ?w ?\C-c ?\C-p ?\C-n Tab] 0 "%d")))
+;; (global-set-key (kbd "<f9>") (fset 'csv
+;;    (kmacro-lambda-form [?\M-x ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?\" ?` backspace ?\\ ?\( ?. ?* ?? ?\\ ?\) ?\" ?, ?\\ ?\( ?. ?* ?\\ ?\) ?, ?\C-  ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\M-w ?\C-e ?\C-y ?\C-y ?\C-y ?\C-y ?\C-y backspace return ?* ?  ?T ?O ?D ?O ?\C-q ?\C-j ?  ?  ?: ?P ?R ?O ?P ?E ?R ?T ?I ?E ?S ?: ?\C-q ?\C-j ?  ?  ?: ?T ?i ?t ?l ?e ?: ?  ?\\ ?1 backspace backspace ?\" ?\\ ?1 ?\" ?\C-p ?\C-p ?\C-e ?  ?\\ ?1 ?\C-n ?\C-n ?\C-q ?\C-j ?  ?  ?: ?I ?s backspace ?S ?B ?N ?: ?  ?\\ ?2 ?\C-q ?\C-j ?  ?  ?: ?L ?a ?n ?g ?: ?  ?\\ ?3 ?\C-q ?\C-j ?  ?: backspace ?  ?: ?P ?u backspace backspace ?A ?u ?t ?h ?o ?r ?s ?: ?  ?\\ ?4 ?\C-q ?\C-j ?  ?  ?: ?P ?u ?b ?l ?i ?s ?h ?e ?r ?: ?  ?\\ ?5 ?\C-q ?\C-j ?  ?  ?: ?T ?a ?g ?s ?: ?  ?\\ ?6 ?\C-q ?\C-j ?  ?  ?: ?R ?a ?t ?i ?n ?g ?: ?  ?\\ ?7 ?\C-q ?\C-j ?  ?  ?: ?E ?N ?D ?: return] 0 "%d")))
 
 (provide 'init-org)

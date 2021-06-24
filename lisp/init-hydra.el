@@ -20,7 +20,9 @@
    ))
 
 (pretty-hydra-define hydra-emacs
-  (:color amaranth :exit t :quit-key "q")
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (setq which-key-inhibit t)
+          :post (setq which-key-inhibit nil))
   ("basic"
    (("E" eval-buffer))
    "Search"
@@ -28,7 +30,8 @@
    "Bookmark"
    (("bs" bookmark-set "set bookmark")
     ("bj" bookmark-jump "jump bookmark")
-    ("bl" bookmark-bmenu-list "list bookmark"))
+    ("bl" bookmark-bmenu-list "list bookmark")
+    ("bd" bookmark-delete "delete bookmark"))
    ))
 
 (pretty-hydra-define hydra-org
@@ -37,7 +40,7 @@
           :post (setq which-key-inhibit nil))
   ("Basic"
    (("a" org-agenda "org agenda")
-    ("c" org-capture "org capture")
+    ;; ("c" org-capture "org capture")
     ("h" org-mode "org mode"))
    "Org link"
    (("li" grab-x-link-chromium-insert-link "insert web link")
@@ -53,7 +56,7 @@
 
     ("g" org-clock-goto)
     ("d" org-clock-display)
-    ("r" org-clock-report)
+    ("kr" org-clock-report)
     ("?" (org-info "Clocking commands")))
    "Org-timer"
    (("r" org-timer-start)
@@ -67,7 +70,7 @@
    ))
 
 (pretty-hydra-define jp-window
-  (:color amaranth :exit t :quit-key "q"
+  (:color amaranth :exit nil :quit-key "q"
 	  :pre (setq which-key-inhibit t)
           :post (setq which-key-inhibit nil))
   ("Actions"
@@ -93,6 +96,9 @@
    "Zoom"
    (("=" text-scale-increase "in")
     ("-" text-scale-decrease "out")
+    ("[" shrink-window-horizontally "h-shrink window")
+    ("]" enlarge-window-horizontally "h-shrink window")
+    ("b" balacne-windows "balacne windows")
     )))
 
 ;; Hydra for org agenda (graciously taken from Spacemacs)
