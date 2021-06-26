@@ -12,7 +12,7 @@
 
 (use-package goldendict
   :ensure t
-  :bind ("C-c p" . goldendict-dwim))
+  :bind ("C-c h" . goldendict-dwim))
 
 (defun Eli/dict-search ()
   (interactive)

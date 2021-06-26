@@ -13,6 +13,9 @@
   (setq org-clock-in-switch-to-state "STARTED")
   (setq org-log-into-drawer t)
   (setq org-startup-folded t)
+  (setq org-confirm-babel-evaluate nil)
+  (add-to-list 'safe-local-variable-values
+             '(find-file-hook . org-babel-execute-buffer))
   ;; pdf exporting
   ;; (setq org-latex-pdf-process
   ;;     '("xelatex -interaction nonstopmode -output-directory %o %f"
@@ -115,6 +118,8 @@
 	 "* TODO %?\n  %^{Title}p %^{Isbn}p %^{Types}p %^{Authors}p %^{Translator}p %^{Publisher}p %^{Nation}p %^{Lang}p %^{Rating}p")
 	("m" "Movies and Musicals" entry (file+headline org-agenda-file-lists "Movies and Musicals")
 	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Types}p %^{Time}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
+	("s" "Movies and Musicals" entry (file+headline org-agenda-file-lists "Series")
+	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Actors}p %^{Types}p %^{Time}p %^{Episodes}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
         ))
 
 
@@ -288,7 +293,7 @@ With a prefix ARG, remove start location."
   ('kill-emacs . (lambda ()
                    (when (fboundp 'rime-lib-sync-user-data)
                      (ignore-errors (rime-sync)))))
-  ;; (org-mode . toggle-input-method)
+  (org-mode . toggle-input-method)
   :custom
   ((default-input-method "rime")
 
@@ -299,6 +304,7 @@ With a prefix ARG, remove start location."
                               rime-predicate-punctuation-line-begin-p
                               rime-predicate-org-in-src-block-p
                               rime-predicate-space-after-cc-p
+			      rime-predicate-hydra-p
                               ))
    ;; (rime-inline-predicates '(rime-predicate-space-after-cc-p)))
    )

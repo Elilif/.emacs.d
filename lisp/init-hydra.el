@@ -21,8 +21,8 @@
 
 (pretty-hydra-define hydra-emacs
   (:color amaranth :exit t :quit-key "q"
-	  :pre (setq which-key-inhibit t)
-          :post (setq which-key-inhibit nil))
+	  :pre (progn (setq which-key-inhibit t))
+	  :post (progn (setq which-key-inhibit nil) ))
   ("basic"
    (("E" eval-buffer))
    "Search"
@@ -36,8 +36,10 @@
 
 (pretty-hydra-define hydra-org
   (:color amaranth :exit t :quit-key "q"
-	  :pre (setq which-key-inhibit t)
-          :post (setq which-key-inhibit nil))
+	  :pre
+	  (progn (setq which-key-inhibit t)
+	  )
+	  :post (progn (setq which-key-inhibit nil) ))
   ("Basic"
    (("a" org-agenda "org agenda")
     ;; ("c" org-capture "org capture")
@@ -71,8 +73,8 @@
 
 (pretty-hydra-define jp-window
   (:color amaranth :exit nil :quit-key "q"
-	  :pre (setq which-key-inhibit t)
-          :post (setq which-key-inhibit nil))
+	  :pre (progn (setq which-key-inhibit t)  )
+          :post (progn (setq which-key-inhibit nil) ))
   ("Actions"
    (("TAB" other-window "switch")
     ("x" ace-delete-window "delete")
@@ -107,8 +109,8 @@
 ;;                                  :hint none))
 (pretty-hydra-define hydra-org-agenda
   (:color amaranth :exit t :quit-key "q"
-	  :pre (setq which-key-inhibit t)
-          :post (setq which-key-inhibit nil))
+	  :pre (progn (setq which-key-inhibit t)  )
+	  :post (progn (setq which-key-inhibit nil) ))
   ("Entry"
    (("hA" org-agenda-archive-default "archive default")
     ("hk" org-agenda-kill "kill")
@@ -164,8 +166,8 @@
 
 (pretty-hydra-define hydra-bibtex
   (:color amaranth :exit t :quit-key "q"
-	  :pre (setq which-key-inhibit t)
-          :post (setq which-key-inhibit nil))
+	  :pre (progn (setq which-key-inhibit t)  (rime-inline-asciiil))
+	  :post (progn (setq which-key-inhibit nil) ))
   ("Reference"
    (("i" org-ref-insert-link "insert ref link")
     ("g" org-ref-insert-bibliography-link "insert bibliography")
@@ -177,8 +179,8 @@
   )
 (pretty-hydra-define hydra-org-noter
   (:color amaranth :exit t :quit-key "q"
-	  :pre (setq which-key-inhibit t)
-          :post (setq which-key-inhibit nil))
+	  :pre (progn (setq which-key-inhibit t)  )
+	  :post (progn (setq which-key-inhibit nil) ))
   ("Noter"
    (("n" org-noter "noter")
     ("c" org-noter-create-skeleton "create skeleton")
@@ -191,8 +193,8 @@
    ))
 (pretty-hydra-define hydra-news
   (:color amaranth :exit t :quit-key "q"
-	  :pre (setq which-key-inhibit t)
-          :post (setq which-key-inhibit nil))
+	  :pre (progn (setq which-key-inhibit t)  )
+	  :post (progn (setq which-key-inhibit nil) ))
   ("Elfeed"
    (("e" elfeed "elfeed"))
    "Mu4e"
@@ -202,7 +204,9 @@
 (pretty-hydra-define hydra-skan-user-buffers-next
   (:body-pre (next-buffer)
 	     :hint nil
-	     :quit-key "q")
+	     :quit-key "q"
+	     :pre (progn (setq which-key-inhibit t)  )
+	     :post (progn (setq which-key-inhibit nil) ))
   ("skan user buffers"
    (("]" next-buffer)
     ("[" previous-buffer)
@@ -211,7 +215,9 @@
 (pretty-hydra-define hydra-skan-user-buffers-prev
   (:body-pre (next-buffer)
 	     :hint nil
-	     :quit-key "q")
+	     :quit-key "q"
+	     	  :pre (progn (setq which-key-inhibit t)  )
+		  :post (progn (setq which-key-inhibit nil) ))
   ("skan user buffers"
    (("]" next-buffer)
   ("[" previous-buffer)

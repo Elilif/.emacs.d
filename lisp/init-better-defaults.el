@@ -271,4 +271,20 @@
   (setq popwin:popup-window-width 80))
 
 (global-set-key (kbd "C-x b") 'counsel-ibuffer)
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode 1))
+(use-package persp-mode
+  :ensure t
+  :config
+  (setq wg-morph-on nil)
+  (setq persp-autokill-buffer-on-remove 'kill-weak)
+  (add-hook 'window-setup-hook #'(lambda () (persp-mode 1))))
+
+(use-package eyebrowse
+  :ensure t
+  :config
+  (eyebrowse-mode 1))
 (provide 'init-better-defaults)
