@@ -10,12 +10,30 @@
   (setq org-agenda-span 'day)
   (setq org-agenda-window-setup 'only-window)
   ;; Change task state to STARTED when clocking in
-  (setq org-clock-in-switch-to-state "STARTED")
   (setq org-log-into-drawer t)
   (setq org-startup-folded t)
   (setq org-confirm-babel-evaluate nil)
-  (add-to-list 'safe-local-variable-values
-             '(find-file-hook . org-babel-execute-buffer))
+  (defun eli/clock-in-to-nest (kw)
+    (if (org-get-todo-state)
+	"STARTED"))
+
+  (defun eli/entry-rating ()
+    (let* ((eli/temp)
+	   (eli/rate))
+      (setq eli/temp (org-map-entries (lambda () (string-to-number (if (org-entry-get nil "Rating") (org-entry-get nil "Rating") "0"))) "+Rating>=0" `tree))
+      (pop eli/temp)
+      (setq eli/rate (if (= (length eli/temp) 0) 0 (/ (apply `+  eli/temp) (length eli/temp))))
+      (org-set-property "Rating" (format "%.2f" eli/rate))))
+  (defun eli/rating ()
+    (interactive)
+    (org-map-entries 'eli/entry-rating "Series+LEVEL=2"))
+  (global-set-key (kbd "<f8>") 'eli/rating)
+
+  (setq org-clock-out-remove-zero-time-clocks t)
+  (setq org-clock-in-switch-to-state `eli/clock-in-to-nest)
+  (custom-set-faces
+   '(org-block-begin-line ((t (:background nil))))
+   '(org-block-end-line ((t (:background nil)))))
   ;; pdf exporting
   ;; (setq org-latex-pdf-process
   ;;     '("xelatex -interaction nonstopmode -output-directory %o %f"
@@ -93,25 +111,27 @@
       '(
         ("t" "Todo" entry (file org-agenda-file-inbox)
          "* TODO %? \n\n%i \n%U"
-         :empty-lines 1)
+         :empty-lines 0)
         ("p" "Project" entry (file org-agenda-file-projects)
          "* PROJECT %? "
-         :empty-lines 1)
+         :empty-lines 0)
         ("h" "Habit" entry (file org-agenda-file-habit)
          "* TODO %? \nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n  :PROPERTIES:\n  :STYLE:    habit\n  :END:\n\n%U"
-         :empty-lines 1)
+         :empty-lines 0)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
          "* %? \n\n%a \n%i \n%U"
-         :empty-lines 1)
+         :empty-lines 0)
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
-         "* %? "
-         :empty-lines 1)
+         "* %<%H:%M> %? "
+         :empty-lines 0
+	 :clock-in t
+	 :clock-resume t)
         ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
          "* %a \n%i \n%U"
-         :empty-lines 1)
+         :empty-lines 0)
         ("l" "Chrome" entry (file+headline org-agenda-file-inbox "Notes")
          "* %? \n%i \n\n%:annotation \n\n%U"
-         :empty-lines 1)
+         :empty-lines 0)
 	("T" "TE" entry (file org-agenda-file-te)
 	 "* TODO %u\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d> \n %?")
 	("b" "Book" entry (file+headline org-agenda-file-lists "Books")
@@ -120,6 +140,8 @@
 	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Types}p %^{Time}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
 	("s" "Movies and Musicals" entry (file+headline org-agenda-file-lists "Series")
 	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Actors}p %^{Types}p %^{Time}p %^{Episodes}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
+	("a" "Animes" entry (file+headline org-agenda-file-lists "Animes")
+	 "* TODO %?\n %^{Title}p %^{URL}p %^{Episodes}p %^{Release}p %^{Director}p %^{Authors}p %^{Publisher}p %^{Rating}p")
         ))
 
 
@@ -405,9 +427,16 @@ With a prefix ARG, remove start location."
   :bind (("C-c y" . youdao-dictionary-search-at-point-posframe))
   :config
   (setq url-automatic-caching t))
-(global-set-key (kbd "<f8>") (fset 'genius
-   (kmacro-lambda-form [?\C-c ?\C-, ?v ?\C-j ?\C-p ?\C-x ?n ?b ?\C-y ?\M-< ?\M-x ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?\\ ?\( ?\\ ?\[ ?. ?* ?\\ ?\] ?\\ ?\) return ?* ?\\ ?1 ?* return ?\C-x ?n ?w ?\C-c ?\C-p ?\C-n Tab] 0 "%d")))
-;; (global-set-key (kbd "<f9>") (fset 'csv
-;;    (kmacro-lambda-form [?\M-x ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?\" ?` backspace ?\\ ?\( ?. ?* ?? ?\\ ?\) ?\" ?, ?\\ ?\( ?. ?* ?\\ ?\) ?, ?\C-  ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\M-w ?\C-e ?\C-y ?\C-y ?\C-y ?\C-y ?\C-y backspace return ?* ?  ?T ?O ?D ?O ?\C-q ?\C-j ?  ?  ?: ?P ?R ?O ?P ?E ?R ?T ?I ?E ?S ?: ?\C-q ?\C-j ?  ?  ?: ?T ?i ?t ?l ?e ?: ?  ?\\ ?1 backspace backspace ?\" ?\\ ?1 ?\" ?\C-p ?\C-p ?\C-e ?  ?\\ ?1 ?\C-n ?\C-n ?\C-q ?\C-j ?  ?  ?: ?I ?s backspace ?S ?B ?N ?: ?  ?\\ ?2 ?\C-q ?\C-j ?  ?  ?: ?L ?a ?n ?g ?: ?  ?\\ ?3 ?\C-q ?\C-j ?  ?: backspace ?  ?: ?P ?u backspace backspace ?A ?u ?t ?h ?o ?r ?s ?: ?  ?\\ ?4 ?\C-q ?\C-j ?  ?  ?: ?P ?u ?b ?l ?i ?s ?h ?e ?r ?: ?  ?\\ ?5 ?\C-q ?\C-j ?  ?  ?: ?T ?a ?g ?s ?: ?  ?\\ ?6 ?\C-q ?\C-j ?  ?  ?: ?R ?a ?t ?i ?n ?g ?: ?  ?\\ ?7 ?\C-q ?\C-j ?  ?  ?: ?E ?N ?D ?: return] 0 "%d")))
+
+;; (use-package org-gcal
+;;   :ensure t
+;;   :config
+;;   (setq org-gcal-client-id "1055740533302-i0kv050tfr5sv6k5j39f1r7fa2smlcqg.apps.googleusercontent.com"
+;; 	org-gcal-client-secret "4OkssNTRTN8b5Atrc0unbcWg"
+;; 	org-gcal-fetch-file-alist '(("eli.q.qian@gmail.com" .  "~/Dropbox/org/test.org")
+;;                                     ;; ("another-mail@gmail.com" .  "~/task.org")
+;; 				    )))
+
+
 
 (provide 'init-org)

@@ -166,7 +166,7 @@
 
 (pretty-hydra-define hydra-bibtex
   (:color amaranth :exit t :quit-key "q"
-	  :pre (progn (setq which-key-inhibit t)  (rime-inline-asciiil))
+	  :pre (progn (setq which-key-inhibit t))
 	  :post (progn (setq which-key-inhibit nil) ))
   ("Reference"
    (("i" org-ref-insert-link "insert ref link")

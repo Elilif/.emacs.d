@@ -2,4 +2,4 @@
 # name: ck
 # key: ck
 # --
-CLOCK:`(org-time-stamp-inactive)`--`(org-time-stamp-inactive)` 
+CLOCK: `(org-time-stamp-inactive)`--`(org-time-stamp-inactive)`

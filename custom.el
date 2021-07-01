@@ -11,9 +11,10 @@
  '(org-agenda-files
    '("~/Dropbox/org/daily.org" "~/Dropbox/org/lists.org" "~/Dropbox/org/FM.org" "~/Dropbox/org/TE.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/Clock_Report.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/journal.org" "/home/eli/Dropbox/org/notes.org" "/home/eli/Dropbox/org/projects.org"))
  '(org-agenda-window-setup 'current-window)
+ '(org-babel-load-languages '((emacs-lisp . t) (shell . t) (python . t) (C . t)))
  '(org-fontify-done-headline t)
  '(package-selected-packages
-   '(eyebrowse persp-mode projectile csv-mode org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
+   '(org-gcal eyebrowse persp-mode projectile csv-mode org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
  '(rime-deactivate-when-exit-minibuffer nil)
  '(send-mail-function 'smtpmail-send-it)
  '(warning-suppress-types '((yasnippet backquote-change) (:warning)))
