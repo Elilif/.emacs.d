@@ -390,6 +390,7 @@ With a prefix ARG, remove start location."
 ;;         ("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "${slug}" :head "#+roam_tags:
 ;; * ${title}" :unnarrowed t)
 ;;         ))
+
 (use-package pretty-hydra)
 (use-package org-roam
   :after org
@@ -406,10 +407,13 @@ With a prefix ARG, remove start location."
    ("Roam"
     (("l" org-roam-buffer-toggle "toggle roam buffer")
      ("f" org-roam-node-find "find roam node")
-     ("c" org-id-get-create "create roam id")
-     ("i" org-roam-node-insert "insert roam node"))))
+     ("n" org-id-get-create "create roam id")
+     ("i" org-roam-node-insert "insert roam node")
+     ("s" org-roam-db-sync "sync roam db")
+     ("r" org-roam-refile "refile roam node")
+     ("c" org-roam-capture "roam capture"))))
   :bind
-  (:map org-mode-map ("C-c r" . org-roam-hydra/body))
+  ("C-c r" . org-roam-hydra/body)
   ;; ("C-c r l" . org-roam-buffer-toggle)
   ;; ("C-c r f" . org-roam-node-find)
   ;; ("C-c r c" . org-id-get-create)
@@ -474,9 +478,15 @@ With a prefix ARG, remove start location."
 ;;                                     ;; ("another-mail@gmail.com" .  "~/task.org")
 ;; 				    )))
 
-(custom-theme-set-faces
-   'user
-   '(variable-pitch ((t (:family "ETBembo" :height 180 :weight thin))))
-   )
+
+(use-package wttrin
+  :ensure t
+  :load-path "~/.emacs.d/private/emacs-wttrin"
+  :config
+  (setq wttrin-default-cities '("JiaXing?m" "HangZhou?m"))
+  (setq wttrin-mode-line-city "Jiaxing")
+  (setq wttrin-mode-line-format "%l:+%c %t %w")
+  (wttrin-display-weather-in-mode-line))
+
 
 (provide 'init-org)

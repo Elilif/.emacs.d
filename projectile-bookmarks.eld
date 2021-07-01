@@ -1,1 +1,1 @@
-("~/.emacs.d/")
+("~/.emacs.d/" "~/.emacs.d/private/emacs-wttrin/")

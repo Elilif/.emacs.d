@@ -27,7 +27,7 @@
 (dolist (charset '(kana han cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font) charset
                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
-
+(set-fontset-font "fontset-default" 'unicode "Noto Color Emoji" nil 'prepend)
 
 
 (provide 'init-ui)

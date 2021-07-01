@@ -15,14 +15,15 @@
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
  '(package-selected-packages
-   '(org-gcal eyebrowse persp-mode projectile csv-mode org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
+   '(wttrin org-gcal eyebrowse persp-mode projectile csv-mode org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
  '(quelpa-checkout-melpa-p nil)
  '(quelpa-update-melpa-p nil)
  '(rime-deactivate-when-exit-minibuffer nil)
  '(send-mail-function 'smtpmail-send-it)
  '(warning-suppress-types '((yasnippet backquote-change) (:warning)))
  '(which-key-frame-max-height 20)
- '(which-key-idle-delay 0.1))
+ '(which-key-idle-delay 0.1)
+ '(wttrin-mode-line-format "%l:+%c %t %w"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
