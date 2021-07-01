@@ -287,4 +287,8 @@
   :ensure t
   :config
   (eyebrowse-mode 1))
+(use-package quelpa
+  :config
+  (setq quelpa-update-melpa-p nil))
+(use-package quelpa-use-package)
 (provide 'init-better-defaults)

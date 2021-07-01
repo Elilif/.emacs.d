@@ -13,8 +13,11 @@
  '(org-agenda-window-setup 'current-window)
  '(org-babel-load-languages '((emacs-lisp . t) (shell . t) (python . t) (C . t)))
  '(org-fontify-done-headline t)
+ '(org-fontify-quote-and-verse-blocks t)
  '(package-selected-packages
    '(org-gcal eyebrowse persp-mode projectile csv-mode org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
+ '(quelpa-checkout-melpa-p nil)
+ '(quelpa-update-melpa-p nil)
  '(rime-deactivate-when-exit-minibuffer nil)
  '(send-mail-function 'smtpmail-send-it)
  '(warning-suppress-types '((yasnippet backquote-change) (:warning)))
@@ -27,4 +30,7 @@
  ;; If there is more than one, they won't work right.
  '(mu4e-highlight-face ((t nil)))
  '(mu4e-region-code ((t nil)))
- '(org-block ((t nil))))
+ '(org-block ((t nil)))
+ '(org-block-begin-line ((t (:background nil))))
+ '(org-block-end-line ((t (:background nil))))
+ '(variable-pitch ((t (:family "ETBembo" :height 180 :weight thin)))))
