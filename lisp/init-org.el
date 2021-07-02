@@ -393,6 +393,15 @@ With a prefix ARG, remove start location."
 
 (use-package pretty-hydra)
 (use-package org-roam
+  :init
+  (setq org-roam-db-gc-threshold most-positive-fixnum
+        org-id-link-to-org-use-id t)
+  (add-to-list 'display-buffer-alist
+               '(("\\*org-roam\\*"
+                  (display-buffer-in-direction)
+                  (direction . right)
+                  (window-width . 0.33)
+                  (window-height . fit-window-to-buffer))))
   :after org
   ;; upgrade t required, else it will refuse to update your existing org-roam
   :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
@@ -414,12 +423,12 @@ With a prefix ARG, remove start location."
      ("c" org-roam-capture "roam capture"))))
   :bind
   ("C-c r" . org-roam-hydra/body)
-  ;; ("C-c r l" . org-roam-buffer-toggle)
-  ;; ("C-c r f" . org-roam-node-find)
-  ;; ("C-c r c" . org-id-get-create)
-  ;; (:map org-mode-map
-  ;;       (("C-c r i" . org-roam-node-insert)))
   :config
+  (setq org-roam-mode-sections
+        (list #'org-roam-backlinks-insert-section
+              #'org-roam-reflinks-insert-section
+              ;; #'org-roam-unlinked-references-insert-section
+              ))
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
                                                          "#+TITLE: ${title}\n#+DATE: %T\n")

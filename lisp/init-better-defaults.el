@@ -63,8 +63,6 @@
   (setq fill-prefix ""))
 (add-hook 'org-mode-hook #'eli-org-fill-prefix)
 
-;; winner undo
-(global-set-key (kbd "C-c u") 'winner-undo)
 
 ;; use proxy
 (setq url-proxy-services '(
@@ -110,7 +108,24 @@
 (global-set-key (kbd "<f5>") 'eli/open-init-file)
 
 ;; use winnder-mode
-(winner-mode 1)
+(use-package winner-mode
+  :ensure nil
+  :init
+  (defun transient-winner-undo ()
+    "Transient version of winner-undo."
+    (interactive)
+    (let ((echo-keystrokes nil))
+      (winner-undo)
+      (message "Winner: [u]ndo [r]edo")
+      (set-transient-map
+       (let ((map (make-sparse-keymap)))
+	 (define-key map [?u] #'winner-undo)
+	 (define-key map [?r] #'winner-redo)
+	 map)
+       t)))
+  :hook (after-init . winner-mode)
+  :bind
+  ("C-c u" . transient-winner-undo))
 (use-package avy
   :ensure t
   :bind
@@ -163,7 +178,19 @@
   (put 'dired-find-alternate-file 'disabled nil)
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
-  (setq dired-dwim-target t))
+  (setq dired-dwim-target t)
+  ;; 切换buffer后，立即刷新
+  (defadvice switch-to-buffer (after revert-buffer-now activate)
+    (if (eq major-mode 'dired-mode)
+	(revert-buffer)))
+
+  ;; 执行shell-command后，立即刷新
+  (defadvice shell-command (after revert-buffer-now activate)
+    (if (eq major-mode 'dired-mode)
+	(revert-buffer)))
+
+  ;; 在Bookmark中进入dired buffer时自动刷新
+  (setq dired-auto-revert-buffer t))
 
 (use-package hungry-delete
   :ensure t
