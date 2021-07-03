@@ -16,7 +16,7 @@
  '(org-fontify-quote-and-verse-blocks t)
  '(org-roam-completion-everywhere t)
  '(package-selected-packages
-   '(org-roam vterm wttrin org-gcal eyebrowse persp-mode projectile csv-mode org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
+   '(vterm wttrin org-gcal eyebrowse persp-mode projectile csv-mode org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
  '(quelpa-checkout-melpa-p nil)
  '(quelpa-update-melpa-p nil)
  '(rime-deactivate-when-exit-minibuffer nil)

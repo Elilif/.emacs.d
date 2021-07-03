@@ -11,6 +11,7 @@
    ("C-c b" . hydra-bibtex/body)
    ("C-c n" . hydra-news/body)
    ("C-c e" . hydra-emacs/body)
+   ("C-c r" . hydra-roam/body)
    ("C-c [" . hydra-skan-user-buffers-prev/body)
    ("C-c ]" . hydra-skan-user-buffers-next/body)
    :map org-agenda-mode-map
@@ -19,6 +20,19 @@
    ("C-c n" . hydra-org-noter/body)
    ))
 
+(pretty-hydra-define hydra-roam
+  (:color amaranth :exit t :quit-key "q"
+	   :pre (progn (setq which-key-inhibit t))
+	   :post (progn (setq which-key-inhibit nil) ))
+   ("Roam"
+    (("l" org-roam-buffer-toggle "toggle roam buffer")
+     ("f" org-roam-node-find "find roam node")
+     ("n" org-id-get-create "create roam id")
+     ("i" org-roam-node-insert "insert roam node")
+     ("s" org-roam-db-sync "sync roam db")
+     ("r" org-roam-refile "refile roam node")
+     ("c" org-roam-capture "roam capture")))
+  )
 (pretty-hydra-define hydra-emacs
   (:color amaranth :exit t :quit-key "q"
 	  :pre (progn (setq which-key-inhibit t))

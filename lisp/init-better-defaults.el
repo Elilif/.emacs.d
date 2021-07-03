@@ -20,7 +20,7 @@
 (defun eli/fill-region ()
   (interactive)
   (let* ((min (point-min))
-	 (max (- (point-max) 25)))
+         (max (- (point-max) 25)))
     (fill-region min max)))
 (global-set-key (kbd "M-s-q") 'eli/fill-region)
 
@@ -221,9 +221,9 @@
 	("\C-x \C-f" . 'counsel-find-file)))
 
 ;; Support pinyin in Ivy
-  ;; Input prefix ':' to match pinyin
-  ;; Refer to  https://github.com/abo-abo/swiper/issues/919 and
-  ;; https://github.com/pengpengxp/swiper/wiki/ivy-support-chinese-pinyin
+;; Input prefix ':' to match pinyin
+;; Refer to  https://github.com/abo-abo/swiper/issues/919 and
+;; https://github.com/pengpengxp/swiper/wiki/ivy-support-chinese-pinyin
 (use-package pinyinlib
   :ensure t
   :commands pinyinlib-build-regexp-string
@@ -299,21 +299,6 @@
 
 (global-set-key (kbd "C-x b") 'counsel-ibuffer)
 
-(use-package projectile
-  :ensure t
-  :config
-  (projectile-mode 1))
-(use-package persp-mode
-  :ensure t
-  :config
-  (setq wg-morph-on nil)
-  (setq persp-autokill-buffer-on-remove 'kill-weak)
-  (add-hook 'window-setup-hook #'(lambda () (persp-mode 1))))
-
-(use-package eyebrowse
-  :ensure t
-  :config
-  (eyebrowse-mode 1))
 (use-package quelpa
   :config
   (setq quelpa-update-melpa-p nil))

@@ -349,50 +349,9 @@ With a prefix ARG, remove start location."
   :ensure t
   :hook (org-mode . org-superstar-mode))
 ;;roam
-;; (use-package org-roam
-;;       :ensure t
-;;       :hook
-;;       (after-init . org-roam-mode)
-;;       :custom
-;;       (org-roam-directory "~/Dropbox/org/roam")
-;;       :bind (:map org-roam-mode-map
-;;               (("C-c r l" . org-roam)
-;;                ("C-c r f" . org-roam-find-file)
-;;                ("C-c r g" . org-roam-graph))
-;;               :map org-mode-map
-;;               (("C-c r i" . org-roam-insert))
-;;               (("C-c r I" . org-roam-insert-immediate))))
 
-;; (use-package org-roam-server
-;;   :ensure t
-;;   :config
-;;   (setq org-roam-server-host "127.0.0.1"
-;;         org-roam-server-port 8080
-;;         org-roam-server-export-inline-images t
-;;         org-roam-server-authenticate nil
-;;         org-roam-server-network-poll t
-;;         org-roam-server-network-arrows nil
-;;         org-roam-server-network-label-truncate t
-;;         org-roam-server-network-label-truncate-length 60
-;;         org-roam-server-network-label-wrap-length 20))
-
-;; (require 'org-roam-protocol)
-;; (org-roam-server-mode 1)
-;; (add-to-list 'org-roam-capture-ref-templates
-;;              '("a" "Annotation" plain (function org-roam-capture--get-point)
-;;                "%U ${body}\n"
-;;                :file-name "${slug}"
-;;                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-;;                :immediate-finish t
-;;                :unnarrowed t))
-;; (setq org-roam-capture-templates
-;;       '(
-;;         ("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "${slug}" :head "#+roam_tags:
-;; * ${title}" :unnarrowed t)
-;;         ))
-
-(use-package pretty-hydra)
 (use-package org-roam
+  :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
   :init
   (setq org-roam-db-gc-threshold most-positive-fixnum
         org-id-link-to-org-use-id t)
@@ -402,39 +361,22 @@ With a prefix ARG, remove start location."
                   (direction . right)
                   (window-width . 0.33)
                   (window-height . fit-window-to-buffer))))
-  :after org
-  ;; upgrade t required, else it will refuse to update your existing org-roam
-  :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
-  ;; in this specific case, we DO NOT use ensure, as we have an explicit quelpa
-  ;; :ensure t
   :custom
-  (org-roam-directory "~/Dropbox/org/roam/")
-  :pretty-hydra
-  ((:color amaranth :exit t :quit-key "q"
-	   :pre (progn (setq which-key-inhibit t))
-	   :post (progn (setq which-key-inhibit nil) ))
-   ("Roam"
-    (("l" org-roam-buffer-toggle "toggle roam buffer")
-     ("f" org-roam-node-find "find roam node")
-     ("n" org-id-get-create "create roam id")
-     ("i" org-roam-node-insert "insert roam node")
-     ("s" org-roam-db-sync "sync roam db")
-     ("r" org-roam-refile "refile roam node")
-     ("c" org-roam-capture "roam capture"))))
-  :bind
-  ("C-c r" . org-roam-hydra/body)
+  ((org-roam-directory "~/Dropbox/org/roam/"))
   :config
   (setq org-roam-mode-sections
-        (list #'org-roam-backlinks-insert-section
+	(list #'org-roam-backlinks-insert-section
               #'org-roam-reflinks-insert-section
               ;; #'org-roam-unlinked-references-insert-section
               ))
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
-                                                         "#+TITLE: ${title}\n#+DATE: %T\n")
+							 "#+TITLE: ${title}\n#+DATE: %T\n")
                                       :unnarrowed t)))
   ;; this sets up various file handling hooks so your DB remains up to date
-  (org-roam-setup))
+  (org-roam-setup)
+  )
+
 ;;-----------------------------------------------------------------------------
 ;; blog
 ;; create a blog quickly
