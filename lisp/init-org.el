@@ -38,7 +38,9 @@
   (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "✎")
 					 ("#+END_SRC" . "□")
 					 ("#+begin_src" . "✎")
-					 ("#+end_src" . "□")))
+					 ("#+end_src" . "□")
+					 ("[ ]" . "☐")
+					 ("[X]" . "☑")))
   (add-hook 'org-mode-hook 'prettify-symbols-mode)
   ;; pdf exporting
   ;; (setq org-latex-pdf-process
@@ -190,7 +192,8 @@
 ;; 提前半小时提醒
 (setq appt-message-warning-time 30)
 (setq appt-display-interval 5)
-(require 'notifications)
+(use-package notifications
+  :defer 2)
 
 (defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
   (if (atom min-to-appt)
@@ -248,27 +251,19 @@
 (add-hook 'org-after-todo-statistics-hook 'eli/org-summary-todo)
 (use-package pdf-tools
   :ensure t
+  :defer t
   :config
-  (pdf-tools-install))
-
-;; ;; org-pdftools
-;; (use-package org-pdftools
-;;   :ensure t
-;;   :hook (pdf-view-mode . org-pdftools-setup-link))
-
-;; (use-package org-noter-pdftools
-;;   :ensure t
-;;   :after org-noter
-;;   :config
-;;   (with-eval-after-load 'pdf-annot
-;;     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+  ;; (pdf-tools-install)
+  )
 
 (use-package org-noter
+  :after org
   :config
   ;; Your org-noter config ........
   (require 'org-noter-pdftools))
 
 (use-package org-pdftools
+  :after org
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
@@ -306,6 +301,7 @@ With a prefix ARG, remove start location."
 
 ;; save last pdf position
 (use-package saveplace-pdf-view
+  :after pdf-tools
   :ensure t
   :config (save-place-mode 1))
 
@@ -347,16 +343,18 @@ With a prefix ARG, remove start location."
 
 (use-package org-superstar
   :ensure t
-  :hook (org-mode . org-superstar-mode))
-;;roam
+  :hook (org-mode . org-superstar-mode)
+  :config
+  (setq org-ellipsis "▼"))
 
+;;roam
 (use-package org-roam
   :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
   :init
   (setq org-roam-db-gc-threshold most-positive-fixnum
         org-id-link-to-org-use-id t)
   (add-to-list 'display-buffer-alist
-               '(("\\*org-roam\\*"
+               '(("\*org-roam\*"
                   (display-buffer-in-direction)
                   (direction . right)
                   (window-width . 0.33)
@@ -364,10 +362,11 @@ With a prefix ARG, remove start location."
   :custom
   ((org-roam-directory "~/Dropbox/org/roam/"))
   :config
-  (setq org-roam-mode-sections
+  (setq org-roam-node-display-template "${file}${olp}>${title:*} ${tags:10}")
+  (setq org-roam-mode-section-functions
 	(list #'org-roam-backlinks-insert-section
               #'org-roam-reflinks-insert-section
-              ;; #'org-roam-unlinked-references-insert-section
+              #'org-roam-unlinked-references-insert-section
               ))
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
@@ -375,6 +374,23 @@ With a prefix ARG, remove start location."
                                       :unnarrowed t)))
   ;; this sets up various file handling hooks so your DB remains up to date
   (org-roam-setup)
+  )
+
+(use-package org-roam-bibtex
+  ;; :quelpa ((org-roam-bibtex :fetcher github :repo "org-roam/org-roam-bibtex" branch "org-roam-v2") :upgrade nil)
+  :load-path "~/.emacs.d/private/org-roam-bibtex"
+  :after org-roam
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :config
+  (require 'org-ref)
+  (setq
+   ;; orb-preformat-keywords
+   ;; '("citekey" "title" "url" "author-or-editor" "keywords" "file" "year")
+   ;; orb-process-file-keyword t
+   orb-file-field-extensions '("pdf")
+   orb-note-actions-interface 'helm
+   orb-insert-interface 'helm-bibtex
+   )
   )
 
 ;;-----------------------------------------------------------------------------
@@ -415,6 +431,7 @@ With a prefix ARG, remove start location."
 ;;----------------------------------------------------------------------------
 
 (use-package youdao-dictionary
+  :after org
   :ensure t
   :bind (("C-c y" . youdao-dictionary-search-at-point-posframe))
   :config
@@ -439,5 +456,53 @@ With a prefix ARG, remove start location."
   (setq wttrin-mode-line-format "%l:+%c %t %w")
   (wttrin-display-weather-in-mode-line))
 
+(use-package helm-org
+  :ensure t
+  :after org
+  :config
+  (defun yuchen/helm-org-run-marked-heading-id-link ()
+    (interactive)
+    (with-helm-alive-p
+      (helm-exit-and-execute-action
+       'yuchen/helm-org-marked-heading-id-link)))
 
+  (defun yuchen/helm-org-marked-heading-id-link (marker)
+    (let* ((victims (with-helm-buffer (helm-marked-candidates)))
+           (buffer (marker-buffer marker))
+           (filename (buffer-file-name buffer))
+           (rfloc (list nil filename nil marker)))
+      (when (and (= 1 (length victims))
+                 (equal (helm-get-selection) (car victims)))
+        ;; No candidates are marked; we are refiling the entry at point
+        ;; to the selected heading
+        (setq victims (list marker)))
+      (when (and victims buffer filename rfloc)
+        (cl-loop for victim in victims
+                 ;; do (org-with-point-at victim
+                 ;;      (org-refile nil nil rfloc))
+
+                 do (with-current-buffer (marker-buffer victim)
+		      (let ((heading-id (save-excursion (goto-char (marker-position victim))
+							(org-id-get-create)
+							))
+			    (heading-name
+			     (save-excursion
+			       (goto-char (marker-position victim))
+			       (org-entry-get nil "ITEM"))
+			     )
+			    )
+			(with-helm-current-buffer
+			  (org-insert-link
+			   nil (concat "id:" heading-id) heading-name)
+			  (insert " ")
+			  )))
+		  ))))
+  (add-to-list 'helm-org-headings-actions '("Insert id link(s) C-C v" . yuchen/helm-org-marked-heading-id-link) t)
+  (define-key helm-org-headings-map (kbd "C-c v") 'yuchen/helm-org-run-marked-heading-id-link)
+)
+
+(use-package helm-org-rifle
+  :ensure t
+  :after org
+  :config)
 (provide 'init-org)

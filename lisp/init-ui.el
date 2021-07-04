@@ -1,7 +1,8 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-solarized-light t))
+  (load-theme 'doom-solarized-light t)
+  )
 
 (use-package doom-modeline
   :ensure t
@@ -28,6 +29,6 @@
   (set-fontset-font (frame-parameter nil 'font) charset
                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
 (set-fontset-font "fontset-default" 'unicode "Noto Color Emoji" nil 'prepend)
-
+(set-fontset-font "fontset-default" 'unicode "AR PL New Kai" nil 'prepend)
 
 (provide 'init-ui)

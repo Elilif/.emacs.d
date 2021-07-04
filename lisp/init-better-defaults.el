@@ -166,10 +166,11 @@
 (use-package auto-save
   :load-path "~/.emacs.d/private/auto-save"
   :config
-  (auto-save-enable)
   (setq auto-save-silent t)   ; quietly save
   (setq auto-save-delete-trailing-whitespace nil)
-  (setq auto-save-idle 5))
+  (setq auto-save-idle 3)
+  (auto-save-enable)
+  )
 
 (use-package dired-x
   :config
@@ -303,4 +304,15 @@
   :config
   (setq quelpa-update-melpa-p nil))
 (use-package quelpa-use-package)
+
+(use-package esup
+  :ensure t
+  ;; To use MELPA Stable use ":pin melpa-stable",
+  :pin melpa)
+
+(use-package benchmark-init
+  :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
 (provide 'init-better-defaults)

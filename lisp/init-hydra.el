@@ -9,7 +9,7 @@
   (("C-c o" . hydra-org/body)
    ("C-c w" . jp-window/body)
    ("C-c b" . hydra-bibtex/body)
-   ("C-c n" . hydra-news/body)
+   ("C-c n" . hydra-misc/body)
    ("C-c e" . hydra-emacs/body)
    ("C-c r" . hydra-roam/body)
    ("C-c [" . hydra-skan-user-buffers-prev/body)
@@ -205,14 +205,16 @@
    (("l" pdf-annot-list-annotations "list annotations")
     )
    ))
-(pretty-hydra-define hydra-news
+(pretty-hydra-define hydra-misc
   (:color amaranth :exit t :quit-key "q"
 	  :pre (progn (setq which-key-inhibit t)  )
 	  :post (progn (setq which-key-inhibit nil) ))
   ("Elfeed"
    (("e" elfeed "elfeed"))
    "Mu4e"
-   (("m" mu4e "mu4e"))
+   (("m" mu4e "Mails"))
+   "Wttrin"
+   (("w" wttrin "Weather"))
    ))
 
 (pretty-hydra-define hydra-skan-user-buffers-next

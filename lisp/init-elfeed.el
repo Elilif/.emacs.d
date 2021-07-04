@@ -37,6 +37,7 @@
 
 
 (use-package mu4e
+  :defer 2
   :load-path "/usr/share/emacs/site-lisp/mu4e"
   :if (executable-find "mu")
   :config

@@ -1,5 +1,6 @@
 (use-package calibredb
   :ensure t
+  :after org
   :init
   (autoload 'calibredb "calibredb")
   :config
@@ -17,6 +18,7 @@
 (add-hook 'calibredb-search-mode-hook 'eli/calibre-refresh)
 (use-package org-ref
   :ensure t
+  :after org
   :config
   (setq calibredb-ref-default-bibliography (concat (file-name-as-directory calibredb-root-dir) "catalog.bib"))
   (setq org-ref-default-bibliography '("~/Documents/Exported-Items.bib"))
@@ -32,6 +34,7 @@
   ;; :quelpa (org-media-note :fetcher github :repo "yuchen-lea/org-media-note")
   :load-path "~/.emacs.d/private/org-media-note"
   :hook (org-mode .  org-media-note-mode)
+  :after org
   :bind
   ("C-c x" . org-media-note-hydra/body)
   :config
