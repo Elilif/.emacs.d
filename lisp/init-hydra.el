@@ -12,6 +12,7 @@
    ("C-c n" . hydra-misc/body)
    ("C-c e" . hydra-emacs/body)
    ("C-c r" . hydra-roam/body)
+   ("C-c i" . hydra-insert/body)
    ("C-c [" . hydra-skan-user-buffers-prev/body)
    ("C-c ]" . hydra-skan-user-buffers-next/body)
    :map org-agenda-mode-map
@@ -30,8 +31,15 @@
      ("n" org-id-get-create "create roam id")
      ("i" org-roam-node-insert "insert roam node")
      ("s" org-roam-db-sync "sync roam db")
-     ("r" org-roam-refile "refile roam node")
-     ("c" org-roam-capture "roam capture")))
+     ("w" org-roam-refile "refile roam node"))
+    "Roam"
+    (
+     ("c" org-roam-capture "roam capture")
+     ("r" org-roam-ref-add "add refs")
+     ("d" org-roam-ref-remove "remove a ref")
+     ("t" org-roam-tag-add "add tags")
+     ("v" org-roam-tag-remove "remove a tag")
+     ))
   )
 (pretty-hydra-define hydra-emacs
   (:color amaranth :exit t :quit-key "q"
@@ -224,23 +232,29 @@
 	     :pre (progn (setq which-key-inhibit t)  )
 	     :post (progn (setq which-key-inhibit nil) ))
   ("skan user buffers"
-   (("]" next-buffer)
-    ("[" previous-buffer)
+   (("\]" next-buffer)
+    ("\[" previous-buffer)
     ("k" kill-this-buffer)
     ("q" nil))))
+
 (pretty-hydra-define hydra-skan-user-buffers-prev
-  (:body-pre (next-buffer)
+  (:body-pre (previous-buffer)
 	     :hint nil
 	     :quit-key "q"
 	     	  :pre (progn (setq which-key-inhibit t)  )
 		  :post (progn (setq which-key-inhibit nil) ))
   ("skan user buffers"
-   (("]" next-buffer)
-  ("[" previous-buffer)
+   (("\]" next-buffer)
+  ("\[" previous-buffer)
   ("k" kill-this-buffer)
   ("q" nil))))
-;; (defadvice switch-to-buffer (before save-buffer-now activate)
-;;   (when buffer-file-name (save-buffer)))
-;; (defadvice ido-switch-buffer (before save-buffer-now activate)
-;;   (when buffer-file-name (save-buffer)))
+
+(pretty-hydra-define hydra-insert
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (progn (setq which-key-inhibit t)  )
+	  :post (progn (setq which-key-inhibit nil) ))
+  ("Emoji"
+   (("i" emojify-insert-emoji "insert emoji")
+    ("s" emojify-apropos-emoji "search emoji")))
+  )
 (provide 'init-hydra)

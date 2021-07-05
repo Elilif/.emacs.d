@@ -1,7 +1,39 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-solarized-light t)
+  (load-theme 'doom-one-light t)
+  (setq doom-one-light-brighter-comments t)
+  (setq doom-one-light-brighter-modeline t)
+  (setq doom-one-light-padded-modeline nil)
+  (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "✎")
+					 ("#+END_SRC" . "□")
+					 ("#+begin_src" . "✎")
+					 ("#+end_src" . "□")
+					 ("[ ]" . "☐")
+					 ("[X]" . "☑")
+					 ("#+begin_quote" . "»")
+					 ("#+end_quote" . "«")
+					 ("#+begin_verse" . "ζ")
+					 ("#+end_verse" . "ζ")
+					 ("#+begin_example" . "")
+					 ("#+end_example" . "")
+					 ))
+  (custom-set-faces
+   '(org-block ((t (:extend t :background "#ededed"))))
+   '(org-quote ((t (:extend t :foreground "#888888" :background "#fafafa"))))
+   '(org-verse ((t (:extend t :foreground "#888888" :background "#fafafa"))))
+   '(org-block-begin-line ((t (:background nil :foreground nil :inherit nil))))
+   '(org-block-end-line ((t (:background nil :foreground nil :inherit nil))))
+   '(org-headline-done ((t (:foreground "#989898"))))
+   '(org-level-1 ((t (:inherit nil :weight bold :height 1.2))))
+   '(org-level-2 ((t (:inherit nil :weight bold :height 1.1))))
+   '(org-level-3 ((t (:weight bold :inherit nil))))
+   '(org-level-4 ((t (:inherit nil))))
+   '(org-level-5 ((t (:inherit nil))))
+   '(org-ellipsis ((t (:foreground "Gray" ))))
+   '(org-drawer ((t (:foreground "Gray" :inherit nil))))
+   '(org-link ((t (:underline t :inherit nil))))
+   )
   )
 
 (use-package doom-modeline
@@ -30,5 +62,8 @@
                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
 (set-fontset-font "fontset-default" 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font "fontset-default" 'unicode "AR PL New Kai" nil 'prepend)
+
+(use-package emojify
+  :ensure t)
 
 (provide 'init-ui)

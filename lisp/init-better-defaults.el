@@ -168,7 +168,7 @@
   :config
   (setq auto-save-silent t)   ; quietly save
   (setq auto-save-delete-trailing-whitespace nil)
-  (setq auto-save-idle 3)
+  (setq auto-save-idle 2)
   (auto-save-enable)
   )
 

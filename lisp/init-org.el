@@ -2,7 +2,8 @@
   :ensure t
   :hook ((org-mode . org-indent-mode)
 	 (org-mode . auto-fill-mode)
-	 (org-mode . column-number-mode))
+	 (org-mode . column-number-mode)
+	 (org-mode . prettify-symbols-mode))
   :bind(("\C-c c" . 'org-capture)
 	("\C-c a" . 'org-agenda))
   :config
@@ -32,16 +33,6 @@
 
   (setq org-clock-out-remove-zero-time-clocks t)
   (setq org-clock-in-switch-to-state `eli/clock-in-to-nest)
-  (custom-set-faces
-   '(org-block-begin-line ((t (:background nil))))
-   '(org-block-end-line ((t (:background nil)))))
-  (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "✎")
-					 ("#+END_SRC" . "□")
-					 ("#+begin_src" . "✎")
-					 ("#+end_src" . "□")
-					 ("[ ]" . "☐")
-					 ("[X]" . "☑")))
-  (add-hook 'org-mode-hook 'prettify-symbols-mode)
   ;; pdf exporting
   ;; (setq org-latex-pdf-process
   ;;     '("xelatex -interaction nonstopmode -output-directory %o %f"
@@ -359,15 +350,14 @@ With a prefix ARG, remove start location."
                   (direction . right)
                   (window-width . 0.33)
                   (window-height . fit-window-to-buffer))))
+  (setq org-roam-mode-section-functions
+        (list #'org-roam-backlinks-section
+              #'org-roam-reflinks-section
+              #'org-roam-unlinked-references-section))
+  (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
   :custom
   ((org-roam-directory "~/Dropbox/org/roam/"))
   :config
-  (setq org-roam-node-display-template "${file}${olp}>${title:*} ${tags:10}")
-  (setq org-roam-mode-section-functions
-	(list #'org-roam-backlinks-insert-section
-              #'org-roam-reflinks-insert-section
-              #'org-roam-unlinked-references-insert-section
-              ))
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
 							 "#+TITLE: ${title}\n#+DATE: %T\n")
@@ -376,22 +366,22 @@ With a prefix ARG, remove start location."
   (org-roam-setup)
   )
 
-(use-package org-roam-bibtex
-  ;; :quelpa ((org-roam-bibtex :fetcher github :repo "org-roam/org-roam-bibtex" branch "org-roam-v2") :upgrade nil)
-  :load-path "~/.emacs.d/private/org-roam-bibtex"
-  :after org-roam
-  :hook (org-roam-mode . org-roam-bibtex-mode)
-  :config
-  (require 'org-ref)
-  (setq
-   ;; orb-preformat-keywords
-   ;; '("citekey" "title" "url" "author-or-editor" "keywords" "file" "year")
-   ;; orb-process-file-keyword t
-   orb-file-field-extensions '("pdf")
-   orb-note-actions-interface 'helm
-   orb-insert-interface 'helm-bibtex
-   )
-  )
+;; (use-package org-roam-bibtex
+;;   :quelpa ((org-roam-bibtex :fetcher github :repo "org-roam/org-roam-bibtex" branch "org-roam-v2") :upgrade nil)
+;;   ;; :load-path "~/.emacs.d/private/org-roam-bibtex"
+;;   :after org-roam
+;;   :hook (org-roam-mode . org-roam-bibtex-mode)
+;;   :config
+;;   (require 'org-ref)
+;;   (setq
+;;    ;; orb-preformat-keywords
+;;    ;; '("citekey" "title" "url" "author-or-editor" "keywords" "file" "year")
+;;    ;; orb-process-file-keyword t
+;;    orb-file-field-extensions '("pdf")
+;;    orb-note-actions-interface 'helm
+;;    orb-insert-interface 'helm-bibtex
+;;    )
+;;   )
 
 ;;-----------------------------------------------------------------------------
 ;; blog
