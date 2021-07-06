@@ -18,6 +18,7 @@
 					 ("#+begin_example" . "")
 					 ("#+end_example" . "")
 					 ))
+  (setq org-ellipsis "▼")
   (custom-set-faces
    '(org-block ((t (:extend t :background "#ededed"))))
    '(org-quote ((t (:extend t :foreground "#888888" :background "#fafafa"))))
@@ -34,6 +35,7 @@
    '(org-drawer ((t (:foreground "Gray" :inherit nil))))
    '(org-link ((t (:underline t :inherit nil))))
    )
+  (set-cursor-color "#000000")
   )
 
 (use-package doom-modeline
@@ -50,7 +52,7 @@
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-center-content t)
-  (setq dashboard-startup-banner 2)
+  (setq dashboard-startup-banner "~/Documents/images/ue-light.png")
   )
 
 ;; Setting English Font

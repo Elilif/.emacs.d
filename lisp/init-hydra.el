@@ -30,7 +30,7 @@
      ("f" org-roam-node-find "find roam node")
      ("n" org-id-get-create "create roam id")
      ("i" org-roam-node-insert "insert roam node")
-     ("s" org-roam-db-sync "sync roam db")
+     ("s" helm-org-in-buffer-headings "search headings")
      ("w" org-roam-refile "refile roam node"))
     "Roam"
     (
@@ -39,6 +39,7 @@
      ("d" org-roam-ref-remove "remove a ref")
      ("t" org-roam-tag-add "add tags")
      ("v" org-roam-tag-remove "remove a tag")
+     ("h" yuchen/helm-org-run-marked-heading-id-link "insert a headline")
      ))
   )
 (pretty-hydra-define hydra-emacs
@@ -255,6 +256,8 @@
 	  :post (progn (setq which-key-inhibit nil) ))
   ("Emoji"
    (("i" emojify-insert-emoji "insert emoji")
-    ("s" emojify-apropos-emoji "search emoji")))
+    ("s" emojify-apropos-emoji "search emoji"))
+   "Yank"
+   (("p" counsel-yank-pop "Clipboard")))
   )
 (provide 'init-hydra)

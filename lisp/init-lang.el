@@ -1,3 +1,8 @@
+(use-package lispy
+  :ensure t
+  :hook
+  (emacs-lisp-mode . lispy-mode))
+
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)

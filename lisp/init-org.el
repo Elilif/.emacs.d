@@ -336,7 +336,7 @@ With a prefix ARG, remove start location."
   :ensure t
   :hook (org-mode . org-superstar-mode)
   :config
-  (setq org-ellipsis "▼"))
+  )
 
 ;;roam
 (use-package org-roam
@@ -488,7 +488,6 @@ With a prefix ARG, remove start location."
 			  )))
 		  ))))
   (add-to-list 'helm-org-headings-actions '("Insert id link(s) C-C v" . yuchen/helm-org-marked-heading-id-link) t)
-  (define-key helm-org-headings-map (kbd "C-c v") 'yuchen/helm-org-run-marked-heading-id-link)
 )
 
 (use-package helm-org-rifle
