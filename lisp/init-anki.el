@@ -62,7 +62,7 @@
   :ensure t
   :config
   (setq-default org-download-method 'directory
-		org-download-image-dir "~/Documents/"
+		org-download-image-dir "~/Documents/org-images"
 		org-download-heading-lvl nil
 		org-download-delete-image-after-download t
 		org-download-screenshot-method "flameshot gui --raw > %s"

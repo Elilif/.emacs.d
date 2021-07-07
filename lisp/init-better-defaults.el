@@ -129,8 +129,10 @@
 (use-package avy
   :ensure t
   :bind
-  ("C-c f" . 'avy-goto-char-in-line)
-  ("C-c g" . 'avy-goto-char))
+  ("C-:" . 'avy-goto-char-in-line)
+  ("C-'" . 'avy-goto-char)
+  :config
+  )
 
 (use-package ivy
   :ensure t
