@@ -8,7 +8,10 @@
   (define-key company-active-map (kbd "M-p") nil)
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
-
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode)
+  :config)
 
 (use-package smartparens
   :ensure t

@@ -133,7 +133,10 @@
   ("C-'" . 'avy-goto-char)
   :config
   )
-
+(use-package ace-pinyin
+  :ensure t
+  :config
+  (ace-pinyin-global-mode 1))
 (use-package ivy
   :ensure t
   :diminish ivy-mode

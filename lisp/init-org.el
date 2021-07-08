@@ -5,7 +5,8 @@
 	 (org-mode . column-number-mode)
 	 (org-mode . prettify-symbols-mode))
   :bind(("\C-c c" . 'org-capture)
-	("\C-c a" . 'org-agenda))
+	("\C-c a" . 'org-agenda)
+	)
   :config
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
@@ -16,22 +17,34 @@
   (setq org-hide-emphasis-markers t)
   (setq org-confirm-babel-evaluate nil)
   (setq org-startup-with-inline-images t)
+  (define-key org-mode-map (kbd "C-'") 'nil)
+  (define-key org-mode-map (kbd "C-'") 'avy-goto-char)
   (defun eli/clock-in-to-nest (kw)
     (if (org-get-todo-state)
 	"STARTED"))
 
+  (defun eli/get-tag-counts ()
+    (interactive)
+    (let ((all-tags '()))
+      (org-map-entries
+       (lambda ()
+	 (let ((tag-string (car (last (org-heading-components)))))
+	   (when tag-string
+	     (setq all-tags
+		   (append all-tags (split-string tag-string ":" t)))))) "+LEVEL=1")
+      (list (completing-read "Select a tag:" all-tags))))
   (defun eli/entry-rating ()
+    (interactive)
     (let* ((eli/temp)
 	   (eli/rate))
       (setq eli/temp (org-map-entries (lambda () (string-to-number (if (org-entry-get nil "Rating") (org-entry-get nil "Rating") "0"))) "+Rating>=0" `tree))
       (pop eli/temp)
       (setq eli/rate (if (= (length eli/temp) 0) 0 (/ (apply `+  eli/temp) (length eli/temp))))
       (org-set-property "Rating" (format "%.2f" eli/rate))))
-  (defun eli/rating ()
-    (interactive)
-    (org-map-entries 'eli/entry-rating "Series+LEVEL=2"))
+  (defun eli/rating (type)
+    (interactive (eli/get-tag-counts))
+    (org-map-entries 'eli/entry-rating (concat type "+LEVEL=2/!-DONE-CANCELLED")))
   (global-set-key (kbd "<f8>") 'eli/rating)
-
   (setq org-clock-out-remove-zero-time-clocks t)
   (setq org-clock-in-switch-to-state `eli/clock-in-to-nest)
   ;; pdf exporting
