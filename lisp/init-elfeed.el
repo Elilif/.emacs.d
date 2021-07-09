@@ -1,5 +1,6 @@
 (use-package elfeed
   :ensure t
+  :defer t
   :init
   (setq elfeed-curl-extra-arguments '("-x" "http://127.0.0.1:8889"))
   :bind
@@ -9,12 +10,14 @@
 
 (use-package elfeed-org
   :ensure t
+  :after elfeed
   :init
   (elfeed-org)
   (setq  rmh-elfeed-org-files (list "~/.emacs.d/private/elfeed.org")))
 
 (use-package elfeed-goodies
   :ensure t
+  :after elfeed
   :init
   (elfeed-goodies/setup)
   :config
@@ -25,6 +28,7 @@
 
 ;; (setq smtpmail-auth-credentials "~/.authinfo")
 (use-package smtpmail
+  :after mu4e
   :config
   (setq smtpmail-smtp-user "eli.q.qian@gmail.com"
 	smtpmail-smtp-server "smtp.gmail.com"
@@ -50,6 +54,7 @@
 
 (use-package mu4e-alert
   :ensure t
+  :after mu4e
   :config
   (mu4e-alert-set-default-style 'notifications)
   (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)

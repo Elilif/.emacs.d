@@ -1,5 +1,9 @@
 (use-package flyspell
+  :defer t
   :hook (org-mode . flyspell-mode))
+
+(use-package ispell
+  :defer t)
 
 (use-package flyspell-correct
   :after flyspell
@@ -8,6 +12,7 @@
 
 (use-package flyspell-correct-ivy
   :ensure t
+  :defer t
   :after flyspell-correct)
 
 (use-package goldendict

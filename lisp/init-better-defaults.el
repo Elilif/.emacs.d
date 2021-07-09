@@ -1,3 +1,5 @@
+;; disable ad-like warning
+(setq ad-redefinition-action 'accept)
 ;; disable ring bell when cussor at bottom 
 (setq ring-bell-function 'ignore)
 

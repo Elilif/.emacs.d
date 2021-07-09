@@ -11,6 +11,7 @@
 
 (use-package yasnippet
   :ensure t
+  :defer t
   :config
   (yas-global-mode 1)
   (require 'warnings)
@@ -18,10 +19,12 @@
 
 (use-package auto-yasnippet
   :ensure t
+  :defer t
   :config)
 
 (use-package yasnippet-snippets
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; (use-package irony
 ;;   :ensure t

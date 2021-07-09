@@ -1,5 +1,6 @@
 (use-package org
   :ensure t
+  :defer t
   :hook ((org-mode . org-indent-mode)
 	 (org-mode . auto-fill-mode)
 	 (org-mode . column-number-mode)
@@ -25,7 +26,7 @@
   ;;  (org-show-subtree)
   ;;  (org-unlogged-message "ALL")
   ;;  (setq org-cycle-subtree-status 'all))
-  ;; add the above codes before (t ;; Default action: hide the subtree in org-cycle-internal-local
+  ;; add the above codes before ((or children-skipped in org-cycle-internal-local
   (defun org-cycle-hide-drawers (state)
     "Re-hide all drawers after a visibility state change."
     (when (and (derived-mode-p 'org-mode)
@@ -233,39 +234,43 @@
               ))
 
 ;; appt
-(require 'appt)
-;; 每小时同步一次appt,并且现在就开始同步
-(run-at-time nil 3600 'org-agenda-to-appt t)
-;; 更新agenda时，同步appt
-(defun eli/org-agenda-to-appt ()
-  "call org-agenda-to-appt with refresh."
-  (org-agenda-to-appt t))
-(add-hook 'org-agenda-mode-hook  'eli/org-agenda-to-appt)
-(add-hook 'org-finalize-agenda-hook 'eli/org-agenda-to-appt)
-;; 激活提醒
-(appt-activate 1)
-;; 提前半小时提醒
-(setq appt-message-warning-time 30)
-(setq appt-display-interval 5)
-(use-package notifications
-  :defer 2)
+(use-package appt
+  :after org
+  :config
+  (require 'appt)
+  ;; 每小时同步一次appt,并且现在就开始同步
+  (run-at-time nil 3600 'org-agenda-to-appt t)
+  ;; 更新agenda时，同步appt
+  (defun eli/org-agenda-to-appt ()
+    "call org-agenda-to-appt with refresh."
+    (org-agenda-to-appt t))
+  (add-hook 'org-agenda-mode-hook  'eli/org-agenda-to-appt)
+  (add-hook 'org-finalize-agenda-hook 'eli/org-agenda-to-appt)
+  ;; 激活提醒
+  (appt-activate 1)
+  ;; 提前半小时提醒
+  (setq appt-message-warning-time 30)
+  (setq appt-display-interval 5)
+  (use-package notifications
+    :defer 2)
 
-(defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
-  (if (atom min-to-appt)
-      (notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
-                            :title (format "%s分钟内有新的任务" min-to-appt)
-                            :body appt-msg)
-    (dolist (i (number-sequence 0 (1- (length min-to-appt))))
-      (notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
-                            :title (format "%s分钟内有新的任务" (nth i min-to-appt))
-                            :body (nth i appt-msg))))
-  ;; (appt-disp-window min-to-appt current-time appt-msg)
-  ) ;同时也调用原有的提醒函数
-(setq appt-display-format 'window) ;; 只有这样才能使用自定义的通知函数
-(setq appt-disp-window-function #'appt-disp-window-and-notification)
+  (defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
+    (if (atom min-to-appt)
+	(notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
+                              :title (format "%s分钟内有新的任务" min-to-appt)
+                              :body appt-msg)
+      (dolist (i (number-sequence 0 (1- (length min-to-appt))))
+	(notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
+                              :title (format "%s分钟内有新的任务" (nth i min-to-appt))
+                              :body (nth i appt-msg))))
+    ;; (appt-disp-window min-to-appt current-time appt-msg)
+    ) ;同时也调用原有的提醒函数
+  (setq appt-display-format 'window) ;; 只有这样才能使用自定义的通知函数
+  (setq appt-disp-window-function #'appt-disp-window-and-notification)
 
-(server-start)
-(require 'org-protocol)
+  (server-start)
+  (require 'org-protocol)
+  )
 
 ;; org-refile
 (setq org-refile-use-outline-path 'file)
