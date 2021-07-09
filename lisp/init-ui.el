@@ -32,8 +32,11 @@
    '(org-level-4 ((t (:inherit nil))))
    '(org-level-5 ((t (:inherit nil))))
    '(org-ellipsis ((t (:foreground "Gray" ))))
+   '(org-document-info-keyword ((t (:foreground "Gray"  :inherit nil))))
    '(org-drawer ((t (:foreground "Gray" :inherit nil))))
+   '(org-meta-line ((t (:foreground "Gray" :inherit nil))))
    '(org-link ((t (:underline t :inherit nil))))
+   '(rime-default-face ((t (:background "gainsboro" :foreground "#333333"))))
    )
   (set-cursor-color "#000000")
   )
@@ -67,5 +70,7 @@
 
 (use-package emojify
   :ensure t)
-
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
 (provide 'init-ui)
