@@ -89,6 +89,8 @@
   :ensure t
   :config)
 
+(use-package zeal-at-point
+  :ensure t)
 (provide 'init-lang)
 
 

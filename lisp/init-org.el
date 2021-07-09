@@ -19,6 +19,14 @@
   (setq org-startup-with-inline-images t)
   (define-key org-mode-map (kbd "C-'") 'nil)
   (define-key org-mode-map (kbd "C-'") 'avy-goto-char)
+
+  ;; improving emphasis marker
+  (sp-local-pair 'org-mode "~" "~ ")
+  (sp-local-pair 'org-mode "/" "/ ")
+  (sp-local-pair 'org-mode "=" "= ")
+  (sp-local-pair 'org-mode "+" "+ ")
+  (sp-local-pair 'org-mode "*" "* ")
+  (sp-local-pair 'org-mode "_" "_ ")
   (defun eli/clock-in-to-nest (kw)
     (if (org-get-todo-state)
 	"STARTED"))
