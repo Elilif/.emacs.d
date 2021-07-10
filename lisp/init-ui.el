@@ -56,6 +56,12 @@
   (dashboard-setup-startup-hook)
   (setq dashboard-center-content t)
   (setq dashboard-startup-banner "~/Documents/images/ue-light.png")
+  (setq dashboard-items '((recents  . 5)
+                          (bookmarks . 5)
+                          ;; (projects . 5)
+                          ;; (agenda . 5)
+                          ;; (registers . 5)
+			  ))
   )
 
 ;; Setting English Font
@@ -70,7 +76,9 @@
 
 (use-package emojify
   :ensure t)
+
 (use-package rainbow-delimiters
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
+
 (provide 'init-ui)

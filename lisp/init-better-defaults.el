@@ -282,12 +282,6 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package term
-  :ensure nil
-  :bind (:map term-raw-map
-         ("M-:" . nil)
-         ("M-x" . nil)))
-
 (defun my-swiper-hack (&optional arg)
   (ignore arg)
   (if (region-active-p) (deactivate-mark)))

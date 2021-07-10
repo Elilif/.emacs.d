@@ -92,6 +92,12 @@
     ("m" org-timer)
     ("t" org-timer-item)
     ("z" (org-info "Timers")))
+   "Writing"
+   (("ww" writeroom-mode "write room")
+    ("wm" writeroom-toggle-mode-lint "toggle modeline")
+    ("wg" writegood-mode "write good")
+    ("wl" writegood-grade-level "grade level")
+    ("we" writegood-reading-ease "reading-ease"))
    ))
 
 (pretty-hydra-define jp-window

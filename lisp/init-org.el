@@ -563,4 +563,10 @@ With a prefix ARG, remove start location."
   :ensure t
   :after org
   :config)
+
+(use-package writeroom-mode
+  :ensure t)
+
+(use-package writegood-mode
+  :ensure t)
 (provide 'init-org)
