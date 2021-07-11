@@ -25,21 +25,30 @@
    '(org-verse ((t (:extend t :foreground "#888888" :background "#fafafa"))))
    '(org-block-begin-line ((t (:background nil :foreground nil :inherit nil))))
    '(org-block-end-line ((t (:background nil :foreground nil :inherit nil))))
-   '(org-headline-done ((t (:foreground "#989898"))))
+   '(org-headline-done ((t (:foreground "#B0BEC5"))))
    '(org-level-1 ((t (:inherit nil :weight bold :height 1.2))))
    '(org-level-2 ((t (:inherit nil :weight bold :height 1.1))))
    '(org-level-3 ((t (:weight bold :inherit nil))))
    '(org-level-4 ((t (:inherit nil))))
    '(org-level-5 ((t (:inherit nil))))
-   '(org-ellipsis ((t (:foreground "Gray" ))))
-   '(org-document-info-keyword ((t (:foreground "Gray"  :inherit nil))))
-   '(org-drawer ((t (:foreground "Gray" :inherit nil))))
-   '(org-meta-line ((t (:foreground "Gray" :inherit nil))))
+   '(org-ellipsis ((t (:foreground "#B0BEC5" ))))
+   '(org-document-info-keyword ((t (:foreground "#B0BEC5"  :inherit nil))))
+   '(org-drawer ((t (:foreground "#B0BEC5" :inherit nil))))
+   '(org-meta-line ((t (:foreground "#B0BEC5" :inherit nil))))
    '(org-link ((t (:underline t :inherit nil))))
    '(rime-default-face ((t (:background "gainsboro" :foreground "#333333"))))
    )
   (set-cursor-color "#000000")
   )
+
+;; (use-package nano-theme
+;;   :ensure nil
+;;   :quelpa ((nano-theme
+;;             :fetcher github
+;;             :repo "rougier/nano-theme") :upgrade nil)
+;;   :config
+;;   (load-theme 'nano t)
+;;   )
 
 (use-package doom-modeline
   :ensure t

@@ -16,6 +16,7 @@
   ;; Change task state to STARTED when clocking in
   (setq org-log-into-drawer t)
   (setq org-startup-folded t)
+  (setq org-hide-block-startup t)
   (setq org-hide-emphasis-markers t)
   (setq org-confirm-babel-evaluate nil)
   (setq org-startup-with-inline-images t)
@@ -570,4 +571,9 @@ With a prefix ARG, remove start location."
 
 (use-package writegood-mode
   :ensure t)
+
+(use-package org-ql
+  :ensure t
+  :after org)
+
 (provide 'init-org)
