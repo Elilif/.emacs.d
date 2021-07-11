@@ -316,4 +316,13 @@
   :config
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+(use-package multiple-cursors
+  :ensure t
+  :config
+  (setq mc/always-run-for-all t))
+
+(use-package treemacs
+  :ensure t)
+
 (provide 'init-better-defaults)

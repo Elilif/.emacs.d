@@ -9,6 +9,7 @@
 	("\C-c a" . 'org-agenda)
 	)
   :config
+  (require 'org-inlinetask)
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
   (setq org-agenda-window-setup 'only-window)

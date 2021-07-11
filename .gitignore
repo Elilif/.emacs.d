@@ -18,3 +18,5 @@ network-security.data
 /persp-confs
 .org-id-locations
 /emojis
+/.cache
+.mc-lists.el

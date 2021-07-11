@@ -55,6 +55,11 @@
     ("bj" bookmark-jump "jump bookmark")
     ("bl" bookmark-bmenu-list "list bookmark")
     ("bd" bookmark-delete "delete bookmark"))
+   "edit"
+   (("ed" mc/mark-all-dwim "mark all dwim")
+    ("ee" mc/edit-lines "elit lines"))
+   "treemacs"
+   (("t" treemacs "treemacs"))
    ))
 
 (pretty-hydra-define hydra-org
