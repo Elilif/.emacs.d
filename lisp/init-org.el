@@ -23,6 +23,35 @@
   (define-key org-mode-map (kbd "C-'") 'nil)
   (define-key org-mode-map (kbd "C-'") 'avy-goto-char)
 
+  ;;  dynamically add roam files with TODO entry into agenda files
+  (defvar dynamic-agenda-files nil
+    "dynamic generate agenda files list when changing org state")
+
+  (defun update-dynamic-agenda-hook ()
+    (let ((done (or (not org-state) ;; nil when no TODO list
+                    (member org-state org-done-keywords)))
+          (file (buffer-file-name))
+          (agenda (funcall (ad-get-orig-definition 'org-agenda-files)) ))
+      (unless (member file agenda)
+	(if done
+            (save-excursion
+              (goto-char (point-min))
+              ;; Delete file from dynamic files when all TODO entry changed to DONE
+              (unless (search-forward-regexp org-not-done-heading-regexp nil t)
+		(customize-save-variable
+		 'dynamic-agenda-files
+		 (cl-delete-if (lambda (k) (string= k file))
+                               dynamic-agenda-files))))
+          ;; Add this file to dynamic agenda files
+          (unless (member file dynamic-agenda-files)
+            (customize-save-variable 'dynamic-agenda-files
+                                     (add-to-list 'dynamic-agenda-files file)))))))
+
+  (defun dynamic-agenda-files-advice (orig-val)
+    (cl-union orig-val dynamic-agenda-files :test #'equal))
+
+  (advice-add 'org-agenda-files :filter-return #'dynamic-agenda-files-advice)
+  (add-to-list 'org-after-todo-state-change-hook 'update-dynamic-agenda-hook t)
   ;; hide drawers
   ;; ((eq org-cycle-subtree-status 'subtree)
   ;;  (org-show-subtree)
@@ -288,7 +317,7 @@
 (setq org-agenda-custom-commands
       '(("g" "GTD"
          ((agenda "" nil)
-          (tags  "+INBOX/+TODO|+PROJECT/+TODO"
+          (tags-todo  "/+TODO"
                  ((org-agenda-overriding-header "Inbox")
                   (org-tags-match-list-sublevels t)
                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp))))

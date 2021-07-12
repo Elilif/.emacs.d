@@ -81,8 +81,8 @@
     ("c" org-clock-in-last)
     ("o" org-clock-out)
     
-    ("e" org-clock-modify-effort-estimate)
-    ("q" org-clock-cancel)
+    ("ke" org-clock-modify-effort-estimate)
+    ("kk" org-clock-cancel)
 
     ("g" org-clock-goto)
     ("d" org-clock-display)
@@ -103,6 +103,10 @@
     ("wg" writegood-mode "write good")
     ("wl" writegood-grade-level "grade level")
     ("we" writegood-reading-ease "reading-ease"))
+   "query"
+   (("et" org-ql-sparse-tree "org-ql sparse tree")
+    ("es" org-ql-search "org-ql search")
+    ("ev" org-ql-view "org-ql view"))
    ))
 
 (pretty-hydra-define jp-window
