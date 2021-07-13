@@ -50,7 +50,17 @@
   (setq user-mail-address "eli.q.qian@gmail.com")
   (setq
    mu4e-get-mail-command "proxychains mbsync -a"
-   mu4e-update-interval 600))
+   mu4e-update-interval 600)
+  ;; configure the bookmarks.
+  (setq mu4e-bookmarks
+	'( ("flag:unread AND NOT flag:trashed"                    "Unread messages"                  ?u)
+           ("date:today..now"                                     "Today's messages"                 ?t)
+           ("date:7d..now"                                        "Last 7 days"                      ?w)
+           ("date:1d..now AND NOT list:emacs-orgmode.gnu.org"     "Last 1 days"                      ?o)
+           ("date:1d..now AND list:emacs-orgmode.gnu.org"         "Last 1 days (org mode)"           ?m)
+           ("maildir:/sent"                                       "sent"                             ?s)
+           ("maildir:/drafts"                                     "drafts"                           ?d)
+           ("mime:image/*"                                        "Messages with images"             ?p))))
 
 (use-package mu4e-alert
   :ensure t
@@ -67,5 +77,9 @@
   ;; 	 "\"/[Gmail].All Mail\""))
   )
 
+(use-package mu4e-maildirs-extension
+  :ensure t
+  :config
+  (mu4e-maildirs-extension))
 
 (provide 'init-elfeed)

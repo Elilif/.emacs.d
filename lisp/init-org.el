@@ -10,6 +10,7 @@
 	)
   :config
   (require 'org-inlinetask)
+  (require 'org-mu4e)
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
   (setq org-agenda-window-setup 'only-window)
@@ -586,9 +587,10 @@ With a prefix ARG, remove start location."
 			   nil (concat "id:" heading-id) heading-name)
 			  (insert " ")
 			  )))
-		  ))))
-  (add-to-list 'helm-org-headings-actions '("Insert id link(s) C-C v" . yuchen/helm-org-marked-heading-id-link) t)
-)
+		 ))))
+  (add-to-list 'helm-org-headings-actions '("Insert id link(s) C-c v" . yuchen/helm-org-marked-heading-id-link) t)
+  (define-key helm-org-headings-map (kbd "C-c v") 'yuchen/helm-org-run-marked-heading-id-link)
+  )
 
 (use-package helm-org-rifle
   :ensure t
@@ -604,5 +606,6 @@ With a prefix ARG, remove start location."
 (use-package org-ql
   :ensure t
   :after org)
+
 
 (provide 'init-org)
