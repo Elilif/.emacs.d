@@ -3,7 +3,10 @@
   :hook (org-mode . flyspell-mode))
 
 (use-package ispell
-  :defer t)
+  :defer t
+  :config
+  (setq ispell-personal-dictionary "~/.emacs.d/mydictionary")
+  )
 
 (use-package flyspell-correct
   :after flyspell
@@ -11,9 +14,10 @@
   :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
 
 (use-package flyspell-correct-ivy
-  :ensure t
-  :defer t
-  :after flyspell-correct)
+    :after ivy
+    :bind (:map flyspell-mode-map
+           ([remap flyspell-correct-word-before-point] . flyspell-correct-wrapper))
+    :init (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
 (use-package goldendict
   :ensure t

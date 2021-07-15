@@ -202,6 +202,11 @@
 (setq org-agenda-file-te (expand-file-name "TE.org" org-agenda-dir))
 (setq org-agenda-file-lists (expand-file-name "lists.org" org-agenda-dir))
 (setq org-agenda-files (list org-agenda-dir))
+(defun eli/capture-report-date-file ()
+  (let ((name (read-string "Name: ")))
+    (expand-file-name (format "%s-%s.org"
+                              (format-time-string "%Y-%m-%d")
+                              name) "~/Dropbox/org/blog")))
 
 (setq org-capture-templates
       '(
@@ -215,13 +220,16 @@
          "* TODO %? \nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n  :PROPERTIES:\n  :STYLE:    habit\n  :END:\n\n%U"
          :empty-lines 0)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
-         "* %? \n\n%a \n%i \n%U"
+         "* %? \n\n%a \n%i \n\n%U"
          :empty-lines 0)
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
          "* %<%H:%M> %? "
          :empty-lines 0
 	 :clock-in t
 	 :clock-resume t)
+	("B" "Blogs" plain (file eli/capture-report-date-file)
+	 "#+TITLE: %?\n#+DATE: %<%Y-%m-%d>\n#+STARTUP: showall\n#+OPTIONS: toc:nil H:2 num:2\n"
+	 )
         ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
          "* %a \n%i \n%U"
          :empty-lines 0)
@@ -486,11 +494,6 @@ With a prefix ARG, remove start location."
 
 ;;-----------------------------------------------------------------------------
 ;; blog
-;; create a blog quickly
-(defun eli/create-blogs ()
-  (interactive)
-  (counsel-find-file "~/Dropbox/org/blog"))
-
 ;; publishing
 (defun eli/push-to-gitpage (&optional UNUSE)
   (interactive)
@@ -498,6 +501,8 @@ With a prefix ARG, remove start location."
   (message "blogs deployed successfully!")
   )
 
+(setq org-html-head-include-default-style nil)
+(setq org-html-htmlize-output-type 'css)
 (setq org-html-validation-link nil) ; 去掉validation显示
 (setq org-html-link-home "index.html"); 设置home超链接
 (setq org-html-link-up "index.html")
@@ -510,6 +515,7 @@ With a prefix ARG, remove start location."
          :publishing-directory ,eli-blog-publish-dir
          :base-extension "org"
          :recursive nil
+	 :htmlized-source t
          :publishing-function org-html-publish-to-html
          :auto-sitemap t
          :sitemap-filename "index.org"
