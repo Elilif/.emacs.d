@@ -23,25 +23,28 @@
 
 (pretty-hydra-define hydra-roam
   (:color amaranth :exit t :quit-key "q"
-	   :pre (progn (setq which-key-inhibit t))
-	   :post (progn (setq which-key-inhibit nil) ))
-   ("Roam"
-    (("l" org-roam-buffer-toggle "toggle roam buffer")
-     ("f" org-roam-node-find "find roam node")
-     ("n" org-id-get-create "create roam id")
-     ("i" org-roam-node-insert "insert roam node")
-     ("s" helm-org-in-buffer-headings "search headings")
-     ("w" org-roam-refile "refile roam node"))
-    "Roam"
-    (
-     ("c" org-roam-capture "roam capture")
-     ("r" org-roam-ref-add "add refs")
-     ("d" org-roam-ref-remove "remove a ref")
-     ("t" org-roam-tag-add "add tags")
-     ("v" org-roam-tag-remove "remove a tag")
-     ("h" yuchen/helm-org-run-marked-heading-id-link "insert a headline")
-     ))
-  )
+	  :pre (progn (setq which-key-inhibit t))
+	  :post (progn (setq which-key-inhibit nil) ))
+  ("Roam"
+   (("l" org-roam-buffer-toggle "toggle roam buffer")
+    ("f" org-roam-node-find "find roam node")
+    ("n" org-id-get-create "create roam id")
+    ("i" org-roam-node-insert "insert roam node")
+    ("s" helm-org-in-buffer-headings "search headings")
+    ("w" org-roam-refile "refile roam node"))
+   "Roam"
+   (("c" org-roam-capture "roam capture")
+    ("ra" org-roam-ref-add "add refs")
+    ("rd" org-roam-ref-remove "remove a ref")
+    ("t" org-roam-tag-add "add tags")
+    ("v" org-roam-tag-remove "remove a tag")
+    ("h" yuchen/helm-org-run-marked-heading-id-link "insert a headline"))
+   "Roam Daily"
+   (("dd" org-roam-dailies-capture-today "today")
+    ("df" org-roam-dailies-find-date "find date")
+    ("dt" org-roam-dailies-find-today "find today"))
+  ))
+
 (pretty-hydra-define hydra-emacs
   (:color amaranth :exit t :quit-key "q"
 	  :pre (progn (setq which-key-inhibit t))
@@ -81,7 +84,7 @@
     ("c" org-clock-in-last)
     ("o" org-clock-out)
     
-    ("ke" org-clock-modify-effort-estimate)
+    ("ke" org-clock-modify-effort-estimate "modify effort estimates")
     ("kk" org-clock-cancel)
 
     ("g" org-clock-goto)
@@ -91,7 +94,7 @@
    "Org-timer"
    (("r" org-timer-start)
     ("n" org-timer-set-timer)
-    ("p" org-timer-pause-or-continue)
+    ("p" org-timer-pause-or-continue "Pause/Continue")
     ("s" org-timer-stop)
 
     ("m" org-timer)
@@ -107,6 +110,9 @@
    (("et" org-ql-sparse-tree "org-ql sparse tree")
     ("es" org-ql-search "org-ql search")
     ("ev" org-ql-view "org-ql view"))
+   "blog"
+   (("bp" org-publish)
+    ("bg" eli/push-to-gitpage))
    ))
 
 (pretty-hydra-define jp-window

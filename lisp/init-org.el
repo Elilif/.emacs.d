@@ -1,5 +1,6 @@
 (use-package org
-  :ensure t
+  :load-path "~/.emacs.d/private/org-mode/lisp"
+  ;; :ensure t
   :defer t
   :hook ((org-mode . org-indent-mode)
 	 (org-mode . auto-fill-mode)
@@ -23,7 +24,8 @@
   (setq org-startup-with-inline-images t)
   (define-key org-mode-map (kbd "C-'") 'nil)
   (define-key org-mode-map (kbd "C-'") 'avy-goto-char)
-
+  (define-key org-mode-map (kbd "C-c \[") 'hydra-skan-user-buffers-prev/body)
+  (define-key org-mode-map (kbd "C-c \]") 'hydra-skan-user-buffers-next/body)
   ;;  dynamically add roam files with TODO entry into agenda files
   (defvar dynamic-agenda-files nil
     "dynamic generate agenda files list when changing org state")
@@ -58,7 +60,7 @@
   ;;  (org-show-subtree)
   ;;  (org-unlogged-message "ALL")
   ;;  (setq org-cycle-subtree-status 'all))
-  ;; add the above codes before ((or children-skipped in org-cycle-internal-local
+  ;; add above codes before ((or children-skipped in org-cycle-internal-local
   (defun org-cycle-hide-drawers (state)
     "Re-hide all drawers after a visibility state change."
     (when (and (derived-mode-p 'org-mode)
