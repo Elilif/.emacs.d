@@ -17,6 +17,9 @@
   (setq org-agenda-window-setup 'only-window)
   ;; Change task state to STARTED when clocking in
   (setq org-log-into-drawer t)
+  (setq org-insert-heading-respect-content t)
+  (setq sentence-end-without-space "。．？！.!?")
+  (setq sentence-end-double-space nil)
   (setq org-startup-folded t)
   (setq org-hide-block-startup t)
   (setq org-hide-emphasis-markers t)
@@ -25,7 +28,7 @@
   (define-key org-mode-map (kbd "C-'") 'nil)
   (define-key org-mode-map (kbd "C-'") 'avy-goto-char)
   (define-key org-mode-map (kbd "C-c \[") 'hydra-skan-user-buffers-prev/body)
-  (define-key org-mode-map (kbd "C-c \]") 'hydra-skan-user-buffers-next/body)
+
   ;;  dynamically add roam files with TODO entry into agenda files
   (defvar dynamic-agenda-files nil
     "dynamic generate agenda files list when changing org state")
@@ -451,7 +454,8 @@ With a prefix ARG, remove start location."
 
 ;;roam
 (use-package org-roam
-  :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
+  :ensure t
+  ;; :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
   :init
   (setq org-roam-db-gc-threshold most-positive-fixnum
         org-id-link-to-org-use-id t)
@@ -466,6 +470,7 @@ With a prefix ARG, remove start location."
               #'org-roam-reflinks-section
               #'org-roam-unlinked-references-section))
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
+  (setq org-roam-v2-ack t)
   :custom
   ((org-roam-directory "~/Dropbox/org/roam/"))
   :config
@@ -475,6 +480,7 @@ With a prefix ARG, remove start location."
                                       :unnarrowed t)))
   ;; this sets up various file handling hooks so your DB remains up to date
   (org-roam-setup)
+  (require 'org-roam-protocol)
   )
 
 ;; (use-package org-roam-bibtex
@@ -614,6 +620,5 @@ With a prefix ARG, remove start location."
 (use-package org-ql
   :ensure t
   :after org)
-
 
 (provide 'init-org)
