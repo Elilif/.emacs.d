@@ -457,29 +457,27 @@ With a prefix ARG, remove start location."
   :ensure t
   ;; :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
   :init
+  (setq org-roam-v2-ack t)
+  (setq org-roam-directory "~/Dropbox/org/roam/")
   (setq org-roam-db-gc-threshold most-positive-fixnum
         org-id-link-to-org-use-id t)
-  (add-to-list 'display-buffer-alist
-               '(("\*org-roam\*"
-                  (display-buffer-in-direction)
-                  (direction . right)
-                  (window-width . 0.33)
-                  (window-height . fit-window-to-buffer))))
+  (org-roam-setup)
+  :config
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
               #'org-roam-unlinked-references-section))
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
-  (setq org-roam-v2-ack t)
-  :custom
-  ((org-roam-directory "~/Dropbox/org/roam/"))
-  :config
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
 							 "#+TITLE: ${title}\n#+DATE: %T\n")
                                       :unnarrowed t)))
-  ;; this sets up various file handling hooks so your DB remains up to date
-  (org-roam-setup)
+  (add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+                 (display-buffer-in-direction)
+                 (direction . right)
+                 (window-width . 0.33)
+                 (window-height . fit-window-to-buffer)))
   (require 'org-roam-protocol)
   )
 
@@ -621,4 +619,10 @@ With a prefix ARG, remove start location."
   :ensure t
   :after org)
 
+;; (use-package easy-hugo
+;;   :ensure t
+;;   :config
+;;   (setq easy-hugo-basedir "~/Elilif.github.io")
+;;   (setq easy-hugo-url "https://elilif.github.io")
+;;   (setq easy-hugo-default-ext ".org"))
 (provide 'init-org)
