@@ -3,7 +3,8 @@
   :config
   (global-company-mode 1)
   (setq company-show-numbers t)
-  (setq company-idle-delay 0.1)
+  (setq completion-ignore-case t)
+  (setq company-idle-delay 0.2)
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
   (define-key company-active-map (kbd "C-n") #'company-select-next)

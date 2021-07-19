@@ -63,6 +63,8 @@
     ("ee" mc/edit-lines "elit lines"))
    "treemacs"
    (("t" treemacs "treemacs"))
+   "Deft"
+   (("d" eli/deft-search-for "search"))
    ))
 
 (pretty-hydra-define hydra-org

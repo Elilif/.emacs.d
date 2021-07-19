@@ -17,7 +17,6 @@
   (setq org-agenda-window-setup 'only-window)
   ;; Change task state to STARTED when clocking in
   (setq org-log-into-drawer t)
-  (setq org-insert-heading-respect-content t)
   (setq sentence-end-without-space "。．？！.!?")
   (setq sentence-end-double-space nil)
   (setq org-startup-folded t)
@@ -192,7 +191,8 @@
 
 ;; disable company-mode in org-mode
 (defun eli/org-mode-hook ()
-  (company-mode -1)
+  (set (make-local-variable 'company-backends)
+       '((company-capf company-files)))
   (flycheck-mode -1))
 (add-hook 'org-mode-hook 'eli/org-mode-hook)
 ;;org capture
@@ -462,7 +462,14 @@ With a prefix ARG, remove start location."
   (setq org-roam-db-gc-threshold most-positive-fixnum
         org-id-link-to-org-use-id t)
   (org-roam-setup)
+  (add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+                 (display-buffer-in-direction)
+                 (direction . right)
+                 (window-width . 0.33)
+                 (window-height . fit-window-to-buffer)))
   :config
+  (setq org-roam-completion-everywhere t)
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
@@ -470,14 +477,8 @@ With a prefix ARG, remove start location."
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
-							 "#+TITLE: ${title}\n#+DATE: %T\n")
+							 "#+TITLE: ${title}\n")
                                       :unnarrowed t)))
-  (add-to-list 'display-buffer-alist
-               '("\\*org-roam\\*"
-                 (display-buffer-in-direction)
-                 (direction . right)
-                 (window-width . 0.33)
-                 (window-height . fit-window-to-buffer)))
   (require 'org-roam-protocol)
   )
 
@@ -615,9 +616,30 @@ With a prefix ARG, remove start location."
 (use-package writegood-mode
   :ensure t)
 
-(use-package org-ql
+(use-package deft
   :ensure t
-  :after org)
+  :config
+  (setq deft-recursive t)
+  (setq deft-default-extension "org")
+  (setq deft-text-mode 'org-mode)
+  (setq deft-extensions '("org"))
+  (setq deft-filter-only-filenames nil)
+  (setq deft-use-filter-string-for-filename t)
+  (setq deft-use-filename-as-title t)
+  ;; (setq deft-strip-summary-regexp "\\([\n ]\\|^#\\+[[:upper:][:lower:]_]+:.*$\\)")
+  (setq deft-strip-summary-regexp "\\([\n ]\\|^#\\+[[:upper:][:lower:]_]+:.*$\\)")
+  (setq deft-directory "~/Dropbox/org/roam")
+  (defun eli/deft-search-for(filter)
+    (interactive "MFilter: ")
+    (deft)
+    (deft-filter filter t)
+    )
+  )
+
+;; uncompatible with emacs 28
+;; (use-package org-ql
+;;   :ensure t
+;;   :after org)
 
 ;; (use-package easy-hugo
 ;;   :ensure t
