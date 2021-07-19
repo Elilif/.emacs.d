@@ -9,6 +9,7 @@
    '("7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "4f1d2476c290eaa5d9ab9d13b60f2c0f1c8fa7703596fa91b235db7f99a9441b" "ea18d4f243da987b679ff18aa8b8dc65734fb38b6fdce4ae2e7389029214a9d1" "ca56bb3ee27b0c6a7acafcee65aa2dd8a5e0f9dc86d606ed107c9d750bbafb18" "fa8120d4f4c2be78d5b68af25961fb854f1b23bb9955f6e01723cd44145e37e3" "f6665ce2f7f56c5ed5d91ed5e7f6acb66ce44d0ef4acfaa3a42c7cfe9e9a9013" "88f59acbeacefb4998f45126d4d8ae8b2184f2a48753db362a349fd55321c7e1" "a1917d891d4a4368d1957db07644265ed1dc4d9f570b0a7cbb7da76fff610985" "6c386d159853b0ee6695b45e64f598ed45bd67c47f671f69100817d7db64724d" "aaa4c36ce00e572784d424554dcc9641c82d1155370770e231e10c649b59a074" "08a27c4cde8fcbb2869d71fdc9fa47ab7e4d31c27d40d59bf05729c4640ce834" "37144b437478e4c235824f0e94afa740ee2c7d16952e69ac3c5ed4352209eefb" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "76bfa9318742342233d8b0b42e824130b3a50dcc732866ff8e47366aed69de11" "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" default))
  '(dynamic-agenda-files nil t)
  '(elfeed-curl-extra-arguments '("-x" "http://127.0.0.1:7890") t)
+ '(help-at-pt-display-when-idle t nil (help-at-pt))
  '(large-file-warning-threshold 1000000000)
  '(org-agenda-files
    '("/home/eli/Dropbox/org/inbox.org" "~/Dropbox/org/daily.org" "~/Dropbox/org/FM.org" "~/Dropbox/org/TE.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/Clock_Report.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/journal.org" "/home/eli/Dropbox/org/notes.org" "/home/eli/Dropbox/org/projects.org"))
@@ -43,6 +44,7 @@
  '(org-block ((t (:extend t :background "#ededed"))))
  '(org-block-begin-line ((t (:background nil :foreground nil :inherit nil))))
  '(org-block-end-line ((t (:background nil :foreground nil :inherit nil))))
+ '(org-dispatcher-highlight ((t (:foreground "red"))))
  '(org-document-info-keyword ((t (:foreground "#B0BEC5" :inherit nil))))
  '(org-drawer ((t (:foreground "#B0BEC5" :inherit nil))))
  '(org-ellipsis ((t (:foreground "#B0BEC5"))))
@@ -53,6 +55,7 @@
  '(org-level-4 ((t (:inherit nil))))
  '(org-level-5 ((t (:inherit nil))))
  '(org-link ((t (:underline t :inherit nil))))
+ '(org-list-dt ((t (:weight bold :foreground "#5d1d9d"))))
  '(org-meta-line ((t (:foreground "#B0BEC5" :inherit nil))))
  '(org-quote ((t (:extend t :foreground "#888888" :background "#fafafa"))))
  '(org-verse ((t (:extend t :foreground "#888888" :background "#fafafa"))))

@@ -461,19 +461,20 @@ With a prefix ARG, remove start location."
   (setq org-roam-directory "~/Dropbox/org/roam/")
   (setq org-roam-db-gc-threshold most-positive-fixnum
         org-id-link-to-org-use-id t)
-  (org-roam-setup)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
                  (display-buffer-in-direction)
                  (direction . right)
                  (window-width . 0.33)
                  (window-height . fit-window-to-buffer)))
+  (org-roam-setup)
   :config
-  (setq org-roam-completion-everywhere t)
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
-              #'org-roam-unlinked-references-section))
+              #'org-roam-unlinked-references-section
+	      ))
+  (setq org-roam-completion-everywhere t)
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"

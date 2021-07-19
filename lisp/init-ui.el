@@ -20,6 +20,8 @@
 					 ))
   (setq org-ellipsis "▼")
   (custom-set-faces
+   '(org-dispatcher-highlight ((t (:foreground "red"))))
+   '(org-list-dt ((t (:weight bold :foreground "#5d1d9d"))))
    '(org-block ((t (:extend t :background "#ededed"))))
    '(org-quote ((t (:extend t :foreground "#888888" :background "#fafafa"))))
    '(org-verse ((t (:extend t :foreground "#888888" :background "#fafafa"))))

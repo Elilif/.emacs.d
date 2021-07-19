@@ -39,10 +39,12 @@
     ("t" org-roam-tag-add "add tags")
     ("v" org-roam-tag-remove "remove a tag")
     ("h" yuchen/helm-org-run-marked-heading-id-link "insert a headline"))
-   "Roam Daily"
-   (("dd" org-roam-dailies-capture-today "today")
+   "Roam"
+   (("dd" org-roam-dailies-find-today "today")
     ("df" org-roam-dailies-find-date "find date")
-    ("dt" org-roam-dailies-find-today "find today"))
+    ("dc" org-roam-dailies-capture-today "find today")
+    ("aa" org-roam-alias-add "add alias")
+    ("ar" org-roam-alias-remove "remove alias"))
   ))
 
 (pretty-hydra-define hydra-emacs
