@@ -197,6 +197,7 @@
 (add-hook 'org-mode-hook 'eli/org-mode-hook)
 ;;org capture
 (setq org-agenda-dir "~/Dropbox/org")
+(setq org-directory "~/Dropbox/org")
 
 (setq org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir))
 (setq org-agenda-file-projects (expand-file-name "projects.org" org-agenda-dir))
@@ -232,14 +233,14 @@
          :empty-lines 0
 	 :clock-in t
 	 :clock-resume t)
+	("e" "Events" entry (file "~/Elilif.github.io/2021-07-20-Eli's timeline.org")
+	 "* %<%Y-%m-%d>\n%?"
+	 :prepend t)
 	("B" "Blogs" plain (file eli/capture-report-date-file)
 	 "#+TITLE: %?\n#+DATE: %<%Y-%m-%d>\n#+STARTUP: showall\n#+OPTIONS: toc:nil H:2 num:2\n"
 	 )
         ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
          "* %a \n%i \n%U"
-         :empty-lines 0)
-        ("l" "Chrome" entry (file+headline org-agenda-file-inbox "Notes")
-         "* %? \n%i \n\n%:annotation \n\n%U"
          :empty-lines 0)
 	("T" "TE" entry (file org-agenda-file-te)
 	 "* TODO %u\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d> \n %?")
@@ -465,14 +466,14 @@ With a prefix ARG, remove start location."
                '("\\*org-roam\\*"
                  (display-buffer-in-direction)
                  (direction . right)
-                 (window-width . 0.33)
+                 (window-width . 0.4)
                  (window-height . fit-window-to-buffer)))
   (org-roam-setup)
   :config
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
-              #'org-roam-unlinked-references-section
+              ;; #'org-roam-unlinked-references-section
 	      ))
   (setq org-roam-completion-everywhere t)
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
@@ -638,9 +639,9 @@ With a prefix ARG, remove start location."
   )
 
 ;; uncompatible with emacs 28
-;; (use-package org-ql
-;;   :ensure t
-;;   :after org)
+(use-package org-ql
+  :ensure t
+  :after org)
 
 ;; (use-package easy-hugo
 ;;   :ensure t
@@ -648,4 +649,10 @@ With a prefix ARG, remove start location."
 ;;   (setq easy-hugo-basedir "~/Elilif.github.io")
 ;;   (setq easy-hugo-url "https://elilif.github.io")
 ;;   (setq easy-hugo-default-ext ".org"))
+
+(use-package ox-timeline
+  :ensure t
+  :config
+  (setq org-timeline-source-url "dist")
+  )
 (provide 'init-org)

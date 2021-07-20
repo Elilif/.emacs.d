@@ -116,7 +116,8 @@
     ("ev" org-ql-view "org-ql view"))
    "blog"
    (("bp" org-publish)
-    ("bg" eli/push-to-gitpage))
+    ("bg" eli/push-to-gitpage)
+    ("bt" org-timeline-export-to-html "export timeline"))
    ))
 
 (pretty-hydra-define jp-window
