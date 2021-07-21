@@ -225,7 +225,11 @@
   (add-to-list 'recentf-exclude "\\.txt"))
 
 (use-package counsel
-  :ensure t)
+  :ensure t
+  :bind
+  (("\C-x b" . 'counsel-switch-buffer)
+   ("\C-h v" . 'counsel-describe-variable)
+   ("\C-h f" . 'counsel-describe-function)))
 
 (use-package swiper
   :ensure t
@@ -241,6 +245,28 @@
 	("<f6>" . 'ivy-resume)
 	("M-x" . 'counsel-M-x)
 	("\C-x \C-f" . 'counsel-find-file)))
+
+(use-package ivy-rich
+  :ensure t
+  :config
+  (ivy-rich-mode 1))
+
+(use-package ivy-posframe
+  :ensure t
+  :config
+  (setq ivy-posframe-display-functions-alist
+	'((swiper          . ivy-display-function-fallback)
+          (complete-symbol . ivy-posframe-display-at-point)
+          (t               . ivy-posframe-display)))
+  (defun my-ivy-posframe-get-size ()
+    "Set the ivy-posframe size according to the current frame."
+    (let ((height (or ivy-posframe-height (or ivy-height 10)))
+          (width (min (or ivy-posframe-width 200) (round (* .75 (frame-width))))))
+      (list :height height :width width :min-height height :min-width width)))
+
+  (setq ivy-posframe-size-function 'my-ivy-posframe-get-size)
+  (ivy-posframe-mode 1)
+  )
 
 ;; Support pinyin in Ivy
 ;; Input prefix ':' to match pinyin
@@ -312,8 +338,6 @@
   (popwin-mode t)
   (setq popwin:popup-window-position 'right)
   (setq popwin:popup-window-width 80))
-
-(global-set-key (kbd "C-x b") 'counsel-ibuffer)
 
 (use-package quelpa
   :config

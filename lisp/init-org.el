@@ -473,8 +473,8 @@ With a prefix ARG, remove start location."
   :config
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
-              #'org-roam-reflinks-section
-              ;; #'org-roam-unlinked-references-section
+	      #'org-roam-reflinks-section
+	      ;; #'org-roam-unlinked-references-section
 	      ))
   (setq org-roam-completion-everywhere t)
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
