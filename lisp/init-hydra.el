@@ -22,7 +22,7 @@
    ))
 
 (pretty-hydra-define hydra-roam
-  (:color amaranth :exit t :quit-key "q"
+  (:color amaranth :exit t :quit-key "q" :idle 2
 	  :pre (progn (setq which-key-inhibit t))
 	  :post (progn (setq which-key-inhibit nil) ))
   ("Roam"
@@ -48,7 +48,7 @@
   ))
 
 (pretty-hydra-define hydra-emacs
-  (:color amaranth :exit t :quit-key "q"
+  (:color amaranth :exit t :quit-key "q" :idle 2
 	  :pre (progn (setq which-key-inhibit t))
 	  :post (progn (setq which-key-inhibit nil) ))
   ("basic"

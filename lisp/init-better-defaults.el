@@ -222,7 +222,17 @@
 
 (use-package recentf
   :config
-  (add-to-list 'recentf-exclude "\\.txt"))
+  (setq recentf-auto-cleanup 'never)
+  (setq  recentf-exclude
+	 '("/home/eli/.emacs.d/.cache/treemacs-persist-at-last-error"
+	   "/home/eli/.emacs.d/.cache/treemacs-persist"
+	   "\\.txt"
+	   "/home/eli/.emacs.d/elpa/*"
+	   "/home/eli/.elfeed/index"
+	   ))
+  (setq recentf-max-menu-items 50)
+  (setq recentf-max-saved-items 50)
+  )
 
 (use-package counsel
   :ensure t
@@ -245,6 +255,10 @@
 	("<f6>" . 'ivy-resume)
 	("M-x" . 'counsel-M-x)
 	("\C-x \C-f" . 'counsel-find-file)))
+
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1))
 
 (use-package ivy-rich
   :ensure t

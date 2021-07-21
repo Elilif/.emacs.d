@@ -26,19 +26,14 @@
  '(org-fontify-quote-and-verse-blocks t)
  '(org-roam-completion-everywhere t)
  '(package-selected-packages
-   '(ivy-posframe ivy-rich org-pomodoro ox-timeline deft mu4e-maildirs-extension org-ql multiple-cursors org rainbow-delimiters zeal-at-point ace-pinyin emojify helm-org-rifle helm-org-rfile helm-org benchmark-init esup youdao-dictionary xref tablist simple-httpd shrink-path request-deferred project pos-tip persist pdf-tools parsebib org-superstar org-pdftools org-noter-pdftools org-noter noflet names mu4e-alert memoize log4e key-chord jsonrpc htmlize helm-core helm-bibtex helm gntp flyspell-correct-ivy flyspell-correct flymake emacsql-sqlite3 emacsql-sqlite emacsql elfeed-org elfeed-goodies elfeed eldoc doom-themes doom-modeline deferred dash-functional chinese-word-at-point calibredb bibtex-completion biblio-core biblio all-the-icons alert ace-jump-mode vterm wttrin org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
+   '(all-the-icons-ivy-rich ivy-posframe ivy-rich org-pomodoro ox-timeline deft mu4e-maildirs-extension org-ql multiple-cursors org rainbow-delimiters zeal-at-point ace-pinyin emojify helm-org-rifle helm-org-rfile helm-org benchmark-init esup youdao-dictionary xref tablist simple-httpd shrink-path request-deferred project pos-tip persist pdf-tools parsebib org-superstar org-pdftools org-noter-pdftools org-noter noflet names mu4e-alert memoize log4e key-chord jsonrpc htmlize helm-core helm-bibtex helm gntp flyspell-correct-ivy flyspell-correct flymake emacsql-sqlite3 emacsql-sqlite emacsql elfeed-org elfeed-goodies elfeed eldoc doom-themes doom-modeline deferred dash-functional chinese-word-at-point calibredb bibtex-completion biblio-core biblio all-the-icons alert ace-jump-mode vterm wttrin org-media-note quelpa-use-package mpv org-download anki-editor golden-ratio lsp-mode goldendict pinyinlib quickrun org-mind-map dashboard beacon dap-mode lsp-treemacs lsp-ivy lsp-ui ccls yasnippet-snippets auto-yasnippet yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit rime saveplace-pdf-view company use-package hungry-delete smex swiper counsel smartparens popwin))
  '(quelpa-checkout-melpa-p nil)
  '(quelpa-update-melpa-p nil)
- '(recentf-auto-cleanup 'never)
- '(recentf-exclude
-   '("/home/eli/.emacs.d/.cache/treemacs-persist-at-last-error" "/home/eli/.emacs.d/.cache/treemacs-persist" "\\.txt" "/home/eli/.emacs.d/elpa/*"))
- '(recentf-max-menu-items 50)
- '(recentf-max-saved-items 50)
  '(rime-deactivate-when-exit-minibuffer nil)
  '(send-mail-function 'smtpmail-send-it)
  '(warning-suppress-types '((yasnippet backquote-change) (:warning)))
  '(which-key-frame-max-height 20)
- '(which-key-idle-delay 0.1)
+ '(which-key-idle-delay 1)
  '(wttrin-mode-line-format "%l:+%c %t %w"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
