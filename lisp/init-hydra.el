@@ -78,7 +78,10 @@
   ("Basic"
    (("a" org-agenda "org agenda")
     ;; ("c" org-capture "org capture")
-    ("h" org-mode "org mode"))
+    ("h" org-mode "org mode")
+    ("pp" org-pomodoro "sart a pomodoro")
+    ("pt" org-pomodoro-extend-last-clock "extend pomodoro")
+    )
    "Org link"
    (("li" grab-x-link-chromium-insert-link "insert web link")
     ("lo" grab-x-link-chromium-insert-org-link "insert org link")
@@ -96,14 +99,14 @@
     ("kr" org-clock-report)
     ("?" (org-info "Clocking commands")))
    "Org-timer"
-   (("r" org-timer-start)
-    ("n" org-timer-set-timer)
-    ("p" org-timer-pause-or-continue "Pause/Continue")
-    ("s" org-timer-stop)
-
-    ("m" org-timer)
-    ("t" org-timer-item)
-    ("z" (org-info "Timers")))
+   (("tr" org-timer-start)
+    ("tn" org-timer-set-timer)
+    ("tp" org-timer-pause-or-continue "Pause/Continue")
+    ("ts" org-timer-stop)
+    ("tm" org-timer)
+    ("tt" org-timer-item)
+    ("tz" (org-info "Timers") "info timers")
+    )
    "Writing"
    (("ww" writeroom-mode "write room")
     ("wm" writeroom-toggle-mode-lint "toggle modeline")

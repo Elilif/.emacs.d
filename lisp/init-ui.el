@@ -28,9 +28,9 @@
    '(org-block-begin-line ((t (:background nil :foreground nil :inherit nil))))
    '(org-block-end-line ((t (:background nil :foreground nil :inherit nil))))
    '(org-headline-done ((t (:foreground "#B0BEC5"))))
-   '(org-level-1 ((t (:inherit nil :weight bold :height 1.2))))
-   '(org-level-2 ((t (:inherit nil :weight bold :height 1.1))))
-   '(org-level-3 ((t (:weight bold :inherit nil))))
+   '(org-level-1 ((t (:inherit nil :weight bold :height 1.25))))
+   '(org-level-2 ((t (:inherit nil :weight bold :height 1.15))))
+   '(org-level-3 ((t (:weight bold :inherit nil :height 1.05))))
    '(org-level-4 ((t (:inherit nil))))
    '(org-level-5 ((t (:inherit nil))))
    '(org-ellipsis ((t (:foreground "#B0BEC5" ))))
@@ -82,8 +82,10 @@
 (dolist (charset '(kana han cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font) charset
                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
-(set-fontset-font "fontset-default" 'unicode "Noto Color Emoji" nil 'prepend)
+
 (set-fontset-font "fontset-default" 'unicode "AR PL New Kai" nil 'prepend)
+(set-fontset-font "fontset-default" 'unicode "Noto Color Emoji" nil 'prepend)
+
 
 (use-package emojify
   :ensure t)

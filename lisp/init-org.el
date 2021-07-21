@@ -451,6 +451,7 @@ With a prefix ARG, remove start location."
   :ensure t
   :hook (org-mode . org-superstar-mode)
   :config
+  (setq org-superstar-headline-bullets-list '("☰" "○" "✸" "✿" "✤" "✜" "◆" "▶"))
   )
 
 ;;roam
@@ -654,5 +655,22 @@ With a prefix ARG, remove start location."
   :ensure t
   :config
   (setq org-timeline-source-url "dist")
+  )
+
+(use-package org-pomodoro
+  :ensure t
+  :config
+  (add-hook 'org-pomodoro-finished-hook
+            (lambda ()
+              (org-notify "A pomodoro is finished, take a break !!!")
+              ))
+  (add-hook 'org-pomodoro-short-break-finished-hook
+            (lambda ()
+              (org-notify "A short break done, ready a new pomodoro !!!")
+              ))
+  (add-hook 'org-pomodoro-long-break-finished-hook
+            (lambda ()
+              (org-notify "A long break done, ready a new pomodoro !!!")
+              ))
   )
 (provide 'init-org)
