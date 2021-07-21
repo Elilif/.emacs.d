@@ -1,3 +1,5 @@
+;; show file size
+(size-indication-mode 1)
 ;; open customize group buffers in one buffer
 (defadvice custom-buffer-create (before my-advice-custom-buffer-create)
   "Exit the current Customize buffer before creating a new one, unless there are modified widgets."
@@ -69,9 +71,6 @@
 ;; split window right
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
-
-;; remove "^"
-(setq ivy-initial-inputs-alist nil)
 
 ;; fix M-j
 (defun eli-org-fill-prefix ()
@@ -153,10 +152,6 @@
   :ensure t
   :config
   (ace-pinyin-global-mode 1))
-(use-package ivy
-  :ensure t
-  :diminish ivy-mode
-  :hook (after-init . ivy-mode))
 
 (use-package iedit
   :ensure t)
@@ -233,6 +228,14 @@
   (setq recentf-max-menu-items 50)
   (setq recentf-max-saved-items 50)
   )
+
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :hook (after-init . ivy-mode)
+  :config
+  ;; remove "^"
+  (setq ivy-initial-inputs-alist nil))
 
 (use-package counsel
   :ensure t
@@ -333,13 +336,13 @@
                  #'ivy--regex-pinyin))))
      ivy-re-builders-alist)))
 
-(use-package all-the-icons
-  :ensure t)
-
 (defun my-swiper-hack (&optional arg)
   (ignore arg)
   (if (region-active-p) (deactivate-mark)))
 (advice-add 'swiper :before #'my-swiper-hack)
+
+(use-package all-the-icons
+  :ensure t)
 
 (use-package golden-ratio
   :ensure t

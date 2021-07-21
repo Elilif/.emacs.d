@@ -23,6 +23,7 @@
 (require 'init-spell)
 (require 'init-anki)
 (require 'init-hydra)
+;; (require 'init-minibuffer)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load-file custom-file)
