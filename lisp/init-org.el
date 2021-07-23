@@ -411,14 +411,16 @@ With a prefix ARG, remove start location."
   :ensure t
   :config (save-place-mode 1))
 
-
 ;; rime
-(defun +rime-predicate-is-back-quote-or-tilde ()
-  (or (equal rime--current-input-key ?`)
-      (equal rime--current-input-key ?~)))
-
 (use-package rime
   :ensure t
+  :init
+  (defun +rime-predicate-punctuation-line-begin-p ()
+    "Enter half-width punctuation at the beginning of the line.
+  Detect whether the current cursor is at the beginning of a
+  line and the character last inputted is symbol.
+  Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
+    (<= (point) (save-excursion (back-to-indentation) (point))))
   :hook
   ('kill-emacs . (lambda ()
                    (when (fboundp 'rime-lib-sync-user-data)
@@ -429,22 +431,50 @@ With a prefix ARG, remove start location."
 
    (rime-user-data-dir "~/.emacs.d/rime")
    (rime-disable-predicates '(rime-predicate-prog-in-code-p
-                              ;; rime-predicate-space-after-ascii-p
+                              rime-predicate-space-after-ascii-p
                               rime-predicate-after-ascii-char-p
-                              rime-predicate-punctuation-line-begin-p
+                              +rime-predicate-punctuation-line-begin-p
                               rime-predicate-org-in-src-block-p
                               rime-predicate-space-after-cc-p
+			      rime-predicate-current-uppercase-letter-p
 			      rime-predicate-hydra-p
                               ))
    ;; (rime-inline-predicates '(rime-predicate-space-after-cc-p)))
    )
   :config
+  (defun +rime-convert-string-at-point (&optional return-cregexp)
+    "将光标前的字符串转换为中文."
+    (interactive "P")
+    (rime-force-enable)
+    (let ((string (if mark-active
+                      (buffer-substring-no-properties
+                       (region-beginning) (region-end))
+                    (buffer-substring-no-properties
+                     (point) (max (line-beginning-position) (- (point) 80)))))
+          code
+          length)
+      (cond ((string-match "\\([a-z'-]+\\|[[:punct:]]\\) *$" string)
+             (setq code (replace-regexp-in-string
+			 "^[-']" ""
+			 (match-string 0 string)))
+             (setq length (length code))
+             (setq code (replace-regexp-in-string " +" "" code))
+             (if mark-active
+		 (delete-region (region-beginning) (region-end))
+               (when (> length 0)
+		 (delete-char (- 0 length))))
+             (when (> length 0)
+               (setq unread-command-events
+                     (append (listify-key-sequence code)
+                             unread-command-events))))
+            (t (message "`+rime-convert-string-at-point' did nothing.")))))
+  
   (setq default-input-method "rime"
 	rime-show-candidate 'posframe)
   (setq mode-line-mule-info '((:eval (rime-lighter))))
   (setq rime-inline-ascii-trigger 'shift-l)
   (global-set-key (kbd "M-s-k") 'rime-inline-ascii)
-  (define-key rime-mode-map (kbd "M-s-j") 'rime-force-enable)
+  (global-set-key (kbd "M-s-j") '+rime-convert-string-at-point)
   )
 
 (use-package org-superstar

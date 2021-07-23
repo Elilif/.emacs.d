@@ -12,7 +12,8 @@
 (use-package company-box
   :ensure t
   :hook (company-mode . company-box-mode)
-  :config)
+  :config
+  (setq company-box-scrollbar nil))
 
 (use-package smartparens
   :ensure t

@@ -54,7 +54,10 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode t))
+  :init (doom-modeline-mode t)
+  :config
+  (setq doom-modeline-buffer-encoding nil)
+  )
 
 (use-package beacon
   :ensure t
