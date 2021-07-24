@@ -359,7 +359,7 @@
   :ensure t
   :defer t
   :config
-  ;; (pdf-tools-install)
+  (pdf-tools-install)
   )
 
 (use-package org-noter
@@ -428,7 +428,6 @@ With a prefix ARG, remove start location."
   (org-mode . toggle-input-method)
   :custom
   ((default-input-method "rime")
-
    (rime-user-data-dir "~/.emacs.d/rime")
    (rime-disable-predicates '(rime-predicate-prog-in-code-p
                               rime-predicate-space-after-ascii-p
@@ -588,8 +587,8 @@ With a prefix ARG, remove start location."
   :ensure t
   :load-path "~/.emacs.d/private/emacs-wttrin"
   :config
-  (setq wttrin-default-cities '("JiaXing?m" "HangZhou?m"))
-  (setq wttrin-mode-line-city "Jiaxing")
+  (setq wttrin-default-cities '("WuZhen?m" "HangZhou?m"))
+  (setq wttrin-mode-line-city "WuZhen")
   (setq wttrin-mode-line-format "%l:+%c %t %w")
   (wttrin-display-weather-in-mode-line))
 

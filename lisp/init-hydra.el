@@ -10,7 +10,8 @@
    ("C-c w" . jp-window/body)
    ("C-c b" . hydra-bibtex/body)
    ("C-c n" . hydra-misc/body)
-   ("C-c e" . hydra-emacs/body)
+   ("C-c e" . hydra-eaf/body)
+   ("C-c d" . hydra-emacs/body)
    ("C-c r" . hydra-roam/body)
    ("C-c i" . hydra-insert/body)
    ("C-c [" . hydra-skan-user-buffers-prev/body)
@@ -21,6 +22,15 @@
    ("C-c n" . hydra-org-noter/body)
    ))
 
+(pretty-hydra-define hydra-eaf
+  (:color amaranth :exit t :quit-key "q" :idle 2
+	  :pre (progn (setq which-key-inhibit t))
+	  :post (progn (setq which-key-inhibit nil)))
+  ("Eaf"
+   (("o" eaf-open "eaf open")
+    ("b" eaf-open-browser "open browser"))
+   )
+  )
 (pretty-hydra-define hydra-roam
   (:color amaranth :exit t :quit-key "q" :idle 2
 	  :pre (progn (setq which-key-inhibit t))
@@ -45,7 +55,7 @@
     ("dc" org-roam-dailies-capture-today "find today")
     ("aa" org-roam-alias-add "add alias")
     ("ar" org-roam-alias-remove "remove alias"))
-  ))
+   ))
 
 (pretty-hydra-define hydra-emacs
   (:color amaranth :exit t :quit-key "q" :idle 2
@@ -85,7 +95,7 @@
    "Org link"
    (("li" grab-x-link-chromium-insert-link "insert web link")
     ("lo" grab-x-link-chromium-insert-org-link "insert org link")
-    ("ls" org-store-link "store link"))
+    ("ld" org-download-clipboard "store link"))
    "Org-clock"
    (("i" org-clock-in)
     ("c" org-clock-in-last)
@@ -281,8 +291,9 @@
 
 (pretty-hydra-define hydra-insert
   (:color amaranth :exit t :quit-key "q"
-	  :pre (progn (setq which-key-inhibit t)  )
-	  :post (progn (setq which-key-inhibit nil) ))
+	  :pre (progn (setq which-key-inhibit t))
+	  :post (progn (setq which-key-inhibit nil)
+		       ))
   ("Emoji"
    (("i" emojify-insert-emoji "insert emoji")
     ("s" emojify-apropos-emoji "search emoji"))

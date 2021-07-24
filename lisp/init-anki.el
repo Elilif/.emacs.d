@@ -73,7 +73,7 @@
 ;; folder.
 
 (add-hook 'dired-mode-hook 'org-download-enable)
-(global-set-key (kbd "C-c l") 'org-download-clipboard) ;; crop in X11 first, and paste within here later
+(global-set-key (kbd "C-c l") 'org-store-link) ;; crop in X11 first, and paste within here later
 ;; Use #+ATTR_ORG: :width 300px to customized image display width
 (setq org-image-actual-width nil)
 ;; org-attach method

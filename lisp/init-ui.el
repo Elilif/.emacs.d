@@ -91,7 +91,16 @@
 
 
 (use-package emojify
-  :ensure t)
+  :ensure t
+  :hook (after-init . global-emojify-mode)
+  :config
+  (advice-add 'emojify-insert-emoji :before (lambda () (ivy-posframe-mode -1)))
+  (advice-add 'emojify-insert-emoji :after (lambda () (ivy-posframe-mode 1)))
+  (setq emojify-user-emojis '(("☑" . (("name" . "Checkbox")
+				      ("image" . nil)
+				      ("style" . "github")))
+			      ))
+  )
 
 (use-package rainbow-delimiters
   :ensure t

@@ -311,7 +311,6 @@
     (let ((height (or ivy-posframe-height (or ivy-height 10)))
           (width (min (or ivy-posframe-width 200) (round (* .75 (frame-width))))))
       (list :height height :width width :min-height height :min-width width)))
-
   (setq ivy-posframe-size-function 'my-ivy-posframe-get-size)
   (ivy-posframe-mode 1)
   )
