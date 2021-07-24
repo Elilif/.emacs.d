@@ -189,6 +189,9 @@
   )
 
 (use-package dired-x
+  :bind
+  (:map dired-mode-map
+	("q" . 'kill-this-buffer))
   :config
   (setq dired-recursive-copies 'always)
   (setq dired-recursive-deletes 'always)
@@ -410,4 +413,27 @@
 (use-package treemacs
   :ensure t)
 
+(use-package ibuffer
+  :bind
+  ("\C-x \C-b" . ibuffer)
+  :config
+  (setq ibuffer-saved-filter-groups
+        (quote (("default"
+                 ("dired" (mode . dired-mode))
+                 ("emacs" (or
+			   (mode . emacs-lisp-mode)
+                           (name . "^\\*scratch\\*$")
+                           (name . "^\\*Messages\\*$")))
+		 ("magit" (or
+                           (mode . magit-status-mode)
+                           (mode . magit-process-mode)
+                           (mode . magit-diff-mode)
+                           (mode . magit-revision-mode)
+                           (mode . magit-log-mode)))
+		 ("org" (mode . org-mode))
+		 ))))
+  (add-hook 'ibuffer-mode-hook
+            (lambda ()
+              (ibuffer-switch-to-saved-filter-groups "default")))
+  )
 (provide 'init-better-defaults)
