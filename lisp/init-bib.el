@@ -1,3 +1,11 @@
+(use-package helm-bibtex
+  :ensure t
+  :config
+  (setq bibtex-completion-bibliography "~/Documents/Calibre/catalog.bib")
+  (setq bibtex-completion-library-path "~/Documents/Calibre")
+  (setq bibtex-completion-pdf-field "file")
+  )
+
 (use-package calibredb
   :ensure t
   :after org
@@ -16,6 +24,7 @@
   (setq calibredb-ref-default-bibliography (concat (file-name-as-directory calibredb-root-dir) "catalog.bib"))
   )
 (add-hook 'calibredb-search-mode-hook 'eli/calibre-refresh)
+
 (use-package org-ref
   :ensure t
   :after org
@@ -43,4 +52,14 @@
   )
 
 
+(use-package org-roam-bibtex
+  :ensure t
+  :after org-roam
+  :hook (org-mode . org-roam-bibtex-mode)
+  :config
+  (setq orb-preformat-keywords
+	'("citekey" "title" "url" "author-or-editor" "keywords" "file")
+	orb-process-file-keyword t
+	orb-file-field-extensions '("pdf"))
+  )
 (provide 'init-bib)

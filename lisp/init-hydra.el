@@ -9,7 +9,7 @@
   (("C-c o" . hydra-org/body)
    ("C-c w" . jp-window/body)
    ("C-c b" . hydra-bibtex/body)
-   ("C-c n" . hydra-misc/body)
+   ("C-c m" . hydra-misc/body)
    ("C-c e" . hydra-eaf/body)
    ("C-c d" . hydra-emacs/body)
    ("C-c r" . hydra-roam/body)
@@ -237,6 +237,10 @@
     ("s" org-ref-insert-bibliographystyle-link "insert bibliographystyle"))
    "Calibre"
    (("b" calibredb "calibre")
+    )
+   "Roam Bibtex"
+   (("a" orb-note-actions "orb note actions")
+    ("l" org-insert-link "insert orb link")
     )
    )
   )

@@ -365,7 +365,8 @@
 (use-package org-noter
   :after org
   :config
-  ;; Your org-noter config ........
+  (setq org-noter-notes-search-path '("~/Dropbox/org/roam"))
+  (setq org-noter-always-create-frame nil)
   (require 'org-noter-pdftools))
 
 (use-package org-pdftools
@@ -491,7 +492,7 @@ With a prefix ARG, remove start location."
   (setq org-roam-v2-ack t)
   (setq org-roam-directory "~/Dropbox/org/roam/")
   (setq org-roam-db-gc-threshold most-positive-fixnum
-        org-id-link-to-org-use-id t)
+        org-id-link-to-org-use-id 'create-if-interactive)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
                  (display-buffer-in-direction)
@@ -510,26 +511,14 @@ With a prefix ARG, remove start location."
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
 							 "#+TITLE: ${title}\n")
-                                      :unnarrowed t)))
+                                      :unnarrowed t)
+				     ("r" "bibliography reference" plain
+				      (file "~/.emacs.d/private/orb-capture-template.org")
+				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
+				      )
+				     ))
   (require 'org-roam-protocol)
   )
-
-;; (use-package org-roam-bibtex
-;;   :quelpa ((org-roam-bibtex :fetcher github :repo "org-roam/org-roam-bibtex" branch "org-roam-v2") :upgrade nil)
-;;   ;; :load-path "~/.emacs.d/private/org-roam-bibtex"
-;;   :after org-roam
-;;   :hook (org-roam-mode . org-roam-bibtex-mode)
-;;   :config
-;;   (require 'org-ref)
-;;   (setq
-;;    ;; orb-preformat-keywords
-;;    ;; '("citekey" "title" "url" "author-or-editor" "keywords" "file" "year")
-;;    ;; orb-process-file-keyword t
-;;    orb-file-field-extensions '("pdf")
-;;    orb-note-actions-interface 'helm
-;;    orb-insert-interface 'helm-bibtex
-;;    )
-;;   )
 
 ;;-----------------------------------------------------------------------------
 ;; blog
