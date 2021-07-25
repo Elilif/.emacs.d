@@ -506,7 +506,7 @@ With a prefix ARG, remove start location."
 	      ;; #'org-roam-unlinked-references-section
 	      ))
   (setq org-roam-completion-everywhere t)
-  (setq org-roam-node-display-template "${file} > ${olp} > ${title:*} ${tags:10}")
+  (setq org-roam-node-display-template "${file} > ${olp} > ${title:90}${tags:10}")
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :if-new (file+head "${slug}.org"
 							 "#+TITLE: ${title}\n")

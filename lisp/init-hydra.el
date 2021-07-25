@@ -28,7 +28,8 @@
 	  :post (progn (setq which-key-inhibit nil)))
   ("Eaf"
    (("o" eaf-open "eaf open")
-    ("b" eaf-open-browser "open browser"))
+    ("b" eaf-open-browser "open browser")
+    ("h" eaf-open-browser-with-history "open history"))
    )
   )
 (pretty-hydra-define hydra-roam

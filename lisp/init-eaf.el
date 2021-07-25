@@ -8,6 +8,8 @@
   :custom
   (eaf-browser-continue-where-left-off t)
   :config
+  (setq eaf-browser-continue-where-left-off t)
+  (eaf-setq eaf-browser-default-zoom  "1.25")
   (setq browse-url-browser-function 'eaf-open-browser)
   (defalias 'browse-web #'eaf-open-browser)
   (eaf-setq eaf-browser-enable-adblocker t)

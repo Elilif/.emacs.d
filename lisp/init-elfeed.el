@@ -3,7 +3,24 @@
   :defer t
   :init
   (setq elfeed-curl-extra-arguments '("-x" "http://127.0.0.1:8889"))
+  (defun eli/elfeed-search-quit-and-kill-buffers ()
+    "Save the database, then kill elfeed buffers, asking the user
+for confirmation when needed."
+    (interactive)
+    (elfeed-db-save)
+    (let (buf)
+      (dolist (file rmh-elfeed-org-files)
+	(setq buf (get-file-buffer file))
+	(when (and (buffer-modified-p buf)
+		   file
+		   (y-or-n-p (format "Save file %s? " file)))
+          (with-current-buffer buf (save-buffer)))
+	(kill-buffer buf)))
+    (kill-buffer "*elfeed-log*")
+    (kill-buffer (current-buffer)))
   :bind
+  (:map elfeed-search-mode-map
+	("q" . eli/elfeed-search-quit-and-kill-buffers))
   :config
   (setq elfeed-search-filter "@2-days-ago +unread +A")
   )
