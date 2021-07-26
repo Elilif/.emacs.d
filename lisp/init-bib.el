@@ -1,8 +1,8 @@
 (use-package helm-bibtex
   :ensure t
   :config
-  (setq bibtex-completion-bibliography "~/Documents/Calibre/catalog.bib")
-  (setq bibtex-completion-library-path "~/Documents/Calibre")
+  (setq bibtex-completion-bibliography "~/Documents/Eli'sBooks/catalog.bib")
+  (setq bibtex-completion-library-path "~/Documents/Eli'sBooks")
   (setq bibtex-completion-pdf-field "file")
   )
 
@@ -16,7 +16,7 @@
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
   (setq calibredb-library-alist '(("~/Documents/Calibre")
 				  ("~/Documents/Eli'sPDF")
-				  ("~/Documents/Thesis")
+				  ("~/Documents/Eli'sBooks")
 				  ))
   )
 

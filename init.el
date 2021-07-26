@@ -14,6 +14,7 @@
 
 (require 'init-completion)
 (require 'init-better-defaults)
+(require 'init-ivy)
 (require 'init-ui)
 (require 'init-org)
 (require 'init-elfeed)

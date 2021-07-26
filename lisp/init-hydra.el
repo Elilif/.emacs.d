@@ -240,7 +240,7 @@
     )
    "Roam Bibtex"
    (("a" orb-note-actions "orb note actions")
-    ("l" org-insert-link "insert orb link")
+    ("l" orb-insert-link "insert orb link")
     )
    )
   )
