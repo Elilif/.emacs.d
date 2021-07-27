@@ -24,6 +24,7 @@
 (require 'init-spell)
 (require 'init-anki)
 (require 'init-hydra)
+;; HOLD: consult and selectrum
 ;; (require 'init-minibuffer)
 (require 'init-eaf)
 

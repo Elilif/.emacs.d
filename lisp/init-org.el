@@ -572,16 +572,6 @@ With a prefix ARG, remove start location."
 ;;                                     ;; ("another-mail@gmail.com" .  "~/task.org")
 ;; 				    )))
 
-
-(use-package wttrin
-  :ensure t
-  :load-path "~/.emacs.d/private/emacs-wttrin"
-  :config
-  (setq wttrin-default-cities '("WuZhen?m" "HangZhou?m"))
-  (setq wttrin-mode-line-city "WuZhen")
-  (setq wttrin-mode-line-format "%l:+%c %t %w")
-  (wttrin-display-weather-in-mode-line))
-
 (use-package helm-org
   :ensure t
   :after org

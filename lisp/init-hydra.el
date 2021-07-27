@@ -63,7 +63,9 @@
 	  :pre (progn (setq which-key-inhibit t))
 	  :post (progn (setq which-key-inhibit nil) ))
   ("basic"
-   (("E" eval-buffer))
+   (("E" eval-buffer)
+    ("f" (counsel-find-file "~/.emacs.d/lisp") "config files")
+    )
    "Search"
    (("g" counsel-git-grep))
    "Bookmark"

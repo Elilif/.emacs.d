@@ -294,4 +294,17 @@
             (lambda ()
               (ibuffer-switch-to-saved-filter-groups "default")))
   )
+
+(use-package wttrin
+  :ensure t
+  :load-path "~/.emacs.d/private/emacs-wttrin"
+  :config
+  (setq wttrin-default-cities '("WuZhen?m?T" "HangZhou?m?T"))
+  (setq wttrin-mode-line-city "WuZhen")
+  (setq wttrin-mode-line-format "%l:+%c %t %w")
+  (wttrin-display-weather-in-mode-line))
+
+(use-package hl-todo
+  :ensure t
+  :hook (after-init . global-hl-todo-mode))
 (provide 'init-better-defaults)

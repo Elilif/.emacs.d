@@ -84,7 +84,6 @@
   ;; enable this if you want `swiper' to use it
   ;; (setq search-default-mode #'char-fold-to-regexp)
   :bind(("\C-s" . 'swiper)
-	("\C-c m" . 'swiper-thing-at-point)
 	("\C-x \C-r" . 'counsel-recentf)
 	("<f6>" . 'ivy-resume)
 	("M-x" . 'counsel-M-x)

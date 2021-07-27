@@ -14,5 +14,12 @@
 	("q" . mu-magit-kill-buffers))
   )
 
+(use-package magit-todos
+  :ensure t
+  :after magit
+  :config
+  (magit-todos-mode)
+  (setq magit-todos-auto-group-items 3)
+  )
 
 (provide 'init-vc)
