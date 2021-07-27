@@ -97,6 +97,8 @@
 					try-expand-line
 					try-complete-lisp-symbol-partially
 					try-complete-lisp-symbol))
+(global-set-key (kbd "s-/") 'hippie-expand)
+
 ;; simplify yes-or-no-p
 (fset 'yes-or-no-p 'y-or-n-p)
 

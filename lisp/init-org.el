@@ -191,10 +191,11 @@
 
 ;; disable company-mode in org-mode
 (defun eli/org-mode-hook ()
-  (set (make-local-variable 'company-backends)
-       '((company-capf company-files)))
+  (set (make-local-variable 'company-dabbrev-char-regexp)
+       "^[\\.0-9a-z-_'/]")
   (flycheck-mode -1))
 (add-hook 'org-mode-hook 'eli/org-mode-hook)
+
 ;;org capture
 (setq org-agenda-dir "~/Dropbox/org")
 (setq org-directory "~/Dropbox/org")
