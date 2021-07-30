@@ -30,7 +30,7 @@
 (require 'init-hydra)
 ;; HOLD: consult and selectrum
 (require 'init-minibuffer)
-(require 'init-eaf)
+;; (require 'init-eaf)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load-file custom-file)

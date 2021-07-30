@@ -263,9 +263,12 @@
   (setq popwin:popup-window-width 80))
 
 (use-package quelpa
+  :ensure t
   :config
   (setq quelpa-update-melpa-p nil))
-(use-package quelpa-use-package)
+
+(use-package quelpa-use-package
+  :ensure t)
 
 (use-package esup
   :ensure t
@@ -323,6 +326,9 @@
   :ensure t
   :hook (after-init . global-hl-todo-mode))
 
+(use-package elisp-refs
+  :ensure t)
+
 (use-package helpful
   :ensure t
   :bind (
@@ -331,4 +337,5 @@
 	 ("C-h k" . helpful-key)
 	 )
   )
+
 (provide 'init-better-defaults)

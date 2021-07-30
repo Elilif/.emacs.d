@@ -86,12 +86,9 @@
 (use-package consult
   :ensure t
   ;; Replace bindings. Lazily loaded due by `use-package'.
-  :pretty-hydra
-  ((:color teal :quit-key "q")
-   ("Goto"
-    (("i" consult-imenu "imenu"))))
   :bind (
-	 ("C-c p" . consult-hydra/body)
+	 ("C-s" . consult-line)
+	 ("C-x C-r" . consult-recent-file)
 	 ;; C-c bindings (mode-specific-map)
          ;; ("C-c h" . consult-history)
          ;; ("C-c m" . consult-mode-command)
@@ -125,7 +122,7 @@
          ("M-s g" . consult-grep)
          ("M-s G" . consult-git-grep)
          ("M-s r" . consult-ripgrep)
-         ("M-s l" . consult-line)
+         ;; ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s m" . consult-multi-occur)
          ("M-s k" . consult-keep-lines)

@@ -56,7 +56,8 @@
     ("dc" org-roam-dailies-capture-today "find today")
     ("aa" org-roam-alias-add "add alias")
     ("ar" org-roam-alias-remove "remove alias"))
-   ))
+   )
+  )
 
 (pretty-hydra-define hydra-emacs
   (:color amaranth :exit t :quit-key "q" :idle 2
@@ -64,14 +65,13 @@
 	  :post (progn (setq which-key-inhibit nil) ))
   ("basic"
    (("E" eval-buffer)
-    ("f" (counsel-find-file "~/.emacs.d/lisp") "config files")
+    ("f" (find-file "~/.emacs.d/lisp") "config files")
     )
    "Search"
-   (("g" counsel-git-grep))
+   (("g" consult-git-grep))
    "Bookmark"
    (("bs" bookmark-set "set bookmark")
-    ("bj" bookmark-jump "jump bookmark")
-    ("bl" bookmark-bmenu-list "list bookmark")
+    ("bj" consult-bookmark "jump bookmark")
     ("bd" bookmark-delete "delete bookmark"))
    "edit"
    (("ed" mc/mark-all-dwim "mark all dwim")
@@ -305,6 +305,6 @@
    (("i" emojify-insert-emoji "insert emoji")
     ("s" emojify-apropos-emoji "search emoji"))
    "Yank"
-   (("p" counsel-yank-pop "Clipboard")))
+   (("p" consult-yank-pop "Clipboard")))
   )
 (provide 'init-hydra)

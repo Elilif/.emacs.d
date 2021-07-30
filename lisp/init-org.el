@@ -367,6 +367,7 @@
   )
 
 (use-package org-noter
+  :ensure t
   :after org
   :config
   (setq org-noter-notes-search-path '("~/Dropbox/org/roam"))
@@ -374,10 +375,12 @@
   (require 'org-noter-pdftools))
 
 (use-package org-pdftools
+  :ensure t
   :after org
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
+  :ensure t
   :after org-noter
   :config
   ;; Add a function to ensure precise note is inserted
@@ -412,6 +415,7 @@ With a prefix ARG, remove start location."
 
 ;; save last pdf position
 (use-package saveplace-pdf-view
+  :ensure t
   :after pdf-tools
   :ensure t
   :config (save-place-mode 1))
