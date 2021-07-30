@@ -1,5 +1,9 @@
 (package-initialize)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(setq package-archives
+      '(("gnu"   . "http://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")
+	("nongnu" . "http://elpa.nongnu.org/nongnu/")
+	))
 
 ;; Bootstrap `use-package'
 (require 'package)
@@ -30,10 +34,3 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load-file custom-file)
-
-
-
-
-
-
-

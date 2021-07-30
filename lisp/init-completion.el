@@ -19,7 +19,7 @@
 (use-package company-emojify
   :ensure t
   :config
-  (add-to-list 'company-backends 'company-emojify))
+  )
 
 (use-package smartparens
   :ensure t

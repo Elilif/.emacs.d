@@ -193,6 +193,8 @@
 (defun eli/org-mode-hook ()
   (set (make-local-variable 'company-dabbrev-char-regexp)
        "^[\\.0-9a-z-_'/]")
+  (make-local-variable 'company-backends)
+  (add-to-list 'company-backends 'company-emojify)
   (flycheck-mode -1))
 (add-hook 'org-mode-hook 'eli/org-mode-hook)
 
@@ -683,4 +685,8 @@ With a prefix ARG, remove start location."
               (org-notify "A long break done, ready a new pomodoro !!!")
               ))
   )
+(use-package org-contrib
+  :ensure t
+  :config
+  (require 'org-link-edit))
 (provide 'init-org)

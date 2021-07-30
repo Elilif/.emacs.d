@@ -145,11 +145,24 @@
   ("C-c u" . transient-winner-undo))
 (use-package avy
   :ensure t
+  :init
+  (defun avy-goto-char-near-point (char)
+    "Jump to the currently visible CHAR in the few lines near point."
+    (interactive (list (read-char "char: " t)))
+    (let ((avy-all-windows nil))
+      (avy-with avy-goto-char
+	(avy--process
+	 (avy--regex-candidates
+          (regexp-quote (string char))
+          (line-beginning-position -1)
+          (line-end-position 3))
+	 (avy--style-fn avy-style)))))
   :bind
   ("C-:" . 'avy-goto-char-in-line)
   ("C-'" . 'avy-goto-char)
-  :config
+  ("C-\"" . 'avy-goto-char-near-point)
   )
+
 (use-package ace-pinyin
   :ensure t
   :config

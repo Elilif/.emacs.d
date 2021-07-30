@@ -89,7 +89,7 @@
 	  )
 	  :post (progn (setq which-key-inhibit nil) ))
   ("Basic"
-   (("a" org-agenda "org agenda")
+   (("a" org-archive-subtree "archive subtree")
     ;; ("c" org-capture "org capture")
     ("h" org-mode "org mode")
     ("pp" org-pomodoro "sart a pomodoro")
