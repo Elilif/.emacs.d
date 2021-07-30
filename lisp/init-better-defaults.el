@@ -322,4 +322,13 @@
 (use-package hl-todo
   :ensure t
   :hook (after-init . global-hl-todo-mode))
+
+(use-package helpful
+  :ensure t
+  :bind (
+	 ("C-h f" . helpful-callable)
+	 ("C-h v" . helpful-variable)
+	 ("C-h k" . helpful-key)
+	 )
+  )
 (provide 'init-better-defaults)
