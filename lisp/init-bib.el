@@ -42,16 +42,17 @@
 (use-package org-media-note
   ;; :quelpa (org-media-note :fetcher github :repo "yuchen-lea/org-media-note")
   :load-path "~/.emacs.d/private/org-media-note"
-  :init (setq org-media-note-use-org-ref t)
+  :init
+  (require 'org-media-note-org-ref)
+  (setq org-media-note-use-org-ref t)
   :hook (org-mode .  org-media-note-mode)
-  :after org
-  :bind
-  ("C-c x" . org-media-note-hydra/body)
+  ;; :after org
+  :bind (
+	 ("C-c x" . org-media-note-hydra/body))
   :config
   (setq org-media-note-screenshot-image-dir "~/Documents/org-images")
   (setq org-media-note-use-refcite-first t)
   )
-
 
 (use-package org-roam-bibtex
   :ensure t

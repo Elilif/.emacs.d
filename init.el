@@ -1,9 +1,10 @@
-(package-initialize)
 (setq package-archives
-      '(("gnu"   . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")
-	("nongnu" . "http://elpa.nongnu.org/nongnu/")
+      '(("gnu"   . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+	("nongnu" . "https://elpa.nongnu.org/nongnu/")
 	))
+
+(package-initialize)
 
 ;; Bootstrap `use-package'
 (require 'package)
@@ -28,7 +29,6 @@
 (require 'init-spell)
 (require 'init-anki)
 (require 'init-hydra)
-;; HOLD: consult and selectrum
 (require 'init-minibuffer)
 ;; (require 'init-eaf)
 
