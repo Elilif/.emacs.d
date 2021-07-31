@@ -363,8 +363,8 @@
   :ensure t
   :defer t
   :config
-  (pdf-tools-install)
-  )
+  (setq pdf-view-use-unicode-ligther nil)
+  (pdf-tools-install))
 
 (use-package org-noter
   :ensure t

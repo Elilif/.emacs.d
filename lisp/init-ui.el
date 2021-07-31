@@ -37,7 +37,7 @@
    '(org-document-info-keyword ((t (:foreground "#B0BEC5"  :inherit nil))))
    '(org-drawer ((t (:foreground "#B0BEC5" :inherit nil))))
    '(org-meta-line ((t (:foreground "#B0BEC5" :inherit nil))))
-   '(org-link ((t (:underline t :inherit nil))))
+   '(org-link ((t (:underline t :foreground "#000000" :inherit nil))))
    '(rime-default-face ((t (:background "gainsboro" :foreground "#333333"))))
    )
   (set-cursor-color "#000000")

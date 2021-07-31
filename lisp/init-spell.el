@@ -11,13 +11,15 @@
 (use-package flyspell-correct
   :after flyspell
   :ensure t
-  :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
+  :bind ((:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper))
+	 (:map flyspell-mode-map ("C-." . nil))))
 
 (use-package flyspell-correct-ivy
-    :after ivy
-    :bind (:map flyspell-mode-map
-           ([remap flyspell-correct-word-before-point] . flyspell-correct-wrapper))
-    :init (setq flyspell-correct-interface #'flyspell-correct-ivy))
+  :ensure t
+  :after ivy
+  :bind (:map flyspell-mode-map
+              ([remap flyspell-correct-word-before-point] . flyspell-correct-wrapper))
+  :init (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
 (use-package goldendict
   :ensure t
