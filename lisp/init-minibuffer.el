@@ -10,7 +10,16 @@
 
 (use-package orderless
   :ensure t
-  :custom (completion-styles '(orderless)))
+  :config
+  ;; https://osfva.com/2021-07-21-00-00/
+  (defvar osfva/default-completion-styles completion-styles)
+  (setq completion-styles '(orderless))
+  (with-eval-after-load 'company
+    (define-advice company--perform (:around (orig-fun &rest args))
+      "Diable orderless completion style when company is doing the completion."
+      (let ((completion-styles osfva/default-completion-styles))
+	(apply orig-fun args))))
+  )
 
 (use-package embark
   :ensure t
