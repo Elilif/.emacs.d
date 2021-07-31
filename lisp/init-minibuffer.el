@@ -11,14 +11,12 @@
 (use-package orderless
   :ensure t
   :config
-  ;; https://osfva.com/2021-07-21-00-00/
-  (defvar osfva/default-completion-styles completion-styles)
-  (setq completion-styles '(orderless))
-  (with-eval-after-load 'company
-    (define-advice company--perform (:around (orig-fun &rest args))
-      "Diable orderless completion style when company is doing the completion."
-      (let ((completion-styles osfva/default-completion-styles))
-	(apply orig-fun args))))
+    (setq completion-styles '(orderless))
+  ;; https://github.com/oantolin/orderless/issues/48
+  (define-advice company-capf
+    (:around (orig-fun &rest args) set-completion-styles)
+  (let ((completion-styles '(basic partial-completion)))
+    (apply orig-fun args)))
   )
 
 (use-package embark
