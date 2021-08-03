@@ -338,4 +338,9 @@
 	 )
   )
 
+(use-package undo-tree
+  :ensure t
+  :init
+  (setq global-undo-tree-mode t))
+
 (provide 'init-better-defaults)

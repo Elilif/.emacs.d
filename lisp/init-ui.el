@@ -20,6 +20,7 @@
 					 ))
   (setq org-ellipsis "▼")
   (custom-set-faces
+   '(bookmark-face ((t (:background nil))))
    '(org-dispatcher-highlight ((t (:foreground "red"))))
    '(org-list-dt ((t (:weight bold :foreground "#5d1d9d"))))
    '(org-block ((t (:extend t :background "#ededed"))))

@@ -12,6 +12,7 @@
   :config
   (require 'org-inlinetask)
   (require 'org-mu4e)
+  (setq org-clock-sound "~/.emacs.d/private/bellring.wav")
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
   (setq org-agenda-window-setup 'only-window)
@@ -656,9 +657,9 @@ With a prefix ARG, remove start location."
   )
 
 ;; uncompatible with emacs 28
-(use-package org-ql
-  :ensure t
-  :after org)
+;; (use-package org-ql
+;;   :ensure t
+;;   :after org)
 
 ;; (use-package easy-hugo
 ;;   :ensure t

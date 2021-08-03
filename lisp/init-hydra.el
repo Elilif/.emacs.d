@@ -243,6 +243,7 @@
    "Roam Bibtex"
    (("a" orb-note-actions "orb note actions")
     ("l" orb-insert-link "insert orb link")
+    ("n" org-noter "org noter")
     )
    )
   )

@@ -27,7 +27,14 @@
   (define-advice company-capf
     (:around (orig-fun &rest args) set-completion-styles)
   (let ((completion-styles '(basic partial-completion)))
-    (apply orig-fun args)))
+    (apply orig-fun args))))
+
+(use-package pinyinlib
+  :ensure t
+  :config
+  (defun completion--regex-pinyin (str)
+    (orderless-regexp (pinyinlib-build-regexp-string str)))
+  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin)
   )
 
 (use-package embark
