@@ -1,3 +1,5 @@
+;;; init-org.el --- Org-mode config -*- lexical-binding: t -*-
+
 (use-package org
   :load-path "~/.emacs.d/private/org-mode/lisp"
   ;; :ensure t
@@ -364,7 +366,7 @@
   :ensure t
   :defer t
   :config
-  (setq pdf-view-use-unicode-ligther nil)
+  ;; (setq pdf-view-use-unicode-ligther nil)
   (pdf-tools-install))
 
 (use-package org-noter
@@ -646,7 +648,6 @@ With a prefix ARG, remove start location."
   (setq deft-filter-only-filenames nil)
   (setq deft-use-filter-string-for-filename t)
   (setq deft-use-filename-as-title t)
-  ;; (setq deft-strip-summary-regexp "\\([\n ]\\|^#\\+[[:upper:][:lower:]_]+:.*$\\)")
   (setq deft-strip-summary-regexp "\\([\n ]\\|^#\\+[[:upper:][:lower:]_]+:.*$\\)")
   (setq deft-directory "~/Dropbox/org/roam")
   (defun eli/deft-search-for(filter)
