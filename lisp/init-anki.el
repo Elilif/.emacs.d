@@ -1,6 +1,6 @@
 (use-package anki-editor
   :ensure t
-  :after org
+  :hook (org-mode . anki-editor-mode)
   :bind (:map org-mode-map
               ("<f12>" . anki-editor-cloze-region-auto-incr)
               ("<f11>" . anki-editor-cloze-region-dont-incr)

@@ -305,17 +305,17 @@
   (setq appt-message-warning-time 30)
   (setq appt-display-interval 5)
   (use-package notifications
-    :defer 2)
-
-  (defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
-    (if (atom min-to-appt)
-	(notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
-                              :title (format "%s分钟内有新的任务" min-to-appt)
-                              :body appt-msg)
-      (dolist (i (number-sequence 0 (1- (length min-to-appt))))
-	(notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
-                              :title (format "%s分钟内有新的任务" (nth i min-to-appt))
-                              :body (nth i appt-msg))))
+    :config
+    (defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
+      (if (atom min-to-appt)
+	  (notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
+				:title (format "%s分钟内有新的任务" min-to-appt)
+				:body appt-msg)
+	(dolist (i (number-sequence 0 (1- (length min-to-appt))))
+	  (notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
+				:title (format "%s分钟内有新的任务" (nth i min-to-appt))
+				:body (nth i appt-msg))))
+    )
     ;; (appt-disp-window min-to-appt current-time appt-msg)
     ) ;同时也调用原有的提醒函数
   (setq appt-display-format 'window) ;; 只有这样才能使用自定义的通知函数
@@ -377,7 +377,7 @@
   :config
   (setq org-noter-notes-search-path '("~/Dropbox/org/roam"))
   (setq org-noter-always-create-frame nil)
-  (require 'org-noter-pdftools))
+  )
 
 (use-package org-pdftools
   :ensure t
