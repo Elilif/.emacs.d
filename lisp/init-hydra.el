@@ -16,10 +16,9 @@
    ("C-c i" . hydra-insert/body)
    ("C-c [" . hydra-skan-user-buffers-prev/body)
    ("C-c ]" . hydra-skan-user-buffers-next/body)
+   ("C-c n" . hydra-org-noter/body)
    :map org-agenda-mode-map
    ("C-c a" . hydra-org-agenda/body)
-   :map pdf-view-mode-map
-   ("C-c n" . hydra-org-noter/body)
    ))
 
 (pretty-hydra-define hydra-eaf
@@ -44,7 +43,7 @@
     ("s" helm-org-in-buffer-headings "search headings")
     ("w" org-roam-refile "refile roam node"))
    "Roam"
-   (("c" org-roam-capture "roam capture")
+   (("c" org-roam-dailies-capture-today "roam capture")
     ("ra" org-roam-ref-add "add refs")
     ("rd" org-roam-ref-remove "remove a ref")
     ("t" org-roam-tag-add "add tags")
@@ -243,7 +242,6 @@
    "Roam Bibtex"
    (("a" orb-note-actions "orb note actions")
     ("l" orb-insert-link "insert orb link")
-    ("n" org-noter "org noter")
     )
    )
   )

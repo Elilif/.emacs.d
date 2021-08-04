@@ -232,7 +232,7 @@
          "* TODO %? \nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n  :PROPERTIES:\n  :STYLE:    habit\n  :END:\n\n%U"
          :empty-lines 0)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
-         "* %? \n\n%a \n%i \n\n%U"
+         "* %? \n\n%a \n\n%i \n\n%U"
          :empty-lines 0)
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
          "* %<%H:%M> %? "
@@ -372,6 +372,8 @@
 (use-package org-noter
   :ensure t
   :after org
+  :custom
+  (setq org-noter-auto-save-last-location t)
   :config
   (setq org-noter-notes-search-path '("~/Dropbox/org/roam"))
   (setq org-noter-always-create-frame nil)
@@ -386,6 +388,7 @@
   :ensure t
   :after org-noter
   :config
+  (setq org-noter-pdftools-use-org-id nil)
   ;; Add a function to ensure precise note is inserted
   (defun org-noter-pdftools-insert-precise-note (&optional toggle-no-questions)
     (interactive "P")
