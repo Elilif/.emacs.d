@@ -97,7 +97,7 @@
    "Org link"
    (("li" grab-x-link-chromium-insert-link "insert web link")
     ("lo" grab-x-link-chromium-insert-org-link "insert org link")
-    ("ld" org-download-clipboard "store link"))
+    ("ld" org-download-clipboard "org download clipboard"))
    "Org-clock"
    (("i" org-clock-in)
     ("c" org-clock-in-last)

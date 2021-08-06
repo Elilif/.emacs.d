@@ -522,13 +522,16 @@ With a prefix ARG, remove start location."
 	      ))
   (setq org-roam-completion-everywhere t)
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:90}${tags:10}")
-  (setq org-roam-capture-templates '(("d" "default" plain "%?"
+  (setq org-roam-capture-templates '(("f" "file" plain "%?"
                                       :if-new (file+head "${slug}.org"
 							 "#+TITLE: ${title}\n")
                                       :unnarrowed t)
 				     ("r" "bibliography reference" plain
 				      (file "~/.emacs.d/private/orb-capture-template.org")
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
+				      )
+				     ("n" "node" entry "* %?"
+				      :if-new (file+head "~/Dropbox/org/roam/inbox.org" "* %?")
 				      )
 				     ))
   (require 'org-roam-protocol)
