@@ -1,6 +1,8 @@
 (use-package flyspell
   :defer t
-  :hook (org-mode . flyspell-mode))
+  :hook ((org-mode . flyspell-mode)
+	 (text-mode . flyspell-mode))
+  )
 
 (use-package ispell
   :defer t

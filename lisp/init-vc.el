@@ -3,6 +3,7 @@
   :defer t
   :init
   (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
+  (setq git-commit-summary-max-length 50)
   (defun mu-magit-kill-buffers ()
     "Restore window configuration and kill all Magit buffers."
     (interactive)
