@@ -335,7 +335,11 @@
 	 ("C-h f" . helpful-callable)
 	 ("C-h v" . helpful-variable)
 	 ("C-h k" . helpful-key)
+	 :map helpful-mode-map
+	 ("q" . kill-buffer-and-window)
 	 )
+  :config
+  (setq helpful-max-buffers 1)
   )
 
 (use-package undo-tree
