@@ -8,9 +8,11 @@
 	 (org-mode . auto-fill-mode)
 	 (org-mode . column-number-mode)
 	 (org-mode . prettify-symbols-mode))
-  :bind(("\C-c c" . 'org-capture)
-	("\C-c a" . 'org-agenda)
-	)
+  :bind (("\C-c c" . 'org-capture)
+	 ("\C-c a" . 'org-agenda)
+	 (:map minibuffer-local-map
+	       ("C-c C-l" . 'org-insert-link))
+	 )
   :config
   (require 'org-inlinetask)
   (require 'org-mu4e)
@@ -266,7 +268,7 @@
 	("c" "Animes" entry (file+headline org-agenda-file-lists "Animes")
 	 "* TODO %?\n %^{Title}p %^{URL}p %^{Episodes}p %^{Release}p %^{Director}p %^{Authors}p %^{Publisher}p %^{Rating}p")
 	("r" "NOTE" entry (file "~/Dropbox/org/roam/inbox.org")
-	 "* %?\n%i\n"
+	 "* %?\n%^{REFERENCE}p%i"
 	 :create-id t)
         ))
 
