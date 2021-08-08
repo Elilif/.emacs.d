@@ -533,6 +533,10 @@ With a prefix ARG, remove start location."
 	      ))
   (setq org-roam-completion-everywhere t)
   (setq org-roam-node-display-template "${file} > ${olp} > ${title:90}${tags:10}")
+  (setq org-roam-dailies-capture-templates
+	'(("d" "default" entry
+           "* %?"
+           :if-new (file+datetree "~/Dropbox/org/roam/daily/dailies.org" day))))
   (setq org-roam-capture-templates '(("f" "file" plain "%?"
                                       :if-new (file+head "${slug}.org"
 							 "#+TITLE: ${title}\n")
