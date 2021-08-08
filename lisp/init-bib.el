@@ -28,6 +28,9 @@
 (use-package org-ref
   :ensure t
   :after org
+  :bind
+  (:map org-mode-map
+	("C-c \]" . nil))
   :config
   (setq calibredb-ref-default-bibliography (concat (file-name-as-directory calibredb-root-dir) "catalog.bib"))
   (setq org-ref-default-bibliography '("~/Documents/Exported-Items.bib"))
