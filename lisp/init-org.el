@@ -220,6 +220,12 @@
                               (format-time-string "%Y-%m-%d")
                               name) "~/Dropbox/org/blog")))
 
+;; add a property to create id
+(defun eli/org-capture-maybe-create-id ()
+  (when (org-capture-get :create-id)
+    (org-id-get-create)))
+(add-hook 'org-capture-prepare-finalize-hook #'eli/org-capture-maybe-create-id)
+
 (setq org-capture-templates
       '(
         ("t" "Todo" entry (file org-agenda-file-inbox)
@@ -259,6 +265,9 @@
 	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Actors}p %^{Types}p %^{Time}p %^{Episodes}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
 	("c" "Animes" entry (file+headline org-agenda-file-lists "Animes")
 	 "* TODO %?\n %^{Title}p %^{URL}p %^{Episodes}p %^{Release}p %^{Director}p %^{Authors}p %^{Publisher}p %^{Rating}p")
+	("r" "NOTE" entry (file "~/Dropbox/org/roam/inbox.org")
+	 "* %?\n%i\n"
+	 :create-id t)
         ))
 
 
@@ -529,9 +538,6 @@ With a prefix ARG, remove start location."
 				     ("r" "bibliography reference" plain
 				      (file "~/.emacs.d/private/orb-capture-template.org")
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
-				      )
-				     ("n" "node" entry "* %?"
-				      :if-new (file+head "~/Dropbox/org/roam/inbox.org" "* %?")
 				      )
 				     ))
   (require 'org-roam-protocol)
