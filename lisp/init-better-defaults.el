@@ -1,3 +1,5 @@
+;; set fill column
+(setq-default fill-column 80)
 ;; show file size
 (size-indication-mode 1)
 ;; open customize group buffers in one buffer
