@@ -67,7 +67,7 @@
    "treemacs"
    (("t" treemacs "treemacs"))
    "Deft"
-   (("d" eli/deft-search-for "search"))
+   (("d" notdeft "search"))
    ))
 
 (pretty-hydra-define hydra-org

@@ -648,23 +648,13 @@ With a prefix ARG, remove start location."
 (use-package writegood-mode
   :ensure t)
 
-(use-package deft
-  :ensure t
+(use-package notdeft
+  :load-path "~/.emacs.d/private/notdeft"
   :config
-  (setq deft-recursive t)
-  (setq deft-default-extension "org")
-  (setq deft-text-mode 'org-mode)
-  (setq deft-extensions '("org"))
-  (setq deft-filter-only-filenames nil)
-  (setq deft-use-filter-string-for-filename t)
-  (setq deft-use-filename-as-title t)
-  (setq deft-strip-summary-regexp "\\([\n ]\\|^#\\+[[:upper:][:lower:]_]+:.*$\\)")
-  (setq deft-directory "~/Dropbox/org/roam")
-  (defun eli/deft-search-for(filter)
-    (interactive "MFilter: ")
-    (deft)
-    (deft-filter filter t)
-    )
+  (setq notdeft-allow-org-property-drawers t)
+  (setq notdeft-xapian-max-results 0)
+  (setq notdeft-xapian-program "/home/eli/.emacs.d/private/notdeft/xapian/notdeft-xapian")
+  (setq notdeft-directories '("~/Dropbox/org/roam"))
   )
 
 ;; uncompatible with emacs 28
