@@ -10,7 +10,6 @@
    ("C-c w" . jp-window/body)
    ("C-c b" . hydra-bibtex/body)
    ("C-c m" . hydra-misc/body)
-   ("C-c e" . hydra-eaf/body)
    ("C-c d" . hydra-emacs/body)
    ("C-c r" . hydra-roam/body)
    ("C-c i" . hydra-insert/body)
@@ -21,16 +20,6 @@
    ("C-c a" . hydra-org-agenda/body)
    ))
 
-(pretty-hydra-define hydra-eaf
-  (:color amaranth :exit t :quit-key "q" :idle 2
-	  :pre (progn (setq which-key-inhibit t))
-	  :post (progn (setq which-key-inhibit nil)))
-  ("Eaf"
-   (("o" eaf-open "eaf open")
-    ("b" eaf-open-browser "open browser")
-    ("h" eaf-open-browser-with-history "open history"))
-   )
-  )
 (pretty-hydra-define hydra-roam
   (:color amaranth :exit t :quit-key "q" :idle 2
 	  :pre (progn (setq which-key-inhibit t))
