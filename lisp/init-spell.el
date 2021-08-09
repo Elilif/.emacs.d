@@ -27,6 +27,17 @@
   :ensure t
   :bind ("C-c h" . goldendict-dwim))
 
+(use-package youdao-dictionary
+  :after org
+  :ensure t
+  ;; :bind (("C-c y" . youdao-dictionary-search-at-point-posframe))
+  :config
+  (setq url-automatic-caching t))
+
+(use-package wordnut
+  :ensure t
+  :bind (("C-c y" . wordnut-lookup-current-word)))
+
 (defun Eli/dict-search ()
   (interactive)
   (let ((BASEDIR "~/Documents/txtdict/")

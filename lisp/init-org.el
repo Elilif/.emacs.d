@@ -583,14 +583,6 @@ With a prefix ARG, remove start location."
          :completion-function eli/push-to-gitpage
          )))
 ;;----------------------------------------------------------------------------
-
-(use-package youdao-dictionary
-  :after org
-  :ensure t
-  :bind (("C-c y" . youdao-dictionary-search-at-point-posframe))
-  :config
-  (setq url-automatic-caching t))
-
 ;; (use-package org-gcal
 ;;   :ensure t
 ;;   :config
