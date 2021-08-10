@@ -36,7 +36,8 @@
 	       (funcall fn))))))
 
 (defvar mcfly-commands
-  '(consult-line))
+  '(consult-line
+    consult-outline))
 
 (defvar mcfly-back-commands
   '(self-insert-command))
