@@ -524,7 +524,7 @@ With a prefix ARG, remove start location."
                  (direction . right)
                  (window-width . 0.4)
                  (window-height . fit-window-to-buffer)))
-  (org-roam-setup)
+  (org-roam-db-autosync-mode)
   :config
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
