@@ -1,7 +1,7 @@
 (use-package company
   :ensure t
+  :hook (after-init . global-company-mode)
   :config
-  (global-company-mode 1)
   (setq company-show-numbers t)
   (setq completion-ignore-case t)
   (setq company-idle-delay 0.2)
@@ -18,11 +18,18 @@
 
 (use-package smartparens
   :ensure t
+  :hook (after-init . smartparens-global-mode)
   :config
   (sp-pair "（" "）")
   (sp-pair "“" "”")
+  ;; improving emphasis marker
+  (sp-local-pair 'org-mode "~" "~ ")
+  (sp-local-pair 'org-mode "/" "/ ")
+  (sp-local-pair 'org-mode "=" "= ")
+  (sp-local-pair 'org-mode "+" "+ ")
+  (sp-local-pair 'org-mode "*" "* ")
+  (sp-local-pair 'org-mode "_" "_ ")
   (require 'smartparens-config)
-  (smartparens-global-mode)
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens."
     (cond ((looking-at-p "\\s(") (funcall fn))

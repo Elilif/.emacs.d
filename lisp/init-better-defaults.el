@@ -129,7 +129,7 @@
 ;; use winnder-mode
 (use-package winner-mode
   :ensure nil
-  :defer 5
+  :defer t
   :init
   (defun transient-winner-undo ()
     "Transient version of winner-undo."
@@ -148,7 +148,7 @@
   ("C-c u" . transient-winner-undo))
 (use-package avy
   :ensure t
-  :defer 5
+  :defer t
   :init
   (defun avy-goto-char-near-point (char)
     "Jump to the currently visible CHAR in the few lines near point."
@@ -169,21 +169,22 @@
 
 (use-package ace-pinyin
   :ensure t
-  :defer 5
-  :config
-  (ace-pinyin-global-mode 1))
+  :defer t
+  :hook (after-init . ace-pinyin-global-mode)
+  )
 
 (use-package iedit
   :ensure t
-  :defer 5)
+  :defer t
+  :bind ("C-;" . iedit-mode))
 
 (use-package wgrep
   :ensure t
-  :defer 5)
+  :defer t)
 
 (use-package grab-x-link
   :ensure t
-  :defer 5
+  :defer t
   :config
   ;; (global-set-key (kbd "C-c i") 'grab-x-link-chromium-insert-link)
   ;; (global-set-key (kbd "C-c o") 'grab-x-link-chromium-insert-org-link)
@@ -191,31 +192,27 @@
 
 (use-package expand-region
   :ensure t
-  :defer 2
-  :config
-  (global-set-key (kbd "C-=") 'er/expand-region))
+  :defer t
+  :bind ("C-=" . er/expand-region))
 
 (use-package which-key
   :ensure t
-  :defer 5
+  :hook (after-init . which-key-mode)
   :config
-  (which-key-mode)
-  (setq which-key-idle-delay 0.1)
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l"))
+  (setq which-key-idle-delay 0.3)
+  )
 
 (use-package auto-save
   :load-path "~/.emacs.d/private/auto-save"
-  :defer 5
+  :hook (after-init . auto-save-enable)
   :config
   (setq auto-save-silent t)   ; quietly save
   (setq auto-save-delete-trailing-whitespace nil)
   (setq auto-save-idle 2)
-  (auto-save-enable)
   )
 
 (use-package dired-x
-  :defer 5
+  :defer t
   :bind
   (:map dired-mode-map
 	("q" . 'kill-this-buffer))
@@ -241,10 +238,9 @@
 
 (use-package hungry-delete
   :ensure t
-  :defer 5
+  :hook (after-init . global-hungry-delete-mode)
   :config
-  (setq hungry-delete-join-reluctantly t)
-  (global-hungry-delete-mode))
+  (setq hungry-delete-join-reluctantly t))
 
 (use-package recentf
   :config
@@ -262,19 +258,16 @@
 
 (use-package all-the-icons
   :ensure t
-  :defer 5)
+  :defer t)
 
 (use-package golden-ratio
   :ensure t
-  :defer 5
-  :config
-  (golden-ratio-mode 0))
+  :defer t)
 
 (use-package popwin
   :ensure t
-  :defer 5
+  :hook (after-init . popwin-mode)
   :config
-  (popwin-mode t)
   (setq popwin:popup-window-position 'right)
   (setq popwin:popup-window-width 80))
 
@@ -288,7 +281,7 @@
 
 (use-package esup
   :ensure t
-  :defer 5
+  :defer t
   ;; To use MELPA Stable use ":pin melpa-stable",
   :pin melpa)
 
@@ -300,17 +293,17 @@
 
 (use-package multiple-cursors
   :ensure t
-  :defer 2
+  :defer t
   :config
   (setq mc/always-run-for-all nil)
   (setq mc/insert-numbers-default 1))
 
 (use-package treemacs
   :ensure t
-  :defer 10)
+  :defer t)
 
 (use-package ibuffer
-  :defer 5
+  :defer t
   :bind
   ("\C-x \C-b" . ibuffer)
   :config
@@ -336,26 +329,25 @@
 
 (use-package wttrin
   :ensure t
-  :defer 5
   :load-path "~/.emacs.d/private/emacs-wttrin"
+  :hook (after-init . wttrin-display-weather-in-mode-line)
   :config
   (setq wttrin-default-cities '("WuZhen?m?T" "HangZhou?m?T"))
   (setq wttrin-mode-line-city "WuZhen")
   (setq wttrin-mode-line-format "%l:+%c %t %w")
-  (wttrin-display-weather-in-mode-line))
+  )
 
 (use-package hl-todo
   :ensure t
-  :defer 5
   :hook (after-init . global-hl-todo-mode))
 
 (use-package elisp-refs
   :ensure t
-  :defer 5)
+  :defer t)
 
 (use-package helpful
   :ensure t
-  :defer 5
+  :defer t
   :bind (
 	 ("C-h f" . helpful-callable)
 	 ("C-h v" . helpful-variable)
@@ -369,7 +361,7 @@
 
 (use-package undo-tree
   :ensure t
-  :defer 5
+  :defer t
   :init
   (setq global-undo-tree-mode t))
 

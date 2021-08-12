@@ -66,20 +66,6 @@
   :config
   (beacon-mode 1))
 
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-center-content t)
-  (setq dashboard-startup-banner "~/Documents/images/ue-light.png")
-  (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
-                          ;; (projects . 5)
-                          ;; (agenda . 5)
-                          ;; (registers . 5)
-			  ))
-  )
-
 ;; Setting English Font
 (set-face-attribute 'default nil :font "Source Code Pro 13")
 ;; (set-face-attribute 'default nil :font "Operator Mono" :height 140)
@@ -111,5 +97,37 @@
   :ensure t
   :defer 10
   :hook (prog-mode . rainbow-delimiters-mode))
+
+
+(use-package dashboard
+  :if (< (length command-line-args) 2)
+  :preface
+  (defun my/dashboard-banner ()
+    "Sets a dashboard banner including information on package initialization
+     time and garbage collections."
+    (setq dashboard-banner-logo-title
+          (format "Emacs ready in %.2f seconds with %d garbage collections."
+                  (float-time
+                   (time-subtract after-init-time before-init-time)) gcs-done)))
+  :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  (add-hook 'dashboard-mode-hook 'my/dashboard-banner)
+  :custom-face
+  (dashboard-banner-logo-title ((t (:foreground "#969595"))))
+  :custom (dashboard-startup-banner 'logo)
+  :config
+  (dashboard-setup-startup-hook)
+    (setq dashboard-set-init-info t)
+  (setq dashboard-center-content t)
+  (setq dashboard-startup-banner "~/Documents/images/ue-light.png")
+  (setq dashboard-items '((recents  . 5)
+                          (bookmarks . 5)
+                          ;; (projects . 5)
+                          ;; (agenda . 5)
+                          ;; (registers . 5)
+			  ))
+  )
+
+
 
 (provide 'init-ui)

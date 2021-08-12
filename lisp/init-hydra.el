@@ -1,10 +1,12 @@
 (use-package hydra
   :ensure t
+  :defer t
   )
 
 
 (use-package pretty-hydra
   :ensure t
+  :defer t
   :bind
   (("C-c o" . hydra-org/body)
    ("C-c w" . jp-window/body)

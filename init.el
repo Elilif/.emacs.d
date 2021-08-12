@@ -16,11 +16,9 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
-
 (require 'init-completion)
 (require 'init-better-defaults)
 ;; (require 'init-ivy)
-(require 'init-ui)
 (require 'init-org)
 (require 'init-elfeed)
 (require 'init-vc)
@@ -30,6 +28,7 @@
 (require 'init-anki)
 (require 'init-hydra)
 (require 'init-minibuffer)
+(require 'init-ui)
 ;; (require 'init-eaf)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

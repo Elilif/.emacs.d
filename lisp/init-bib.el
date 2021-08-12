@@ -1,6 +1,6 @@
 (use-package helm-bibtex
   :ensure t
-  :defer 5
+  :defer t
   :config
   (setq bibtex-completion-bibliography "~/Documents/Eli'sBooks/catalog.bib")
   (setq bibtex-completion-library-path "~/Documents/Eli'sBooks")
@@ -9,7 +9,7 @@
 
 (use-package calibredb
   :ensure t
-  :defer 5
+  :defer t
   :after org
   :init
   (autoload 'calibredb "calibredb")
@@ -30,7 +30,6 @@
 (use-package org-ref
   :ensure t
   :after calibredb
-  :defer 8
   :bind
   (:map org-mode-map
 	("C-c \]" . nil))
@@ -43,13 +42,13 @@
 ;; (use-package quelpa-use-package
 ;;   :ensure t)
 (use-package mpv
-  :defer 5
+  :defer t
   :ensure t)
 
 (use-package org-media-note
   ;; :quelpa (org-media-note :fetcher github :repo "yuchen-lea/org-media-note")
   :load-path "~/.emacs.d/private/org-media-note"
-  :defer 10
+  :defer t
   :init
   (use-package org-media-note-org-ref
     :after org-media-note)
@@ -65,7 +64,6 @@
 
 (use-package org-roam-bibtex
   :ensure t
-  :defer 5
   :after org-roam
   :hook (org-mode . org-roam-bibtex-mode)
   :config

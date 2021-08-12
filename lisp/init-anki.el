@@ -1,6 +1,6 @@
 (use-package anki-editor
   :ensure t
-  :defer 5
+  :defer t
   :hook (org-mode . anki-editor-mode)
   :bind (:map org-mode-map
               ("<f12>" . anki-editor-cloze-region-auto-incr)
@@ -61,7 +61,7 @@
 ;; org-download
 (use-package org-download
   :ensure t
-  :defer 5
+  :defer t
   :config
   (setq-default org-download-method 'directory
 		org-download-image-dir "~/Documents/org-images"
