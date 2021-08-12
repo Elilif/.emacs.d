@@ -9,6 +9,7 @@
   (("C-c o" . hydra-org/body)
    ("C-c w" . jp-window/body)
    ("C-c b" . hydra-bibtex/body)
+   ("C-c e" . hydra-edit/body)
    ("C-c m" . hydra-misc/body)
    ("C-c d" . hydra-emacs/body)
    ("C-c r" . hydra-roam/body)
@@ -20,6 +21,20 @@
    ("C-c a" . hydra-org-agenda/body)
    ))
 
+(pretty-hydra-define hydra-edit
+  (:color amaranth :exit t :quit-key "q"
+	  :pre (progn (setq which-key-inhibit t))
+	  :post (progn (setq which-key-inhibit nil) ))
+  ("multiple cursors"
+   (("l" mc/edit-lines "edit-lines")
+    ("n" mc/mark-next-like-this "mark next")
+    ("p" mc/mark-previous-like-this "mark previous")
+    ("a" mc/mark-all-like-this "makk all")
+    ("s" set-rectangular-region-anchor "set mc")
+    ("in" mc/insert-numbers "insert numbers"))
+   "iedit"
+   (("I" iedit-mode "iedit mode"))
+   ))
 (pretty-hydra-define hydra-roam
   (:color amaranth :exit t :quit-key "q" :idle 2
 	  :pre (progn (setq which-key-inhibit t))

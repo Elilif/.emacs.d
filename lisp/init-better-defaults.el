@@ -286,7 +286,8 @@
 (use-package multiple-cursors
   :ensure t
   :config
-  (setq mc/always-run-for-all t))
+  (setq mc/always-run-for-all nil)
+  (setq mc/insert-numbers-default 1))
 
 (use-package treemacs
   :ensure t)
