@@ -62,6 +62,7 @@
 
 (use-package beacon
   :ensure t
+  :defer 2
   :config
   (beacon-mode 1))
 
@@ -94,6 +95,7 @@
 
 (use-package emojify
   :ensure t
+  :defer 10
   :hook (after-init . global-emojify-mode)
   :config
   (setq emojify-user-emojis '(("☑" . (("name" . "Checkbox")
@@ -107,6 +109,7 @@
 
 (use-package rainbow-delimiters
   :ensure t
+  :defer 10
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (provide 'init-ui)

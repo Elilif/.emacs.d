@@ -14,8 +14,11 @@
 	       ("C-c C-l" . 'org-insert-link))
 	 )
   :config
-  (require 'org-inlinetask)
-  (require 'org-mu4e)
+  (use-package org-inlinetask
+    :after org
+    :defer 5)
+  (use-package org-mu4e
+    :defer 2)
   (setq org-clock-sound "~/.emacs.d/private/bellring.wav")
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
@@ -154,9 +157,15 @@
 	  "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"
 	  ))
   )
-(use-package ox-beamer)
-(use-package org-tempo)
+(use-package ox-beamer
+  :after org
+  :defer 2)
+(use-package org-tempo
+  :after org
+  :defer 2)
 (use-package ox-latex
+  :after or
+  :defer 2
   :config
   (add-to-list 'org-latex-classes
 	       '("beamer"
@@ -166,9 +175,11 @@
 	       ))
 
 (use-package org-mind-map
+  :ensure t
+  :after org
+  :defer 2
   :init
   (require 'ox-org)
-  :ensure t
   ;; Uncomment the below if 'ensure-system-packages` is installed
   ;;:ensure-system-package (gvgen . graphviz)
   :config
@@ -182,6 +193,7 @@
   )
 
 (use-package org-habit
+  :defer 2
   :init
   (setq org-habit-graph-column 1)
   (setq org-habit-preceding-days 10)
@@ -300,8 +312,8 @@
 ;; appt
 (use-package appt
   :after org
+  :defer 6
   :config
-  (require 'appt)
   ;; 每小时同步一次appt,并且现在就开始同步
   (run-at-time nil 3600 'org-agenda-to-appt t)
   ;; 更新agenda时，同步appt
@@ -375,9 +387,8 @@
 (add-hook 'org-after-todo-statistics-hook 'eli/org-summary-todo)
 (use-package pdf-tools
   :ensure t
-  :defer t
+  :defer 2
   :config
-  ;; (setq pdf-view-use-unicode-ligther nil)
   (pdf-tools-install))
 
 (use-package org-noter
@@ -393,10 +404,12 @@
 (use-package org-pdftools
   :ensure t
   :after org
+  :defer 2
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
   :ensure t
+  :defer 2
   :after org-noter
   :config
   (setq org-noter-pdftools-use-org-id nil)
@@ -434,12 +447,14 @@ With a prefix ARG, remove start location."
 (use-package saveplace-pdf-view
   :ensure t
   :after pdf-tools
+  :defer 2
   :ensure t
   :config (save-place-mode 1))
 
 ;; rime
 (use-package rime
   :ensure t
+  :defer 2
   :init
   (defun +rime-predicate-punctuation-line-begin-p ()
     "Enter half-width punctuation at the beginning of the line.
@@ -504,6 +519,7 @@ With a prefix ARG, remove start location."
 
 (use-package org-superstar
   :ensure t
+  :defer 2
   :hook (org-mode . org-superstar-mode)
   :config
   (setq org-superstar-headline-bullets-list '("☰" "○" "✸" "✿" "✤" "✜" "◆" "▶"))
@@ -512,7 +528,7 @@ With a prefix ARG, remove start location."
 ;;roam
 (use-package org-roam
   :ensure t
-  ;; :quelpa ((org-roam :fetcher github :repo "org-roam/org-roam" :branch "v2") :upgrade nil)
+  :defer 2
   :init
   (setq org-roam-v2-ack t)
   (setq org-roam-directory "~/Dropbox/org/roam/")
@@ -595,6 +611,7 @@ With a prefix ARG, remove start location."
 (use-package helm-org
   :ensure t
   :after org
+  :defer 2
   :config
   (defun yuchen/helm-org-run-marked-heading-id-link ()
     (interactive)
@@ -640,16 +657,20 @@ With a prefix ARG, remove start location."
 (use-package helm-org-rifle
   :ensure t
   :after org
+  :defer 2
   :config)
 
 (use-package writeroom-mode
-  :ensure t)
+  :ensure t
+  :defer 2)
 
 (use-package writegood-mode
-  :ensure t)
+  :ensure t
+  :defer 2)
 
 (use-package notdeft
   :load-path "~/.emacs.d/private/notdeft"
+  :defer 2
   :config
   (setq notdeft-allow-org-property-drawers t)
   (setq notdeft-xapian-max-results 0)
@@ -671,12 +692,14 @@ With a prefix ARG, remove start location."
 
 (use-package ox-timeline
   :ensure t
+  :defer 2
   :config
   (setq org-timeline-source-url "dist")
   )
 
 (use-package org-pomodoro
   :ensure t
+  :defer 2
   :config
   (add-hook 'org-pomodoro-finished-hook
             (lambda ()
@@ -693,6 +716,9 @@ With a prefix ARG, remove start location."
   )
 (use-package org-contrib
   :ensure t
+  :after org
+  :defer 2
   :config
   (require 'org-link-edit))
+
 (provide 'init-org)

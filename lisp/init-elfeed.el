@@ -2,7 +2,7 @@
   :ensure t
   :defer t
   :init
-  (setq elfeed-curl-extra-arguments '("-x" "http://127.0.0.1:8889"))
+  (setq elfeed-curl-extra-arguments '("-x" "http://127.0.0.1:7890"))
   (defun eli/elfeed-search-quit-and-kill-buffers ()
     "Save the database, then kill elfeed buffers, asking the user
 for confirmation when needed."
@@ -58,7 +58,7 @@ for confirmation when needed."
 
 
 (use-package mu4e
-  :defer 2
+  :defer 3
   :load-path "/usr/share/emacs/site-lisp/mu4e"
   :if (executable-find "mu")
   :config
@@ -96,7 +96,7 @@ for confirmation when needed."
 
 (use-package mu4e-maildirs-extension
   :ensure t
-  :config
-  (mu4e-maildirs-extension))
+  :after mu4e
+  :hook (mu4e-main-mode . mu4e-maildirs-extension))
 
 (provide 'init-elfeed)

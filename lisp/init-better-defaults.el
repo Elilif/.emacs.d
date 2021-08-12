@@ -129,6 +129,7 @@
 ;; use winnder-mode
 (use-package winner-mode
   :ensure nil
+  :defer 5
   :init
   (defun transient-winner-undo ()
     "Transient version of winner-undo."
@@ -147,6 +148,7 @@
   ("C-c u" . transient-winner-undo))
 (use-package avy
   :ensure t
+  :defer 5
   :init
   (defun avy-goto-char-near-point (char)
     "Jump to the currently visible CHAR in the few lines near point."
@@ -167,17 +169,21 @@
 
 (use-package ace-pinyin
   :ensure t
+  :defer 5
   :config
   (ace-pinyin-global-mode 1))
 
 (use-package iedit
-  :ensure t)
+  :ensure t
+  :defer 5)
 
 (use-package wgrep
-  :ensure t)
+  :ensure t
+  :defer 5)
 
 (use-package grab-x-link
   :ensure t
+  :defer 5
   :config
   ;; (global-set-key (kbd "C-c i") 'grab-x-link-chromium-insert-link)
   ;; (global-set-key (kbd "C-c o") 'grab-x-link-chromium-insert-org-link)
@@ -185,11 +191,13 @@
 
 (use-package expand-region
   :ensure t
+  :defer 2
   :config
   (global-set-key (kbd "C-=") 'er/expand-region))
 
 (use-package which-key
   :ensure t
+  :defer 5
   :config
   (which-key-mode)
   (setq which-key-idle-delay 0.1)
@@ -198,6 +206,7 @@
 
 (use-package auto-save
   :load-path "~/.emacs.d/private/auto-save"
+  :defer 5
   :config
   (setq auto-save-silent t)   ; quietly save
   (setq auto-save-delete-trailing-whitespace nil)
@@ -206,6 +215,7 @@
   )
 
 (use-package dired-x
+  :defer 5
   :bind
   (:map dired-mode-map
 	("q" . 'kill-this-buffer))
@@ -231,6 +241,7 @@
 
 (use-package hungry-delete
   :ensure t
+  :defer 5
   :config
   (setq hungry-delete-join-reluctantly t)
   (global-hungry-delete-mode))
@@ -250,15 +261,18 @@
   )
 
 (use-package all-the-icons
-  :ensure t)
+  :ensure t
+  :defer 5)
 
 (use-package golden-ratio
   :ensure t
+  :defer 5
   :config
   (golden-ratio-mode 0))
 
 (use-package popwin
   :ensure t
+  :defer 5
   :config
   (popwin-mode t)
   (setq popwin:popup-window-position 'right)
@@ -274,6 +288,7 @@
 
 (use-package esup
   :ensure t
+  :defer 5
   ;; To use MELPA Stable use ":pin melpa-stable",
   :pin melpa)
 
@@ -285,14 +300,17 @@
 
 (use-package multiple-cursors
   :ensure t
+  :defer 2
   :config
   (setq mc/always-run-for-all nil)
   (setq mc/insert-numbers-default 1))
 
 (use-package treemacs
-  :ensure t)
+  :ensure t
+  :defer 10)
 
 (use-package ibuffer
+  :defer 5
   :bind
   ("\C-x \C-b" . ibuffer)
   :config
@@ -318,6 +336,7 @@
 
 (use-package wttrin
   :ensure t
+  :defer 5
   :load-path "~/.emacs.d/private/emacs-wttrin"
   :config
   (setq wttrin-default-cities '("WuZhen?m?T" "HangZhou?m?T"))
@@ -327,13 +346,16 @@
 
 (use-package hl-todo
   :ensure t
+  :defer 5
   :hook (after-init . global-hl-todo-mode))
 
 (use-package elisp-refs
-  :ensure t)
+  :ensure t
+  :defer 5)
 
 (use-package helpful
   :ensure t
+  :defer 5
   :bind (
 	 ("C-h f" . helpful-callable)
 	 ("C-h v" . helpful-variable)
@@ -347,6 +369,7 @@
 
 (use-package undo-tree
   :ensure t
+  :defer 5
   :init
   (setq global-undo-tree-mode t))
 

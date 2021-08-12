@@ -1,25 +1,27 @@
 (use-package flycheck
   :ensure t
+  :defer 2
   :init (global-flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
 (use-package yasnippet
   :ensure t
-  :defer t
+  :defer 2
+  :hook
+  (after-init . yas-global-mode)
   :config
-  (yas-global-mode 1)
   (require 'warnings)
   (add-to-list 'warning-suppress-types '(yasnippet backquote-change)))
 
 (use-package auto-yasnippet
   :ensure t
-  :defer t
+  :defer 2
   :config)
 
 (use-package yasnippet-snippets
   :ensure t
-  :defer t)
+  :defer 2)
 
 ;; (use-package irony
 ;;   :ensure t
@@ -48,6 +50,7 @@
 
 (use-package ccls
   :ensure t
+  :defer 2
   :init
   (setq ccls-executable "/usr/bin/ccls"))
 
@@ -56,6 +59,7 @@
 
 (use-package lsp-mode
   :ensure t
+  :defer 2
   :init
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (c-mode . lsp-deferred)
@@ -66,29 +70,34 @@
 ;; optionally
 (use-package lsp-ui
   :ensure t
+  :defer 2
   :commands lsp-ui-mode)
 
 ;; if you are ivy user
 ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol
 ;;   :ensure t)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list
-  :ensure t)
+  :ensure t
+  :defer 2)
 
 ;; optionally if you want to use debugger
 (use-package dap-mode
-  :ensure t)
+  :ensure t
+  :defer 5)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 
 (use-package quickrun
-  :ensure t)
+  :ensure t
+  :defer 5)
 
 (use-package vterm
   :ensure t
-  :config)
+  :defer 5)
 
 (use-package zeal-at-point
-  :ensure t)
+  :ensure t
+  :defer 5)
 (provide 'init-lang)
 
 
