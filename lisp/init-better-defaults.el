@@ -373,4 +373,8 @@
   :init
   (setq global-undo-tree-mode t))
 
+(use-package restart-emacs
+  :ensure t
+  :defer t)
+
 (provide 'init-better-defaults)

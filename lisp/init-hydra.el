@@ -69,6 +69,7 @@
   ("basic"
    (("E" eval-buffer)
     ("f" (find-file "~/.emacs.d/lisp") "config files")
+    ("R" restart-emacs)
     )
    "Search"
    (("g" consult-git-grep))
