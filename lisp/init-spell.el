@@ -1,12 +1,14 @@
 (use-package flyspell
   :defer t
   :hook ((org-mode . flyspell-mode)
-	 (text-mode . flyspell-mode))
+	 (text-mode . flyspell-mode)
+	 (lisp-mode . flyspell-mode)
+	 (lisp-interaction-mode . flyspell-mode))
   )
 
 (use-package ispell
   :defer t
-    :config
+  :config
   (setq ispell-personal-dictionary "~/.emacs.d/mydictionary")
   )
 
@@ -18,7 +20,7 @@
 
 (use-package flyspell-correct-ivy
   :ensure t
-  :after ivy
+  :after flyspell
   :bind (:map flyspell-mode-map
               ([remap flyspell-correct-word-before-point] . flyspell-correct-wrapper))
   :init (setq flyspell-correct-interface #'flyspell-correct-ivy))

@@ -19,7 +19,6 @@
    ("C-c [" . hydra-skan-user-buffers-prev/body)
    ("C-c ]" . hydra-skan-user-buffers-next/body)
    ("C-c n" . hydra-org-noter/body)
-   :map org-agenda-mode-map
    ("C-c a" . hydra-org-agenda/body)
    ))
 
@@ -91,8 +90,7 @@
 (pretty-hydra-define hydra-org
   (:color amaranth :exit t :quit-key "q"
 	  :pre
-	  (progn (setq which-key-inhibit t)
-	  )
+	  (progn (setq which-key-inhibit t))
 	  :post (progn (setq which-key-inhibit nil) ))
   ("Basic"
    (("a" org-archive-subtree "archive subtree")
@@ -183,7 +181,8 @@
 	  :pre (progn (setq which-key-inhibit t)  )
 	  :post (progn (setq which-key-inhibit nil) ))
   ("Entry"
-   (("hA" org-agenda-archive-default "archive default")
+   (("a" org-agenda)
+    ("hA" org-agenda-archive-default "archive default")
     ("hk" org-agenda-kill "kill")
     ("hp" org-agenda-priority "priority")
     ("hr" org-agenda-refile "refile")

@@ -15,7 +15,7 @@
 	 )
   :config
   (use-package org-inlinetask
-    :defer 2)
+    :defer 5)
   (use-package org-mu4e
     :defer t)
   (setq org-clock-sound "~/.emacs.d/private/bellring.wav")
@@ -180,7 +180,7 @@
 ;; org-protocol
 (server-start)
 (use-package org-protocol
-  :defer 2)
+  :defer 5)
 
 
 ;;org capture
@@ -352,7 +352,7 @@
 (add-hook 'org-after-todo-statistics-hook 'eli/org-summary-todo)
 (use-package pdf-tools
   :ensure t
-  :defer 2
+  :defer 5
   :config
   (pdf-tools-install)
   )
@@ -370,12 +370,12 @@
 (use-package org-pdftools
   :ensure t
   :after org
-  :defer 2
+  :defer 5
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
   :ensure t
-  :defer 2
+  :defer 5
   :after org-noter
   :config
   (setq org-noter-pdftools-use-org-id nil)
@@ -413,7 +413,7 @@ With a prefix ARG, remove start location."
 (use-package saveplace-pdf-view
   :ensure t
   :after pdf-tools
-  :defer 2
+  :defer 5
   :config (save-place-mode 1))
 
 ;; rime
@@ -505,7 +505,7 @@ With a prefix ARG, remove start location."
                  (direction . right)
                  (window-width . 0.4)
                  (window-height . fit-window-to-buffer)))
-  (org-roam-db-autosync-mode)
+  :hook (after-init . org-roam-db-autosync-mode)
   :config
   ;;  dynamically add roam files with TODO entry into agenda files
   (defvar dynamic-agenda-files nil
@@ -536,6 +536,7 @@ With a prefix ARG, remove start location."
 
   (advice-add 'org-agenda-files :filter-return #'dynamic-agenda-files-advice)
   (add-to-list 'org-after-todo-state-change-hook 'update-dynamic-agenda-hook t)
+
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
 	      #'org-roam-reflinks-section
@@ -556,7 +557,9 @@ With a prefix ARG, remove start location."
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
 				      )
 				     ))
-  (require 'org-roam-protocol)
+  ;; (require 'org-roam-protocol)
+  (use-package org-roam-protocol
+    :after org-roam)
   )
 
 ;;-----------------------------------------------------------------------------
@@ -711,7 +714,7 @@ With a prefix ARG, remove start location."
 (use-package org-contrib
   :ensure t
   :after org
-  :defer 2
+  :defer 5
   :config
   (require 'org-link-edit))
 
