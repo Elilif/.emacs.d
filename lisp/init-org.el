@@ -36,35 +36,6 @@
   (define-key org-mode-map (kbd "C-'") 'avy-goto-char)
   (define-key org-mode-map (kbd "C-c \[") 'hydra-skan-user-buffers-prev/body)
 
-  ;;  dynamically add roam files with TODO entry into agenda files
-  (defvar dynamic-agenda-files nil
-    "dynamic generate agenda files list when changing org state")
-
-  (defun update-dynamic-agenda-hook ()
-    (let ((done (or (not org-state) ;; nil when no TODO list
-                    (member org-state org-done-keywords)))
-          (file (buffer-file-name))
-          (agenda (funcall (ad-get-orig-definition 'org-agenda-files)) ))
-      (unless (member file agenda)
-	(if done
-            (save-excursion
-              (goto-char (point-min))
-              ;; Delete file from dynamic files when all TODO entry changed to DONE
-              (unless (search-forward-regexp org-not-done-heading-regexp nil t)
-		(customize-save-variable
-		 'dynamic-agenda-files
-		 (cl-delete-if (lambda (k) (string= k file))
-                               dynamic-agenda-files))))
-          ;; Add this file to dynamic agenda files
-          (unless (member file dynamic-agenda-files)
-            (customize-save-variable 'dynamic-agenda-files
-                                     (add-to-list 'dynamic-agenda-files file)))))))
-
-  (defun dynamic-agenda-files-advice (orig-val)
-    (cl-union orig-val dynamic-agenda-files :test #'equal))
-
-  (advice-add 'org-agenda-files :filter-return #'dynamic-agenda-files-advice)
-  (add-to-list 'org-after-todo-state-change-hook 'update-dynamic-agenda-hook t)
   ;; hide drawers
   ;; ((eq org-cycle-subtree-status 'subtree)
   ;;  (org-show-subtree)
@@ -527,7 +498,7 @@ With a prefix ARG, remove start location."
 ;;roam
 (use-package org-roam
   :ensure t
-  :defer 2
+  :defer 5
   :init
   (setq org-roam-v2-ack t)
   (setq org-roam-directory "~/Dropbox/org/roam/")
@@ -541,6 +512,35 @@ With a prefix ARG, remove start location."
                  (window-height . fit-window-to-buffer)))
   (org-roam-db-autosync-mode)
   :config
+  ;;  dynamically add roam files with TODO entry into agenda files
+  (defvar dynamic-agenda-files nil
+    "dynamic generate agenda files list when changing org state")
+
+  (defun update-dynamic-agenda-hook ()
+    (let ((done (or (not org-state) ;; nil when no TODO list
+                    (member org-state org-done-keywords)))
+          (file (buffer-file-name))
+          (agenda (funcall (ad-get-orig-definition 'org-agenda-files)) ))
+      (unless (member file agenda)
+	(if done
+            (save-excursion
+              (goto-char (point-min))
+              ;; Delete file from dynamic files when all TODO entry changed to DONE
+              (unless (search-forward-regexp org-not-done-heading-regexp nil t)
+		(customize-save-variable
+		 'dynamic-agenda-files
+		 (cl-delete-if (lambda (k) (string= k file))
+                               dynamic-agenda-files))))
+          ;; Add this file to dynamic agenda files
+          (unless (member file dynamic-agenda-files)
+            (customize-save-variable 'dynamic-agenda-files
+                                     (add-to-list 'dynamic-agenda-files file)))))))
+
+  (defun dynamic-agenda-files-advice (orig-val)
+    (cl-union orig-val dynamic-agenda-files :test #'equal))
+
+  (advice-add 'org-agenda-files :filter-return #'dynamic-agenda-files-advice)
+  (add-to-list 'org-after-todo-state-change-hook 'update-dynamic-agenda-hook t)
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
 	      #'org-roam-reflinks-section
