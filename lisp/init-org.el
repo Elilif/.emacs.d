@@ -211,7 +211,6 @@
   (set (make-local-variable 'company-dabbrev-char-regexp)
        "^[\\.0-9a-z-_'/]")
   (make-local-variable 'company-backends)
-  ;; (add-to-list 'company-backends 'company-emojify)
   (flycheck-mode -1))
 (add-hook 'org-mode-hook 'eli/org-mode-hook)
 
@@ -312,7 +311,7 @@
 ;; appt
 (use-package appt
   :after org
-  :defer 6
+  :defer 10
   :config
   ;; 每小时同步一次appt,并且现在就开始同步
   (run-at-time nil 3600 'org-agenda-to-appt t)
