@@ -142,7 +142,8 @@
   :after org
   :defer t
   :init
-  (require 'ox-org)
+  (use-package ox-org
+    :after org-mind-map)
   ;; Uncomment the below if 'ensure-system-packages` is installed
   ;;:ensure-system-package (gvgen . graphviz)
   :config
@@ -178,9 +179,11 @@
 (add-hook 'org-mode-hook 'eli/org-mode-hook)
 
 ;; org-protocol
-(server-start)
 (use-package org-protocol
-  :defer 5)
+  :defer 5
+  ;; :hook (after-init . (server-start))
+  :config
+  (server-start))
 
 
 ;;org capture
@@ -496,15 +499,6 @@ With a prefix ARG, remove start location."
   :defer t
   :init
   (setq org-roam-v2-ack t)
-  (setq org-roam-directory "~/Dropbox/org/roam/")
-  (setq org-roam-db-gc-threshold most-positive-fixnum
-        org-id-link-to-org-use-id 'create-if-interactive)
-  (add-to-list 'display-buffer-alist
-               '("\\*org-roam\\*"
-                 (display-buffer-in-direction)
-                 (direction . right)
-                 (window-width . 0.4)
-                 (window-height . fit-window-to-buffer)))
   :hook (after-init . org-roam-db-autosync-mode)
   :config
   ;;  dynamically add roam files with TODO entry into agenda files
@@ -537,6 +531,15 @@ With a prefix ARG, remove start location."
   (advice-add 'org-agenda-files :filter-return #'dynamic-agenda-files-advice)
   (add-to-list 'org-after-todo-state-change-hook 'update-dynamic-agenda-hook t)
 
+  (setq org-roam-directory "~/Dropbox/org/roam/")
+  (setq org-roam-db-gc-threshold most-positive-fixnum
+        org-id-link-to-org-use-id 'create-if-interactive)
+  (add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+                 (display-buffer-in-direction)
+                 (direction . right)
+                 (window-width . 0.4)
+                 (window-height . fit-window-to-buffer)))
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
 	      #'org-roam-reflinks-section

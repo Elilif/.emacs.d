@@ -1,5 +1,7 @@
+
 (use-package doom-themes
   :ensure t
+  :defer 0.01
   :config
   (load-theme 'doom-one-light t)
   (setq doom-one-light-brighter-comments t)
@@ -55,16 +57,15 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode t)
+  :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-buffer-encoding nil)
   )
 
 (use-package beacon
   :ensure t
-  :defer 2
-  :config
-  (beacon-mode 1))
+  :hook (after-init . beacon-mode)
+  )
 
 ;; Setting English Font
 (set-face-attribute 'default nil :font "Source Code Pro 13")
@@ -81,7 +82,6 @@
 
 (use-package emojify
   :ensure t
-  :defer 10
   :hook (after-init . global-emojify-mode)
   :config
   (setq emojify-user-emojis '(("☑" . (("name" . "Checkbox")
@@ -95,7 +95,7 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :defer 10
+  :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 

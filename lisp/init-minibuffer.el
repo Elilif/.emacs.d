@@ -3,14 +3,14 @@
 ;;; Code:
 (use-package vertico
   :ensure t
-  :init
-  (vertico-mode)
+  :hook (after-init . vertico-mode)
   :custom
   (vertico-cycle t)
   )
 
 (use-package vertico-directory
   :load-path "~/.emacs.d/private/vertico/extensions"
+  :after vertico
   ;; More convenient directory navigation commands
   :bind (:map vertico-map
               ("RET" . vertico-directory-enter)
@@ -74,17 +74,12 @@
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
   :ensure t
+  :hook (after-init . marginalia-mode)
   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
   :bind (("M-A" . marginalia-cycle)
          :map minibuffer-local-map
          ("M-A" . marginalia-cycle))
-
-  ;; The :init configuration is always executed (Not lazy!)
-  :init
-
-  ;; Must be in the :init section of use-package such that the mode gets
-  ;; enabled right away. Note that this forces loading the package.
-  (marginalia-mode))
+  )
 
 (use-package emacs
   :init

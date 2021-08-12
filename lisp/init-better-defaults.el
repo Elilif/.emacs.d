@@ -1,3 +1,4 @@
+(setq help-at-pt-display-when-idle t)
 ;; set fill column
 (setq-default fill-column 80)
 ;; show file size
@@ -21,16 +22,10 @@
 ;; disable ring bell when cussor at bottom 
 (setq ring-bell-function 'ignore)
 
-;; remove some bars
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
-
-(setq inhibit-splash-screen t)
 
 ;; auto sync files
-(global-auto-revert-mode 1)
+(use-package autorevert
+  :hook (after-init . global-auto-revert-mode))
 
 ;; disable backup
 (setq make-backup-files nil)
@@ -243,6 +238,7 @@
   (setq hungry-delete-join-reluctantly t))
 
 (use-package recentf
+  :defer 2
   :config
   (setq recentf-auto-cleanup 'never)
   (setq  recentf-exclude
@@ -273,11 +269,13 @@
 
 (use-package quelpa
   :ensure t
+  :defer t
   :config
   (setq quelpa-update-melpa-p nil))
 
 (use-package quelpa-use-package
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package esup
   :ensure t
@@ -287,9 +285,10 @@
 
 (use-package benchmark-init
   :ensure t
-  :config
   ;; To disable collection of benchmark data after init is done.
-  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+  :config
+  (add-hook 'after-init-hook 'benchmark-init/deactivate)
+  )
 
 (use-package multiple-cursors
   :ensure t
