@@ -2,15 +2,13 @@
   :defer t
   :hook ((org-mode . flyspell-mode)
 	 (text-mode . flyspell-mode)
-	 (lisp-mode . flyspell-mode)
-	 (lisp-interaction-mode . flyspell-mode))
+	 (prog-mode . flyspell-prog-mode))
   )
 
 (use-package ispell
   :defer t
   :config
-  (setq ispell-personal-dictionary "~/.emacs.d/mydictionary")
-  )
+  (setq ispell-personal-dictionary "~/.emacs.d/mydictionary"))
 
 (use-package flyspell-correct
   :after flyspell
