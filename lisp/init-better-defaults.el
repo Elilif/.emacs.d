@@ -252,6 +252,10 @@
   (setq recentf-max-saved-items 50)
   )
 
+(use-package saveplace
+  :ensure nil
+  :hook (after-init . save-place-mode))
+
 (use-package all-the-icons
   :ensure t
   :defer t)

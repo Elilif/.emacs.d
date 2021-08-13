@@ -9,7 +9,7 @@
 	 (org-mode . column-number-mode)
 	 (org-mode . prettify-symbols-mode))
   :bind (("\C-c c" . 'org-capture)
-	 ("\C-c a" . 'org-agenda)
+	 ;; ("\C-c a" . 'org-agenda)
 	 (:map minibuffer-local-map
 	       ("C-c C-l" . 'org-insert-link))
 	 )
@@ -413,11 +413,14 @@ With a prefix ARG, remove start location."
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
 ;; save last pdf position
+;; Recover last viewed position
 (use-package saveplace-pdf-view
   :ensure t
   :after pdf-tools
-  :defer 5
-  :config (save-place-mode 1))
+  :commands (saveplace-pdf-view-find-file-advice saveplace-pdf-view-to-alist-advice)
+  :init
+  (advice-add 'save-place-find-file-hook :around #'saveplace-pdf-view-find-file-advice)
+  (advice-add 'save-place-to-alist :around #'saveplace-pdf-view-to-alist-advice))
 
 ;; rime
 (use-package rime
