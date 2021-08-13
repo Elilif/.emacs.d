@@ -56,9 +56,9 @@
       ("v" org-roam-tag-remove "remove a tag")
       ("h" yuchen/helm-org-run-marked-heading-id-link "insert a headline"))
      "Roam"
-     (("dd" org-roam-dailies-find-today "today")
-      ("df" org-roam-dailies-find-date "find date")
-      ("dc" org-roam-dailies-capture-today "find today")
+     (("dd" org-roam-dailies-goto-today "today")
+      ("df" org-roam-dailies-goto-date "goto date")
+      ("dc" org-roam-dailies-capture-today "goto today")
       ("aa" org-roam-alias-add "add alias")
       ("ar" org-roam-alias-remove "remove alias"))
      )
