@@ -6,12 +6,19 @@
 
 (package-initialize)
 
+
+;; Speed up startup
+(setq auto-mode-case-qfold nil)
+
 ;; Bootstrap `use-package'
 (require 'package)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(require 'use-package)
+
+(eval-when-compile
+  (require 'use-package))
+
 
 
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))

@@ -127,7 +127,7 @@
   :after org
   :defer t)
 (use-package ox-latex
-  :after or
+  :after org
   :defer t
   :config
   (add-to-list 'org-latex-classes
@@ -502,7 +502,7 @@ With a prefix ARG, remove start location."
   :defer t
   :init
   (setq org-roam-v2-ack t)
-  :hook (after-init . org-roam-db-autosync-mode)
+  ;; :hook (after-init . org-roam-db-autosync-mode)
   :config
   ;;  dynamically add roam files with TODO entry into agenda files
   (defvar dynamic-agenda-files nil
@@ -563,6 +563,8 @@ With a prefix ARG, remove start location."
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
 				      )
 				     ))
+
+  (org-roam-db-autosync-mode)
   ;; (require 'org-roam-protocol)
   (use-package org-roam-protocol
     :after org-roam)

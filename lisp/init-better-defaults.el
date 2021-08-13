@@ -141,6 +141,7 @@
   :hook (after-init . winner-mode)
   :bind
   ("C-c u" . transient-winner-undo))
+
 (use-package avy
   :ensure t
   :defer t
@@ -238,7 +239,7 @@
   (setq hungry-delete-join-reluctantly t))
 
 (use-package recentf
-  :defer 2
+  :hook (after-init . recentf-mode)
   :config
   (setq recentf-auto-cleanup 'never)
   (setq  recentf-exclude
