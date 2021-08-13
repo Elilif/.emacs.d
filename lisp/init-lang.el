@@ -9,6 +9,7 @@
   :hook (after-init . yas-global-mode)
   :config
   (require 'warnings)
+  (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
   (add-to-list 'warning-suppress-types '(yasnippet backquote-change)))
 
 (use-package auto-yasnippet
