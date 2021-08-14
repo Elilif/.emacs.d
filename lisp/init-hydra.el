@@ -183,6 +183,7 @@
 	    :post (progn (setq which-key-inhibit nil) ))
     ("Entry"
      (("a" org-agenda)
+      ("g" (org-agenda nil "g") "GTD")
       ("hA" org-agenda-archive-default "archive default")
       ("hk" org-agenda-kill "kill")
       ("hp" org-agenda-priority "priority")
@@ -231,9 +232,9 @@
       ("co" org-agenda-clock-out "clock out"))
      "Other"
      (("q" nil :exit t)
-      ("gd" org-agenda-goto-date "goto date")
+      ("sd" org-agenda-goto-date "goto date")
       ("." org-agenda-goto-today "goto today")
-      ("gr" org-agenda-redo "redo"))))
+      ("rr" org-agenda-redo "redo"))))
 
   (pretty-hydra-define hydra-bibtex
     (:color amaranth :exit t :quit-key "q"
