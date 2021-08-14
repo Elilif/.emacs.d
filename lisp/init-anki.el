@@ -54,7 +54,7 @@
   (interactive)
   (make-frame '((name . "org-capture") (window-system . x)))
   (select-frame-by-name "org-capture")
-  (counsel-org-capture)
+  (org-capture)
   (delete-other-windows)
   )
 
