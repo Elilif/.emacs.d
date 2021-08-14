@@ -2,6 +2,10 @@
   :ensure t
   :hook (after-init . global-company-mode)
   :config
+  (setq company-backends '(company-bbdb company-semantic
+					company-cmake (:separate company-yasnippet company-capf)  company-clang company-files
+					(company-dabbrev-code company-gtags company-etags company-keywords)
+					company-oddmuse company-dabbrev))
   (setq company-show-numbers t)
   (setq completion-ignore-case t)
   (setq company-idle-delay 0.2)
