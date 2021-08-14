@@ -11,6 +11,7 @@
   (("C-c o" . hydra-org/body)
    ("C-c w" . jp-window/body)
    ("C-c b" . hydra-bibtex/body)
+   ("C-c s" . hydra-search/body)
    ("C-c e" . hydra-edit/body)
    ("C-c m" . hydra-misc/body)
    ("C-c d" . hydra-emacs/body)
@@ -22,6 +23,14 @@
    ("C-c a" . hydra-org-agenda/body)
    )
   :config
+  (pretty-hydra-define hydra-search
+    (:color amaranth :exit t :quit-key "q"
+	    :pre (progn (setq which-key-inhibit t))
+	    :post (progn (setq which-key-inhibit nil) ))
+    ("Dicts"
+     (("t" Eli/te-search "search TE")
+      ("d" Eli/dict-search "search Dicts"))
+    ))
   (pretty-hydra-define hydra-edit
     (:color amaranth :exit t :quit-key "q"
 	    :pre (progn (setq which-key-inhibit t))
