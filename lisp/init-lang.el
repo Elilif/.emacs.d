@@ -6,7 +6,7 @@
 
 (use-package yasnippet
   :ensure t
-  :defer 2
+  :defer 5
   ;; :hook (after-init . yas-global-mode)
   :config
   (yas-global-mode)
