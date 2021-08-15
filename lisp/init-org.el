@@ -676,6 +676,7 @@ With a prefix ARG, remove start location."
 (use-package notdeft
   :load-path "~/.emacs.d/private/notdeft"
   :defer t
+  :commands (notdeft)
   :config
   (setq notdeft-allow-org-property-drawers t)
   (setq notdeft-xapian-max-results 0)

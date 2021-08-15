@@ -30,6 +30,10 @@
     ("Dicts"
      (("t" Eli/te-search "search TE")
       ("d" Eli/dict-search "search Dicts"))
+     "Deft"
+     (("n" notdeft "notdeft"))
+     "git grep"
+     (("g" consult-git-grep))
     ))
   (pretty-hydra-define hydra-edit
     (:color amaranth :exit t :quit-key "q"
@@ -82,8 +86,6 @@
       ("f" (find-file "~/.emacs.d/lisp") "config files")
       ("R" restart-emacs)
       )
-     "Search"
-     (("g" consult-git-grep))
      "Bookmark"
      (("bs" bookmark-set "set bookmark")
       ("bj" consult-bookmark "jump bookmark")
@@ -93,8 +95,6 @@
       ("ee" mc/edit-lines "elit lines"))
      "treemacs"
      (("t" treemacs "treemacs"))
-     "Deft"
-     (("d" notdeft "search"))
      ))
 
   (pretty-hydra-define hydra-org
