@@ -34,7 +34,7 @@
      (("n" notdeft "notdeft"))
      "git grep"
      (("g" consult-git-grep))
-    ))
+     ))
   (pretty-hydra-define hydra-edit
     (:color amaranth :exit t :quit-key "q"
 	    :pre (progn (setq which-key-inhibit t))
