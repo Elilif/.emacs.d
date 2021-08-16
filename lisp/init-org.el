@@ -434,9 +434,9 @@ With a prefix ARG, remove start location."
   Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
     (<= (point) (save-excursion (back-to-indentation) (point))))
   :hook
-  ('kill-emacs . (lambda ()
-                   (when (fboundp 'rime-lib-sync-user-data)
-                     (ignore-errors (rime-sync)))))
+  ;; ('kill-emacs . (lambda ()
+  ;;                  (when (fboundp 'rime-lib-sync-user-data)
+  ;;                    (ignore-errors (rime-sync)))))
   (org-mode . toggle-input-method)
   :custom
   ((default-input-method "rime")
