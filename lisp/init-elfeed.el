@@ -59,7 +59,8 @@ for confirmation when needed."
 
 (use-package mu4e
   :load-path "/usr/share/emacs/site-lisp/mu4e"
-  :defer 2
+  :defer t
+  :commands (mu4e)
   :if (executable-find "mu")
   :config
   (setq mail-user-agent 'mu4e-user-agent)
@@ -67,6 +68,7 @@ for confirmation when needed."
   (setq user-mail-address "eli.q.qian@gmail.com")
   (setq
    mu4e-get-mail-command "proxychains mbsync -a"
+   mu4e-html2text-command "w3m -T text/html"
    mu4e-update-interval 600)
   ;; configure the bookmarks.
   (setq mu4e-bookmarks
@@ -77,7 +79,9 @@ for confirmation when needed."
            ("date:1d..now AND list:emacs-orgmode.gnu.org"         "Last 1 days (org mode)"           ?m)
            ("maildir:/sent"                                       "sent"                             ?s)
            ("maildir:/drafts"                                     "drafts"                           ?d)
-           ("mime:image/*"                                        "Messages with images"             ?p))))
+           ("mime:image/*"                                        "Messages with images"             ?p)
+	   ("maildir:/trash"                                      "Trash"                            ?g)
+	   )))
 
 (use-package mu4e-alert
   :ensure t
@@ -91,5 +95,9 @@ for confirmation when needed."
   :ensure t
   :after mu4e
   :hook (mu4e-main-mode . mu4e-maildirs-extension))
+
+(use-package w3m
+  :ensure t
+  :after mu4e)
 
 (provide 'init-elfeed)

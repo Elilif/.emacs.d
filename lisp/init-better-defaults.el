@@ -248,6 +248,7 @@
 	   "\\.txt"
 	   "/home/eli/.emacs.d/elpa/*"
 	   "/home/eli/.elfeed/index"
+	   "/home/eli/.mail/*"
 	   ))
   (setq recentf-max-menu-items 50)
   (setq recentf-max-saved-items 50)
