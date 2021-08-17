@@ -60,6 +60,7 @@
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-buffer-encoding nil)
+  (column-number-mode 1)
   )
 
 (use-package beacon
