@@ -27,6 +27,7 @@
 (require 'init-better-defaults)
 (require 'init-ivy)
 (require 'init-org)
+(require 'init-reader)
 (require 'init-elfeed)
 (require 'init-vc)
 (require 'init-lang)
