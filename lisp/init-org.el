@@ -196,7 +196,7 @@
 (setq org-agenda-file-notes (expand-file-name "notes.org" org-agenda-dir))
 (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
 (setq org-agenda-file-code-snippets (expand-file-name "snippets.org" org-agenda-dir))
-(setq org-agenda-file-te (expand-file-name "TE.org" org-agenda-dir))
+(setq org-agenda-file-te (expand-file-name "words.org" org-agenda-dir))
 (setq org-agenda-file-lists (expand-file-name "lists.org" org-agenda-dir))
 (setq org-agenda-files (list org-agenda-dir))
 (defun eli/capture-report-date-file ()
@@ -481,7 +481,7 @@ With a prefix ARG, remove start location."
             (t (message "`+rime-convert-string-at-point' did nothing.")))))
   
   (setq default-input-method "rime"
-	rime-show-candidate 'posframe)
+	rime-show-candidate 'nil)
   (setq mode-line-mule-info '((:eval (rime-lighter))))
   (setq rime-inline-ascii-trigger 'shift-l)
   (global-set-key (kbd "M-s-k") 'rime-inline-ascii)

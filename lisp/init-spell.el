@@ -32,9 +32,11 @@
   :ensure t
   :after org
   :defer t
-  ;; :bind (("C-c y" . youdao-dictionary-search-at-point-posframe))
-  :config
-  (setq url-automatic-caching t))
+  :bind (("C-c t" . youdao-dictionary-search-at-point-posframe))
+  :init
+  (setq url-automatic-caching t)
+  (setq youdao-dictionary-search-history-file "~/Dropbox/org/words.org")
+  )
 
 (use-package wordnut
   :ensure t
