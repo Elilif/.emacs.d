@@ -2,7 +2,7 @@
   :defer t
   :hook ((org-mode . flyspell-mode)
 	 (text-mode . flyspell-mode)
-	 (prog-mode . flyspell-prog-mode))
+	 (emacs-lisp-mode . flyspell-prog-mode))
   )
 
 (use-package ispell
