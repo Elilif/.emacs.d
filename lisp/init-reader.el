@@ -135,5 +135,9 @@ With a prefix ARG, remove start location."
   (setq nov-shr-rendering-functions (append nov-shr-rendering-functions shr-external-rendering-functions))
   )
 
+(use-package amread-mode
+  :ensure t
+  :defer t
+  :commands (amread-mode))
 
 (provide 'init-reader)
