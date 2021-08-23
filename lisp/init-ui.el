@@ -43,6 +43,16 @@
    '(org-link ((t (:underline t :foreground "#000000" :inherit nil))))
    '(rime-default-face ((t (:background "gainsboro" :foreground "#333333"))))
    )
+
+  ;; set org-checkbox-done-text face
+  (defface org-checkbox-done-text
+    '((t (:foreground "#b5b5b5")))
+    "Face for the text part of a checked org-mode checkbox.")
+
+  (font-lock-add-keywords 'org-mode
+                          '(("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)"
+                             1 'org-checkbox-done-text prepend))
+                          'append)
   (set-cursor-color "#000000")
   )
 
