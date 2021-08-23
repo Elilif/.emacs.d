@@ -374,4 +374,20 @@
   :ensure t
   :defer t)
 
+(use-package keyfreq
+  :ensure t
+  :hook ((after-init . keyfreq-mode)
+	 (after-init . keyfreq-autosave-mode))
+  :config
+  (setq keyfreq-file "~/.emacs.d/.emacs.keyfreq")
+  (setq keyfreq-excluded-commands
+	'(self-insert-command
+          forward-char
+          backward-char
+	  vertico-next
+	  widget-button-click
+	  vertico-previous
+          previous-line
+          next-line)))
+
 (provide 'init-better-defaults)
