@@ -138,6 +138,8 @@ With a prefix ARG, remove start location."
 (use-package amread-mode
   :ensure t
   :defer t
-  :commands (amread-mode))
+  :commands (amread-mode)
+  :config
+  (setq amread-speed 3.0))
 
 (provide 'init-reader)
