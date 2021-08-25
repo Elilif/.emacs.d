@@ -1,4 +1,10 @@
-;; init-ivy.el --- Initialize ivy configurations.	-*- lexical-binding: t -*-
+# -*- mode: snippet -*-
+# name: license
+# key: license
+# --
+;; `(buffer-name)` --- Initialize `(progn
+  (string-match "init\\-\\(.*\\)\\.el" (buffer-name))
+  (match-string 1 (buffer-name)))` configurations.	-*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019-2021 by Eli
 
@@ -30,10 +36,4 @@
 
 ;;; Code:
 
-
-;;Required by: org-ref, lsp-ivy, flyspell-correct-ivy
-(use-package ivy
-  :ensure t
-  :defer t)
-
-(provide 'init-ivy)
+$0
