@@ -10,7 +10,7 @@
  '(dynamic-agenda-files nil t)
  '(large-file-warning-threshold 1000000000)
  '(org-agenda-files
-   '("/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/daily.org" "/home/eli/Dropbox/org/FM.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/Clock_Report.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/journal.org" "/home/eli/Dropbox/org/notes.org" "/home/eli/Dropbox/org/projects.org"))
+   '("/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/daily.org" "/home/eli/Dropbox/org/FM.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/Clock_Report.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/journal.org" "/home/eli/Dropbox/org/notes.org" "/home/eli/Dropbox/org/projects.org") t)
  '(org-agenda-window-setup 'current-window)
  '(org-babel-load-languages '((emacs-lisp . t) (shell . t) (python . t) (C . t)))
  '(org-fontify-done-headline t)
