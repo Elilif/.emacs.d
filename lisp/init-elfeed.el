@@ -52,8 +52,10 @@ for confirmation when needed."
     (kill-buffer "*elfeed-log*")
     (kill-buffer (current-buffer)))
   :bind
-  (:map elfeed-search-mode-map
-	("q" . eli/elfeed-search-quit-and-kill-buffers))
+  ((:map elfeed-search-mode-map
+	 ("q" . eli/elfeed-search-quit-and-kill-buffers))
+   (:map elfeed-show-mode-map
+	 ("\C-k" . keyboard-quit)))
   :config
   (setq elfeed-search-filter "@2-days-ago +unread +A")
   )
@@ -66,11 +68,13 @@ for confirmation when needed."
   (setq  rmh-elfeed-org-files (list "~/.emacs.d/private/elfeed.org")))
 
 (use-package elfeed-goodies
-  :ensure t
+  :load-path "~/.emacs.d/private/elfeed-goodies"
+  ;; :ensure t
   :after elfeed
-  :init
-  (elfeed-goodies/setup)
+  :custom
+  (elfeed-goodies/date-format "%Y-%m-%d")
   :config
+  (elfeed-goodies/setup)
   (advice-add 'elfeed-goodies/show-mode-setup :after
 	      (lambda ()
 		(define-key elfeed-show-mode-map (kbd "M-v") nil))
