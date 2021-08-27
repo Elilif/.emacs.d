@@ -446,12 +446,13 @@
   :custom
   ;; (emms-playlist-buffer-name "*Emms*")
   (emms-source-file-default-directory "~/Music/")
+  (emms-lyrics-display-on-minibuffer t)
+  (emms-lyrics-display-on-modeline nil)
   (emms-player-list '(emms-player-mpv))
   (emms-browser-covers 'emms-browser-cache-thumbnail)
   :config
   (require 'emms-setup)
   (emms-all)
-  (emms-lyrics-disable)
   ;; (emms-history-load)
   (emms-mode-line-disable)
   ;; covers

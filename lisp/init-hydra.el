@@ -372,6 +372,7 @@
       ("p" emms-previous "previous")
       ("x" emms-shuffle "shuffle")
       ("i" emms-mode-line-toggle "song info")
+      ("l" emms-lyrics-toggle-display-on-minibuffer "lyrics")
       )
      "Controls"
      (("SPC" emms-pause "pause")
