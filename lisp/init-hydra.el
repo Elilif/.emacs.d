@@ -45,6 +45,7 @@
    ("C-c w" . jp-window/body)
    ("C-c b" . hydra-bibtex/body)
    ("C-c s" . hydra-search/body)
+   ("C-c p" . hydra-player/body)
    ("C-c e" . hydra-edit/body)
    ("C-c m" . hydra-misc/body)
    ("C-c d" . hydra-emacs/body)
@@ -356,6 +357,28 @@
      "Yank"
      (("p" consult-yank-pop "Clipboard")))
     )
+  (pretty-hydra-define hydra-player
+    (:color amaranth :exit t :quit-key "q"
+	    :pre (progn (setq which-key-inhibit t))
+	    :post (progn (setq which-key-inhibit nil)
+			 ))
+    ("Playlists"
+     (("e" emms)
+      ("g" emms-play-directory "open dir")
+      ("v" emms-playlist-mode-go "go to current")
+      ("m" emms-metaplaylist-mode-go "metaplaylist"))
+     "Controls"
+     (("n" emms-next "next")
+      ("p" emms-previous "previous")
+      ("x" emms-shuffle "shuffle")
+      ("i" emms-mode-line-toggle "song info")
+      )
+     "Controls"
+     (("SPC" emms-pause "pause")
+      ("s" emms-stop "stop")
+      ("b" emms-seek-backward "backward")
+      ("f" emms-seek-forward "forward"))
+     ))
   
   )
 
