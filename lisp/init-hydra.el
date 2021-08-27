@@ -366,7 +366,8 @@
      (("e" emms)
       ("g" emms-play-directory "open dir")
       ("v" emms-playlist-mode-go "go to current")
-      ("m" emms-metaplaylist-mode-go "metaplaylist"))
+      ("m" emms-metaplaylist-mode-go "metaplaylist")
+      ("t" emms-play-directory-tree "play directory"))
      "Controls"
      (("n" emms-next "next")
       ("p" emms-previous "previous")
@@ -378,7 +379,8 @@
      (("SPC" emms-pause "pause")
       ("s" emms-stop "stop")
       ("b" emms-seek-backward "backward")
-      ("f" emms-seek-forward "forward"))
+      ("f" emms-seek-forward "forward")
+      ("d" emms-play-dired "play the list"))
      ))
   
   )
