@@ -165,11 +165,11 @@ With a prefix ARG, remove start location."
   (setq nov-shr-rendering-functions (append nov-shr-rendering-functions shr-external-rendering-functions))
   )
 
-(use-package amread-mode
+(use-package spray
   :ensure t
   :defer t
-  :commands (amread-mode)
-  :config
-  (setq amread-speed 3.0))
+  :commands (spray-mode)
+  :custom
+  (spray-wpm 200))
 
 (provide 'init-reader)
