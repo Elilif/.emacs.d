@@ -206,7 +206,7 @@
 (use-package iedit
   :ensure t
   :defer t
-  :bind ("C-;" . iedit-mode))
+  )
 
 (use-package wgrep
   :ensure t

@@ -77,11 +77,11 @@
      (("l" mc/edit-lines "edit-lines")
       ("n" mc/mark-next-like-this "mark next")
       ("p" mc/mark-previous-like-this "mark previous")
-      ("a" mc/mark-all-like-this "makk all")
+      ("a" mc/mark-all-like-this-dwim "makk all")
       ("s" set-rectangular-region-anchor "set mc")
       ("in" mc/insert-numbers "insert numbers"))
      "iedit"
-     (("I" iedit-mode "iedit mode"))
+     (("e" iedit-mode "iedit mode"))
      ))
 
   (pretty-hydra-define hydra-roam
