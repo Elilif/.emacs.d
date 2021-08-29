@@ -67,6 +67,11 @@ for confirmation when needed."
   (elfeed-org)
   (setq  rmh-elfeed-org-files (list "~/.emacs.d/private/elfeed.org")))
 
+;; required by elfeed-goodies
+(use-package powerline
+  :ensure t
+  :after elfeed-goodies)
+
 (use-package elfeed-goodies
   :load-path "~/.emacs.d/private/elfeed-goodies"
   ;; :ensure t
