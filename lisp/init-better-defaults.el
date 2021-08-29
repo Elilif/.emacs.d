@@ -147,6 +147,7 @@
 	regexp-history)
   (call-interactively 'occur))
 (global-set-key (kbd "M-s o") 'occur-dwim)
+(define-key occur-mode-map (kbd "q") 'kill-this-buffer)
 
 
 (defun eli/open-init-file()
