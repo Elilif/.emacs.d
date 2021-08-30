@@ -373,7 +373,7 @@
       ("p" emms-previous "previous")
       ("x" emms-shuffle "shuffle")
       ("i" emms-mode-line-toggle "song info")
-      ("l" emms-lyrics-toggle-display-on-minibuffer "lyrics")
+      ("l" lyrics-fetcher-show-lyrics "lyrics")
       )
      "Controls"
      (("SPC" emms-pause "pause")
@@ -381,6 +381,8 @@
       ("b" emms-seek-backward "backward")
       ("f" emms-seek-forward "forward")
       ("d" emms-play-dired "play the list"))
+     "Browser"
+     (("b" emms-browser "browser"))
      ))
   
   )

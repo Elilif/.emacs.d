@@ -115,6 +115,9 @@
                            ("https" . "127.0.0.1:7890")
                            ;; ("socks5" . "127.0.0.1:7891")
                            ))
+;; To set curl options
+(setq request-curl-options
+      (nconc '("--proxy" "http://127.0.0.1:7890")))
 
 ;; improve hippie-expand
 (setq hippie-expand-try-function-list '(try-expand-debbrev
@@ -440,25 +443,4 @@
           previous-line
           next-line)))
 
-(use-package emms
-  :ensure t
-  :defer t
-  :commands (emms)
-  :custom
-  ;; (emms-playlist-buffer-name "*Emms*")
-  (emms-source-file-default-directory "~/Music/")
-  (emms-lyrics-display-on-minibuffer t)
-  (emms-lyrics-display-on-modeline nil)
-  (emms-player-list '(emms-player-mpv))
-  (emms-browser-covers 'emms-browser-cache-thumbnail)
-  :config
-  (require 'emms-setup)
-  (emms-all)
-  ;; (emms-history-load)
-  (emms-mode-line-disable)
-  ;; covers
-  (setq emms-browser-covers #'emms-browser-cache-thumbnail-async)
-  (setq emms-browser-thumbnail-small-size 64)
-  (setq emms-browser-thumbnail-medium-size 128)
-  )
 (provide 'init-better-defaults)

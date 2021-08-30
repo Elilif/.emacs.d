@@ -71,6 +71,7 @@
 (require 'init-minibuffer)
 (require 'init-ui)
 (require 'init-calendar)
+(require 'init-music)
 ;; (require 'init-eaf)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
