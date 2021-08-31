@@ -34,6 +34,8 @@
   :ensure t
   :defer t
   :commands (emms)
+  :init
+  (setq emms-score-max-score 10)
   :custom
   ;; (emms-playlist-buffer-name "*Emms*")
   (emms-source-file-default-directory "~/Music/")
@@ -44,12 +46,20 @@
   :config
   (require 'emms-setup)
   (emms-all)
-  ;; (emms-history-load)
+  (emms-history-load)
   (emms-mode-line-disable)
   ;; covers
   (setq emms-browser-covers #'emms-browser-cache-thumbnail-async)
   (setq emms-browser-thumbnail-small-size 64)
   (setq emms-browser-thumbnail-medium-size 128)
+  ;; overlay the default function
+  (defun emms-score-show-playing ()
+    "Show score for current playing track in minibuf."
+    (interactive)
+    (message "track/tolerance score: %d/%d"
+	     (emms-score-get-score
+	      (emms-score-current-selected-track-filename))
+	     emms-score-max-score))
   )
 
 (use-package lyrics-fetcher

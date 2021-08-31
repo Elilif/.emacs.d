@@ -377,12 +377,16 @@
       )
      "Controls"
      (("SPC" emms-pause "pause")
-      ("s" emms-stop "stop")
+      ("r" emms-toggle-repeat-track "repeat")
       ("b" emms-seek-backward "backward")
       ("f" emms-seek-forward "forward")
       ("d" emms-play-dired "play the list"))
      "Browser"
      (("b" emms-browser "browser"))
+     "Score"
+     (("ss" emms-score-set-playing "set score")
+      ("sd" emms-score-show-playing "show score")
+      ("st" emms-score-set-tolerance "filter"))
      ))
   
   )
