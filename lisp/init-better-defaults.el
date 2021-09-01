@@ -249,6 +249,8 @@
   :bind
   (:map dired-mode-map
 	("q" . 'kill-this-buffer))
+  :custom
+  (dired-listing-switches "-alh")
   :config
   (setq dired-recursive-copies 'always)
   (setq dired-recursive-deletes 'always)
