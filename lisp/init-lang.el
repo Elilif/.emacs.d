@@ -103,7 +103,9 @@
 (use-package lsp-ui
   :ensure t
   :defer t
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t))
 
 ;; if you are ivy user
 ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol
