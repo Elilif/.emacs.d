@@ -94,7 +94,7 @@
 ;; org-download
 (use-package org-download
   :ensure t
-  :defer t
+  :after org
   :config
   (setq-default org-download-method 'directory
 		org-download-image-dir "~/Documents/org-images"
