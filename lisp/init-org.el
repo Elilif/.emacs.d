@@ -534,39 +534,7 @@
     :after org-roam)
   )
 
-;;-----------------------------------------------------------------------------
-;; blog
-;; publishing
-(defun eli/push-to-gitpage (&optional UNUSE)
-  (interactive)
-  (shell-command "~/.emacs.d/private/shell.sh")
-  (message "blogs deployed successfully!")
-  )
 
-(setq org-html-head-include-default-style nil)
-(setq org-html-htmlize-output-type 'css)
-(setq org-html-validation-link nil) ; 去掉validation显示
-(setq org-html-link-home "index.html"); 设置home超链接
-(setq org-html-link-up "index.html")
-(setq eli-blog-base-dir "~/Dropbox/org/blog")
-(setq eli-blog-publish-dir "~/Elilif.github.io")
-(setq org-html-postamble nil)
-(setq org-publish-project-alist
-      `(("eli's blog"
-         :base-directory ,eli-blog-base-dir
-         :publishing-directory ,eli-blog-publish-dir
-         :base-extension "org"
-         :recursive nil
-	 :htmlized-source t
-         :publishing-function org-html-publish-to-html
-         :auto-sitemap t
-         :sitemap-filename "index.org"
-         :sitemap-title "Eli's blog"
-         :sitemap-sort-files anti-chronologically
-         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://gongzhitaao.org/orgcss/org.css\"/>"
-         :with-creator nil
-         :completion-function eli/push-to-gitpage
-         )))
 ;;----------------------------------------------------------------------------
 ;; (use-package org-gcal
 ;;   :ensure t
