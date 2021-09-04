@@ -48,7 +48,8 @@
    ("C-c p" . hydra-player/body)
    ("C-c e" . hydra-edit/body)
    ("C-c m" . hydra-misc/body)
-   ("C-c d" . hydra-emacs/body)
+   ("C-c d" . hydra-develop/body)
+   ("C-c q" . hydra-emacs/body)
    ("C-c r" . hydra-roam/body)
    ("C-c i" . hydra-insert/body)
    ("C-c [" . hydra-skan-user-buffers-prev/body)
@@ -388,6 +389,18 @@
       ("sd" emms-score-show-playing "show score")
       ("st" emms-score-set-tolerance "filter"))
      ))
+  (pretty-hydra-define hydra-develop
+    (:color amaranth :exit t :quit-key "q"
+	    :pre (progn (setq which-key-inhibit t))
+	    :post (progn (setq which-key-inhibit nil)))
+    ("LSP"
+     (("p" lsp-ui-peek-find-definitions "peed")
+      ("i" lsp-ui-imenu "imenu"))
+     "Debug"
+     (("r" quickrun "quickrun")
+      ("d" dap-hydra "dap"))
+     )
+    )
   
   )
 

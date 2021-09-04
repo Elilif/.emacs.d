@@ -117,9 +117,10 @@
 ;; optionally if you want to use debugger
 (use-package dap-mode
   :ensure t
-  :defer t)
+  :defer t
+  :config
+  (use-package dap-cpptools))
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
 
 (use-package quickrun
   :ensure t
