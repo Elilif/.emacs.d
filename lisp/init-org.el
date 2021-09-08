@@ -56,8 +56,6 @@
   (setq org-agenda-window-setup 'only-window)
   ;; Change task state to STARTED when clocking in
   (setq org-log-into-drawer t)
-  (setq sentence-end-without-space "。．？！.!?")
-  (setq sentence-end-double-space nil)
   (setq org-startup-folded t)
   (setq org-hide-block-startup t)
   (setq org-hide-emphasis-markers t)
