@@ -94,6 +94,10 @@ for confirmation when needed."
 	smtpmail-smtp-service 465
 	smtpmail-stream-type 'ssl)
   (setq send-mail-function 'smtpmail-send-it)
+  (setq sendmail-program "/usr/bin/msmtp"
+      message-sendmail-f-is-evil t
+      message-sendmail-extra-arguments '("--read-envelope-from")
+      message-send-mail-function 'message-send-mail-with-sendmail)
   ;; (setq url-gateway-method 'socks)
   ;; (setq socks-server '("Default server" "127.0.0.1" 7891 5))
   )
