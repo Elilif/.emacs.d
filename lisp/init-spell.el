@@ -36,6 +36,8 @@
   :hook ((org-mode . flyspell-mode)
 	 (text-mode . flyspell-mode)
 	 (emacs-lisp-mode . flyspell-prog-mode))
+  :config
+  (setq flyspell-mark-duplications-flag nil)
   )
 
 (use-package ispell
