@@ -65,6 +65,9 @@
   (define-key org-mode-map (kbd "C-'") 'avy-goto-char)
   (define-key org-mode-map (kbd "C-c \[") 'hydra-skan-user-buffers-prev/body)
 
+  ;; renumbering and sorting footnotes automatically after each deletion or insertion
+  (setq org-footnote-auto-adjust t)
+
   ;; hide drawers
   ;; ((eq org-cycle-subtree-status 'subtree)
   ;;  (org-show-subtree)
