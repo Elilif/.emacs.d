@@ -54,6 +54,7 @@
 					 ))
   (setq org-ellipsis "▼")
   (custom-set-faces
+   '(org-footnote ((t (:foreground "#deb887"))))
    '(bookmark-face ((t (:background nil))))
    '(org-dispatcher-highlight ((t (:foreground "red"))))
    '(org-list-dt ((t (:weight bold :foreground "#5d1d9d"))))
