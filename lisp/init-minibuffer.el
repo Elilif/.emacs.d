@@ -52,7 +52,7 @@
 (use-package orderless
   :ensure t
   :config
-    (setq completion-styles '(orderless))
+  (setq completion-styles '(orderless))
   ;; https://github.com/oantolin/orderless/issues/48
   (define-advice company-capf
     (:around (orig-fun &rest args) set-completion-styles)
