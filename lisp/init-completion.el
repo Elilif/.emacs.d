@@ -39,21 +39,13 @@
 	      (company-dabbrev-code company-gtags company-etags company-keywords)
 	      company-oddmuse company-dabbrev))
   (setq company-show-numbers t)
+  (setq company-tooltip-align-annotations t)
   (setq completion-ignore-case t)
   (setq company-idle-delay 0.2)
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
-
-  ;; prevent completing numbers
-  (push (apply-partially #'cl-remove-if
-                      (lambda (c)
-                        (or (string-match-p "[^\x00-\x7F]+" c)
-                            (string-match-p "[0-9]+" c)
-                            (if (equal major-mode "org")
-                                (>= (length c) 15)))))
-             company-transformers)
   )
 
 ;; (use-package company-box
