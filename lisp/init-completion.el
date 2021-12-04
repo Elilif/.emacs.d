@@ -35,9 +35,11 @@
   :ensure t
   :hook (after-init . global-company-mode)
   :config
-  (setq company-backends '(company-bbdb company-semantic company-cmake (company-capf :with company-yasnippet) company-clang company-files
+  (setq company-backends '((company-capf :with company-yasnippet) company-bbdb company-cmake company-clang company-semantic company-files
 	      (company-dabbrev-code company-gtags company-etags company-keywords)
 	      company-oddmuse company-dabbrev))
+  ;; prevent number completion
+  (setq company-dabbrev-char-regexp "[A-z:-]")
   (setq company-show-numbers t)
   (setq company-tooltip-align-annotations t)
   (setq completion-ignore-case t)
