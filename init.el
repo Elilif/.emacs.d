@@ -53,9 +53,9 @@
   (require 'use-package))
 
 
-
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
+(require 'init-hydra)
 (require 'init-completion)
 (require 'init-better-defaults)
 (require 'init-ivy)
@@ -69,7 +69,6 @@
 (require 'init-bib)
 (require 'init-spell)
 (require 'init-anki)
-(require 'init-hydra)
 (require 'init-minibuffer)
 (require 'init-ui)
 (require 'init-calendar)
