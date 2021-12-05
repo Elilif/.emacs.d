@@ -30,13 +30,6 @@
 
 ;;; Code:
 
-
-(use-package flycheck
-  :ensure t
-  :hook (after-init . global-flycheck-mode)
-  :config
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-
 (use-package yasnippet
   :ensure t
   :defer 5
