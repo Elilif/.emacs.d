@@ -101,7 +101,7 @@
              lsp-modeline-code-actions-enable nil
              lsp-modeline-diagnostics-enable nil
              lsp-modeline-workspace-status-enable nil
-             lsp-headerline-breadcrumb-enable nil
+             lsp-headerline-breadcrumb-enable t
 
              lsp-enable-file-watchers nil
              lsp-enable-folding nil
@@ -113,6 +113,7 @@
 
        ;; For `lsp-clients'
        :config
+       (setq lsp-lens-enable nil)
        (with-no-warnings
          ;; Disable `lsp-mode' in `git-timemachine-mode'
          (defun my-lsp--init-if-visible (fn &rest args)
