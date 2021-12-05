@@ -124,6 +124,7 @@
                         company-box-backends-colors nil
                         company-box-doc-delay 0.1)
             :config
+	    (setq company-box-scrollbar nil)
             (with-no-warnings
               ;; Prettify icons
               (defun my-company-box-icons--elisp (candidate)
