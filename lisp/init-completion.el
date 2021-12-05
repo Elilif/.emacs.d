@@ -50,6 +50,12 @@
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
   )
 
+(use-package company-prescient
+  :ensure t
+  :init
+  (setq company-prescient-mode 1)
+  )
+
 ;; (use-package company-box
 ;;   :ensure t
 ;;   :hook (company-mode . company-box-mode)
