@@ -398,6 +398,7 @@
       ("i" lsp-ui-imenu "imenu"))
      "Debug"
      (("r" quickrun "quickrun")
+      ("s" quickrun-shell "quickrun shell")
       ("d" dap-hydra "dap"))
      )
     )
