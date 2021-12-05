@@ -53,6 +53,7 @@
   :init
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 12
+	company-show-numbers t
         company-idle-delay 0
         company-echo-delay (if (display-graphic-p) nil 0)
         company-minimum-prefix-length 1
