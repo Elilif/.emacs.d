@@ -131,18 +131,18 @@
     )
 
 
-(use-package emojify
-  :ensure t
-  :hook (after-init . global-emojify-mode)
-  :config
-  (setq emojify-user-emojis '(("☑" . (("name" . "Checkbox")
-				      ("image" . nil)
-				      ("style" . "github")))
-			      ("▶" . (("name" . "BLACK RIGHT-POINTING TRIANGLE")
-				      ("image" . nil)
-				      ("style" . "github")))
-			      ))
-  )
+;; (use-package emojify
+;;   :ensure t
+;;   :hook (after-init . global-emojify-mode)
+;;   :config
+;;   (setq emojify-user-emojis '(("☑" . (("name" . "Checkbox")
+;; 				      ("image" . nil)
+;; 				      ("style" . "github")))
+;; 			      ("▶" . (("name" . "BLACK RIGHT-POINTING TRIANGLE")
+;; 				      ("image" . nil)
+;; 				      ("style" . "github")))
+;; 			      ))
+;;   )
 
 (use-package rainbow-delimiters
   :ensure t
