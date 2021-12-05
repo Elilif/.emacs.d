@@ -33,10 +33,19 @@
 (use-package lsp-mode
   :ensure t
   :hook
-  (c-mode . lsp-deferred)
+  ((c-mode . lsp-deferred)
   (c++-mode . lsp-deferred)
-  (lsp-mode . lsp-enable-which-key-integration)
-  :commands lsp lsp-deffered)
+  (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp lsp-deffered
+  :init
+  (setq lsp-enable-snippet t
+	lsp-auto-guess-root t
+	lsp-response-timeout 20
+	lsp-auto-configure t
+	lsp-prefer-flymake nil)
+  :config
+  (setq lsp-lens-enable nil)
+  )
 
 (use-package lsp-ui
   :ensure t)
@@ -44,12 +53,13 @@
 (use-package lsp-treemacs
   :ensure t)
 
-;; (use-package ccls
-;;   :ensure t
-;;   :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls) (lsp)))  
-;;   :config
-;;   (setq lsp-prefer-flymake nil)   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++ -cppcheck c/c++-gcc))
-;;   (setq ccls-executable "/usr/bin/ccls"))
+(use-package ccls
+  :ensure t
+  :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls) (lsp)))
+  :config
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++ -cppcheck c/c++-gcc))
+  (setq ccls-executable "/usr/bin/ccls")
+  )
 
 
 ;; optionally if you want to use debugger
