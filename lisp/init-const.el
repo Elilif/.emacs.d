@@ -40,5 +40,9 @@
            (>= emacs-minor-version 2)))
   "Emacs is 25.2 or above.")
 
+(defconst sys/macp
+  (eq system-type 'darwin)
+  "Are we running on a Mac system?")
+
 
 (provide 'init-const)
