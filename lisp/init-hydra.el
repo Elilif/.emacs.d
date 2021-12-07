@@ -86,7 +86,7 @@
      ))
 
   (pretty-hydra-define hydra-roam
-    (:color amaranth :exit t :quit-key "q" :idle 2
+    (:color amaranth :exit t :quit-key "q"
 	    :pre (progn (setq which-key-inhibit t))
 	    :post (progn (setq which-key-inhibit nil) ))
     ("Roam"
@@ -287,14 +287,19 @@
     ("Reference"
      (("i" org-ref-insert-link "insert ref link")
       ("g" org-ref-insert-bibliography-link "insert bibliography")
-      ("s" org-ref-insert-bibliographystyle-link "insert bibliographystyle"))
+      )
      "Calibre"
-     (("b" calibredb "calibre")
+     (("c" calibredb "calibre")
       )
      "Roam Bibtex"
      (("a" orb-note-actions "orb note actions")
       ("l" orb-insert-link "insert orb link")
       )
+     "Bibtex"
+     (("b" org-ref-bibtex-hydra/body "org-ref-bibtex")
+      ("h" helm-bibtex "helm bibtex")
+      ("r" org-bibtex-read "org bibtex read")
+      ("w" org-bibtex-write "org bibtex write"))
      )
     )
   (pretty-hydra-define hydra-org-noter

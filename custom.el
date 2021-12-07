@@ -10,14 +10,14 @@
  '(dynamic-agenda-files nil t)
  '(large-file-warning-threshold 1000000000)
  '(org-agenda-files
-   '("/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/daily.org" "/home/eli/Dropbox/org/FM.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/Clock_Report.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/journal.org" "/home/eli/Dropbox/org/notes.org" "/home/eli/Dropbox/org/projects.org") t)
+   '("/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/daily.org" "/home/eli/Dropbox/org/FM.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/Clock_Report.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/journal.org" "/home/eli/Dropbox/org/notes.org" "/home/eli/Dropbox/org/projects.org"))
  '(org-agenda-window-setup 'current-window)
  '(org-babel-load-languages '((emacs-lisp . t) (shell . t) (python . t) (C . t)))
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
  '(org-roam-completion-everywhere t)
  '(package-selected-packages
-   '(treemacs spinner pfuture markdown-mode lsp-ui lsp-treemacs lsp-mode dap-mode cfrs bui ace-window modern-cpp-font-lock easy-hugo ox-hugo dap-cpptools powerline lyrics-fetcher cal-china-x spray emms amread-mode keyfreq shrface nov yaml-mode rime w3m org-inlinetask restart-emacs multiple-cursors wordnut org-pdftools org-noter-pdftools undo-tree pretty-hydra helpful frame-local elisp-refs xr writeroom-mode writegood-mode visual-fill-column vertico flyspell-correct-ivy zoutline page-break-lines embark-consult embark orderless marginalia org-contrib magit-todos org-roam-bibtex epc org-pomodoro ox-timeline mu4e-maildirs-extension org-ql org rainbow-delimiters zeal-at-point ace-pinyin emojify helm-org-rifle helm-org-rfile helm-org benchmark-init esup youdao-dictionary xref tablist simple-httpd shrink-path request-deferred project pos-tip persist parsebib org-superstar org-noter noflet names mu4e-alert memoize log4e key-chord jsonrpc htmlize helm-core helm-bibtex helm gntp flyspell-correct flymake emacsql-sqlite3 emacsql-sqlite emacsql elfeed-org elfeed eldoc doom-themes doom-modeline deferred dash-functional chinese-word-at-point calibredb bibtex-completion biblio-core biblio all-the-icons alert ace-jump-mode vterm wttrin quelpa-use-package mpv org-download anki-editor golden-ratio goldendict quickrun org-mind-map dashboard beacon yasnippet-snippets auto-yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit saveplace-pdf-view company use-package hungry-delete smex smartparens popwin))
+   '(org-roam-bibtex citar eglot ccls flycheck-posframe ox-org org-mu4e company-box company-prescient treemacs spinner pfuture markdown-mode lsp-ui lsp-treemacs lsp-mode dap-mode cfrs bui ace-window modern-cpp-font-lock easy-hugo ox-hugo dap-cpptools powerline lyrics-fetcher cal-china-x spray emms amread-mode keyfreq shrface nov yaml-mode rime w3m org-inlinetask restart-emacs multiple-cursors wordnut org-pdftools org-noter-pdftools undo-tree pretty-hydra helpful frame-local elisp-refs xr writeroom-mode writegood-mode visual-fill-column vertico flyspell-correct-ivy zoutline page-break-lines embark-consult embark orderless marginalia org-contrib magit-todos epc org-pomodoro ox-timeline mu4e-maildirs-extension org-ql org rainbow-delimiters zeal-at-point ace-pinyin helm-org-rifle helm-org-rfile helm-org benchmark-init esup youdao-dictionary xref tablist simple-httpd shrink-path request-deferred project pos-tip persist parsebib org-superstar org-noter noflet names mu4e-alert memoize log4e key-chord jsonrpc htmlize helm-core helm gntp flyspell-correct flymake emacsql-sqlite3 emacsql-sqlite emacsql elfeed-org elfeed eldoc doom-themes doom-modeline deferred dash-functional chinese-word-at-point calibredb bibtex-completion biblio-core biblio all-the-icons alert ace-jump-mode vterm wttrin quelpa-use-package mpv org-download anki-editor golden-ratio goldendict quickrun org-mind-map dashboard beacon yasnippet-snippets auto-yasnippet flycheck wgrep grab-x-link iedit expand-region which-key pad-tools magit saveplace-pdf-view company use-package hungry-delete smex smartparens popwin))
  '(quelpa-checkout-melpa-p nil)
  '(quelpa-update-melpa-p nil)
  '(rime-deactivate-when-exit-minibuffer nil)
@@ -33,6 +33,10 @@
  ;; If there is more than one, they won't work right.
  '(bookmark-face ((t (:background nil))))
  '(dashboard-banner-logo-title ((t (:foreground "#969595"))))
+ '(flycheck-posframe-background-face ((t (:inherit tooltip))))
+ '(flycheck-posframe-border-face ((t (:inherit font-lock-comment-face))))
+ '(flycheck-posframe-face ((t (:foreground "ForestGreen"))))
+ '(flycheck-posframe-info-face ((t (:foreground "ForestGreen"))))
  '(lsp-headerline-breadcrumb-path-error-face ((t :underline (:style wave :color "Red1") :inherit lsp-headerline-breadcrumb-path-face)))
  '(lsp-headerline-breadcrumb-path-hint-face ((t :underline (:style wave :color "ForestGreen") :inherit lsp-headerline-breadcrumb-path-face)))
  '(lsp-headerline-breadcrumb-path-info-face ((t :underline (:style wave :color "ForestGreen") :inherit lsp-headerline-breadcrumb-path-face)))
