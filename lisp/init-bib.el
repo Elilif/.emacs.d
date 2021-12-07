@@ -145,5 +145,10 @@
 	orb-file-field-extensions '("pdf"))
   )
 
+(use-package ebib
+  :ensure t
+  :defer t
+  :config
+  (setq ebib-preload-bib-files '("~/Documents/Thesis/catalog.bib")))
 
 (provide 'init-bib)
