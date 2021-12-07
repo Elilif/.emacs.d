@@ -45,7 +45,7 @@
               ;; Only check while saving and opening files
               flycheck-check-syntax-automatically '(save mode-enabled))
   :config
-  ;; (setq flycheck-idle-change-delay 2.0)
+  (setq flycheck-display-errors-delay 0.5)
   ;; Prettify indication styles
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'flycheck-fringe-bitmap-arrow

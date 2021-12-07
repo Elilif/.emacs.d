@@ -38,6 +38,7 @@
 (when emacs/>=26p
   (use-package citre
     :ensure t
+    :defer t
     :diminish
     :bind (("C-x c j" . citre-jump+)
            ("C-x c k" . citre-jump-back)

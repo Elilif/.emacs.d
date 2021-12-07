@@ -33,6 +33,7 @@
 ;; C/C++ Mode
 (use-package cc-mode
   :ensure nil
+  :defer t
   :hook (c-mode-common . (lambda () (c-set-style "stroustrup")))
   :init (setq-default c-basic-offset 4)
   :config
