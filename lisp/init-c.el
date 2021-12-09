@@ -38,6 +38,7 @@
   :init (setq-default c-basic-offset 4)
   :config
   (use-package modern-cpp-font-lock
+    :ensure t
     :diminish
     :init (modern-c++-font-lock-global-mode t)))
 

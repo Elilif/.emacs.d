@@ -34,13 +34,14 @@
 (require 'init-funcs)
 
 (use-package company
+  :ensure t
   :diminish
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
   :commands company-cancel
   :bind (("M-/" . company-complete)
          ("C-M-i" . company-complete)
-         :map company-mode-map
-         ("<backtab>" . company-yasnippet)
+         ;; :map company-mode-map
+         ;; ("<backtab>" . company-yasnippet)
          :map company-active-map
          ("C-p" . company-select-previous)
          ("C-n" . company-select-next)
@@ -112,12 +113,14 @@
 
   ;; Better sorting and filtering
   (use-package company-prescient
+    :ensure t
     :init (company-prescient-mode 1))
 
   ;; Icons and quickhelp
   (if (display-graphic-p)
       (if emacs/>=26p
           (use-package company-box
+	    :ensure t
             :diminish
             :defines company-box-icons-all-the-icons
             :hook (company-mode . company-box-mode)

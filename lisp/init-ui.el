@@ -153,6 +153,7 @@
 
 
 (use-package dashboard
+  :ensure t
   :if (< (length command-line-args) 2)
   :preface
   (defun my/dashboard-banner ()
