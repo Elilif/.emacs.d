@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: array (2 col)
-# key: array
-# group: environments
-# expand-env: ((yas-indent-line 'fixed))
-# --
-\begin{array}{r@{\:}l}
-  $0
-\end{array}
