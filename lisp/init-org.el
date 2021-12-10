@@ -46,6 +46,14 @@
 	       ("C-c C-l" . 'org-insert-link))
 	 )
   :config
+  ;; improving emphasis marker
+  (sp-local-pair 'org-mode "~" "~ ")
+  (sp-local-pair 'org-mode "/" "/ ")
+  (sp-local-pair 'org-mode "=" "= ")
+  ;; (sp-local-pair 'org-mode "+" "+ ")
+  (sp-local-pair 'org-mode "*" "* ")
+  (sp-local-pair 'org-mode "_" "_ ")
+
   (use-package org-inlinetask
     :defer 5)
   (use-package org-mu4e
@@ -446,7 +454,8 @@ This list represents a \"habit\" for the rest of this module."
   (set (make-local-variable 'company-dabbrev-char-regexp)
        "^[\\.0-9a-z-_'/]")
   (make-local-variable 'company-backends)
-  (flycheck-mode -1))
+  (flycheck-mode -1)
+  )
 (add-hook 'org-mode-hook 'eli/org-mode-hook)
 
 ;; org-protocol

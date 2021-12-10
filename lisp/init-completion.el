@@ -31,24 +31,19 @@
 ;;; Code:
 (use-package smartparens
   :ensure t
+  :init
+  (require 'smartparens-config)
   :hook (after-init . smartparens-global-mode)
   :config
   (sp-pair "（" "）")
   (sp-pair "“" "”")
-  ;; improving emphasis marker
-  (sp-local-pair 'org-mode "~" "~ ")
-  (sp-local-pair 'org-mode "/" "/ ")
-  (sp-local-pair 'org-mode "=" "= ")
-  (sp-local-pair 'org-mode "+" "+ ")
-  (sp-local-pair 'org-mode "*" "* ")
-  (sp-local-pair 'org-mode "_" "_ ")
-  (require 'smartparens-config)
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens."
     (cond ((looking-at-p "\\s(") (funcall fn))
 	  (t (save-excursion
 	       (ignore-errors (backward-up-list))
-	       (funcall fn))))))
+	       (funcall fn)))))
+  )
 
 (defvar mcfly-commands
   '(consult-line
