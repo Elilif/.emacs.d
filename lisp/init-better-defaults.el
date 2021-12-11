@@ -445,4 +445,10 @@
           previous-line
           next-line)))
 
+;; disable showing Warning (server): Unable to start the Emacs server.
+(use-package server
+  :config
+  (or (server-running-p)
+      (server-start)))
+
 (provide 'init-better-defaults)
