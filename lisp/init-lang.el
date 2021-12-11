@@ -33,20 +33,31 @@
 (use-package yasnippet
   :ensure t
   :defer 5
-  ;; :hook (after-init . yas-global-mode)
+  :hook (after-init . yas-global-mode)
   :config
-  (yas-global-mode)
+  ;; (yas-global-mode)
   (require 'warnings)
   (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
-  (add-to-list 'warning-suppress-types '(yasnippet backquote-change)))
+  (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
+  (add-to-list 'warning-suppress-log-types '(yasnippet backquote-change))
+  ;; Function that tries to autoexpand YaSnippets
+  ;; The double quoting is NOT a typo!
+  (defun my/yas-try-expanding-auto-snippets ()
+    (when (bound-and-true-p yas-minor-mode)
+      (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
+        (yas-expand))))
+
+  ;; Try after every insertion
+  (add-hook 'post-self-insert-hook #'my/yas-try-expanding-auto-snippets)
+  )
 
 (use-package auto-yasnippet
   :ensure t
   :defer t)
 
-(use-package yasnippet-snippets
-  :ensure t
-  :defer t)
+;; (use-package yasnippet-snippets
+;;   :ensure t
+;;   :defer t)
 
 (use-package quickrun
   :ensure t
