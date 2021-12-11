@@ -65,6 +65,7 @@
 
 (use-package lsp-latex
   :ensure t
+  :defer t
   :hook (LaTeX-mode . lsp)
   :init
   (setq lsp-latex-texlab-executable "/usr/bin/texlab")
@@ -75,6 +76,7 @@
 ;; CDLatex settings
 (use-package cdlatex
   :ensure t
+  :defer t
   :hook ((LaTeX-mode . turn-on-cdlatex)
 	 (cdlatex-tab . yas-expand)
          (cdlatex-tab . cdlatex-in-yas-field))
