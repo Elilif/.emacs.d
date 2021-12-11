@@ -38,7 +38,7 @@
   :diminish
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
   :commands company-cancel
-  :bind (("M-/" . company-complete)
+  :bind (("M-/" . company-yasnippet)
          ("C-M-i" . company-complete)
          ;; :map company-mode-map
          ;; ("<backtab>" . company-yasnippet)
