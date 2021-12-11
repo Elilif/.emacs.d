@@ -255,15 +255,10 @@
   (setq org-clock-out-remove-zero-time-clocks t)
   (setq org-clock-in-switch-to-state `eli/clock-in-to-nest)
   ;; pdf exporting
-  ;; (setq org-latex-pdf-process
-  ;;     '("xelatex -interaction nonstopmode -output-directory %o %f"
-  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"
-  ;;       "xelatex -interaction nonstopmode -output-directory %o %f"
-  ;; 		))
-  ;; (setq org-latex-pdf-process (list "latexmk -pdf -bibtex %f"))
   (setq org-latex-pdf-process
 	'("xelatex -interaction nonstopmode %f"
 	  "bibtex %b"
+	  "pdflatex %f" "bibtex %b" "pdflatex %f" "pdflatex %f"
 	  "xelatex -interaction nonstopmode %f"
 	  "xelatex -interaction nonstopmode %f"
 	  "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"
