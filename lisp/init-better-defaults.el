@@ -344,12 +344,12 @@
   ;; To use MELPA Stable use ":pin melpa-stable",
   :pin melpa)
 
-(use-package benchmark-init
-  :ensure t
-  ;; To disable collection of benchmark data after init is done.
-  :config
-  (add-hook 'after-init-hook 'benchmark-init/deactivate)
-  )
+;; (use-package benchmark-init
+;;   :ensure t
+;;   ;; To disable collection of benchmark data after init is done.
+;;   :config
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate)
+;;   )
 
 (use-package multiple-cursors
   :ensure t
