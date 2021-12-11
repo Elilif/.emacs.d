@@ -81,6 +81,7 @@
 (require 'init-calendar)
 (require 'init-music)
 (require 'init-blog)
+(require 'init-tex)
 ;; (require 'init-eaf)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
