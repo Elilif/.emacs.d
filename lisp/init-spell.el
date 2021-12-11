@@ -70,7 +70,6 @@
   :bind (("C-c t" . youdao-dictionary-search-at-point-posframe))
   :init
   (setq url-automatic-caching t)
-  (setq youdao-dictionary-search-history-file "~/Dropbox/org/words.org")
   )
 
 (use-package wordnut
