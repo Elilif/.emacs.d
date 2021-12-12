@@ -29,21 +29,29 @@
 ;;
 
 ;;; Code:
+(use-package prog-mode
+  :hook
+  (LaTeX-mode . prettify-symbols-mode))
 (use-package tex
   :ensure auctex
-  :defer  t
+  :defer  2
   :hook ((LaTeX-mode . prettify-symbols-mode)
+	 (LaTeX-mode . tex-source-correlate-mode)
 	 (LaTeX-mode . eli/TeX-mode-hook)
 	 )
   :config
+  (setq TeX-source-correlate-start-server t)
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
   ;; (setq-default TeX-master nil)
 
   ;; Use pdf-tools to open PDF files
   (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+	TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
         TeX-source-correlate-start-server t
         )
+  (add-hook 'TeX-after-compilation-finished-functions
+           #'TeX-revert-document-buffer)
   
   (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))
   (setq TeX-command-default "XeLaTeX")
@@ -54,8 +62,11 @@
     )
   )
 
+(use-package reftex
+  :after tex)
+
 (use-package preview
-  :after latex
+  :after tex
   :hook ((LaTeX-mode . preview-larger-previews))
   :config
   (defun preview-larger-previews ()

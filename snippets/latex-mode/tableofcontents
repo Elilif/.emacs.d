@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: \tableofcontents
+# key: tt
+#group: misc
+# --
+\tableofcontents$0
