@@ -75,7 +75,7 @@ conventions are checked."
            (or (not (memq 'summary-uses-imperative
                           my-git-commit-style-convention-checks))
                (progn
-                 (string-match "^[[:alpha:]]*?\\:[[:space:]]\\([[:alpha:]]*\\)" summary)
+                 (string-match "^[[:alpha:]]*?[\\(*?[:alpha:]*?\\)*?]*?\\:[[:space:]]\\([[:alpha:]]*\\)" summary)
                  (setq second-word (downcase (match-string 1 summary)))
                  (car (member second-word (get-imperative-verbs))))
                (when (y-or-n-p "Summary line should use imperative.  Does it? ")
