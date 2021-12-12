@@ -3,7 +3,9 @@
 # key: doc
 # name: \documentclass
 # --
-\documentclass[$2]{${1:$$(yas/choose-value '("article" "report" "book" "letter"))}}
+\documentclass[$2]{${1:$$(yas/choose-value '("article" "report" "book" "letter" "ctexart"))}}
+
+$3
 
 \begin{document}
 $0
