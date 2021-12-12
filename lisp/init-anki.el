@@ -80,7 +80,7 @@
 
 ;; Allow Emacs to access content from clipboard.
 (setq x-select-enable-clipboard t
-      x-select-enable-primary t)
+      x-select-enable-primary nil)
 
 (defun make-orgcapture-frame ()
   "Create a new frame and run org-capture."
