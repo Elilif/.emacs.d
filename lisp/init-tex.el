@@ -31,7 +31,8 @@
 ;;; Code:
 (use-package prog-mode
   :hook
-  (LaTeX-mode . prettify-symbols-mode))
+  (LaTeX-mode . prettify-symbols-mode)
+  (LaTeX-mode . auto-fill-mode))
 (use-package tex
   :ensure auctex
   :defer  2
