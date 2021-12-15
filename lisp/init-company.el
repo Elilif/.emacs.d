@@ -53,6 +53,7 @@
   :hook (after-init . global-company-mode)
   :init
   (setq company-tooltip-align-annotations t
+	company-dabbrev-other-buffers t
         company-tooltip-limit 12
 	company-show-numbers t
         company-idle-delay 0
