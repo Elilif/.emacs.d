@@ -1,0 +1,5 @@
+# key: td
+# name: To the power
+# condition: (and (texmathp) 'auto)
+# --
+`(backward-delete-char 1)`^{$1
