@@ -88,10 +88,14 @@
 (use-package cdlatex
   :ensure t
   :defer t
+  :bind (:map cdlatex-mode-map
+	      ("$" . nil)
+	      ("\(") . nil)
   :hook ((LaTeX-mode . turn-on-cdlatex)
 	 (cdlatex-tab . yas-expand)
          (cdlatex-tab . cdlatex-in-yas-field))
   :config
+  (setq cdlatex-paired-parens "$([{|<")
   (use-package yasnippet
     :bind((:map cdlatex-mode-map 
 		("<tab>" . cdlatex-tab))
