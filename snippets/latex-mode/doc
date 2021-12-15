@@ -5,9 +5,9 @@
 # --
 \documentclass[$2]{${1:$$(yas/choose-value '("article" "report" "book" "letter" "ctexart"))}}
 
-$3
+$0
 
 \begin{document}
-$0
+
 \end{document}
 
