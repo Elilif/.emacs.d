@@ -34,13 +34,29 @@
 (use-package cc-mode
   :ensure nil
   :defer t
-  :hook (c-mode-common . (lambda () (c-set-style "stroustrup")))
+  :hook ((c-mode-common . (lambda () (c-set-style "stroustrup")))
+	 (c-mode-common . eli/cc-mode-hook))
   :init (setq-default c-basic-offset 4)
   :config
   (use-package modern-cpp-font-lock
     :ensure t
     :diminish
-    :init (modern-c++-font-lock-global-mode t)))
+    :init (modern-c++-font-lock-global-mode t))
+  (defun eli/cc-mode-hook ()
+    (let* ((file-name (buffer-file-name))
+	   (is-windows (equal 'windows-nt system-type))
+	   (exec-suffix (if is-windows ".exe" ".out"))
+	   (os-sep (if is-windows "\\" "/")))
+      (if file-name
+	  (progn
+	    (setq file-name (file-name-nondirectory file-name))
+	    (let ((out-file (concat (file-name-sans-extension file-name) exec-suffix)))
+	      (setq-local compile-command (format "g++ -std=c++14 %s -o %s && .%s%s" file-name out-file os-sep out-file)))
+	    )
+	))
+    )
+  )
+
 
 (provide 'init-c)
 
