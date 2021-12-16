@@ -3,5 +3,5 @@
 # key: cin
 # --
 `(progn (goto-char (point-min)) (unless (re-search-forward
-"^using\\s-+namespace std;" nil 'no-error) "std::"))
+"^\s*using\\s-+namespace std;" nil 'no-error) "std::"))
 `cin >> $0;
