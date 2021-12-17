@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: To the power
-# key: td
+# name: to
+# key: to
 # condition: (and (texmathp) 'auto)
 # group: math
 # --
-`(backward-delete-char 1)`^{$1
+\to
