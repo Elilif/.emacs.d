@@ -73,6 +73,7 @@
 (require 'init-lang)
 (require 'init-c)
 (require 'init-ctags)
+(require 'init-r)
 (require 'init-bib)
 (require 'init-spell)
 (require 'init-anki)
