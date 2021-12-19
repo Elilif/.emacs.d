@@ -194,4 +194,13 @@ With a prefix ARG, remove start location."
   :custom
   (spray-wpm 200))
 
+(use-package shrface
+  :ensure t
+  :defer t
+  :config
+  (shrface-basic)
+  (shrface-trial)
+  (shrface-default-keybindings) ; setup default keybindings
+  (setq shrface-href-versatile t))
+
 (provide 'init-reader)

@@ -126,10 +126,8 @@ for confirmation when needed."
   (setq user-mail-address "eli.q.qian@gmail.com")
   (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq shr-use-colors nil)
-  (setq
-   mu4e-get-mail-command "proxychains mbsync -a"
-   ;; mu4e-html2text-command "w3m -T text/html"
-   mu4e-update-interval 600)
+  (setq mu4e-get-mail-command "proxychains mbsync -a"
+	mu4e-update-interval 600)
   ;; configure the bookmarks.
   (setq mu4e-bookmarks
 	'( ("flag:unread AND NOT flag:trashed"                    "Unread messages"                  ?u)
