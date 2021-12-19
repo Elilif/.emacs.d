@@ -148,7 +148,7 @@ for confirmation when needed."
   :defer t
   :hook (mu4e-main-mode . mu4e-alert-enable-notifications)
   :config
-  (mu4e-alert-set-default-style 'notifications)
+  (setq mu4e-alert-set-default-style 'libnotify)
   )
 
 (use-package mu4e-maildirs-extension
