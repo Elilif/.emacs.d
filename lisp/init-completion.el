@@ -47,7 +47,8 @@
 
 (defvar mcfly-commands
   '(consult-line
-    consult-outline))
+    consult-outline
+    consult-git-grep))
 
 (defvar mcfly-back-commands
   '(self-insert-command))
