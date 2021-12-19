@@ -559,8 +559,7 @@ This list represents a \"habit\" for the rest of this module."
 (use-package appt
   :after org
   :defer t
-  :hook ((org-agenda-mode . eli/org-agenda-to-appt)
-	 (org-finalize-agenda . eli/org-agenda-to-appt))
+  :hook (org-agenda-finalize . eli/org-agenda-to-appt)
   :config
   ;; 每小时同步一次appt,并且现在就开始同步
   (run-at-time nil 3600 'org-agenda-to-appt t)
