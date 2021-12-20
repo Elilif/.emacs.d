@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: square
-# key: sq
+# key: squ
 # group: math
 # condition: (and (texmathp) (quote auto))
 # --
