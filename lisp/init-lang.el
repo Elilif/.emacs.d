@@ -48,7 +48,7 @@
         (yas-expand))))
 
   ;; Try after every insertion
-  (add-hook 'post-self-insert-hook #'my/yas-try-expanding-auto-snippets)
+  (add-hook 'post-command-hook #'my/yas-try-expanding-auto-snippets)
   )
 
 (use-package auto-yasnippet
