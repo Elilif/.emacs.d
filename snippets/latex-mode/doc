@@ -3,7 +3,7 @@
 # key: doc
 # name: \documentclass
 # --
-\documentclass[$2]{${1:$$(yas/choose-value '("article" "report" "book" "letter" "ctexart"))}}
+\documentclass[$2]{${1:$$(yas-completing-read "Document type: " '("article" "report" "book" "letter" "ctexart"))}}
 
 $0
 

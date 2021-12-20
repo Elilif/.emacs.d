@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: To the bottom
-# key: tb
+# name: \; \d
+# key: ;d
 # condition: (and (texmathp) 'auto)
 # group: math
 # --
-`(backward-delete-char 1)`_{$1}
+\;\d $0

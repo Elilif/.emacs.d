@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: To the bottom
-# key: tb
+# name: definite integral
+# key: dint
 # condition: (and (texmathp) 'auto)
 # group: math
 # --
-`(backward-delete-char 1)`_{$1}
+\\int_{${1:-\\infty}}^{${2:\\infty}}$0
