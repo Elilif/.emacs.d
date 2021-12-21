@@ -32,14 +32,17 @@
 
 (use-package ess
   :ensure t
+  :hook (ess-r-mode . eli/ess-mode-hook)
   :config
+  (defun eli/ess-mode-hook ()
+    (setq-local company-box-doc-enable nil))
   (setq ess-use-flymake nil
 	ess-ask-for-ess-directory nil
 	ess-history-file "~/R/.history"
 	ess-tab-complete-in-script t
 	comint-prompt-read-only t
 	ess-use-eldoc 'script-only
-	
+	ess-use-company 'script-only
 	))
 
 (use-package ess-smart-equals
