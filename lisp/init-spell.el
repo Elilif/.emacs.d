@@ -43,7 +43,8 @@
 (use-package ispell
   :defer t
   :config
-  (setq ispell-personal-dictionary "~/.emacs.d/mydictionary"))
+  (setq ispell-personal-dictionary "~/.emacs.d/mydictionary")
+  (add-to-list 'ispell-extra-args "--sug-mode=ultra"))
 
 (use-package flyspell-correct
   :after flyspell
