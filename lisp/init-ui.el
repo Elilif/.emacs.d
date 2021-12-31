@@ -106,9 +106,9 @@
   :config
   (setq doom-modeline-buffer-encoding nil)
   (column-number-mode 1)
-  (with-eval-after-load 'doom-modeline
-    (set-face-attribute 'mode-line nil :font "Source Code Pro 11")
-    (set-face-attribute 'mode-line-inactive nil :font "Source Code Pro 11"))
+  ;; (with-eval-after-load 'doom-modeline
+  ;;   (set-face-attribute 'mode-line nil :font "Source Code Pro 11")
+  ;;   (set-face-attribute 'mode-line-inactive nil :font "Source Code Pro 11"))
   )
 
 (use-package beacon
@@ -184,7 +184,6 @@
                           ;; (registers . 5)
 			  ))
   )
-
 
 
 (provide 'init-ui)
