@@ -58,18 +58,20 @@ for confirmation when needed."
 	 ("\C-k" . keyboard-quit)))
   :config
   (setq elfeed-search-filter "@2-days-ago +unread +A")
-  (defalias 'elfeed-toggle-star
-    (elfeed-expose #'elfeed-search-toggle-all 'starred))
-
-  (eval-after-load 'elfeed-search
-    '(define-key elfeed-search-mode-map (kbd "m") 'elfeed-toggle-star))
 
   ;; face for starred articles
   (defface elfeed-search-starred-title-face
     '((t :foreground "#f77"))
     "Marks a starred Elfeed entry.")
+  (eval-after-load 'elfeed-search
+    '(push '(starred elfeed-search-starred-title-face) elfeed-search-face-alist)
+    )
 
-  (push '(starred elfeed-search-starred-title-face) elfeed-search-face-alist)
+  (defalias 'elfeed-toggle-star
+    (elfeed-expose #'elfeed-search-toggle-all 'starred))
+
+  (eval-after-load 'elfeed-search
+    '(define-key elfeed-search-mode-map (kbd "m") 'elfeed-toggle-star))
   )
 
 (use-package elfeed-org
@@ -84,6 +86,11 @@ for confirmation when needed."
   :ensure t
   :after elfeed-goodies)
 
+(use-package ace-jump-mode
+  :ensure t)
+
+(use-package noflet
+  :ensure t)
 (use-package elfeed-goodies
   :load-path "~/.emacs.d/private/elfeed-goodies"
   ;; :ensure t
