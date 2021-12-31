@@ -357,9 +357,8 @@
 	    :pre (progn (setq which-key-inhibit t))
 	    :post (progn (setq which-key-inhibit nil)
 			 ))
-    ("Emoji"
-     (("i" emojify-insert-emoji "insert emoji")
-      ("s" emojify-apropos-emoji "search emoji"))
+    ("Input"
+     (("i" eli/input-switch "switch input"))
      "Yank"
      (("p" consult-yank-pop "Clipboard")))
     )

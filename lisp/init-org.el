@@ -659,6 +659,26 @@ This list represents a \"habit\" for the rest of this module."
    ;; (rime-inline-predicates '(rime-predicate-space-after-cc-p)))
    )
   :config
+  (setq eli/prefer-English t)
+  (defun eli/input-switch ()
+    (interactive)
+    (if (not eli/prefer-English)
+	(progn
+	  (setq rime-disable-predicates '(rime-predicate-prog-in-code-p
+                              rime-predicate-space-after-ascii-p
+                              rime-predicate-after-ascii-char-p
+                              +rime-predicate-punctuation-line-begin-p
+                              rime-predicate-org-in-src-block-p
+                              rime-predicate-space-after-cc-p
+                              rime-predicate-current-uppercase-letter-p
+                              rime-predicate-hydra-p ))
+	  (setq eli/prefer-English t))
+      (progn
+       (setq rime-disable-predicates
+	    (seq-difference rime-disable-predicates '(rime-predicate-space-after-ascii-p
+				       +rime-predicate-punctuation-line-begin-p)))
+       (setq eli/prefer-English nil)
+       )))
   (defun +rime-convert-string-at-point (&optional return-cregexp)
     "将光标前的字符串转换为中文."
     (interactive "P")
