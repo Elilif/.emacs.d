@@ -63,7 +63,6 @@
 (require 'init-completion)
 (require 'init-company)
 (require 'init-better-defaults)
-(require 'init-ivy)
 (require 'init-org)
 (require 'init-reader)
 (require 'init-elfeed)
