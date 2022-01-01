@@ -271,6 +271,7 @@
      	       (kill-buffer orig)
      	       (dired up)
      	       (dired-goto-file dir))))))
+  ;; or (setq dired-kill-when-opening-new-dired-buffer t)
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
   (setq dired-dwim-target t)
@@ -343,13 +344,6 @@
   :defer t
   ;; To use MELPA Stable use ":pin melpa-stable",
   :pin melpa)
-
-;; (use-package benchmark-init
-;;   :ensure t
-;;   ;; To disable collection of benchmark data after init is done.
-;;   :config
-;;   (add-hook 'after-init-hook 'benchmark-init/deactivate)
-;;   )
 
 (use-package multiple-cursors
   :ensure t
