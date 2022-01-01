@@ -920,4 +920,7 @@ This list represents a \"habit\" for the rest of this module."
   :config
   (require 'org-link-edit))
 
+(use-package ox-pandoc
+  :ensure t
+  :after ox)
 (provide 'init-org)
