@@ -137,15 +137,15 @@ for confirmation when needed."
 	mu4e-update-interval 600)
   ;; configure the bookmarks.
   (setq mu4e-bookmarks
-	'( ("flag:unread AND NOT flag:trashed"                    "Unread messages"                  ?u)
-           ("date:today..now"                                     "Today's messages"                 ?t)
-           ("date:7d..now"                                        "Last 7 days"                      ?w)
-           ("date:1d..now AND NOT list:emacs-orgmode.gnu.org"     "Last 1 days"                      ?o)
-           ("date:1d..now AND list:emacs-orgmode.gnu.org"         "Last 1 days (org mode)"           ?m)
-           ("maildir:/sent"                                       "sent"                             ?s)
-           ("maildir:/drafts"                                     "drafts"                           ?d)
-           ("mime:image/*"                                        "Messages with images"             ?p)
-	   ("maildir:/trash"                                      "Trash"                            ?g)
+	'( ("flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org"  "Unread messages"                  ?u)
+           ("date:today..now AND NOT list:emacs-orgmode.gnu.org"                   "Today's messages"                 ?t)
+           ("date:7d..now AND NOT list:emacs-orgmode.gnu.org"                      "Last 7 days"                      ?w)
+           ("date:1d..now AND NOT list:emacs-orgmode.gnu.org"                      "Last 1 days"                      ?y)
+           ("list:emacs-orgmode.gnu.org"                                           "Org mode"                         ?o)
+           ("maildir:/sent"                                                        "sent"                             ?s)
+           ("maildir:/drafts"                                                      "drafts"                           ?d)
+           ("mime:image/*"                                                         "Messages with images"             ?p)
+	   ("maildir:/trash"                                                       "Trash"                            ?g)
 	   )))
 
 (use-package mu4e-alert
