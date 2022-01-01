@@ -44,6 +44,7 @@
   (setq TeX-source-correlate-start-server t)
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
+  (setq LaTeX-using-Biber t)
   ;; (setq-default TeX-master nil)
 
   ;; Use pdf-tools to open PDF files

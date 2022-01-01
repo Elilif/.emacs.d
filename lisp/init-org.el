@@ -257,8 +257,7 @@
   ;; pdf exporting
   (setq org-latex-pdf-process
 	'("xelatex -interaction nonstopmode %f"
-	  "bibtex %b"
-	  "pdflatex %f" "bibtex %b" "pdflatex %f" "pdflatex %f"
+	  "biber %b"
 	  "xelatex -interaction nonstopmode %f"
 	  "xelatex -interaction nonstopmode %f"
 	  "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"

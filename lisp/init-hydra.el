@@ -285,8 +285,8 @@
 	    :pre (progn (setq which-key-inhibit t))
 	    :post (progn (setq which-key-inhibit nil) ))
     ("Reference"
-     (("i" org-ref-insert-link "insert ref link")
-      ("g" org-ref-insert-bibliography-link "insert bibliography")
+     (("o" citar-open "citar open")
+      ("g" citar-refresh "refresh citar cache")
       )
      "Calibre"
      (("c" calibredb "calibre")
@@ -296,9 +296,7 @@
       ("l" orb-insert-link "insert orb link")
       )
      "Bibtex"
-     (("b" org-ref-bibtex-hydra/body "org-ref-bibtex")
-      ("h" helm-bibtex "helm bibtex")
-      ("r" org-bibtex-read "org bibtex read")
+     (("r" org-bibtex-read "org bibtex read")
       ("w" org-bibtex-write "org bibtex write"))
      )
     )

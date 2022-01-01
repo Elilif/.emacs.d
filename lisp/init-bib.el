@@ -51,21 +51,39 @@
   (setq org-media-note-use-refcite-first t)
   )
 
-;; (use-package citar
-;;   :ensure t
-;;   ;; :bind (("C-c b" . citar-insert-citation)
-;;   ;;        :map minibuffer-local-map
-;;   ;;        ("M-b" . citar-insert-preset))
-;;   :custom
-;;   (citar-bibliography '("~/Documents/Thesis/catalog.bib"))
-;;   (org-cite-insert-processor 'citar)
-;;   (org-cite-follow-processor 'citar)
-;;   (org-cite-activate-processor 'citar)
-;;   :config
-;;   (setq org-cite-global-bibliography '("~/Documents/Thesis/catalog.bib"))
-;;   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
-;;   (setq citar-at-point-function 'embark-act)
-;;   )
+(use-package oc
+  :after ox
+  :config
+  (require 'oc-csl)
+  (require 'oc-natbib)
+  (require 'oc-biblatex))
+
+(use-package citar
+  :ensure t
+  :after all-the-icons
+  :bind (
+	 ;; ("C-c b" . citar-insert-citation)
+         :map minibuffer-local-map
+         ("M-b" . citar-insert-preset))
+  :custom
+  (citar-symbols
+	`((file ,(all-the-icons-faicon "file-o" :face 'all-the-icons-green :v-adjust -0.1) . " ")
+          (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-blue :v-adjust -0.3) . " ")
+          (link ,(all-the-icons-octicon "link" :face
+					'all-the-icons-orange :v-adjust 0.01) . " ")))
+  (citar-symbol-separator "  ")
+  (citar-bibliography '("/home/eli/Documents/Thesis/catalog.bib"))
+  (setq citar-citeproc-csl-styles-dir "/home/eli/Documents/styles/")
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  :config
+  (setq org-cite-global-bibliography '("/home/eli/Documents/Thesis/catalog.bib"))
+  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+  (setq citar-at-point-function 'citar-dwim)
+  (setq citar-open-note-function 'orb-citar-edit-note)
+  (setq citar-notes-paths '("~/Dropbox/org/roam/references"))
+  )
 
 (use-package calibredb
   :ensure t
@@ -86,14 +104,13 @@
   (add-hook 'calibredb-search-mode-hook 'eli/calibre-refresh)
   )
 
-(use-package helm-bibtex
+(use-package bibtex-completion
   :ensure t
-  :after org-ref
+  :defer t
   :config
-  (require 'bibtex-completion)
-  (setq bibtex-completion-bibliography "~/Documents/Thesis/catalog.bib"
-	bibtex-completion-library-path "~/Documents/Thesis"
-	bibtex-completion-notes-path "~/Dropbox/org/roam/references"
+  (setq bibtex-completion-bibliography "/home/eli/Documents/Thesis/catalog.bib"
+	bibtex-completion-library-path "/home/eli/Documents/Thesis"
+	bibtex-completion-notes-path "/home/eli/Dropbox/org/roam/references"
 	bibtex-completion-pdf-field "file"
 	;; bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
 
@@ -116,21 +133,22 @@
 	bibtex-autokey-titlewords 2
 	bibtex-autokey-titlewords-stretch 1
 	bibtex-autokey-titleword-length 5
+	bibtex-dialect 'biblatex
 	)
   )
 
 (use-package org-ref
   :ensure t
   :defer t
-  :config
-  (require 'org-ref-helm)
+  ;; :config
+  ;; (require 'org-ref-helm)
   ;; (require 'org-ref-bibtex)
-  (setq org-ref-insert-link-function 'org-ref-insert-link-hydra/body
-	org-ref-insert-cite-function 'org-ref-cite-insert-helm
-	org-ref-insert-label-function 'org-ref-insert-label-link
-	org-ref-insert-ref-function 'org-ref-insert-ref-link
-	org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body))
-	)
+  ;; (setq org-ref-insert-link-function 'org-ref-insert-link-hydra/body
+  ;; 	org-ref-insert-cite-function 'org-ref-cite-insert-helm
+  ;; 	org-ref-insert-label-function 'org-ref-insert-label-link
+  ;; 	org-ref-insert-ref-function 'org-ref-insert-ref-link
+  ;; 	org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body))
+  ;; 	)
   )
 
 (use-package org-roam-bibtex
@@ -149,6 +167,6 @@
   :ensure t
   :defer t
   :config
-  (setq ebib-preload-bib-files '("~/Documents/Thesis/catalog.bib")))
+  (setq ebib-preload-bib-files '("/home/eli/Documents/Thesis/catalog.bib")))
 
 (provide 'init-bib)
