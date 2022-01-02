@@ -156,7 +156,7 @@
   :defer t
   :hook (org-mode . org-roam-bibtex-mode)
   :config
-  (setq orb-roam-ref-format 'org-ref-v3)
+  (setq orb-roam-ref-format 'org-cite)
   (setq orb-preformat-keywords
 	'("citekey" "title" "url" "author-or-editor" "keywords" "file")
 	orb-process-file-keyword t
