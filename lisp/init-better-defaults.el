@@ -99,8 +99,8 @@
       (kill-region (point-min) (point-max)))))
 
 ;; split window right
-(setq split-height-threshold nil)
-(setq split-width-threshold 0)
+;; (setq split-height-threshold nil)
+;; (setq split-width-threshold 0)
 
 ;; fix M-j
 (defun eli-org-fill-prefix ()
