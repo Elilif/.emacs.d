@@ -50,7 +50,9 @@
   (setq org-media-note-screenshot-image-dir "~/Documents/org-images")
   (setq org-media-note-use-refcite-first t)
   )
-
+(setq eli/bibliography '("/home/eli/Documents/Thesis/catalog.bib"
+			"/home/eli/Documents/Eli'sBooks/catalog.bib"
+			))
 (use-package oc
   :after ox
   :config
@@ -61,10 +63,10 @@
 (use-package citar
   :ensure t
   :after all-the-icons
-  :bind (
+  ;; :bind (
 	 ;; ("C-c b" . citar-insert-citation)
-         :map minibuffer-local-map
-         ("M-b" . citar-insert-preset))
+         ;; :map minibuffer-local-map
+         ;; ("M-b" . citar-insert-preset))
   :custom
   (citar-symbols
 	`((file ,(all-the-icons-faicon "file-o" :face 'all-the-icons-green :v-adjust -0.1) . " ")
@@ -72,13 +74,13 @@
           (link ,(all-the-icons-octicon "link" :face
 					'all-the-icons-orange :v-adjust 0.01) . " ")))
   (citar-symbol-separator "  ")
-  (citar-bibliography '("/home/eli/Documents/Thesis/catalog.bib"))
+  (citar-bibliography eli/bibliography)
   (setq citar-citeproc-csl-styles-dir "/home/eli/Documents/styles/")
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
   :config
-  (setq org-cite-global-bibliography '("/home/eli/Documents/Thesis/catalog.bib"))
+  (setq org-cite-global-bibliography eli/bibliography)
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   (setq citar-at-point-function 'citar-dwim)
   (setq citar-open-note-function 'orb-citar-edit-note)
@@ -108,7 +110,7 @@
   :ensure t
   :defer t
   :config
-  (setq bibtex-completion-bibliography "/home/eli/Documents/Thesis/catalog.bib"
+  (setq bibtex-completion-bibliography eli/bibliography
 	bibtex-completion-library-path "/home/eli/Documents/Thesis"
 	bibtex-completion-notes-path "/home/eli/Dropbox/org/roam/references"
 	bibtex-completion-pdf-field "file"
