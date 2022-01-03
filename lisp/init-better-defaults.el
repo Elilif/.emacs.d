@@ -410,7 +410,7 @@
 	 ("q" . kill-buffer-and-window)
 	 )
   :config
-  (setq helpful-max-buffers 1)
+  (setq helpful-max-buffers 2)
   )
 
 (use-package undo-tree
