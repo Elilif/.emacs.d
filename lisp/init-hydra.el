@@ -290,6 +290,7 @@
       )
      "Calibre"
      (("c" calibredb "calibre")
+      ("b" eli/update-calibre-bibtex "get bibtex")
       )
      "Roam Bibtex"
      (("a" orb-note-actions "orb note actions")

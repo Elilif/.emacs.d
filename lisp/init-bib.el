@@ -100,6 +100,20 @@
 				  ("~/Documents/Eli'sBooks")
 				  ("~/Documents/Thesis")
 				  ))
+  (defun eli/update-calibre-bibtex ()
+    "Export the catalog with BibTex file."
+    (interactive)
+    (calibredb-command :command "catalog"
+                       :option (format "%s"
+                                       (shell-quote-argument
+					(expand-file-name
+					 (or calibredb-ref-default-bibliography
+                                             (concat (file-name-as-directory calibredb-root-dir) "catalog.bib")))))
+                       :input (s-join " " (-remove 's-blank? (-flatten "--fields title,authors,formats,isbn,pubdate,publisher,languages")))
+                       :library (format "--library-path %s" (calibredb-root-dir-quote)))
+    (calibredb-ref-default-bibliography)
+    (message "Updated BibTex file.")
+    )
   (defun eli/calibre-refresh ()
     (setq calibredb-ref-default-bibliography (concat (file-name-as-directory calibredb-root-dir) "catalog.bib"))
     )
