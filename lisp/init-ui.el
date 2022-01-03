@@ -120,21 +120,16 @@
   (progn
     ;; Setting English Font
     (set-face-attribute 'default nil :font "Source Code Pro 13")
-    ;; (set-face-attribute 'default nil :font "Operator Mono" :height 140)
-    ;; (set-face-attribute 'default nil :font "Inconsolata 18")
-
     ;; chinese fonts
     (dolist (charset '(kana han cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font) charset
 			(font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
-
     (set-fontset-font "fontset-default" 'unicode "AR PL New Kai" nil 'prepend)
     (set-fontset-font "fontset-default" 'unicode "Noto Color Emoji" nil 'prepend)
     ))
 (if window-system
     (eli/set-font)
     )
-
 
 ;; (use-package emojify
 ;;   :ensure t
