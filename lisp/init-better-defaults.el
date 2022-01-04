@@ -30,7 +30,7 @@
 
 ;;; Code:
 
-
+(setq word-wrap-by-category t)
 (setq help-at-pt-display-when-idle t)
 ;; set fill column
 (setq-default fill-column 80)
