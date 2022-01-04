@@ -151,6 +151,22 @@
 	bibtex-autokey-titleword-length 5
 	bibtex-dialect 'biblatex
 	)
+  (setq my/primary-bibtex-biblatex-entry-alist
+        '(("MastersThesis" "MastersThesis"
+           (("author")
+	    ("title")
+	    ("school")
+	    ("year")
+	    ("tertiaryauthor")
+	    ("keywords")
+	    ("abstract")
+	    ("databaseprovider")
+	    ("url"))
+           nil
+           nil)))
+
+  (setq bibtex-biblatex-entry-alist
+        (append bibtex-biblatex-entry-alist my/primary-bibtex-biblatex-entry-alist))
   )
 
 (use-package org-ref
