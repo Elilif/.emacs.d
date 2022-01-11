@@ -30,6 +30,11 @@
 
 ;;; Code:
 
+;; pdf cache setting
+(setq pdf-cache-image-limit 16)
+(setq pdf-cache-prefetch-delay 1)
+(setq image-cache-eviction-delay 60)
+
 (setq word-wrap-by-category t)
 (setq help-at-pt-display-when-idle t)
 ;; set fill column
