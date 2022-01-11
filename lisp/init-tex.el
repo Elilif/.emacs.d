@@ -33,14 +33,18 @@
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   (LaTeX-mode . auto-fill-mode))
+
 (use-package tex
   :ensure auctex
   :defer  2
   :hook ((LaTeX-mode . prettify-symbols-mode)
 	 (LaTeX-mode . tex-source-correlate-mode)
+	 (LaTeX-mode . turn-on-reftex)
 	 (LaTeX-mode . eli/TeX-mode-hook)
 	 )
   :config
+  (setq reftex-plug-into-AUCTeX t)
+  (setq reftex-default-bibliography eli/bibliography)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
