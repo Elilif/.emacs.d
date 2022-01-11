@@ -104,8 +104,8 @@
       (kill-region (point-min) (point-max)))))
 
 ;; split window right
-;; (setq split-height-threshold nil)
-;; (setq split-width-threshold 0)
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
 
 ;; fix M-j
 (defun eli-org-fill-prefix ()
@@ -416,6 +416,15 @@
 	 )
   :config
   (setq helpful-max-buffers 2)
+  ;; from: https://d12frosted.io/posts/2019-06-26-emacs-helpful.html
+  (setq helpful-switch-buffer-function #'+helpful-switch-to-buffer)
+  (defun +helpful-switch-to-buffer (buffer-or-name)
+    "Switch to helpful BUFFER-OR-NAME. The logic is simple, if we are
+currently in the helpful buffer, reuse it's window, otherwise
+create new one."
+    (if (eq major-mode 'helpful-mode)
+	(switch-to-buffer buffer-or-name)
+      (pop-to-buffer buffer-or-name)))
   )
 
 (use-package undo-tree
