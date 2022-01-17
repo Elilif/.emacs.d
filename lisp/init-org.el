@@ -48,7 +48,7 @@
   :config
   ;; improving emphasis marker
   (sp-local-pair 'org-mode "~" "~ ")
-  (sp-local-pair 'org-mode "/" "/ ")
+  ;; (sp-local-pair 'org-mode "/" "/ ")
   (sp-local-pair 'org-mode "=" "= ")
   ;; (sp-local-pair 'org-mode "+" "+ ")
   (sp-local-pair 'org-mode "*" "* ")
