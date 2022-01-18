@@ -104,6 +104,8 @@
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
   :ensure t
+  :init
+  (setq marginalia-align 'right)
   :hook (after-init . marginalia-mode)
   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
   :bind (("M-A" . marginalia-cycle)
