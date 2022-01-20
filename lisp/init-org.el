@@ -254,12 +254,21 @@
   (global-set-key (kbd "<f8>") 'eli/rating)
   (setq org-clock-out-remove-zero-time-clocks t)
   (setq org-clock-in-switch-to-state `eli/clock-in-to-nest)
+  ;; latex
+  (add-hook 'org-mode #'turn-on-cdlatex)
+  (setq org-format-latex-options '(:foreground default :background default
+                                               :scale 1.5 :html-foreground "Black"
+                                               :html-background "Transparent"
+                                               :html-scale 1.0
+                                               :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   ;; pdf exporting
+  (setq org-latex-listings 'minted)
+  (setq org-latex-compiler "xelatex")
   (setq org-latex-pdf-process
-	'("xelatex -interaction nonstopmode %f"
+	'("xelatex -8bit --shell-escape -interaction nonstopmode -output-directory=%o %f"
 	  "biber %b"
-	  "xelatex -interaction nonstopmode %f"
-	  "xelatex -interaction nonstopmode %f"
+	  "xelatex -8bit --shell-escape -interaction nonstopmode -output-directory=%o %f"
+	  "xelatex -8bit --shell-escape -interaction nonstopmode -output-directory=%o %f"
 	  "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"
 	  ))
   )
