@@ -54,9 +54,10 @@
 			"/home/eli/Documents/Eli'sBooks/catalog.bib"
 			))
 (use-package oc
-  :after ox
+  :after org
   :config
   (require 'oc-csl)
+  (setq org-cite-csl-styles-dir "~/Documents/styles")
   (require 'oc-natbib)
   (require 'oc-biblatex))
 
@@ -75,7 +76,7 @@
 					'all-the-icons-orange :v-adjust 0.01) . " ")))
   (citar-symbol-separator "  ")
   (citar-bibliography eli/bibliography)
-  (setq citar-citeproc-csl-styles-dir "/home/eli/Documents/styles/")
+  (citar-citeproc-csl-styles-dir "/home/eli/Documents/styles/")
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
