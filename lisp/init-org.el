@@ -264,6 +264,12 @@
   ;; pdf exporting
   (setq org-latex-listings 'minted)
   (setq org-latex-compiler "xelatex")
+  (add-to-list 'org-latex-packages-alist
+	       '("" "minted" t))
+  (add-to-list 'org-latex-packages-alist
+	       '("" "xcolor" t))
+  (add-to-list 'org-latex-packages-alist
+	       '("" "tikz"))
   (setq org-latex-pdf-process
 	'("xelatex -8bit --shell-escape -interaction nonstopmode -output-directory=%o %f"
 	  "biber %b"
