@@ -52,12 +52,57 @@
 (use-package orderless
   :ensure t
   :config
-  (setq completion-styles '(orderless))
   ;; https://github.com/oantolin/orderless/issues/48
   (define-advice company-capf
-    (:around (orig-fun &rest args) set-completion-styles)
-  (let ((completion-styles '(basic partial-completion)))
-    (apply orig-fun args))))
+      (:around (orig-fun &rest args) set-completion-styles)
+    (let ((completion-styles '(basic partial-completion)))
+      (apply orig-fun args)))
+
+  ;; https://github.com/minad/consult/wiki
+  (defvar +orderless-dispatch-alist
+    '((?% . char-fold-to-regexp)
+      (?! . orderless-without-literal)
+      (?`. orderless-initialism)
+      (?= . orderless-literal)
+      (?~ . orderless-flex)))
+
+  (defun +orderless-dispatch (pattern index _total)
+    (cond
+     ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
+     ((string-suffix-p "$" pattern)
+      `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x100000-\x10FFFD]*$")))
+     ;; File extensions
+     ((and
+       ;; Completing filename or eshell
+       (or minibuffer-completing-file-name
+           (derived-mode-p 'eshell-mode))
+       ;; File extension
+       (string-match-p "\\`\\.." pattern))
+      `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x100000-\x10FFFD]*$")))
+     ;; Ignore single !
+     ((string= "!" pattern) `(orderless-literal . ""))
+     ;; Prefix and suffix
+     ((if-let (x (assq (aref pattern 0) +orderless-dispatch-alist))
+          (cons (cdr x) (substring pattern 1))
+        (when-let (x (assq (aref pattern (1- (length pattern))) +orderless-dispatch-alist))
+          (cons (cdr x) (substring pattern 0 -1)))))))
+
+  ;; Define orderless style with initialism by default
+  (orderless-define-completion-style +orderless-with-initialism
+    (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
+
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides
+        '((buffer (styles basic partial-completion))
+          (file (styles basic partial-completion))
+          (command (styles +orderless-with-initialism))
+          (variable (styles +orderless-with-initialism))
+          (symbol (styles +orderless-with-initialism)))
+        ;; allow escaping space with backslash!
+        orderless-component-separator #'orderless-escapable-split-on-space
+        orderless-style-dispatchers '(+orderless-dispatch))
+  )
 
 (use-package pinyinlib
   :ensure t
