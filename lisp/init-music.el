@@ -52,6 +52,7 @@
   (setq emms-browser-covers #'emms-browser-cache-thumbnail-async)
   (setq emms-browser-thumbnail-small-size 64)
   (setq emms-browser-thumbnail-medium-size 128)
+  (setq emms-lyrics-display-on-minibuffer nil)
   ;; overlay the default function
   (defun emms-score-show-playing ()
     "Show score for current playing track in minibuf."

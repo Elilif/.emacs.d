@@ -382,11 +382,13 @@
      "Controls"
      (("SPC" emms-pause "pause")
       ("r" emms-toggle-repeat-track "repeat")
-      ("b" emms-seek-backward "backward")
+      ("d" emms-seek-backward "backward")
       ("f" emms-seek-forward "forward")
       ("d" emms-play-dired "play the list"))
      "Browser"
-     (("b" emms-browser "browser"))
+     (("b" emms-browser "browser")
+      ("-" emms-volume-lower "lower volume")
+      ("=" emms-volume-raise "raise volume"))
      "Score"
      (("ss" emms-score-set-playing "set score")
       ("sd" emms-score-show-playing "show score")
