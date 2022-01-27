@@ -387,8 +387,8 @@
       ("d" emms-play-dired "play the list"))
      "Browser"
      (("b" emms-browser "browser")
-      ("-" emms-volume-lower "lower volume")
-      ("=" emms-volume-raise "raise volume"))
+      ("-" emms-volume-lower "lower volume" :exit nil)
+      ("=" emms-volume-raise "raise volume" :exit nil))
      "Score"
      (("ss" emms-score-set-playing "set score")
       ("sd" emms-score-show-playing "show score")
