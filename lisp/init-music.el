@@ -36,10 +36,11 @@
   :commands (emms)
   :init
   (setq emms-score-max-score 10)
+  (defvar eli-filter-score 0)
   :custom
   ;; (emms-playlist-buffer-name "*Emms*")
   (emms-source-file-default-directory "~/Music/")
-  (emms-lyrics-display-on-minibuffer t)
+  (emms-lyrics-display-on-minibuffer nil)
   (emms-lyrics-display-on-modeline nil)
   (emms-player-list '(emms-player-mpv))
   (emms-browser-covers 'emms-browser-cache-thumbnail)
@@ -52,15 +53,21 @@
   (setq emms-browser-covers #'emms-browser-cache-thumbnail-async)
   (setq emms-browser-thumbnail-small-size 64)
   (setq emms-browser-thumbnail-medium-size 128)
-  (setq emms-lyrics-display-on-minibuffer nil)
-  ;; overlay the default function
-  (defun emms-score-show-playing ()
-    "Show score for current playing track in minibuf."
-    (interactive)
-    (message "track/tolerance score: %d/%d"
-	     (emms-score-get-score
-	      (emms-score-current-selected-track-filename))
-	     emms-score-max-score))
+
+  ;; filters
+  (emms-browser-make-filter "all" 'ignore)
+  (emms-browser-make-filter
+   "by-scores"
+   (lambda (track)
+     (not (>= (funcall 'emms-score-get-score (emms-track-get track 'name)) eli-filter-score))))
+
+  (defun eli/emms-filter (score)
+    (interactive "nSet score for filter: ")
+    (setq eli-filter-score score)
+    (emms-browser-show-by-scores)
+    )
+  
+  
   )
 
 (use-package lyrics-fetcher

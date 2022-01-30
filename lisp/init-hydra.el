@@ -393,7 +393,8 @@
      "Score"
      (("ss" emms-score-set-playing "set score")
       ("sd" emms-score-show-playing "show score")
-      ("st" emms-score-set-tolerance "filter"))
+      ("st" emms-score-set-tolerance "tolerance")
+      ("sf"  eli/emms-filter "filter"))
      ))
   (pretty-hydra-define hydra-develop
     (:color amaranth :exit t :quit-key "q"
