@@ -66,7 +66,25 @@
     (setq eli-filter-score score)
     (emms-browser-show-by-scores)
     )
-  
+
+  ;; check and set scores in browser buffer
+  (defun emms-browser-show-file-on-line ()
+    "Show score for track at point in emms-browser buffer."
+    (interactive)
+    (message "track/tolerance score: %d/%d"
+	     (emms-score-get-score
+	      (emms-track-get (nth 0 (emms-browser-tracks-at-point))
+			      'name))
+	     emms-score-min-score))
+
+  (defun emms-browser-set-score (score)
+    "Set score for track at point in emms-browser buffer."
+    (interactive "nSet score for this track: ")
+    (let ((filename (emms-track-get (nth 0 (emms-browser-tracks-at-point))
+				    'name)))
+      (emms-score-change-score
+       (- score (emms-score-get-score filename))
+       filename)))
   
   )
 

@@ -382,19 +382,21 @@
      "Controls"
      (("SPC" emms-pause "pause")
       ("r" emms-toggle-repeat-track "repeat")
-      ("d" emms-seek-backward "backward" :exit nil)
-      ("f" emms-seek-forward "forward" :exit nil)
+      ("," emms-seek-backward "backward" :exit nil)
+      ("." emms-seek-forward "forward" :exit nil)
       ;; ("d" emms-play-dired "play the list")
       )
      "Browser"
      (("b" emms-browser "browser")
+      ("o" emms-browser-show-file-on-line "show score")
+      ("d" emms-browser-set-score "set score")
       ("-" emms-volume-lower "lower volume" :exit nil)
       ("=" emms-volume-raise "raise volume" :exit nil))
      "Score"
-     (("ss" emms-score-set-playing "set score")
-      ("sd" emms-score-show-playing "show score")
+     (("ss" emms-score-set-playing "set score for playing track")
+      ("sd" emms-score-show-playing "show score of playing track")
       ("st" emms-score-set-tolerance "tolerance")
-      ("sf"  eli/emms-filter "filter"))
+      ("f"  eli/emms-filter "filter"))
      ))
   (pretty-hydra-define hydra-develop
     (:color amaranth :exit t :quit-key "q"
