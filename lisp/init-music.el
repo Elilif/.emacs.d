@@ -40,7 +40,8 @@
   :custom
   ;; (emms-playlist-buffer-name "*Emms*")
   (emms-source-file-default-directory "~/Music/")
-  (emms-lyrics-display-on-minibuffer nil)
+  (emms-lyrics-dir "~/Music/lyrics")
+  (emms-lyrics-display-on-minibuffer t)
   (emms-lyrics-display-on-modeline nil)
   (emms-player-list '(emms-player-mpv))
   (emms-browser-covers 'emms-browser-cache-thumbnail)
@@ -85,15 +86,31 @@
       (emms-score-change-score
        (- score (emms-score-get-score filename))
        filename)))
+
+  ;; catch up later downloaded lrc file
+  (defun eli/lyrics-catchup ()
+    (interactive)
+    (let* ((track (emms-playlist-current-selected-track))
+	   (name (emms-track-get track 'name))
+	   (lrc (funcall emms-lyrics-find-lyric-function
+			 (emms-replace-regexp-in-string
+			  (concat "\\." (file-name-extension name) "\\'")
+			  ".lrc"
+			  (file-name-nondirectory name)))))
+      (emms-lyrics-catchup lrc)))
   
   )
 
 (use-package lyrics-fetcher
   :ensure t
+  :load-path "~/.emacs.d/private/lyrics-fetcher"
   :after emms
   :config
-  (setq lyrics-fetcher-genius-access-token "wxV8JATH2c0ktcikcnRL-GSrFx7jY-UEouWXNmmQC9_irv7co8mNIJRw6hjn0og7"))
-
-
+  (setq lyrics-fetcher-genius-access-token "wxV8JATH2c0ktcikcnRL-GSrFx7jY-UEouWXNmmQC9_irv7co8mNIJRw6hjn0og7")
+  (setq lyrics-fetcher-fetch-method #'lyrics-fetcher-neteasecloud-do-search)
+  (setq lyrics-fetcher-format-file-name-method #'lyrics-fetcher-neteasecloud-format-file-name)
+  (setq lyrics-fetcher-format-song-name-method #'lyrics-fetcher-neteasecloud-format-song-name)
+  (setq lyrics-fetcher-lyrics-file-extension ".lrc")
+  )
 
 (provide 'init-music)

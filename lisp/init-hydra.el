@@ -368,16 +368,17 @@
 			 ))
     ("Playlists"
      (("e" emms)
-      ("g" emms-play-directory "open dir")
+      ;; ("g" emms-play-directory "open dir")
       ("v" emms-playlist-mode-go "go to current")
       ("m" emms-metaplaylist-mode-go "metaplaylist")
-      ("t" emms-play-directory-tree "play directory"))
+      ;; ("t" emms-play-directory-tree "play directory")
+      )
      "Controls"
      (("n" emms-next "next" :exit nil)
       ("p" emms-previous "previous" :exit nil)
       ("x" emms-shuffle "shuffle")
       ("i" emms-show "song info")
-      ("l" lyrics-fetcher-show-lyrics "lyrics")
+      ("-" emms-volume-lower "lower volume" :exit nil)
       )
      "Controls"
      (("SPC" emms-pause "pause")
@@ -385,13 +386,18 @@
       ("," emms-seek-backward "backward" :exit nil)
       ("." emms-seek-forward "forward" :exit nil)
       ;; ("d" emms-play-dired "play the list")
+      ("=" emms-volume-raise "raise volume" :exit nil)
+      )
+     "lyrics"
+     (("l" lyrics-fetcher-show-lyrics "lyrics")
+      ("c" eli/lyrics-catchup "lyrics catchup")
+      ("t" emms-lyrics-toggle-display-on-minibuffer "toggle lyrics")
       )
      "Browser"
      (("b" emms-browser "browser")
       ("o" emms-browser-show-file-on-line "show score")
       ("d" emms-browser-set-score "set score")
-      ("-" emms-volume-lower "lower volume" :exit nil)
-      ("=" emms-volume-raise "raise volume" :exit nil))
+      )
      "Score"
      (("ss" emms-score-set-playing "set score for playing track")
       ("sd" emms-score-show-playing "show score of playing track")
