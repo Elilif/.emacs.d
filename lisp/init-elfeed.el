@@ -72,6 +72,24 @@ for confirmation when needed."
 
   (eval-after-load 'elfeed-search
     '(define-key elfeed-search-mode-map (kbd "m") 'elfeed-toggle-star))
+
+  ;; Filter elfeed search buffer by the feed under cursor.
+  (defun eli/elfeed-search-filter-source (entry)
+    "Filter elfeed search buffer by the feed under cursor."
+    (interactive (list (elfeed-search-selected :ignore-region)))
+    (when (elfeed-entry-p entry)
+      (elfeed-search-set-filter
+       (concat
+	"@6-months-ago "
+	"+unread "
+	"="
+	(replace-regexp-in-string
+	 (rx "?" (* not-newline) eos)
+	 ""
+	 (elfeed-feed-url (elfeed-entry-feed entry)))))))
+
+  (eval-after-load 'elfeed-search
+    '(define-key elfeed-search-mode-map (kbd "f") 'eli/elfeed-search-filter-source))
   )
 
 (use-package elfeed-org
