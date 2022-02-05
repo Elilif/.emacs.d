@@ -92,6 +92,17 @@ for confirmation when needed."
     '(define-key elfeed-search-mode-map (kbd "f") 'eli/elfeed-search-filter-source))
   )
 
+(use-package elfeed-score
+  :ensure t
+  :after elfeed
+  :config
+  (elfeed-score-enable)
+  (define-key elfeed-search-mode-map "=" elfeed-score-map)
+  (setq elfeed-score-serde-score-file "~/.emacs.d/private/elfeed.score")
+  (setq elfeed-score-rule-stats-file "~/.emacs.d/private/elfeed.stats")
+  ;; (setq elfeed-search-print-entry-function #'elfeed-score-print-entry)
+  )
+
 (use-package elfeed-org
   :ensure t
   :after elfeed
