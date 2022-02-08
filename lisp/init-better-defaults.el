@@ -459,4 +459,11 @@ create new one."
   (or (server-running-p)
       (server-start)))
 
+(defun my-search-with-chrome ()
+  "search with chrome."
+  (interactive)
+  (let ((target (read-string "Search for: ")))
+    (browse-url (concat "http://www.google.com/search?q="
+			(url-hexify-string target)))))
+
 (provide 'init-better-defaults)

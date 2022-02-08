@@ -69,6 +69,8 @@
      (("n" notdeft "notdeft"))
      "git grep"
      (("g" consult-git-grep))
+     "Google"
+     (("s" my-search-with-chrome))
      ))
   (pretty-hydra-define hydra-edit
     (:color amaranth :exit t :quit-key "q"
