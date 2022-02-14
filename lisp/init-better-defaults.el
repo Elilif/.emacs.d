@@ -454,10 +454,10 @@ create new one."
           next-line)))
 
 ;; disable showing Warning (server): Unable to start the Emacs server.
-(use-package server
-  :config
-  (or (server-running-p)
-      (server-start)))
+;; (use-package server
+;;   :config
+;;   (or (server-running-p)
+;;       (server-start)))
 
 (defun my-search-with-chrome ()
   "search with chrome."
