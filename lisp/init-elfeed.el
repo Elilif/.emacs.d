@@ -96,10 +96,10 @@ for confirmation when needed."
   :ensure t
   :after elfeed
   :config
-  (elfeed-score-enable)
-  (define-key elfeed-search-mode-map "=" elfeed-score-map)
   (setq elfeed-score-serde-score-file "~/.emacs.d/private/elfeed.score")
   (setq elfeed-score-rule-stats-file "~/.emacs.d/private/elfeed.stats")
+  (elfeed-score-enable)
+  (define-key elfeed-search-mode-map "=" elfeed-score-map)
   ;; (setq elfeed-search-print-entry-function #'elfeed-score-print-entry)
   )
 
