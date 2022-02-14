@@ -392,7 +392,7 @@
       )
      "lyrics"
      (("l" lyrics-fetcher-show-lyrics "lyrics")
-      ("c" eli/lyrics-catchup "lyrics catchup")
+      ("c" lyrics-fetcher-lyrics-catchup "lyrics catchup")
       ("t" emms-lyrics-toggle-display-on-minibuffer "toggle lyrics")
       )
      "Browser"
