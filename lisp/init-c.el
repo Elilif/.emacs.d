@@ -51,12 +51,12 @@
 	  (progn
 	    (setq file-name (file-name-nondirectory file-name))
 	    (let ((out-file (concat (file-name-sans-extension file-name) exec-suffix)))
-	      (setq-local compile-command (format "g++ -std=c++14 %s -o %s && .%s%s" file-name out-file os-sep out-file)))
-	    )
-	))
-    )
-  )
+	      (setq-local compile-command (format "g++ -std=c++14 %s -o %s && .%s%s" file-name out-file os-sep out-file))))))))
 
+(use-package ccls
+  :ensure t
+  :defer t
+  :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls))))
 
 (provide 'init-c)
 

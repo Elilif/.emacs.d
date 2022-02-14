@@ -56,12 +56,8 @@
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 
-(require 'init-const)
-(require 'init-funcs)
-(require 'init-custom)
 (require 'init-hydra)
 (require 'init-completion)
-(require 'init-company)
 (require 'init-better-defaults)
 (require 'init-org)
 (require 'init-reader)
@@ -71,7 +67,6 @@
 (require 'init-flycheck)
 (require 'init-lang)
 (require 'init-c)
-(require 'init-ctags)
 (require 'init-r)
 (require 'init-bib)
 (require 'init-spell)
@@ -82,6 +77,7 @@
 (require 'init-music)
 (require 'init-blog)
 (require 'init-tex)
+(require 'init-corfu)
 ;; (require 'init-eaf)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

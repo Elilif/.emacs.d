@@ -53,10 +53,10 @@
   :ensure t
   :config
   ;; https://github.com/oantolin/orderless/issues/48
-  (define-advice company-capf
-      (:around (orig-fun &rest args) set-completion-styles)
-    (let ((completion-styles '(basic partial-completion)))
-      (apply orig-fun args)))
+  ;; (define-advice company-capf
+  ;;     (:around (orig-fun &rest args) set-completion-styles)
+  ;;   (let ((completion-styles '(basic partial-completion)))
+  ;;     (apply orig-fun args)))
 
   ;; https://github.com/minad/consult/wiki
   (defvar +orderless-dispatch-alist
@@ -91,7 +91,7 @@
   (orderless-define-completion-style +orderless-with-initialism
     (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
 
-  (setq completion-styles '(orderless)
+  (setq completion-styles '(orderless partial-completion)
         completion-category-defaults nil
         completion-category-overrides
         '((buffer (styles basic partial-completion))
