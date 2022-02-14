@@ -465,5 +465,6 @@ create new one."
   (let ((target (read-string "Search for: ")))
     (browse-url (concat "http://www.google.com/search?q="
 			(url-hexify-string target)))))
+(setq sentence-end-double-space nil)
 
 (provide 'init-better-defaults)
