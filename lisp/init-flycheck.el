@@ -39,6 +39,11 @@
               '(not text-mode outline-mode fundamental-mode lisp-interaction-mode
                     org-mode diff-mode shell-mode eshell-mode term-mode vterm-mode)))
 
+(use-package flycheck-posframe
+  :ensure t
+  :after flycheck
+  :config (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
+
 (provide 'init-flycheck)
 ;;; init-flycheck.el ends here
 
