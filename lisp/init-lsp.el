@@ -35,7 +35,7 @@
    lsp-enable-on-type-formatting nil
    lsp-lens-enable nil)
   :config
-  ;; (add-to-list 'lsp-language-id-configuration '(snippet-mode . "plaintext"))
+  (add-to-list 'lsp-language-id-configuration '(snippet-mode . "plaintext"))
   
   )
 
