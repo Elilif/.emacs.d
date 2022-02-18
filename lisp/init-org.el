@@ -47,12 +47,15 @@
 	 )
   :config
   ;; improving emphasis marker
-  (sp-local-pair 'org-mode "~" "~ ")
-  ;; (sp-local-pair 'org-mode "/" "/ ")
-  (sp-local-pair 'org-mode "=" "= ")
-  ;; (sp-local-pair 'org-mode "+" "+ ")
-  (sp-local-pair 'org-mode "*" "* ")
-  (sp-local-pair 'org-mode "_" "_ ")
+  (sp-with-modes 'org-mode
+    (sp-local-pair "*" "* "
+                   :unless '(sp-point-after-word-p sp-point-at-bol-p)
+                   :skip-match 'sp--org-skip-asterisk)
+    (sp-local-pair "_" "_ " :unless '(sp-point-after-word-p))
+    (sp-local-pair "/" "/" :unless '(sp-point-after-word-p sp-org-point-after-left-square-bracket-p texmathp) :post-handlers '(("[d1]" "SPC")))
+    (sp-local-pair "~" "~ " :unless '(sp-point-after-word-p) :post-handlers '(("[d1]" "SPC")))
+    (sp-local-pair "=" "= " :unless '(sp-point-after-word-p) :post-handlers '(("[d1]" "SPC")))
+    (sp-local-pair "«" "»"))
 
   (use-package org-inlinetask
     :defer 5)
@@ -459,13 +462,13 @@ This list represents a \"habit\" for the rest of this module."
               (sequence "WAITING(w@/!)" "NEXT(n)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
 
 ;; disable company-mode in org-mode
-(defun eli/org-mode-hook ()
-  (set (make-local-variable 'company-dabbrev-char-regexp)
-       "^[\\.0-9a-z-_'/]")
-  (make-local-variable 'company-backends)
-  (flycheck-mode -1)
-  )
-(add-hook 'org-mode-hook 'eli/org-mode-hook)
+;; (defun eli/org-mode-hook ()
+;;   (set (make-local-variable 'company-dabbrev-char-regexp)
+;;        "^[\\.0-9a-z-_'/]")
+;;   (make-local-variable 'company-backends)
+;;   (flycheck-mode -1)
+;;   )
+;; (add-hook 'org-mode-hook 'eli/org-mode-hook)
 
 ;; org-protocol
 (use-package org-protocol

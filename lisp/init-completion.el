@@ -33,7 +33,7 @@
   :ensure t
   :init
   (require 'smartparens-config)
-  :hook (after-init . smartparens-global-strict-mode)
+  :hook (after-init . smartparens-global-mode)
   :config
   (sp-pair "（" "）")
   (sp-pair "“" "”")
