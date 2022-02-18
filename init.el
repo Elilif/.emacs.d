@@ -30,6 +30,12 @@
 
 ;;; Code:
 
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            "Recover GC values after startup."
+            (setq gc-cons-threshold 800000
+                  gc-cons-percentage 0.1)))
+
 
 (setq package-archives
       '(("gnu"   . "http://elpa.gnu.org/packages/")
@@ -54,7 +60,6 @@
 
 
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
-
 
 (require 'init-hydra)
 (require 'init-completion)
