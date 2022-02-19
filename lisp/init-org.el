@@ -47,12 +47,14 @@
 	 )
   :config
   ;; improving emphasis marker
+  (defun sp-texmathp (id action _context)
+    (texmathp))
   (sp-with-modes 'org-mode
     (sp-local-pair "*" "* "
                    :unless '(sp-point-after-word-p sp-point-at-bol-p)
                    :skip-match 'sp--org-skip-asterisk)
     (sp-local-pair "_" "_ " :unless '(sp-point-after-word-p))
-    (sp-local-pair "/" "/" :unless '(sp-point-after-word-p sp-org-point-after-left-square-bracket-p texmathp) :post-handlers '(("[d1]" "SPC")))
+    (sp-local-pair "/" "/ " :unless '(sp-point-after-word-p sp-org-point-after-left-square-bracket-p sp-texmathp) :post-handlers '(("[d1]" "SPC")))
     (sp-local-pair "~" "~ " :unless '(sp-point-after-word-p) :post-handlers '(("[d1]" "SPC")))
     (sp-local-pair "=" "= " :unless '(sp-point-after-word-p) :post-handlers '(("[d1]" "SPC")))
     (sp-local-pair "«" "»"))

@@ -42,8 +42,7 @@
     (cond ((looking-at-p "\\s(") (funcall fn))
 	  (t (save-excursion
 	       (ignore-errors (backward-up-list))
-	       (funcall fn)))))
-  )
+	       (funcall fn))))))
 
 (defvar mcfly-commands
   '(consult-line
