@@ -467,4 +467,5 @@ create new one."
 			(url-hexify-string target)))))
 (setq sentence-end-double-space nil)
 
+(setq kill-whole-line t)
 (provide 'init-better-defaults)
