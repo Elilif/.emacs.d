@@ -81,7 +81,7 @@ for confirmation when needed."
       (elfeed-search-set-filter
        (concat
 	"@6-months-ago "
-	"+unread "
+	;; "+unread "
 	"="
 	(replace-regexp-in-string
 	 (rx "?" (* not-newline) eos)
