@@ -90,6 +90,13 @@ for confirmation when needed."
 
   (eval-after-load 'elfeed-search
     '(define-key elfeed-search-mode-map (kbd "f") 'eli/elfeed-search-filter-source))
+
+  (defun eli/elfeed-search-starred-entries ()
+    (interactive)
+    (elfeed-search-set-filter "+starred"))
+
+  (eval-after-load 'elfeed-search
+    '(define-key elfeed-search-mode-map (kbd "M") 'eli/elfeed-search-starred-entries))
   )
 
 (use-package elfeed-score
