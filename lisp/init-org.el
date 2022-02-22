@@ -729,8 +729,8 @@ This list represents a \"habit\" for the rest of this module."
 	rime-show-candidate 'nil)
   (setq mode-line-mule-info '((:eval (rime-lighter))))
   (setq rime-inline-ascii-trigger 'shift-l)
-  (global-set-key (kbd "M-s-k") 'rime-inline-ascii)
-  (global-set-key (kbd "M-s-j") '+rime-convert-string-at-point)
+  (global-set-key (kbd "C-s-k") 'rime-inline-ascii)
+  (global-set-key (kbd "C-s-j") '+rime-convert-string-at-point)
   )
 
 (use-package org-superstar
