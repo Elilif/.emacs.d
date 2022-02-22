@@ -62,10 +62,10 @@
   :ensure t
   :after org
   :custom
-  (setq org-noter-auto-save-last-location t)
-  :config
-  (setq org-noter-notes-search-path '("~/Dropbox/org/roam"))
-  (setq org-noter-always-create-frame nil)
+  (org-noter-auto-save-last-location t)
+  (org-noter-doc-split-fraction '(0.6 . 0.4))
+  (org-noter-notes-search-path '("~/Dropbox/org/roam"))
+  (org-noter-always-create-frame nil)
   )
 
 (use-package org-pdftools
