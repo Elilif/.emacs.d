@@ -63,7 +63,9 @@
 
 ;; auto sync files
 (use-package autorevert
-  :hook (after-init . global-auto-revert-mode))
+  :hook (after-init . global-auto-revert-mode)
+  :custom
+  (global-auto-revert-non-file-buffers t))
 
 ;; disable backup
 (setq make-backup-files nil)
