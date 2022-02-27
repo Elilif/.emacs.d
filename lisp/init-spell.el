@@ -62,7 +62,7 @@
   :after org
   :defer t
   :bind (("C-c t" . youdao-dictionary-search-at-point-posframe))
-  :init
+  :config
   (setq url-automatic-caching t)
   (defun youdao-dictionary-delete-newlines (&optional beg end)
     "Save the current region (or line) to the `kill-ring' after stripping extra whitespace and new lines"
