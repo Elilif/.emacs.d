@@ -163,6 +163,8 @@ for confirmation when needed."
   :defer t
   :commands (mu4e)
   :if (executable-find "mu")
+  :bind (:map mu4e-headers-mode-map
+	 ("f" . eli/mu4e-search-filter-source))
   :config
   (setq mail-user-agent 'mu4e-user-agent)
   (setq user-full-name "Eli")
@@ -182,7 +184,18 @@ for confirmation when needed."
            ("maildir:/drafts"                                                      "drafts"                           ?d)
            ("mime:image/*"                                                         "Messages with images"             ?p)
 	   ("maildir:/trash"                                                       "Trash"                            ?g)
-	   )))
+	   ))
+
+  ;; filter
+  (defun eli/mu4e-search-filter-source ()
+    (interactive)
+    (let* ((msg (mu4e-message-at-point))
+	   (sender-address (mu4e~org-first-address msg :from))
+	   (sender-email (progn
+			   (string-match "<\\(.*\\)>" sender-address)
+			   (match-string 1 sender-address))))
+      (mu4e~headers-search-execute (concat "from:" sender-email) nil)))
+  )
 
 (use-package mu4e-alert
   :ensure t
