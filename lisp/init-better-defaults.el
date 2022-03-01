@@ -295,6 +295,12 @@
   ;; 在Bookmark中进入dired buffer时自动刷新
   (setq dired-auto-revert-buffer t))
 
+(use-package all-the-icons-dired
+  :ensure t
+  :hook (dired-mode . all-the-icons-dired-mode)
+  :custom
+  (all-the-icons-dired-monochrome nil))
+
 (use-package hungry-delete
   :ensure t
   :hook (after-init . global-hungry-delete-mode)
