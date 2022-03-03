@@ -46,6 +46,9 @@
 	       ("C-c C-l" . 'org-insert-link))
 	 )
   :config
+  ;; prettify symbols
+  (setq org-pretty-entities t)
+
   ;; improving emphasis marker
   (defun sp-texmathp (id action _context)
     (texmathp))
