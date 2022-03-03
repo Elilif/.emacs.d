@@ -76,6 +76,7 @@
    '(org-ref-cite-face ((t (:foreground "#986801" :underline nil :weight light))))
    '(org-ref-cite-&-face ((t (:inherit org-ref-cite-face))))
    '(org-link ((t (:inherit nil :foreground "#000000" :underline (:color "dim gray" :style line)))))
+   '(shr-link ((t (:inherit nil :foreground "#000000" :underline (:color "dim gray" :style line)))))
    '(rime-default-face ((t (:background "gainsboro" :foreground "#333333"))))
    )
 
