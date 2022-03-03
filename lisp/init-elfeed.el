@@ -176,6 +176,7 @@ for confirmation when needed."
   ;; configure the bookmarks.
   (setq mu4e-bookmarks
 	'( ("flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org"  "Unread messages"                  ?u)
+	   ("NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org"                  "All messages"                     ?a)
            ("date:today..now AND NOT list:emacs-orgmode.gnu.org"                   "Today's messages"                 ?t)
            ("date:7d..now AND NOT list:emacs-orgmode.gnu.org"                      "Last 7 days"                      ?w)
            ("date:1d..now AND NOT list:emacs-orgmode.gnu.org"                      "Last 1 days"                      ?y)
