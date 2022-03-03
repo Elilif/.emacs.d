@@ -61,7 +61,7 @@
     (sp-local-pair "_" "_ " :unless '(sp-point-after-word-p))
     (sp-local-pair "/" "/ " :unless '(sp-point-after-word-p sp-org-point-after-left-square-bracket-p sp-texmathp) :post-handlers '(("[d1]" "SPC")))
     (sp-local-pair "~" "~ " :unless '(sp-point-after-word-p) :post-handlers '(("[d1]" "SPC")))
-    (sp-local-pair "=" "= " :unless '(sp-point-after-word-p) :post-handlers '(("[d1]" "SPC")))
+    (sp-local-pair "=" "= " :unless '(sp-point-after-word-p sp-texmathp) :post-handlers '(("[d1]" "SPC")))
     (sp-local-pair "«" "»"))
 
   (use-package org-inlinetask
@@ -173,7 +173,7 @@
   (setq org-latex-listings 'minted)
   (setq org-latex-compiler "xelatex")
   (add-to-list 'org-latex-packages-alist
-	       '("" "minted" t))
+	       '("cache=false" "minted" t))
   (add-to-list 'org-latex-packages-alist
 	       '("" "xcolor" t))
   (add-to-list 'org-latex-packages-alist

@@ -135,4 +135,22 @@
           (cdlatex-tab)
         (yas-next-field-or-maybe-expand)))))
 
+(use-package xenops
+  :ensure t
+  :defer t
+  :hook ((org-mode . xenops-mode)
+	 (LaTeX-mode . xenops-mode))
+  :config
+  (setq xenops-math-image-scale-factor 1.3))
+
+(use-package org-latex-impatient
+  :defer t
+  :hook (org-mode . org-latex-impatient-mode)
+  :init
+  (setq org-latex-impatient-tex2svg-bin
+        ;; location of tex2svg executable
+        "~/node_modules/mathjax-node-cli/bin/tex2svg")
+  :config
+  (setq org-latex-impatient-posframe-position 'point))
+
 (provide 'init-tex)
