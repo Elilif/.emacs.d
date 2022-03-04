@@ -196,6 +196,11 @@ for confirmation when needed."
 			   (string-match "<\\(.*\\)>" sender-address)
 			   (match-string 1 sender-address))))
       (mu4e~headers-search-execute (concat "from:" sender-email) nil)))
+
+  ;; citation format
+  (setq mu4e-view-show-addresses t)
+  (setq message-citation-line-format "On %a, %b %d %Y, %f wrote:\n")
+  (setq message-citation-line-function #'message-insert-formatted-citation-line)
   )
 
 (use-package mu4e-alert
