@@ -476,4 +476,7 @@ create new one."
 (setq sentence-end-double-space nil)
 
 (setq kill-whole-line t)
+
+(setq bookmark-set-fringe-mark nil)
+
 (provide 'init-better-defaults)
