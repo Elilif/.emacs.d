@@ -419,7 +419,7 @@ This list represents a \"habit\" for the rest of this module."
          "* PROJECT %? "
          :empty-lines 0)
         ("h" "Habit" entry (file org-agenda-file-habit)
-         "* TODO %? \nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n  :PROPERTIES:\n  :STYLE:    habit\n  :END:\n\n%U"
+         "* TODO %? \nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n:PROPERTIES:\n:STYLE:    habit\n:END:\n\n%U"
          :empty-lines 0)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
          "* %? \n\n%a \n\n%i \n\n%U"
