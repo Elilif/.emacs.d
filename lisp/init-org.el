@@ -162,7 +162,9 @@
   (global-set-key (kbd "<f8>") 'eli/rating)
   (setq org-clock-out-remove-zero-time-clocks t)
   (setq org-clock-in-switch-to-state `eli/clock-in-to-nest)
+
   ;; latex
+  (setq org-preview-latex-default-process 'dvisvgm)
   (add-hook 'org-mode #'turn-on-cdlatex)
   (setq org-format-latex-options '(:foreground default :background default
                                                :scale 1.5 :html-foreground "Black"
