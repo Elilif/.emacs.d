@@ -138,10 +138,12 @@
 (use-package xenops
   :ensure t
   :defer t
-  :hook ((org-mode . xenops-mode)
+  :hook (
+	 ;; (org-mode . xenops-mode)
 	 (LaTeX-mode . xenops-mode))
   :config
-  (setq xenops-math-image-scale-factor 1.3))
+  (setq xenops-math-image-scale-factor 1.3)
+  (setq xenops-image-try-write-clipboard-image-to-file nil))
 
 (use-package org-latex-impatient
   :defer t
