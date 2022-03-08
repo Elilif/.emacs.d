@@ -261,6 +261,8 @@
   :config
   (setq dired-recursive-copies 'always)
   (setq dired-recursive-deletes 'always)
+  (setq dired-guess-shell-alist-user '(("\\.doc\\'" "wps")
+                                       ("\\.docx\\'" "wps")))
   (put 'dired-find-alternate-file 'disabled nil)
   (eval-after-load "dired"
     ;; don't remove `other-window', the caller expects it to be there
@@ -330,6 +332,17 @@
 (use-package all-the-icons
   :ensure t
   :defer t)
+
+(use-package kind-icon
+  :after corfu
+  :custom
+  (kind-icon-use-icons t)
+  (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
+  (kind-icon-blend-background nil)  ; Use midpoint color between foreground and background colors ("blended")?
+  (kind-icon-blend-frac 0.08)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter) ; Enable `kind-icon'
+  )
 
 (use-package golden-ratio
   :ensure t
