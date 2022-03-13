@@ -184,8 +184,7 @@
   (defun eli/follow-backlinks (entry)
     (let* ((node-at-point (get-text-property 0 'node entry))
 	   (backlink-nodes (org-roam-backlinks-get node-at-point)))
-      (eli/org-roam-backlink-node-read--completions backlink-nodes)
-      (eli/org-roam-backlink-node-read backlink-nodes)))
+      (org-roam-node-visit (eli/org-roam-backlink-node-read backlink-nodes))))
 
   (defvar my-org-roam-map
     (let ((map (make-sparse-keymap)))
