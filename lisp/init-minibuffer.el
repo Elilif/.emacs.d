@@ -130,6 +130,103 @@
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none))))
+
+  (defun eli/org-roam-backlink-node-read--completions (backlink-nodes &optional filter-fn sort-fn)
+    (let* ((template (org-roam-node--process-display-format org-roam-node-display-template))
+           (nodes (eli/get-backlink-list backlink-nodes))
+           (nodes (mapcar (lambda (node)
+                            (org-roam-node-read--to-candidate node template)) nodes))
+           (nodes (if filter-fn
+                      (cl-remove-if-not
+                       (lambda (n) (funcall filter-fn (cdr n)))
+                       nodes)
+                    nodes))
+           (sort-fn (or sort-fn
+			(when org-roam-node-default-sort
+                          (intern (concat "org-roam-node-read-sort-by-"
+                                          (symbol-name org-roam-node-default-sort))))))
+           (nodes (if sort-fn (seq-sort sort-fn nodes)
+                    nodes)))
+      nodes))
+
+  (defun eli/org-roam-backlink-node-read (backlink-nodes &optional initial-input filter-fn sort-fn require-match prompt)
+    (let* ((nodes (eli/org-roam-backlink-node-read--completions backlink-nodes filter-fn sort-fn)
+		  )
+           (prompt (or prompt "Node: "))
+           (node (completing-read
+                  prompt
+                  (lambda (string pred action)
+                    (if (eq action 'metadata)
+			`(metadata
+                          ;; Preserve sorting in the completion UI if a sort-fn is used
+                          ,@(when sort-fn
+                              '((display-sort-function . identity)
+				(cycle-sort-function . identity)))
+                          (annotation-function
+                           . ,(lambda (title)
+				(funcall org-roam-node-annotation-function
+					 (get-text-property 0 'node title))))
+                          (category . org-roam-node))
+                      (complete-with-action action nodes string pred)))
+                  nil require-match initial-input 'org-roam-node-history)))
+      (or (cdr (assoc node nodes))
+          (org-roam-node-create :title node))))
+
+  (defun eli/get-backlink-list (backlink-nodes)
+    (let ((counter 0)
+	  (node-list nil))
+      (while backlink-nodes
+	(add-to-list 'node-list (org-roam-backlink-source-node (pop backlink-nodes)))
+	(setq counter (1+ counter)))
+      node-list
+      ))
+
+  (defun eli/follow-backlinks (entry)
+    (let* ((node-at-point (get-text-property 0 'node entry))
+	   (backlink-nodes (org-roam-backlinks-get node-at-point)))
+      (eli/org-roam-backlink-node-read--completions backlink-nodes)
+      (eli/org-roam-backlink-node-read backlink-nodes)))
+
+  (defvar my-org-roam-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "i") 'org-roam-node-insert)
+      (define-key map (kbd "s") 'embark-collect-snapshot)
+      (define-key map (kbd "b") 'eli/follow-backlinks)
+      map)
+    "Keymap for 'org-roam' v2.")
+
+  ;; make available my-org-roam-map to embark-act
+  (add-to-list 'embark-keymap-alist '(org-roam-node . my-org-roam-map))
+
+  ;; define the keymap
+  (defvar my-citar-embark-become-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "f") 'citar-open)
+      (define-key map (kbd "x") 'biblio-arxiv-lookup)
+      (define-key map (kbd "c") 'biblio-crossref-lookup)
+      (define-key map (kbd "i") 'biblio-ieee-lookup)
+      (define-key map (kbd "h") 'biblio-hal-lookup)
+      (define-key map (kbd "s") 'biblio-dissemin-lookup)
+      (define-key map (kbd "b") 'biblio-dblp-lookup)
+      (define-key map (kbd "o") 'biblio-doi-insert-bibtex)
+      map)
+    "Citar Embark become keymap for biblio lookup.")
+
+  ;; tell embark about the keymap
+  (add-to-list 'embark-become-keymaps 'my-citar-embark-become-map)
+
+  (defun ex/search-pdf-contents (keys-entries &optional str)
+    "Search pdfs."
+    (interactive (list (citar-select-refs)))
+    (let ((files (citar-file--files-for-multiple-entries
+                  (citar--ensure-entries keys-entries)
+                  citar-library-paths
+                  '("pdf")))
+          (search-str (or str (read-string "Search string: "))))
+      (pdf-occur-search files search-str t)))
+
+  ;; with this, you can exploit embark's multitarget actions, so that you can run `embark-act-all`
+  (add-to-list 'embark-multitarget-actions #'ex/search-pdf-contents)
   )
 
 ;; Consult users will also want the embark-consult package.
