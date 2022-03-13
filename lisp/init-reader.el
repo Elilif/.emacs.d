@@ -63,7 +63,7 @@
   :after org
   :custom
   (org-noter-auto-save-last-location t)
-  (org-noter-doc-split-fraction '(0.6 . 0.4))
+  (org-noter-doc-split-fraction '(0.52 0.48))
   (org-noter-notes-search-path '("~/Dropbox/org/roam"))
   (org-noter-always-create-frame nil)
   )
