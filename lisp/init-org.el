@@ -410,22 +410,31 @@ This list represents a \"habit\" for the rest of this module."
     (org-id-get-create)))
 (add-hook 'org-capture-prepare-finalize-hook #'eli/org-capture-maybe-create-id)
 
+;; better fill region in capture
+(defun eli/fill-region ()
+  (save-excursion
+    (push-mark)
+    (push-mark (point-max) nil t)
+    (goto-char (minibuffer-prompt-end))
+    (org-fill-paragraph nil t)))
+(add-hook 'org-capture-prepare-finalize-hook 'eli/fill-region)
+
 (setq org-capture-templates
       '(
         ("t" "Todo" entry (file org-agenda-file-inbox)
-         "* TODO %? \n\n%i \n%U"
+         "* TODO %?\n\n%i \n%U"
          :empty-lines 0)
         ("p" "Project" entry (file org-agenda-file-projects)
-         "* PROJECT %? "
+         "* PROJECT %?"
          :empty-lines 0)
         ("h" "Habit" entry (file org-agenda-file-habit)
-         "* TODO %? \nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n:PROPERTIES:\n:STYLE:    habit\n:END:\n\n%U"
+         "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n:PROPERTIES:\n:STYLE:    habit\n:END:\n\n%U"
          :empty-lines 0)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
-         "* %? \n\n%a \n\n%i \n\n%U"
+         "* %?\n\n#+begin_quote\n%i\n#+end_quote \n\n- reference :: %a \n\n%U"
          :empty-lines 0)
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
-         "* %<%H:%M> %? "
+         "* %<%H:%M> %?"
          :empty-lines 0
 	 :clock-in t
 	 :clock-resume t)
@@ -450,7 +459,7 @@ This list represents a \"habit\" for the rest of this module."
 	("c" "Animes" entry (file+headline org-agenda-file-lists "Animes")
 	 "* TODO %?\n %^{Title}p %^{URL}p %^{Episodes}p %^{Release}p %^{Director}p %^{Authors}p %^{Publisher}p %^{Rating}p")
 	("r" "NOTE" entry (file "~/Dropbox/org/roam/inbox.org")
-	 "* %?\n%^{REFERENCE}p%i"
+	 "* %?\n\n#+begin_quote\n%i\n#+end_quote \n\n- reference :: %a "
 	 :create-id t)
         ))
 
@@ -699,20 +708,32 @@ This list represents a \"habit\" for the rest of this module."
 	      ;; #'org-roam-unlinked-references-section
 	      ))
   (setq org-roam-completion-everywhere t)
-  (setq org-roam-node-display-template "${file} > ${olp} > ${title:90}${tags:10}")
+  (cl-defmethod org-roam-node-type ((node org-roam-node))
+    "Return the TYPE of NODE."
+    (condition-case nil
+	(file-name-nondirectory
+	 (directory-file-name
+          (file-name-directory
+           (file-relative-name (org-roam-node-file node) org-roam-directory))))
+      (error "")))
+  (setq org-roam-node-display-template
+	(concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (setq org-roam-dailies-capture-templates
 	'(("d" "default" entry
            "* %?"
            :if-new (file+datetree "~/Dropbox/org/roam/daily/dailies.org" day))))
   (setq org-roam-capture-templates '(("f" "file" plain "%?"
-                                      :if-new (file+head "${slug}.org"
+                                      :if-new (file+head "main/%<%Y%m%d%H%M%S>.org"
 							 "#+TITLE: ${title}\n")
                                       :unnarrowed t)
-				     ("r" "bibliography reference" plain
+				     ("b" "bibliography reference" plain
 				      (file "~/.emacs.d/private/orb-capture-template.org")
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
 				      )
-				     ))
+				     ("r" "reference" plain "%? \n\n#+begin_quote\n%i\n#+end_quote \n\n- reference :: %a \n\n%U"
+				      :if-new
+				      (file+head "references/%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
+				      :unnarrowed t)))
 
   (org-roam-db-autosync-mode)
   ;; (require 'org-roam-protocol)

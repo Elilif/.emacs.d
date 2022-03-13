@@ -71,15 +71,6 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; better fill region in capture
-(defun eli/fill-region ()
-  (interactive)
-  (let* ((min (point-min))
-         (max (- (point-max) 25)))
-    (fill-region min max)))
-(global-set-key (kbd "M-s-q") 'eli/fill-region)
-
-
 (delete-selection-mode 1)
 (setq initial-frame-alist '((fullscreen . maximized)))
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
