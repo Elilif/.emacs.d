@@ -171,6 +171,7 @@ for confirmation when needed."
   (setq user-mail-address "eli.q.qian@gmail.com")
   (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq shr-use-colors nil)
+  (setq mu4e-view-show-images t)
   (setq mu4e-get-mail-command "proxychains mbsync -a"
 	mu4e-update-interval 600)
   ;; configure the bookmarks.
