@@ -410,6 +410,13 @@ This list represents a \"habit\" for the rest of this module."
     (org-id-get-create)))
 (add-hook 'org-capture-prepare-finalize-hook #'eli/org-capture-maybe-create-id)
 
+;; from: https://stackoverflow.com/questions/21073859/is-there-a-way-with-org-capture-templates-to-not-insert-a-line-if-initial-conten
+(defun v-i-or-nothing ()
+  (let ((v-i (plist-get org-store-link-plist :initial)))
+    (if (equal v-i "")
+        ""
+      (concat "\n#+begin_quote\n" v-i "\n#+end_quote\n"))))
+
 ;; better fill region in capture
 (defun eli/fill-region ()
   (save-excursion
@@ -431,8 +438,9 @@ This list represents a \"habit\" for the rest of this module."
          "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n:PROPERTIES:\n:STYLE:    habit\n:END:\n\n%U"
          :empty-lines 0)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
-         "* %?\n\n#+begin_quote\n%i\n#+end_quote \n\n- reference :: %a \n\n%U"
-         :empty-lines 0)
+         "* %?\n%(v-i-or-nothing)\n- reference :: %a \n\n%U"
+         :empty-lines 0
+	 :prepend t)
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
          "* %<%H:%M> %?"
          :empty-lines 0
@@ -448,7 +456,7 @@ This list represents a \"habit\" for the rest of this module."
          "* %a \n%i \n%U"
          :empty-lines 0)
 	("T" "TE" entry (file org-agenda-file-te)
-	 "* TODO %u [/]\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d> \n%?"
+	 "* TODO %u [/]\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d>\n%?"
 	 :jump-to-captured t)
 	("b" "Book" entry (file+headline org-agenda-file-lists "Books")
 	 "* TODO %?\n  %^{Title}p %^{Isbn}p %^{Types}p %^{Authors}p %^{Translator}p %^{Publisher}p %^{Nation}p %^{Lang}p %^{Rating}p")
@@ -459,7 +467,7 @@ This list represents a \"habit\" for the rest of this module."
 	("c" "Animes" entry (file+headline org-agenda-file-lists "Animes")
 	 "* TODO %?\n %^{Title}p %^{URL}p %^{Episodes}p %^{Release}p %^{Director}p %^{Authors}p %^{Publisher}p %^{Rating}p")
 	("r" "NOTE" entry (file "~/Dropbox/org/roam/inbox.org")
-	 "* %?\n\n#+begin_quote\n%i\n#+end_quote \n\n- reference :: %a "
+	 "* %?\n%(v-i-or-nothing)\n- reference :: %a "
 	 :create-id t)
         ))
 
@@ -730,7 +738,7 @@ This list represents a \"habit\" for the rest of this module."
 				      (file "~/.emacs.d/private/orb-capture-template.org")
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
 				      )
-				     ("r" "reference" plain "%? \n\n#+begin_quote\n%i\n#+end_quote \n\n- reference :: %a \n\n%U"
+				     ("r" "reference" plain "%? \n%(v-i-or-nothing)\n- reference :: %a \n\n%U"
 				      :if-new
 				      (file+head "references/%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
 				      :unnarrowed t)))
