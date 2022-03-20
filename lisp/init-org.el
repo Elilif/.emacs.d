@@ -417,6 +417,12 @@ This list represents a \"habit\" for the rest of this module."
         ""
       (concat "\n#+begin_quote\n" v-i "\n#+end_quote\n"))))
 
+(defun v-a-or-nothing ()
+  (let ((v-a (plist-get org-store-link-plist :annotation)))
+    (if (equal v-a "")
+        ""
+      (concat "- reference :: " v-a "\n"))))
+
 ;; better fill region in capture
 (defun eli/fill-region ()
   (save-excursion
@@ -438,7 +444,7 @@ This list represents a \"habit\" for the rest of this module."
          "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+0d\") .+1d>\n:PROPERTIES:\n:STYLE:    habit\n:END:\n\n%U"
          :empty-lines 0)
         ("n" "Notes" entry (file+headline org-agenda-file-inbox "Notes")
-         "* %?\n%(v-i-or-nothing)\n- reference :: %a \n\n%U"
+         "* %?\n%(v-i-or-nothing)\n%(v-a-or-nothing)\n%U"
          :empty-lines 0
 	 :prepend t)
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
@@ -467,7 +473,7 @@ This list represents a \"habit\" for the rest of this module."
 	("c" "Animes" entry (file+headline org-agenda-file-lists "Animes")
 	 "* TODO %?\n %^{Title}p %^{URL}p %^{Episodes}p %^{Release}p %^{Director}p %^{Authors}p %^{Publisher}p %^{Rating}p")
 	("r" "NOTE" entry (file "~/Dropbox/org/roam/inbox.org")
-	 "* %?\n%(v-i-or-nothing)\n- reference :: %a "
+	 "* %?\n%(v-i-or-nothing)\n%(v-a-or-nothing)"
 	 :create-id t)
         ))
 
@@ -738,7 +744,7 @@ This list represents a \"habit\" for the rest of this module."
 				      (file "~/.emacs.d/private/orb-capture-template.org")
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
 				      )
-				     ("r" "reference" plain "%? \n%(v-i-or-nothing)\n- reference :: %a \n\n%U"
+				     ("r" "reference" plain "%? \n%(v-i-or-nothing)\n%(v-a-or-nothing)\n%U"
 				      :if-new
 				      (file+head "references/%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
 				      :unnarrowed t)))
