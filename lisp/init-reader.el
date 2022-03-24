@@ -194,13 +194,8 @@
   :custom
   (spray-wpm 200))
 
-(use-package shrface
+(use-package dash-functional
   :ensure t
-  :defer t
-  :config
-  (shrface-basic)
-  (shrface-trial)
-  (shrface-default-keybindings) ; setup default keybindings
-  (setq shrface-href-versatile t))
+  :after nov)
 
 (provide 'init-reader)
