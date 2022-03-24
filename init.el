@@ -47,7 +47,7 @@
 
 
 ;; Speed up startup
-(setq auto-mode-case-qfold nil)
+(setq auto-mode-case-fold nil)
 
 ;; Bootstrap `use-package'
 (require 'package)
