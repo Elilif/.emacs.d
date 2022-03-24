@@ -164,7 +164,7 @@ for confirmation when needed."
   :commands (mu4e)
   :if (executable-find "mu")
   :bind (:map mu4e-headers-mode-map
-	 ("f" . eli/mu4e-search-filter-source))
+	      ("f" . eli/mu4e-search-filter-source))
   :config
   (setq mail-user-agent 'mu4e-user-agent)
   (setq user-full-name "Eli")
@@ -172,6 +172,7 @@ for confirmation when needed."
   (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq shr-use-colors nil)
   (setq mu4e-view-show-images t)
+  (setq mu4e-compose-format-flowed t)
   (setq mu4e-get-mail-command "proxychains mbsync -a"
 	mu4e-update-interval 600)
   ;; configure the bookmarks.
@@ -209,7 +210,8 @@ for confirmation when needed."
   :defer t
   :hook (mu4e-main-mode . mu4e-alert-enable-notifications)
   :config
-  (setq mu4e-alert-set-default-style 'libnotify)
+  (mu4e-alert-set-default-style 'notifications)
+  (setq mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org")
   )
 
 (use-package mu4e-maildirs-extension
