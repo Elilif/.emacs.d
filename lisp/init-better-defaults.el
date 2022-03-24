@@ -443,7 +443,8 @@ create new one."
   :ensure t
   :defer t
   :init
-  (setq global-undo-tree-mode t))
+  (setq global-undo-tree-mode t)
+  (setq undo-tree-auto-save-history nil))
 
 (use-package restart-emacs
   :ensure t
