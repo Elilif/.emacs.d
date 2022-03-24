@@ -59,7 +59,7 @@
   (add-hook 'TeX-after-compilation-finished-functions
            #'TeX-revert-document-buffer)
   
-  (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))
+  (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --shell-escape --synctex=1%(mode)%' %t" TeX-run-TeX nil t))
   (setq TeX-command-default "XeLaTeX")
 
   (defun eli/TeX-mode-hook ()
