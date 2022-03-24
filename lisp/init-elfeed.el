@@ -203,6 +203,17 @@ for confirmation when needed."
   (setq mu4e-view-show-addresses t)
   (setq message-citation-line-format "On %a, %b %d %Y, %f wrote:\n")
   (setq message-citation-line-function #'message-insert-formatted-citation-line)
+
+  ;; from https://ag91.github.io/blog/2022/02/28/set-all-incoming-emails-as-read-with-mu4e/
+  (defun my/emails-set-all-as-read ()
+    "Make all emails read."
+    (interactive)
+    (require 'mu4e-contrib)
+    (with-temp-buffer
+      (mu4e-headers-search-bookmark "flag:unread AND list:emacs-orgmode.gnu.org")
+      (sleep-for 0.15)
+      (mu4e-headers-mark-all-unread-read)
+      (mu4e-mark-execute-all 'no-confirmation)))
   )
 
 (use-package mu4e-alert
