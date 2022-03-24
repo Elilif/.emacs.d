@@ -744,7 +744,7 @@ This list represents a \"habit\" for the rest of this module."
 				      (file "~/.emacs.d/private/orb-capture-template.org")
 				      :if-new (file+head "references/${citekey}.org" "#+title: ${title}\n")
 				      )
-				     ("r" "reference" plain "%? \n%(v-i-or-nothing)\n%(v-a-or-nothing)\n%U"
+				     ("r" "reference" plain "%? \n%(v-i-or-nothing)\n%(v-a-or-nothing)"
 				      :if-new
 				      (file+head "references/%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n")
 				      :unnarrowed t)))
