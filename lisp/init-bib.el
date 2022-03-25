@@ -116,7 +116,7 @@
 					(expand-file-name
 					 (or calibredb-ref-default-bibliography
                                              (concat (file-name-as-directory calibredb-root-dir) "catalog.bib")))))
-                       :input (s-join " " (-remove 's-blank? (-flatten "--fields title,authors,formats,isbn,pubdate,publisher,languages")))
+                       :input (s-join " " (-remove 's-blank? (-flatten "--fields title,authors,formats,isbn,pubdate,publisher,tags,languages")))
                        :library (format "--library-path %s" (calibredb-root-dir-quote)))
     (calibredb-ref-default-bibliography)
     (message "Updated BibTex file.")
