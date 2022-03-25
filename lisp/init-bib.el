@@ -94,15 +94,18 @@
 (use-package calibredb
   :ensure t
   :defer t
+  :hook
+  (calibredb-search-mode . eli/calibre-refresh)
   :init
   (autoload 'calibredb "calibredb")
   :config
-  ;; (setq calibredb-root-dir "~/Documents/Eli'sPDF")
+  (setq calibredb-root-dir "~/Documents/Eli'sBooks")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  (setq calibredb-library-alist '(("~/Documents/Calibre")
-				  ("~/Documents/Eli'sPDF")
+  (setq calibredb-library-alist '(
+				  ;; ("~/Documents/Calibre")
+				  ;; ("~/Documents/Eli'sPDF")
 				  ("~/Documents/Eli'sBooks")
-				  ("~/Documents/Thesis")
+				  ;; ("~/Documents/Thesis")
 				  ))
   (defun eli/update-calibre-bibtex ()
     "Export the catalog with BibTex file."
