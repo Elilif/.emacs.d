@@ -124,7 +124,7 @@
 
 (use-package shrface
   :ensure t
-  :defer t
+  :after nov
   :config
   (shrface-basic)
   (shrface-trial)
@@ -182,7 +182,7 @@
                   (id (car (esxml-node-children (esxml-query selector content)))))
         (intern id)))
     (advice-add #'nov-content-unique-identifier :override #'my-nov-content-unique-identifier))
-  (require 'shrface)
+  (setq nov-text-width 80)
   (setq nov-shr-rendering-functions '((img . nov-render-img) (title . nov-render-title)))
   (setq nov-shr-rendering-functions (append nov-shr-rendering-functions shr-external-rendering-functions))
   )
