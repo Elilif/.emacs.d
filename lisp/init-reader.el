@@ -65,7 +65,7 @@
   (org-noter-auto-save-last-location t)
   (org-noter-doc-split-fraction '(0.52 0.48))
   (org-noter-notes-search-path '("~/Dropbox/org/roam"))
-  (org-noter-always-create-frame nil)
+  (org-noter-always-create-frame t)
   )
 
 (use-package org-pdftools
