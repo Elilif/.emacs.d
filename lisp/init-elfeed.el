@@ -214,6 +214,27 @@ for confirmation when needed."
       (sleep-for 0.15)
       (mu4e-headers-mark-all-unread-read)
       (mu4e-mark-execute-all 'no-confirmation)))
+
+  ;; overlay the original `mu4e~view-make-urls-clickable' to  hide URLs
+  (defun mu4e~view-make-urls-clickable ()
+    "Turn things that look like URLs into clickable things.
+Also number them so they can be opened using `mu4e-view-go-to-url'."
+    (let ((num 0))
+      (save-excursion
+	(setq mu4e~view-link-map ;; buffer local
+              (make-hash-table :size 32 :weakness nil))
+	(goto-char (point-min))
+	(while (re-search-forward mu4e~view-beginning-of-url-regexp nil t)
+          (let ((bounds (thing-at-point-bounds-of-url-at-point)))
+            (when bounds
+              (let* ((url (thing-at-point-url-at-point))
+                     (ov (make-overlay (car bounds) (cdr bounds))))
+		(puthash (cl-incf num) url mu4e~view-link-map)
+		(overlay-put ov 'after-string
+                             (propertize (format "\u200B[%d]" num)
+					 'face 'mu4e-url-number-face))
+		(overlay-put ov 'display "")
+		)))))))
   )
 
 (use-package mu4e-alert
