@@ -89,7 +89,30 @@
 (use-package lyrics-fetcher
   :ensure t
   :after emms
+  :bind (:map lyrics-fetcher-view-mode-map
+	      ("RET" . lyrics-fetcher-neteasecloud-lyrics-jump))
   :config
-  (lyrics-fetcher-use-backend 'neteasecloud))
+  (lyrics-fetcher-use-backend 'neteasecloud)
+
+  ;; jump to specific lyrics
+  (defun lyrics-fetcher-neteasecloud-lyrics-jump ()
+    (interactive)
+    (if (derived-mode-p 'lyrics-fetcher-view-mode)
+	(let* ((timestamp (save-excursion
+			    (beginning-of-line)
+			    (thing-at-point 'sexp ':no-properties)))
+	       (minutes (string-to-number
+			 (progn
+			   (string-match "\\([[:digit:]]\\{2\\}\\):\\([[:digit:]]\\{2\\}\\).\\([[:digit:]]\\)" timestamp)
+			   (match-string 1 timestamp))))
+	       (seconds (string-to-number
+			 (match-string 2 timestamp)))
+	       (jiffies (string-to-number
+			 (match-string 3 timestamp)))
+	       )
+	  (if timestamp
+	      (emms-seek-to (+ (* 60 minutes) seconds (* 0.1 jiffies)))
+	    (message "No timestamp found!"))))
+    (message "This function must be called in lyrics-fetcher-view-mode!")))
 
 (provide 'init-music)
