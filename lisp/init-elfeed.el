@@ -164,7 +164,9 @@ for confirmation when needed."
   :commands (mu4e)
   :if (executable-find "mu")
   :bind (:map mu4e-headers-mode-map
-	      ("f" . eli/mu4e-search-filter-source))
+	      ("f" . eli/mu4e-search-filter-source)
+	      ("!" . mu4e-headers-mark-for-refile)
+	      ("r" . mu4e-headers-mark-for-read))
   :config
   (setq mail-user-agent 'mu4e-user-agent)
   (setq user-full-name "Eli")
@@ -172,6 +174,7 @@ for confirmation when needed."
   (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq shr-use-colors nil)
   (setq mu4e-view-show-images t)
+  (setq mu4e-view-prefer-html t)
   (setq mu4e-compose-format-flowed t)
   (setq mu4e-get-mail-command "proxychains mbsync -a"
 	mu4e-update-interval 600)
