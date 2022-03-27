@@ -119,8 +119,9 @@
                        :input (s-join " " (-remove 's-blank? (-flatten "--fields title,authors,formats,isbn,pubdate,publisher,tags,languages")))
                        :library (format "--library-path %s" (calibredb-root-dir-quote)))
     (calibredb-ref-default-bibliography)
-    (message "Updated BibTex file.")
-    )
+    (citar-refresh)
+    (message "Updated BibTex file."))
+
   (defun eli/calibre-refresh ()
     (setq calibredb-ref-default-bibliography (concat (file-name-as-directory calibredb-root-dir) "catalog.bib"))
     )
