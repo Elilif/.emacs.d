@@ -289,6 +289,7 @@
     ("Reference"
      (("o" citar-open "citar open")
       ("g" citar-refresh "refresh citar cache")
+      ("s" ex/search-pdf-contents "search pdf")
       )
      "Calibre"
      (("c" calibredb "calibre")
@@ -418,9 +419,7 @@
       ("s" quickrun-shell "quickrun shell")
       ("d" dap-hydra "dap"))
      )
-    )
-  
-  )
+    ))
 
 
 (provide 'init-hydra)
