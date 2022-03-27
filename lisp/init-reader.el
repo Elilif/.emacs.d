@@ -65,7 +65,7 @@
   (org-noter-auto-save-last-location t)
   (org-noter-doc-split-fraction '(0.52 0.48))
   (org-noter-notes-search-path '("~/Dropbox/org/roam"))
-  (org-noter-always-create-frame t)
+  (org-noter-always-create-frame nil)
   )
 
 (use-package org-pdftools
@@ -146,6 +146,7 @@
                              :height 1.5))
   (add-hook 'nov-mode-hook 'my-nov-font-setup)
   :config
+  (setq nov-variable-pitch nil)
   (require 'justify-kp)
   (setq nov-text-width t)
   (defun my-nov-window-configuration-change-hook ()
