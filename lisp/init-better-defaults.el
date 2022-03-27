@@ -198,11 +198,13 @@
   ("C-\"" . 'avy-goto-char-near-point)
   )
 
+(use-package pinyinlib
+  :load-path "~/.emacs.d/private/pinyinlib")
+
 (use-package ace-pinyin
-  :ensure t
+  :load-path "~/.emacs.d/private/ace-pinyin/"
   :defer t
-  :hook (after-init . ace-pinyin-global-mode)
-  )
+  :hook (after-init . ace-pinyin-global-mode))
 
 (use-package iedit
   :ensure t

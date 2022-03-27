@@ -58,6 +58,10 @@
   ;;   (let ((completion-styles '(basic partial-completion)))
   ;;     (apply orig-fun args)))
 
+  (defun completion--regex-pinyin (str)
+    (orderless-regexp (pinyinlib-build-regexp-string str)))
+  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin)
+
   ;; https://github.com/minad/consult/wiki
   (defvar +orderless-dispatch-alist
     '((?% . char-fold-to-regexp)
@@ -102,14 +106,6 @@
         ;; allow escaping space with backslash!
         orderless-component-separator #'orderless-escapable-split-on-space
         orderless-style-dispatchers '(+orderless-dispatch))
-  )
-
-(use-package pinyinlib
-  :ensure t
-  :config
-  (defun completion--regex-pinyin (str)
-    (orderless-regexp (pinyinlib-build-regexp-string str)))
-  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin)
   )
 
 (use-package embark
