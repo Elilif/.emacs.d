@@ -435,7 +435,7 @@ This list represents a \"habit\" for the rest of this module."
 (setq org-capture-templates
       '(
         ("t" "Todo" entry (file org-agenda-file-inbox)
-         "* TODO %?\n\n%i \n%U"
+         "* TODO %?\n\n%i\n%U"
          :empty-lines 0)
         ("p" "Project" entry (file org-agenda-file-projects)
          "* PROJECT %?"
