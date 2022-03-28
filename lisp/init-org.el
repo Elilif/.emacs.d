@@ -48,6 +48,8 @@
 	       ("C-<tab>" . eli/org-expand-all))
 	 )
   :config
+
+  (setq org-adapt-indentation t)
   ;; prettify symbols
   (setq org-pretty-entities t)
 
