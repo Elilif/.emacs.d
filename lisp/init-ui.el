@@ -124,7 +124,7 @@
     ;; chinese fonts
     (dolist (charset '(kana han cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font) charset
-			(font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))
+			(font-spec :family "Sarasa Mono SC Nerd" :size 20)))
     (set-fontset-font "fontset-default" 'unicode "AR PL New Kai" nil 'prepend)
     (set-fontset-font "fontset-default" 'unicode "Noto Color Emoji" nil 'prepend)
     ))
