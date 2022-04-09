@@ -395,9 +395,9 @@ This list represents a \"habit\" for the rest of this module."
 
 ;; org todo keaywords
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
+      (quote ((sequence "TODO(t/!)" "STARTED(s)" "|" "DONE(d!/!)")
               (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
-              (sequence "WAITING(w@/!)" "NEXT(n)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
+              (sequence "WAITING(w@/!)" "NEXT(n!/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
 
 ;; disable company-mode in org-mode
 ;; (defun eli/org-mode-hook ()
