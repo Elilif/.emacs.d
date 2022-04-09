@@ -103,14 +103,12 @@
 			    (thing-at-point 'sexp ':no-properties)))
 	       (minutes (string-to-number
 			 (progn
-			   (string-match "\\([[:digit:]]\\{2\\}\\):\\([[:digit:]]\\{2\\}\\).\\([[:digit:]]\\{2\\}\\)" timestamp)
+			   (string-match "\\([[:digit:]]\\{2\\}\\):\\([[:digit:]]\\{2\\}\\)" timestamp)
 			   (match-string 1 timestamp))))
 	       (seconds (string-to-number
-			 (match-string 2 timestamp)))
-	       (jiffies (string-to-number
-			 (match-string 3 timestamp))))
+			 (match-string 2 timestamp))))
 	  (if timestamp
-	      (emms-seek-to (+ (* 60 minutes) seconds (* 0.01 jiffies)))
+	      (emms-seek-to (+ (* 60 minutes) seconds))
 	    (message "No timestamp found!")))
     (message "This function must be called in lyrics-fetcher-view-mode!"))))
 
