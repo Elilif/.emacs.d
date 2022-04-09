@@ -52,7 +52,8 @@
 
   )
 
-(use-package dap-mode
-  :ensure t
-  :defer t)
+;; (use-package dap-mode
+;;   :ensure t
+;;   :defer t)
+
 (provide 'init-lsp)
