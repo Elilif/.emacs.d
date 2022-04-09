@@ -174,8 +174,28 @@
                                                :html-scale 1.0
                                                :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   ;; pdf exporting
+  (setq org-preview-latex-process-alist
+        '((dvisvgm :programs
+                   ("xelatex" "dvisvgm")
+                   :description "xdv > svg" :message "you need to install the programs: xelatex and dvisvgm." :use-xcolor t :image-input-type "xdv" :image-output-type "svg" :image-size-adjust
+                   (1.7 . 1.5)
+                   :latex-compiler
+                   ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
+                   :image-converter
+                   ("dvisvgm %f -n -b min -c %S -o %O"))
+          (imagemagick :programs
+                       ("xelatex" "convert")
+                       :description "pdf > png" :message "you need to install the programs: xelatex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
+                       (1.0 . 1.0)
+                       :latex-compiler
+                       ("xelatex -interaction nonstopmode -output-directory %o %f")
+                       :image-converter
+                       ("convert -density %D -trim -antialias %f -quality 100 %O"))))
+
   (setq org-latex-listings 'minted)
   (setq org-latex-compiler "xelatex")
+  ;; (add-to-list 'org-latex-packages-alist
+  ;;            '("UTF8" "ctex" t))
   (add-to-list 'org-latex-packages-alist
 	       '("cache=false" "minted" t))
   (add-to-list 'org-latex-packages-alist
@@ -205,6 +225,15 @@
 		 "\\documentclass[ignorenonframetext,presentation]{beamer}"
 		 ("\\section{%s}" . "\\section*{%s}")
 		 ("\\subsection{%s}" . "\\subsection*{%s}"))
+	       )
+  (add-to-list 'org-latex-classes
+	       '("article_cn"
+		 "\\documentclass[11pt]{ctexart}"
+		 ("\\section{%s}" . "\\section*{%s}")
+		 ("\\subsection{%s}" . "\\subsection*{%s}")
+		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
 	       ))
 
 (use-package org-mind-map
