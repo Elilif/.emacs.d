@@ -407,8 +407,7 @@
   :config
   (setq wttrin-default-cities '("WuZhen?m?T" "HangZhou?m?T"))
   (setq wttrin-mode-line-city "HangZhou")
-  (setq wttrin-mode-line-format "%l:+%c %t %w")
-  )
+  (setq wttrin-mode-line-format "%l:+%c %t %w"))
 
 (use-package hl-todo
   :ensure t
