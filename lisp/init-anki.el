@@ -101,7 +101,7 @@
 		org-download-heading-lvl nil
 		org-download-delete-image-after-download t
 		org-download-screenshot-method "flameshot gui --raw > %s"
-		org-download-image-org-width 600
+		org-download-image-org-width 800
 		org-download-annotate-function (lambda (link) "") ;; Don't annotate
 		))
 ;; org-download use buffer-local variables. Set it individually in files. Otherwise, put things flatly in misc
