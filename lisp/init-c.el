@@ -51,12 +51,29 @@
 	  (progn
 	    (setq file-name (file-name-nondirectory file-name))
 	    (let ((out-file (concat (file-name-sans-extension file-name) exec-suffix)))
-	      (setq-local compile-command (format "g++ -std=c++14 %s -o %s && .%s%s" file-name out-file os-sep out-file))))))))
+	      (setq-local compile-command (format "g++ -std=c++11 -g %s -o %s && .%s%s" file-name out-file os-sep out-file))))))))
 
 (use-package ccls
   :ensure t
   :defer t
   :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls))))
+
+(use-package gdb-mi
+  :custom
+  (gdb-show-main t)
+  (gdb-many-windows t)
+  :config
+  (defun gdb-non-stop-handler ()
+    (goto-char (point-min))
+    (if (re-search-forward "No symbol" nil t)
+	(progn
+	  (message
+           "This version of GDB doesn't support non-stop mode.  Turning it off.")
+	  (setq gdb-non-stop nil)
+	  (setq gdb-supports-non-stop nil))
+      (setq gdb-supports-non-stop t)
+      (gdb-input "-gdb-set mi-async 1" 'ignore)
+      (gdb-input "-list-target-features" 'gdb-check-target-async))))
 
 (provide 'init-c)
 
