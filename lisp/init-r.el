@@ -32,13 +32,13 @@
 
 (use-package ess
   :ensure t
-  :hook (ess-r-mode . eli/ess-mode-hook)
+  :hook (inferior-ess-r-mode . eli/disable-corfu-auto)
   :config
-  (defun eli/ess-mode-hook ()
-    (setq-local company-box-doc-enable nil))
+  (defun eli/disable-corfu-auto ()
+    (setq-local corfu-auto nil))
   (setq ess-use-flymake nil
 	ess-ask-for-ess-directory nil
-	ess-history-file "~/R/.history"
+	ess-history-file "~/.R/.history"
 	ess-tab-complete-in-script t
 	comint-prompt-read-only t
 	ess-use-eldoc 'script-only
@@ -49,9 +49,9 @@
   :ensure t
   :init   (setq ess-smart-equals-extra-ops '(brace paren percent))
   :after  (:any ess-r-mode inferior-ess-r-mode ess-r-transcript-mode)
-  :bind (:map
-	 ess-smart-equals-mode-map
-	 ("\(" . nil))
+  ;; :bind (:map
+  ;; 	 ess-smart-equals-mode-map
+  ;; 	 ("(" . nil))
   :config (ess-smart-equals-activate))
 
 
