@@ -48,6 +48,7 @@
   '(consult-line
     consult-outline
     consult-git-grep
+    consult-ripgrep
     my-search-with-chrome))
 
 (defvar mcfly-back-commands
