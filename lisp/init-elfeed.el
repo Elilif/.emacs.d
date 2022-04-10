@@ -55,8 +55,12 @@ for confirmation when needed."
   ((:map elfeed-search-mode-map
 	 ("q" . eli/elfeed-search-quit-and-kill-buffers))
    (:map elfeed-show-mode-map
-	 ("\C-k" . keyboard-quit)))
+	 ("\C-g" . eli/keyboard-quit)))
   :config
+  (defun eli/keyboard-quit ()
+    (interactive)
+    (keyboard-quit))
+
   (setq elfeed-search-filter "@2-days-ago +unread +A")
 
   ;; face for starred articles
