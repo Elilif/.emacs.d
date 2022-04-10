@@ -42,7 +42,7 @@
   (use-package org-media-note-org-ref
     :after org-media-note)
   (setq org-media-note-use-org-ref t)
-  :hook (org-mode .  org-media-note-mode)
+  ;; :hook (org-mode .  org-media-note-mode)
   ;; :after org
   :bind (
 	 ("C-c x" . org-media-note-hydra/body))
@@ -194,7 +194,7 @@
 (use-package org-roam-bibtex
   :ensure t
   :defer t
-  :hook (org-mode . org-roam-bibtex-mode)
+  :hook (org-roam-mode . org-roam-bibtex-mode)
   :config
   (setq orb-roam-ref-format 'org-cite)
   (setq orb-preformat-keywords

@@ -70,9 +70,11 @@
 
 (use-package org-pdftools
   :ensure t
-  :after org
-  :defer 5
-  :hook (org-mode . org-pdftools-setup-link))
+  ;; :after org
+  :defer 8
+  :config
+  (org-pdftools-setup-link)
+  )
 
 ;; (use-package org-noter-pdftools
 ;;   :ensure t
