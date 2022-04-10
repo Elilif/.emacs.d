@@ -97,8 +97,8 @@
       (kill-region (point-min) (point-max)))))
 
 ;; split window right
-(setq split-height-threshold nil)
-(setq split-width-threshold 0)
+;; (setq split-height-threshold nil)
+;; (setq split-width-threshold 0)
 
 ;; fix M-j
 (defun eli-org-fill-prefix ()
@@ -485,4 +485,38 @@ create new one."
 
 (setq bookmark-set-fringe-mark nil)
 
+
+(use-package popper
+  :ensure t ; or :straight t
+  :bind (("C-`"   . popper-toggle-latest)
+         ("M-`"   . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :custom
+  (popper-reference-buffers
+        '("\\*Messages\\*"
+	  "\\*scratch\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+	  "*Xenops-Doctor*"
+	  helpful-mode
+          compilation-mode))
+  (popper-mode-line t)
+  (popper-echo-dispatch-keys '("1" "2" "3" "4" "5" "6" "7" "8" "9"))
+  (popper-echo-area ((t nil)))
+  (popper-echo-dispatch-hint ((t nil)))
+  (popper-display-control nil)
+  :init
+  (popper-mode 1)
+  (popper-echo-mode 1))
+
+(use-package shackle
+  :ensure t
+  :config
+  (setq shackle-rules '(("*Messages*" :align below :size 0.3)
+			("*scratch*" :align right :select t)
+			(helpful-mode :align right :select t)
+			(elfeed-show-mode :align right :select t :size 0.75)
+			))
+  (shackle-mode)
+  )
 (provide 'init-better-defaults)
