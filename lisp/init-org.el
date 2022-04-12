@@ -51,7 +51,7 @@
 
   (setq org-adapt-indentation t)
   ;; prettify symbols
-  (setq org-pretty-entities t)
+  (setq org-pretty-entities nil)
 
   ;; improving emphasis marker
   (defun sp-texmathp (id action _context)
