@@ -34,21 +34,21 @@
   (LaTeX-mode . prettify-symbols-mode)
   (LaTeX-mode . auto-fill-mode))
 
-(use-package tex
+(use-package latex
   :ensure auctex
   :defer  2
   :hook ((LaTeX-mode . prettify-symbols-mode)
 	 (LaTeX-mode . tex-source-correlate-mode)
 	 (LaTeX-mode . turn-on-reftex)
-	 (LaTeX-mode . eli/TeX-mode-hook)
+	 (LaTeX-mode . eli/TeX-mode-setting)
 	 )
   :config
-  (setq reftex-plug-into-AUCTeX t)
-  (setq reftex-default-bibliography eli/bibliography)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
-  (setq LaTeX-using-Biber t)
+  (setq LaTeX-biblatex-use-Biber t)
+  (setq LaTeX-item-indent 0)
+  (setq TeX-show-compilation nil)
   ;; (setq-default TeX-master nil)
 
   ;; Use pdf-tools to open PDF files
@@ -60,16 +60,16 @@
            #'TeX-revert-document-buffer)
   
   (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --shell-escape --synctex=1%(mode)%' %t" TeX-run-TeX nil t))
-  (setq TeX-command-default "XeLaTeX")
-
-  (defun eli/TeX-mode-hook ()
-    (make-local-variable 'company-backends)
-    (setq company-backends '((company-capf)))
-    )
+  (defun eli/TeX-mode-setting ()
+    (setq TeX-engine 'xetex)
+    (setq TeX-command-default "XeLaTeX"))
   )
 
 (use-package reftex
-  :after tex)
+  :after tex
+  :config
+  (setq reftex-plug-into-AUCTeX t)
+  (setq reftex-default-bibliography eli/bibliography))
 
 (use-package preview
   :after tex
@@ -83,12 +83,11 @@
 (use-package lsp-latex
   :ensure t
   :defer t
-  :hook (LaTeX-mode . lsp)
+  :hook (LaTeX-mode . lsp-deferred)
   :init
   (setq lsp-latex-texlab-executable "/usr/bin/texlab")
   ;; (setq lsp-clients-digestif-executable "/usr/bin/digestif")
-  (setq lsp-tex-server 'texlab)
-  )
+  (setq lsp-tex-server 'texlab))
 
 ;; CDLatex settings
 (use-package cdlatex
