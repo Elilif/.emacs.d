@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Selected Fraction auto
-# binding : C-`
+# binding : C-~
 # condition: (texmathp)
 # group: math
 # --
