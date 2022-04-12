@@ -38,7 +38,7 @@
   (setq emms-score-max-score 10)
   (defvar eli-filter-score 0)
   :custom
-  ;; (emms-playlist-buffer-name "*Emms*")
+  (emms-playlist-buffer-name "*Emms*")
   (emms-source-file-default-directory "~/Music/")
   (emms-lyrics-dir "~/Music/lyrics")
   (emms-lyrics-display-on-minibuffer t)
