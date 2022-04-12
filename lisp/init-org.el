@@ -73,6 +73,7 @@
   (setq org-clock-sound "~/.emacs.d/private/bellring.wav")
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
+  (setq org-use-fast-todo-selection 'expert)
   (setq org-agenda-window-setup 'only-window)
   ;; Change task state to STARTED when clocking in
   (setq org-log-into-drawer t)
