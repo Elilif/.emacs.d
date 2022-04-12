@@ -327,6 +327,7 @@
   :defer t)
 
 (use-package kind-icon
+  :ensure t
   :after corfu
   :custom
   (kind-icon-use-icons t)
