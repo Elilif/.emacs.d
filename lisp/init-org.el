@@ -49,6 +49,22 @@
 	 )
   :config
 
+  (defun eli/insert-open-checkbox ()
+    (interactive)
+    (let* ((headline (save-excursion
+		       (org-back-to-heading)
+		       (org-element-at-point)))
+	   (text-begin (org-element-property :contents-begin headline))
+	   (text-end (org-element-property :contents-end headline))
+	   (content (buffer-substring text-begin text-end)))
+      (org-element-map (org-element--parse-elements text-begin
+						    text-end 'first-section nil 'object nil (list 'org-data nil))
+	  'item
+	(lambda (item) (if (eq (org-element-property :checkbox item) 'off)
+			   (progn
+			     (beginning-of-line)
+			     (insert (org-element-interpret-data item))))))))
+
   (setq org-adapt-indentation t)
   ;; prettify symbols
   (setq org-pretty-entities nil)
