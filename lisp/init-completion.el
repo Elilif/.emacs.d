@@ -36,6 +36,7 @@
   :hook (after-init . smartparens-global-mode)
   :config
   (sp-pair "（" "）")
+  (sp-pair "《" "》")
   (sp-pair "“" "”")
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens."
