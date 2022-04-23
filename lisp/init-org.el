@@ -723,9 +723,9 @@ This list represents a \"habit\" for the rest of this module."
   :ensure t
   :defer t
   :init
-  (setq org-roam-v2-ack t)
   ;; :hook (after-init . org-roam-db-autosync-mode)
   :config
+  (setq org-roam-database-connector 'sqlite-builtin)
   ;;  dynamically add roam files with TODO entry into agenda files
   (defvar dynamic-agenda-files nil
     "dynamic generate agenda files list when changing org state")
