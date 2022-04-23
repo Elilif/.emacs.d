@@ -46,14 +46,14 @@
   (emms-player-list '(emms-player-mpv))
   ;; covers
   (emms-browser-covers #'emms-browser-cache-thumbnail-async)
-  (emms-browser-thumbnail-small-size 64)
-  (emms-browser-thumbnail-medium-size 128)
   :config
   (require 'emms-setup)
   (emms-all)
   (emms-history-load)
   (emms-mode-line-disable)
 
+  (setq emms-browser-thumbnail-small-size 64)
+  (setq emms-browser-thumbnail-medium-size 128)
   ;; filters
   (emms-browser-make-filter "all" 'ignore)
   (emms-browser-make-filter
