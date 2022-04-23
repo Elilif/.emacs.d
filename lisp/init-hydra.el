@@ -417,7 +417,7 @@
      "Debug"
      (("r" quickrun "quickrun")
       ("s" quickrun-shell "quickrun shell")
-      ("d" dap-hydra "dap"))
+      ("d" gdb "gdb"))
      )
     ))
 
