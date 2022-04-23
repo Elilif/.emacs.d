@@ -401,14 +401,14 @@
               (ibuffer-switch-to-saved-filter-groups "default")))
   )
 
-(use-package wttrin
-  :ensure t
-  :load-path "~/.emacs.d/private/emacs-wttrin"
-  :hook (after-init . wttrin-display-weather-in-mode-line)
-  :config
-  (setq wttrin-default-cities '("WuZhen?m?T" "HangZhou?m?T"))
-  (setq wttrin-mode-line-city "HangZhou")
-  (setq wttrin-mode-line-format "%l:+%c %t %w"))
+;; (use-package wttrin
+;;   :ensure t
+;;   :load-path "~/.emacs.d/private/emacs-wttrin"
+;;   :hook (after-init . wttrin-display-weather-in-mode-line)
+;;   :config
+;;   (setq wttrin-default-cities '("WuZhen?m?T" "HangZhou?m?T"))
+;;   (setq wttrin-mode-line-city "HangZhou")
+;;   (setq wttrin-mode-line-format "%l:+%c %t %w"))
 
 (use-package hl-todo
   :ensure t
