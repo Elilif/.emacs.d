@@ -2,4 +2,5 @@
 # name: log
 # --
 :LOGBOOK:
-$0:END:
+$0
+:END:
