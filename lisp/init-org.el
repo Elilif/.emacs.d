@@ -498,17 +498,18 @@ This list represents a \"habit\" for the rest of this module."
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
          "* %<%H:%M> %?"
          :empty-lines 0
-	 :clock-in t
-	 :clock-resume t)
+	 ;; :clock-in t
+	 ;; :clock-resume t
+	 )
 	("e" "Events" entry (file "~/Elilif.github.io/2021-07-20-Eli's timeline.org")
 	 "* %<%Y-%m-%d>\n%?"
 	 :prepend t)
 	("B" "Blogs" plain (file eli/capture-report-date-file)
 	 "#+TITLE: %?\n#+DATE: %<%Y-%m-%d>\n#+STARTUP: showall\n#+OPTIONS: toc:nil H:2 num:2\n"
 	 )
-        ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
-         "* %a \n%i \n%U"
-         :empty-lines 0)
+        ;; ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
+        ;;  "* %a \n%i \n%U"
+        ;;  :empty-lines 0)
 	("T" "TE" entry (file org-agenda-file-te)
 	 "* TODO %u [/]\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d>\n%?"
 	 :jump-to-captured t)
