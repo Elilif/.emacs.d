@@ -498,7 +498,11 @@ create new one."
 	  "\\*scratch\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
-	  "*Xenops-Doctor*"
+	  "\\*Xenops-Doctor\\*"
+	  "\\*Emms\\*.*"
+	  "\\*Org LATEX Export\\*"
+	  emms-browser-mode
+	  org-agenda-mode
 	  helpful-mode
           compilation-mode))
   (popper-mode-line t)
@@ -513,11 +517,18 @@ create new one."
 (use-package shackle
   :ensure t
   :config
-  (setq shackle-rules '(("*Messages*" :align below :size 0.3)
-			("*scratch*" :align right :select t)
-			(helpful-mode :align right :select t)
-			(elfeed-show-mode :align right :select t :size 0.75)
+  (setq shackle-rules '(("*Messages*" :align below :size 0.3 :select t)
+			("*scratch*" :select t :align right)
+			(helpful-mode :select t :align right)
+			(elfeed-show-mode :select t :align right :size 0.75)
+			("\\*Outline.*\\*" :regexp t :align right :select t :size 0.3)
+			("*WordNut*" :select t :align right :size 0.4)
+			("\\*Emms\\*.*" :regexp t:align right :select t :size 0.5)
+			(emms-browser-mode :select t :align right :size 0.5)
+			(org-agenda-mode :select t :align right :size 0.35)
+			("*Org Select*" :select t :align right :size 0.3)
 			))
   (shackle-mode)
   )
+
 (provide 'init-better-defaults)
