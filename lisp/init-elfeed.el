@@ -170,7 +170,7 @@ for confirmation when needed."
 	      ("r" . mu4e-headers-mark-for-read))
   :config
   (setq mail-user-agent 'mu4e-user-agent)
-  (setq user-full-name "Eli")
+  (setq user-full-name "Eli Qian")
   (setq user-mail-address "eli.q.qian@gmail.com")
   (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq shr-use-colors nil)
@@ -181,16 +181,17 @@ for confirmation when needed."
 	mu4e-update-interval 600)
   ;; configure the bookmarks.
   (setq mu4e-bookmarks
-	'( ("flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org"  "Unread messages"                  ?u)
-	   ("NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org"                  "All messages"                     ?a)
-           ("date:today..now AND NOT list:emacs-orgmode.gnu.org"                   "Today's messages"                 ?t)
-           ("date:7d..now AND NOT list:emacs-orgmode.gnu.org"                      "Last 7 days"                      ?w)
-           ("date:1d..now AND NOT list:emacs-orgmode.gnu.org"                      "Last 1 days"                      ?y)
-           ("list:emacs-orgmode.gnu.org"                                           "Org mode"                         ?o)
-           ("maildir:/sent"                                                        "sent"                             ?s)
-           ("maildir:/drafts"                                                      "drafts"                           ?d)
-           ("mime:image/*"                                                         "Messages with images"             ?p)
-	   ("maildir:/trash"                                                       "Trash"                            ?g)
+	'( ("flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"  "Unread messages"                  ?u)
+	   ("NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                  "All messages"                     ?a)
+           ("date:today..now AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                   "Today's messages"                 ?t)
+           ("date:7d..now AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                      "Last 7 days"                      ?w)
+           ("date:1d..now AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                      "Last 1 days"                      ?y)
+           ("list:emacs-orgmode.gnu.org"                                                                       "Org mode"                         ?o)
+           ("list:emacs-devel.gnu.org"                                                                         "Emacs Devel"                      ?e)
+           ("maildir:/sent"                                                                                    "sent"                             ?s)
+           ("maildir:/drafts"                                                                                  "drafts"                           ?d)
+           ("mime:image/*"                                                                                     "Messages with images"             ?p)
+	   ("maildir:/trash"                                                                                   "Trash"                            ?g)
 	   ))
 
   ;; filter
@@ -247,7 +248,7 @@ Also number them so they can be opened using `mu4e-view-go-to-url'."
   :hook (mu4e-main-mode . mu4e-alert-enable-notifications)
   :config
   (mu4e-alert-set-default-style 'notifications)
-  (setq mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org")
+  (setq mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org")
   )
 
 (use-package mu4e-maildirs-extension
