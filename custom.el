@@ -11,7 +11,7 @@
  '(large-file-warning-threshold 1000000000)
  '(org-agenda-clockreport-parameter-plist '(:link t :maxlevel 2 :fileskip0 t))
  '(org-agenda-files
-   '("~/Dropbox/org/diary.org" "/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/projects.org"))
+   '("~/Dropbox/org/lists.org" "/home/eli/Dropbox/org/diary.org" "/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/habits.org" "/home/eli/Dropbox/org/projects.org"))
  '(org-agenda-window-setup 'current-window)
  '(org-babel-load-languages
    '((emacs-lisp . t)
