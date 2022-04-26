@@ -184,7 +184,7 @@
 
   ;; latex
   (setq org-preview-latex-default-process 'dvisvgm)
-  (add-hook 'org-mode #'turn-on-cdlatex)
+  (add-hook 'org-mode-hook #'turn-on-org-cdlatex)
   (setq org-format-latex-options '(:foreground default :background default
                                                :scale 1.5 :html-foreground "Black"
                                                :html-background "Transparent"
