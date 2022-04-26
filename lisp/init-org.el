@@ -433,6 +433,11 @@ This list represents a \"habit\" for the rest of this module."
   (server-start))
 
 
+;; org reverse tree
+(use-package org-reverse-datetree
+  :ensure t
+  :defer t)
+
 ;;org capture
 (setq org-agenda-dir "~/Dropbox/org")
 (setq org-directory "~/Dropbox/org")
@@ -498,6 +503,7 @@ This list represents a \"habit\" for the rest of this module."
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
          "* %<%H:%M> %?"
          :empty-lines 0
+	 :prepend t
 	 ;; :clock-in t
 	 ;; :clock-resume t
 	 )
@@ -507,10 +513,14 @@ This list represents a \"habit\" for the rest of this module."
 	("B" "Blogs" plain (file eli/capture-report-date-file)
 	 "#+TITLE: %?\n#+DATE: %<%Y-%m-%d>\n#+STARTUP: showall\n#+OPTIONS: toc:nil H:2 num:2\n"
 	 )
+	("T" "Time Report" plain (file+function "~/Dropbox/org/Clock_Report.org"  org-reverse-datetree-goto-date-in-file)
+	 "#+BEGIN: clocktable :scope agenda-with-archives :maxlevel 6 :block %<%Y-%m-%d> :fileskip0 t :indent t :link t\n#+END:"
+	 :empty-lines 0
+	 :jump-to-captured t)
         ;; ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
         ;;  "* %a \n%i \n%U"
         ;;  :empty-lines 0)
-	("T" "TE" entry (file org-agenda-file-te)
+	("w" "Words" entry (file org-agenda-file-te)
 	 "* TODO %u [/]\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d>\n%?"
 	 :jump-to-captured t)
 	("b" "Book" entry (file+headline org-agenda-file-lists "Books")
