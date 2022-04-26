@@ -728,8 +728,7 @@ This list represents a \"habit\" for the rest of this module."
                              unread-command-events))))
             (t (message "`+rime-convert-string-at-point' did nothing.")))))
   
-  (setq default-input-method "rime"
-	rime-show-candidate 'nil)
+  (setq rime-show-candidate 'nil)
   (setq mode-line-mule-info '((:eval (rime-lighter))))
   (setq rime-inline-ascii-trigger 'shift-l)
   (global-set-key (kbd "C-s-k") 'rime-inline-ascii)
