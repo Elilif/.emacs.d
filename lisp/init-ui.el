@@ -105,7 +105,7 @@
   :ensure t
   :hook (after-init . doom-modeline-mode)
   :config
-  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-buffer-encoding t)
   (column-number-mode 1)
   ;; (with-eval-after-load 'doom-modeline
   ;;   (set-face-attribute 'mode-line nil :font "Source Code Pro 11")
