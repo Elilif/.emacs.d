@@ -145,6 +145,7 @@
       ("h" org-mode "org mode")
       ("pp" org-pomodoro "sart a pomodoro")
       ("pt" org-pomodoro-extend-last-clock "extend pomodoro")
+      ("f" helm-org-agenda-files-headings "helm filter")
       )
      "Org link"
      (("li" grab-x-link-chromium-insert-link "insert web link")
@@ -152,7 +153,7 @@
       ("ld" org-download-clipboard "org download clipboard"))
      "Org-clock"
      (("i" org-clock-in)
-      ("c" org-clock-in-last)
+      ("c" org-mru-clock-in)
       ("o" org-clock-out)
       
       ("ke" org-clock-modify-effort-estimate "modify effort estimates")
@@ -177,10 +178,6 @@
       ("wg" writegood-mode "write good")
       ("wl" writegood-grade-level "grade level")
       ("we" writegood-reading-ease "reading-ease"))
-     "query"
-     (("et" org-ql-sparse-tree "org-ql sparse tree")
-      ("es" org-ql-search "org-ql search")
-      ("ev" org-ql-view "org-ql view"))
      "blog"
      (("bp" org-publish)
       ("bg" eli/push-to-gitpage)
@@ -188,13 +185,13 @@
      ))
 
   (pretty-hydra-define jp-window
-    (:color amaranth :exit nil :quit-key "q"
+    (:color amaranth :exit t :quit-key "q"
 	    :pre (progn (setq which-key-inhibit t)  )
             :post (progn (setq which-key-inhibit nil) ))
     ("Actions"
      (("TAB" other-window "switch")
-      ("x" ace-delete-window "delete")
-      ("m" ace-delete-other-windows "maximize")
+      ("m" ace-delete-window "delete")
+      ("x" ace-delete-other-windows "maximize")
       ("s" ace-swap-window "swap")
       ("a" ace-select-window "select"))
 
@@ -207,7 +204,7 @@
      ;;  ("f" toggle-frame-fullscreen "toggle fullscreen"))
 
      "Split"
-     (("b" split-window-right "horizontally")
+     (("h" split-window-right "horizontally")
       ("v" split-window-below "vertically")
       )
 
@@ -360,9 +357,12 @@
 	    :post (progn (setq which-key-inhibit nil)
 			 ))
     ("Input"
-     (("i" eli/input-switch "switch input"))
+     (("s" eli/input-switch "switch input"))
      "Yank"
-     (("p" consult-yank-pop "Clipboard")))
+     (("p" consult-yank-pop "Clipboard"))
+     "Emoji"
+     (("i" emoji-insert)
+      ("f" emoji-search)))
     )
   (pretty-hydra-define hydra-player
     (:color amaranth :exit t :quit-key "q"
@@ -423,3 +423,4 @@
 
 
 (provide 'init-hydra)
+;;; init-hydra.el ends here.
