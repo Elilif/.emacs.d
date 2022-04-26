@@ -1007,4 +1007,21 @@ holding contextual information."
        ;; Otherwise, fallback to standard org-mode link format
        ((org-element-link-interpreter link contents)))))
   )
+
+(use-package org-mru-clock
+  :ensure t
+  :defer t
+  :config
+  (setq org-mru-clock-how-many 30)
+  (setq org-mru-clock-files #'org-agenda-files)
+  (add-hook 'minibuffer-setup-hook #'org-mru-clock-embark-minibuffer-hook))
+
+(use-package org-clock-convenience
+  :ensure t
+  :defer t
+  :bind (:map org-agenda-mode-map
+	      ("M-<up>" . org-clock-convenience-timestamp-up)
+	      ("M-<down>" . org-clock-convenience-timestamp-down)
+	      ("<f6>" . org-clock-convenience-fill-gap)
+	      ("<f7>" . org-clock-convenience-fill-gap-both)))
 (provide 'init-org)
