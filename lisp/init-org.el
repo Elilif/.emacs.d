@@ -561,6 +561,22 @@ This list represents a \"habit\" for the rest of this module."
                            (match-string 1 org-read-date-final-answer)))))
               ))
 
+;;; time report
+;;; from: https://emacs.stackexchange.com/questions/31683/schedule-org-task-for-last-day-of-every-month
+;;; ORG-MODE:  * My Task
+;;;              SCHEDULED: <%%(diary-last-day-of-month date)>
+;;; DIARY:  %%(diary-last-day-of-month date) Last Day of the Month
+;;; See also:  (setq org-agenda-include-diary t)
+;;; (diary-last-day-of-month '(2 28 2017))
+(defun diary-last-day-of-month (date)
+"Return `t` if DATE is the last day of the month."
+  (let* ((day (calendar-extract-day date))
+         (month (calendar-extract-month date))
+         (year (calendar-extract-year date))
+         (last-day-of-month
+            (calendar-last-day-of-month month year)))
+    (= day last-day-of-month)))
+
 ;; appt
 (use-package appt
   :after org
