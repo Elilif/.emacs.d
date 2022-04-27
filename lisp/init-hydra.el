@@ -159,7 +159,7 @@
       ("ke" org-clock-modify-effort-estimate "modify effort estimates")
       ("kk" org-clock-cancel)
 
-      ("g" org-clock-goto)
+      ("g" org-mru-clock-goto)
       ("d" org-clock-display)
       ("kr" org-clock-report)
       ("?" (org-info "Clocking commands")))
