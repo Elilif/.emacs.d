@@ -503,7 +503,6 @@ This list represents a \"habit\" for the rest of this module."
         ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
          "* %<%H:%M> %?"
          :empty-lines 0
-	 :prepend t
 	 ;; :clock-in t
 	 ;; :clock-resume t
 	 )
@@ -810,7 +809,7 @@ This list represents a \"habit\" for the rest of this module."
 	'(("d" "default" entry
            "* %?"
            :if-new (file+datetree "~/Dropbox/org/roam/daily/dailies.org" day))))
-  (setq org-roam-capture-templates '(("f" "file" plain "%?"
+  (setq org-roam-capture-templates '(("f" "main" plain "%?"
                                       :if-new (file+head "main/%<%Y%m%d%H%M%S>.org"
 							 "#+TITLE: ${title}\n")
                                       :unnarrowed t)
