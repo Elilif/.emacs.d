@@ -792,7 +792,7 @@ This list represents a \"habit\" for the rest of this module."
   (setq org-roam-mode-section-functions
         (list #'org-roam-backlinks-section
 	      #'org-roam-reflinks-section
-	      #'org-roam-unlinked-references-section
+	      ;; #'org-roam-unlinked-references-section
 	      ))
   (setq org-roam-completion-everywhere t)
   (cl-defmethod org-roam-node-type ((node org-roam-node))
