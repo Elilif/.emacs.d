@@ -181,17 +181,17 @@ for confirmation when needed."
 	mu4e-update-interval 600)
   ;; configure the bookmarks.
   (setq mu4e-bookmarks
-	'( ("flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"  "Unread messages"                  ?u)
-	   ("NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                  "All messages"                     ?a)
-           ("date:today..now AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                   "Today's messages"                 ?t)
-           ("date:7d..now AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                      "Last 7 days"                      ?w)
-           ("date:1d..now AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org"                      "Last 1 days"                      ?y)
-           ("list:emacs-orgmode.gnu.org"                                                                       "Org mode"                         ?o)
-           ("list:emacs-devel.gnu.org"                                                                         "Emacs Devel"                      ?e)
-           ("maildir:/sent"                                                                                    "sent"                             ?s)
-           ("maildir:/drafts"                                                                                  "drafts"                           ?d)
-           ("mime:image/*"                                                                                     "Messages with images"             ?p)
-	   ("maildir:/trash"                                                                                   "Trash"                            ?g)
+	'( ("flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT list:emacs-devel.gnu.org"  "Unread messages"                  ?u)
+	   ("NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT list:emacs-devel.gnu.org"                  "All messages"                     ?a)
+           ("date:today..now AND NOT list:emacs-orgmode.gnu.org AND NOT list:emacs-devel.gnu.org"                   "Today's messages"                 ?t)
+           ("date:7d..now AND NOT list:emacs-orgmode.gnu.org AND NOT list:emacs-devel.gnu.org"                      "Last 7 days"                      ?w)
+           ("date:1d..now AND NOT list:emacs-orgmode.gnu.org AND NOT list:emacs-devel.gnu.org"                      "Last 1 days"                      ?y)
+           ("list:emacs-orgmode.gnu.org"                                                                            "Org mode"                         ?o)
+           ("list:emacs-devel.gnu.org"                                                                              "Emacs Devel"                      ?e)
+           ("maildir:/sent"                                                                                         "sent"                             ?s)
+           ("maildir:/drafts"                                                                                       "drafts"                           ?d)
+           ("mime:image/*"                                                                                          "Messages with images"             ?p)
+	   ("maildir:/trash"                                                                                        "Trash"                            ?g)
 	   ))
 
   ;; filter
