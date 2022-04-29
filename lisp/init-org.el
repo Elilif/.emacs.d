@@ -1049,7 +1049,7 @@ holding contextual information."
   :ensure t
   :after embark
   :config
-  (setq org-mru-clock-how-many 30)
+  (setq org-mru-clock-how-many 50)
   (setq org-mru-clock-files #'org-agenda-files)
   (add-hook 'minibuffer-setup-hook #'org-mru-clock-embark-minibuffer-hook))
 
