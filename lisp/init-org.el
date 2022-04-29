@@ -630,7 +630,7 @@ This list represents a \"habit\" for the rest of this module."
                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp))))
           (tags-todo "/+NEXT"
                      ((org-agenda-overriding-header "Next")))
-          (tags-todo "/+STARTED"
+          (tags-todo "PROJECT|INBOX/+STARTED"
                      ((org-agenda-overriding-header "Started")))
           (tags-todo "/+PROJECT"
                      ((org-agenda-overriding-header "Projects")))
