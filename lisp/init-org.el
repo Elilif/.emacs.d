@@ -500,7 +500,7 @@ This list represents a \"habit\" for the rest of this module."
          "* %?\n%(v-i-or-nothing)\n%(v-a-or-nothing)\n%U"
          :empty-lines 0
 	 :prepend t)
-        ("j" "Journals" entry (file+olp+datetree org-agenda-file-journal)
+        ("j" "Journals" entry (file+function org-agenda-file-journal org-reverse-datetree-goto-date-in-file)
          "* %<%H:%M> %?"
          :empty-lines 0
 	 ;; :clock-in t
@@ -513,7 +513,7 @@ This list represents a \"habit\" for the rest of this module."
 	 "#+TITLE: %?\n#+DATE: %<%Y-%m-%d>\n#+STARTUP: showall\n#+OPTIONS: toc:nil H:2 num:2\n"
 	 )
 	("T" "Time Report" plain (file+function "~/Dropbox/org/Clock_Report.org"  org-reverse-datetree-goto-date-in-file)
-	 "#+BEGIN: clocktable :scope agenda-with-archives :maxlevel 6 :block %<%Y-%m-%d> :fileskip0 t :indent t :link t\n#+END:"
+	 "#+BEGIN: clocktable :scope agenda-with-archives :maxlevel 6 :block %<%Y-%m-%d> :fileskip0 t :indent t :link t :formula % :sort (3 . ?T)\n#+END:"
 	 :empty-lines 0
 	 :jump-to-captured t)
         ;; ("d" "Digests" entry (file+olp+datetree org-agenda-file-notes)
@@ -528,7 +528,7 @@ This list represents a \"habit\" for the rest of this module."
 	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Actors}p %^{Types}p %^{Time}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
 	("s" "Series" entry (file+headline org-agenda-file-lists "Series")
 	 "* TODO %?\n %^{Title}p %^{IMDB}p %^{URL}p %^{Director}p %^{Writer}p %^{Actors}p %^{Types}p %^{Time}p %^{Episodes}p %^{Release}p %^{Nation}p %^{Lang}p %^{Rating}p")
-	("c" "Animes" entry (file+headline org-agenda-file-lists "Animes")
+	("a" "Animes" entry (file+headline org-agenda-file-lists "Animes")
 	 "* TODO %?\n %^{Title}p %^{URL}p %^{Episodes}p %^{Release}p %^{Director}p %^{Authors}p %^{Publisher}p %^{Rating}p")
 	("r" "NOTE" entry (file "~/Dropbox/org/roam/inbox.org")
 	 "* %?\n%(v-i-or-nothing)\n%(v-a-or-nothing)"
@@ -809,7 +809,7 @@ This list represents a \"habit\" for the rest of this module."
 	'(("d" "default" entry
            "* %?"
            :if-new (file+datetree "~/Dropbox/org/roam/daily/dailies.org" day))))
-  (setq org-roam-capture-templates '(("f" "main" plain "%?"
+  (setq org-roam-capture-templates '(("m" "main" plain "%?"
                                       :if-new (file+head "main/%<%Y%m%d%H%M%S>.org"
 							 "#+TITLE: ${title}\n")
                                       :unnarrowed t)
