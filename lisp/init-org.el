@@ -86,7 +86,6 @@
     :defer 5)
   (use-package org-mu4e
     :defer t)
-  (setq org-clock-sound "~/.emacs.d/private/bellring.wav")
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
   (setq org-use-fast-todo-selection 'expert)
@@ -179,7 +178,12 @@
     (interactive (eli/get-tag-counts))
     (org-map-entries 'eli/entry-rating (concat type "+LEVEL=2/!-DONE-CANCELLED")))
   (global-set-key (kbd "<f8>") 'eli/rating)
+
+  ;; org-clock
   (setq org-clock-out-remove-zero-time-clocks t)
+  (setq org-clock-continuously t)
+  (setq org-clock-mode-line-total 'today)
+  (setq org-clock-sound "~/.emacs.d/private/bellring.wav")
   (setq org-clock-in-switch-to-state `eli/clock-in-to-nest)
 
   ;; latex
