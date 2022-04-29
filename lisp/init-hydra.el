@@ -110,7 +110,8 @@
       ("df" org-roam-dailies-goto-date "goto date")
       ("dc" org-roam-dailies-capture-today "goto today")
       ("aa" org-roam-alias-add "add alias")
-      ("ar" org-roam-alias-remove "remove alias"))
+      ("ar" org-roam-alias-remove "remove alias")
+      ("u" org-roam-ui-mode))
      )
     )
 
