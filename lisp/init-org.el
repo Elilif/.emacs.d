@@ -1060,6 +1060,8 @@ holding contextual information."
 	      ("M-<up>" . org-clock-convenience-timestamp-up)
 	      ("M-<down>" . org-clock-convenience-timestamp-down)
 	      ("<f6>" . org-clock-convenience-fill-gap)
-	      ("<f7>" . org-clock-convenience-fill-gap-both)))
+	      ("<f7>" . org-clock-convenience-fill-gap-both))
+  :config
+  (setq org-clock-convenience-clocked-agenda-re "^ +\\([^:]+\\):[[:space:]]*\\(\\([ 	012][0-9]\\):\\([0-5][0-9]\\)\\)-\\(\\([ 012]*[0-9]\\):\\([0-5][0-9]\\)\\|.*\\)?[[:space:]]+Clocked:[[:space:]]+\\(([0-9]+:[0-5][0-9])\\|(-)\\)"))
 
 (provide 'init-org)
