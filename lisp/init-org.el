@@ -444,10 +444,9 @@ This list represents a \"habit\" for the rest of this module."
 
 (setq org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir))
 (setq org-agenda-file-projects (expand-file-name "projects.org" org-agenda-dir))
-(setq org-agenda-file-habit (expand-file-name "habits.org" org-agenda-dir))
+(setq org-agenda-file-habit (expand-file-name "daily.org" org-agenda-dir))
 (setq org-agenda-file-notes (expand-file-name "notes.org" org-agenda-dir))
 (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
-(setq org-agenda-file-code-snippets (expand-file-name "snippets.org" org-agenda-dir))
 (setq org-agenda-file-te (expand-file-name "words.org" org-agenda-dir))
 (setq org-agenda-file-lists (expand-file-name "lists.org" org-agenda-dir))
 (setq org-agenda-files (list org-agenda-dir))
