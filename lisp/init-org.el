@@ -1054,10 +1054,10 @@ holding contextual information."
 (use-package org-mru-clock
   :ensure t
   :after embark
-  :config
-  (setq org-mru-clock-how-many 50)
-  (setq org-mru-clock-files #'org-agenda-files)
-  (add-hook 'minibuffer-setup-hook #'org-mru-clock-embark-minibuffer-hook))
+  :hook (minibuffer-setup . org-mru-clock-embark-minibuffer-hook)
+  :custom
+  (org-mru-clock-how-many 50)
+  (org-mru-clock-files #'org-agenda-files))
 
 (use-package org-clock-convenience
   :ensure t
