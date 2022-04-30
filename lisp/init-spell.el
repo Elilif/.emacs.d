@@ -43,8 +43,21 @@
 (use-package ispell
   :defer t
   :config
-  (setq ispell-personal-dictionary "~/.emacs.d/mydictionary")
-  (add-to-list 'ispell-extra-args "--sug-mode=ultra"))
+  ;; (setq ispell-personal-dictionary "~/.emacs.d/mydictionary")
+  (add-to-list 'ispell-extra-args "--sug-mode=ultra")
+  (setq ispell-dictionary "en")
+  (defun eli-switch-dictionary()
+    (interactive)
+    (let* ((dic ispell-current-dictionary)
+    	   (change (if (string= dic "fr") "en" "fr"))
+	   (personal-dict (if (string= dic "fr") "~/.emacs.d/mydictionary" "~/.emacs.d/mydictionaryfr")))
+      (ispell-change-dictionary change)
+      (setq ispell-personal-dictionary personal-dict)
+      (message "Dictionary switched from %s to %s" dic change)
+      ))
+
+  (global-set-key (kbd "<f9>") 'eli-switch-dictionary)
+  )
 
 (use-package flyspell-correct
   :after flyspell
