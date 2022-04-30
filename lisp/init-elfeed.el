@@ -248,7 +248,7 @@ Also number them so they can be opened using `mu4e-view-go-to-url'."
   :hook (mu4e-main-mode . mu4e-alert-enable-notifications)
   :config
   (mu4e-alert-set-default-style 'notifications)
-  (setq mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT emacs-devel.gnu.org")
+  (setq mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT list:emacs-orgmode.gnu.org AND NOT list:emacs-devel.gnu.org")
   )
 
 (use-package mu4e-maildirs-extension
