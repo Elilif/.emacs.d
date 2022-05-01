@@ -666,6 +666,12 @@ This list represents a \"habit\" for the rest of this module."
   line and the character last inputted is symbol.
   Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
     (<= (point) (save-excursion (back-to-indentation) (point))))
+  (defun rime-predicate-after-latin-char-p ()
+  "If the cursor is after a latin character.
+Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
+  (and (> (point) (save-excursion (back-to-indentation) (point)))
+       (let ((string (buffer-substring (point) (max (line-beginning-position) (- (point) 80)))))
+         (string-match-p "\\cl$" string))))
   :hook
   ;; ('kill-emacs . (lambda ()
   ;;                  (when (fboundp 'rime-lib-sync-user-data)
@@ -682,6 +688,7 @@ This list represents a \"habit\" for the rest of this module."
                               rime-predicate-space-after-cc-p
 			      rime-predicate-current-uppercase-letter-p
 			      rime-predicate-hydra-p
+			      rime-predicate-after-latin-char-p
                               ))
    ;; (rime-inline-predicates '(rime-predicate-space-after-cc-p)))
    )
