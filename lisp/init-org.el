@@ -808,16 +808,36 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
 	      ;; #'org-roam-unlinked-references-section
 	      ))
   (setq org-roam-completion-everywhere t)
-  (cl-defmethod org-roam-node-type ((node org-roam-node))
-    "Return the TYPE of NODE."
-    (condition-case nil
-	(file-name-nondirectory
-	 (directory-file-name
-          (file-name-directory
-           (file-relative-name (org-roam-node-file node) org-roam-directory))))
-      (error "")))
-  (setq org-roam-node-display-template
-	(concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+
+  ;; Codes blow are used to general a hierachy for title nodes that under a file
+  (cl-defmethod org-roam-node-doom-filetitle ((node org-roam-node))
+    "Return the value of \"#+title:\" (if any) from file that NODE resides in.
+      If there's no file-level title in the file, return empty string."
+    (or (if (= (org-roam-node-level node) 0)
+            (org-roam-node-title node)
+          (org-roam-get-keyword "TITLE" (org-roam-node-file node)))
+        ""))
+  (cl-defmethod org-roam-node-doom-hierarchy ((node org-roam-node))
+    "Return hierarchy for NODE, constructed of its file title, OLP and direct title.
+        If some elements are missing, they will be stripped out."
+    (let ((title     (org-roam-node-title node))
+          (olp       (org-roam-node-olp   node))
+          (level     (org-roam-node-level node))
+          (filetitle (org-roam-node-doom-filetitle node))
+          (separator (propertize " > " 'face 'shadow)))
+      (cl-case level
+        ;; node is a top-level file
+        (0 filetitle)
+        ;; node is a level 1 heading
+        (1 (concat (propertize filetitle 'face '(shadow italic))
+                   separator title))
+        ;; node is a heading with an arbitrary outline path
+        (t (concat (propertize filetitle 'face '(shadow italic))
+                   separator (propertize (string-join olp " > ") 'face '(shadow italic))
+                   separator title)))))
+
+  (setq org-roam-node-display-template (concat "${type:15} ${doom-hierarchy:80} " (propertize "${tags:*}" 'face 'org-tag)))
+
   (setq org-roam-dailies-capture-templates
 	'(("d" "default" entry
            "* %?"
