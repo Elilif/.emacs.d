@@ -96,7 +96,7 @@
       ("f" org-roam-node-find "find roam node")
       ("n" org-id-get-create "create roam id")
       ("i" org-roam-node-insert "insert roam node")
-      ("s" helm-org-in-buffer-headings "search headings")
+      ("s" helm-org-roam-files-headings "search headings")
       ("w" org-roam-refile "refile roam node"))
      "Roam"
      (("c" org-roam-dailies-capture-today "roam capture")
@@ -146,7 +146,7 @@
       ("h" org-mode "org mode")
       ("pp" org-pomodoro "sart a pomodoro")
       ("pt" org-pomodoro-extend-last-clock "extend pomodoro")
-      ("f" helm-org-agenda-files-headings "helm filter")
+      ("f" my/consult-org-file "agenda filter")
       )
      "Org link"
      (("li" grab-x-link-chromium-insert-link "insert web link")

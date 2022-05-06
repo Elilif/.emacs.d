@@ -868,7 +868,6 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
 (use-package helm-org
   :ensure t
   :after org
-  :defer t
   :config
   (defun yuchen/helm-org-run-marked-heading-id-link ()
     (interactive)
@@ -909,6 +908,24 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
 		 ))))
   (add-to-list 'helm-org-headings-actions '("Insert id link(s) C-c v" . yuchen/helm-org-marked-heading-id-link) t)
   (define-key helm-org-headings-map (kbd "C-c v") 'yuchen/helm-org-run-marked-heading-id-link)
+
+  (defun helm-org-roam-files-headings (&optional arg)
+    "Preconfigured helm for org files headings."
+    (interactive "P")
+    (let ((autosaves (cl-loop for f in (org-agenda-files)
+                              when (file-exists-p
+                                    (expand-file-name
+                                     (concat "#" (helm-basename f) "#")
+                                     (helm-basedir f)))
+                              collect (helm-basename f)))
+          (files (org-roam-list-files)))
+      (when (or (null autosaves)
+		helm-org-ignore-autosaves
+		(y-or-n-p (format "%s have auto save data, continue? "
+                                  (mapconcat #'identity autosaves ", "))))
+	(helm :sources (helm-org-build-sources files nil arg)
+              :truncate-lines helm-org-truncate-lines
+              :buffer "*helm org headings*"))))
   )
 
 (use-package helm-org-rifle
