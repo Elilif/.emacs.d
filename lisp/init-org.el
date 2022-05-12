@@ -95,6 +95,9 @@
   (setq org-startup-folded t)
   (setq org-hide-block-startup t)
   (setq org-hide-emphasis-markers t)
+  (use-package org-appear
+    :ensure t
+    :hook (org-mode . org-appear-mode))
   (setq org-confirm-babel-evaluate nil)
   (setq org-startup-with-inline-images t)
   (define-key org-mode-map (kbd "C-'") 'nil)
