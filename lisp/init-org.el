@@ -69,7 +69,7 @@
   ;; prettify symbols
   (setq org-pretty-entities nil)
 
-  improving emphasis marker
+  ;; improving emphasis marker
   (defun sp-texmathp (id action _context)
     (texmathp))
   (sp-with-modes 'org-mode
