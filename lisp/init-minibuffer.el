@@ -183,7 +183,7 @@
   (defvar my-org-roam-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "i") 'org-roam-node-insert)
-      (define-key map (kbd "s") 'embark-collect-snapshot)
+      (define-key map (kbd "s") 'embark-collect)
       (define-key map (kbd "b") 'eli/follow-backlinks)
       map)
     "Keymap for 'org-roam' v2.")
