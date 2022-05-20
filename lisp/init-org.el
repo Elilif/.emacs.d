@@ -172,7 +172,7 @@
       (org-set-property "Rating" (format "%.2f" eli/rate))))
   (defun eli/rating (type)
     (interactive (eli/get-tag-counts))
-    (org-map-entries 'eli/entry-rating (concat type "+LEVEL=2/!-DONE-CANCELLED")))
+    (org-map-entries 'eli/entry-rating (concat type "+LEVEL=2-TODO=\"DONE\"-TODO=\"CANCELLED\"")))
   (global-set-key (kbd "<f8>") 'eli/rating)
 
   ;; org-clock
