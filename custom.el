@@ -17,9 +17,12 @@
 		   ((:background "DarkRed")
 		    (:foreground "white"))
 		   :overlap-face nil :gap-face nil :no-end-time-face nil :long-face nil :short-face nil))
- '(org-agenda-clockreport-parameter-plist '(:link t :maxlevel 2 :fileskip0 t :sort (3 . 84)))
+ '(org-agenda-clockreport-parameter-plist
+   '(:link t :maxlevel 2 :fileskip0 t :sort
+	   (3 . 84)
+	   :formula %))
  '(org-agenda-files
-   '("~/Dropbox/org/daily.org" "/home/eli/Dropbox/org/lists.org" "/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/projects.org"))
+   '("~/Dropbox/org/古文.org" "/home/eli/Dropbox/org/Français.org" "/home/eli/Dropbox/org/daily.org" "/home/eli/Dropbox/org/lists.org" "/home/eli/Dropbox/org/inbox.org" "/home/eli/Dropbox/org/words.org" "/home/eli/Dropbox/org/projects.org"))
  '(org-agenda-window-setup 'current-window)
  '(org-babel-load-languages
    '((emacs-lisp . t)

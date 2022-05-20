@@ -524,6 +524,9 @@ This list represents a \"habit\" for the rest of this module."
 	("f" "Français" entry (file "~/Dropbox/org/Français.org")
 	 "* TODO %u [/]\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d>\n%?"
 	 :jump-to-captured t)
+	("g" "古文" entry (file "~/Dropbox/org/古文.org")
+	 "* TODO %u [/]\nSCHEDULED: <%(org-read-date nil nil \"+1d\") .+1d>\n%?"
+	 :jump-to-captured t)
 	("b" "Book" entry (file+headline org-agenda-file-lists "Books")
 	 "* TODO %?\n  %^{Title}p %^{Isbn}p %^{Types}p %^{Authors}p %^{Translator}p %^{Publisher}p %^{Nation}p %^{Lang}p %^{Rating}p")
 	("m" "Movies and Musicals" entry (file+headline org-agenda-file-lists "Movies and Musicals")
