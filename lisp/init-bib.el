@@ -89,6 +89,9 @@
   (setq citar-at-point-function 'citar-dwim)
   (setq citar-open-note-function 'orb-citar-edit-note)
   (setq citar-notes-paths '("~/Dropbox/org/roam/references"))
+  (setq citar-file-parser-functions
+	'(;; citar-file-parser-default
+	  citar-file-parser-triplet))
   )
 
 (use-package calibredb
