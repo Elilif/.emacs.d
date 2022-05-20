@@ -832,7 +832,16 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
                    separator (propertize (string-join olp " > ") 'face '(shadow italic))
                    separator title)))))
 
-  (setq org-roam-node-display-template (concat "${type:15} ${doom-hierarchy:80} " (propertize "${tags:*}" 'face 'org-tag)))
+  (cl-defmethod org-roam-node-type ((node org-roam-node))
+    "Return the TYPE of NODE."
+    (condition-case nil
+        (file-name-nondirectory
+         (directory-file-name
+          (file-name-directory
+           (file-relative-name (org-roam-node-file node) org-roam-directory))))
+      (error "")))
+
+  (setq org-roam-node-display-template (concat "${type:15} ${doom-hierarchy:120} " (propertize "${tags:*}" 'face 'org-tag)))
 
   (setq org-roam-dailies-capture-templates
 	'(("d" "default" entry
