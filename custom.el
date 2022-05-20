@@ -30,6 +30,7 @@
      (python . t)
      (C . t)
      (R . t)))
+ '(org-duration-format '((special . h:mm)))
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
  '(org-link-frame-setup
