@@ -173,7 +173,28 @@
   (defun eli/rating (type)
     (interactive (eli/get-tag-counts))
     (org-map-entries 'eli/entry-rating (concat type "+LEVEL=2-TODO=\"DONE\"-TODO=\"CANCELLED\"")))
-  (global-set-key (kbd "<f8>") 'eli/rating)
+  (define-key org-mode-map (kbd "<f8>") 'eli/rating)
+  (define-key org-mode-map (kbd "<f7>") 'eli/entry-rating)
+
+
+  ;; rating films
+  (defun eli/get-film-rating ()
+    (interactive)
+    (let ((ratings)
+	  (dimensions (list "剧情" "演技" "服化道" "声效" "画面" "剪辑" "运镜" "立意" "剧本" "细节")))
+      (cl-loop for dim in dimensions
+	       do
+	       (push (string-to-number (org-entry-get (point) dim)) ratings))
+      (org-entry-put (point) "Rating" (number-to-string (/ (-sum ratings) 10.0)))))
+
+  (defun eli/set-film-ratings ()
+    (interactive)
+    (let ((dimensions (list "剧情" "演技" "服化道" "声效" "画面" "剪辑" "运镜" "立意" "剧本" "细节")))
+      (cl-loop for dim in dimensions
+	       do
+	       (org-entry-put (point) dim (read-from-minibuffer (format "Set rating for %s : " dim) )))))
+  (define-key org-mode-map (kbd "<f9>") 'eli/set-film-ratings)
+  (define-key org-mode-map (kbd "<f10>") 'eli/get-film-rating)
 
   ;; org-clock
   (setq org-clock-out-remove-zero-time-clocks t)
