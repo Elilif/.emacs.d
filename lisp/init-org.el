@@ -522,9 +522,10 @@ This list represents a \"habit\" for the rest of this module."
 	 :prepend t)
         ("j" "Journals" entry (file+function org-agenda-file-journal org-reverse-datetree-goto-date-in-file)
          "* %<%H:%M> %?"
-         :empty-lines 0
-	 ;; :clock-in t
-	 ;; :clock-resume t
+         :empty-lines 1
+	 :prepend t
+	 :clock-resume t
+	 :clock-in t
 	 )
 	("e" "Events" entry (file "~/Elilif.github.io/2021-07-20-Eli's timeline.org")
 	 "* %<%Y-%m-%d>\n%?"
