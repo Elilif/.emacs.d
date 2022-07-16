@@ -66,10 +66,6 @@
 (use-package citar
   :ensure t
   :after all-the-icons
-  ;; :bind (
-	 ;; ("C-c b" . citar-insert-citation)
-         ;; :map minibuffer-local-map
-         ;; ("M-b" . citar-insert-preset))
   :custom
   (citar-symbols
 	`((file ,(all-the-icons-faicon "file-o" :face 'all-the-icons-green :v-adjust -0.1) . " ")
@@ -78,20 +74,24 @@
 					'all-the-icons-orange :v-adjust 0.01) . " ")))
   (citar-symbol-separator "  ")
   (citar-bibliography eli/bibliography)
-  (citar-citeproc-csl-styles-dir "/home/eli/Documents/styles/")
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
   :config
   (setq org-cite-global-bibliography eli/bibliography)
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   (setq citar-at-point-function 'citar-dwim)
   (setq citar-open-note-function 'orb-citar-edit-note)
   (setq citar-notes-paths '("~/Dropbox/org/roam/references"))
   (setq citar-file-parser-functions
-	'(;; citar-file-parser-default
-	  citar-file-parser-triplet))
+	'(citar-file--parser-default
+	  citar-file--parser-triplet))
   )
+
+
+(use-package citar-embark
+  :ensure t
+  :after citar embark
+  :config (citar-embark-mode))
 
 (use-package calibredb
   :ensure t
@@ -117,7 +117,6 @@
                        :input (s-join " " (-remove 's-blank? (-flatten "--fields title,authors,formats,isbn,pubdate,publisher,tags,languages")))
                        :library (format "--library-path %s" (calibredb-root-dir-quote)))
     (calibredb-ref-default-bibliography)
-    (citar-refresh)
     (message "Updated BibTex file."))
 
   (defun eli/calibre-refresh ()

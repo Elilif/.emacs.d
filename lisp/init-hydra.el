@@ -286,7 +286,6 @@
 	    :post (progn (setq which-key-inhibit nil) ))
     ("Reference"
      (("o" citar-open "citar open")
-      ("g" citar-refresh "refresh citar cache")
       ("s" ex/search-pdf-contents "search pdf")
       )
      "Calibre"
