@@ -50,8 +50,7 @@
   (setq org-media-note-screenshot-image-dir "~/Documents/org-images")
   (setq org-media-note-use-refcite-first t)
   )
-(setq eli/bibliography '("/home/eli/Documents/Thesis/catalog.bib"
-			"/home/eli/Documents/Eli'sBooks/catalog.bib"
+(setq eli/bibliography '("/home/eli/Documents/Books/catalog.bib"
 			))
 (use-package oc
   :after org
@@ -102,13 +101,9 @@
   :init
   (autoload 'calibredb "calibredb")
   :config
-  (setq calibredb-root-dir "~/Documents/Eli'sBooks")
+  (setq calibredb-root-dir "~/Documents/Books")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  (setq calibredb-library-alist '(
-				  ;; ("~/Documents/Calibre")
-				  ;; ("~/Documents/Eli'sPDF")
-				  ("~/Documents/Eli'sBooks")
-				  ;; ("~/Documents/Thesis")
+  (setq calibredb-library-alist '(("~/Documents/Books")
 				  ))
   (defun eli/update-calibre-bibtex ()
     "Export the catalog with BibTex file."
