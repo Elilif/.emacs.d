@@ -1043,8 +1043,7 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
   :ensure t
   :after org
   :defer 5
-  :config
-  (require 'org-link-edit))
+  )
 
 (use-package ox-pandoc
   :ensure t
