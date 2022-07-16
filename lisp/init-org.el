@@ -181,7 +181,7 @@
   (defun eli/get-film-rating ()
     (interactive)
     (let ((ratings)
-	  (dimensions (list "剧情" "演技" "服化道" "声效" "画面" "剪辑" "运镜" "立意" "剧本" "细节")))
+	  (dimensions (list "剧情" "演技" "美术" "声效" "画面" "剪辑" "运镜" "立意" "人物" "细节")))
       (cl-loop for dim in dimensions
 	       do
 	       (push (string-to-number (org-entry-get (point) dim)) ratings))
@@ -189,7 +189,7 @@
 
   (defun eli/set-film-ratings ()
     (interactive)
-    (let ((dimensions (list "剧情" "演技" "服化道" "声效" "画面" "剪辑" "运镜" "立意" "剧本" "细节")))
+    (let ((dimensions (list "剧情" "演技" "美术" "声效" "画面" "剪辑" "运镜" "立意" "人物" "细节")))
       (cl-loop for dim in dimensions
 	       do
 	       (org-entry-put (point) dim (read-from-minibuffer (format "Set rating for %s : " dim) )))))
