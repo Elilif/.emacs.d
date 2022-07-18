@@ -584,9 +584,6 @@ This list represents a \"habit\" for the rest of this module."
 	 :create-id t)
         ))
 
-(setq org-capture-templates-contexts
-      '(("c" (org-mru-clock-capturing))))
-
 (advice-add 'org-time-stamp :around
             (lambda (fn &rest args)
               (apply fn args)
@@ -1152,12 +1149,14 @@ holding contextual information."
 
 (use-package org-mru-clock
   :ensure t
-  :after embark
   :hook (minibuffer-setup . org-mru-clock-embark-minibuffer-hook)
   :custom
   (org-mru-clock-capture-if-no-match '((".*" . "c")))
   (org-mru-clock-how-many 50)
-  (org-mru-clock-files #'org-agenda-files))
+  (org-mru-clock-files #'org-agenda-files)
+  :config
+  (setq org-capture-templates-contexts
+      '(("c" (org-mru-clock-capturing)))))
 
 (use-package org-clock-convenience
   :ensure t
