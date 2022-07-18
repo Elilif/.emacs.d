@@ -508,10 +508,20 @@ This list represents a \"habit\" for the rest of this module."
 
 ;; dedicated to "event" template
 (defun eli-org-capture-template-goto-today ()
-  (org-capture-put :target (list 'file+headline
-				 (nth 1 (org-capture-get :target))
-				 (format-time-string "* %Y-%m-%d")))
-  (org-capture-set-target-location))
+  "Set point for capturing at what capture target file+headline with headline set to %l would do."
+  (org-capture-put :target (list 'file+headline (nth 1 (org-capture-get :target)) (format-time-string "%Y-%m-%d")))
+  (org-capture-put-target-region-and-position)
+  (widen)
+  (let ((hd (nth 2 (org-capture-get :target))))
+    (goto-char (point-min))
+    (if (re-search-forward
+	 (format org-complex-heading-regexp-format (regexp-quote hd))
+	 nil t)
+	(goto-char (point-at-bol))
+      (goto-char 361)
+      (insert "\n")
+      (insert "* " hd "\n")
+      (beginning-of-line 0))))
 
 (setq org-capture-templates
       '(
@@ -539,9 +549,9 @@ This list represents a \"habit\" for the rest of this module."
 	 :clock-resume t
 	 :clock-in t
 	 )
-	("e" "Events" entry (file+function "~/Elilif.github.io/Eli's timeline.org"  eli-org-capture-template-goto-today 
-	 "** %?"
-	 :prepend t)
+	("e" "Events" entry (file+function "~/Elilif.github.io/Eli's timeline.org"  eli-org-capture-template-goto-today)
+	 "* %?"
+	 )
 	("B" "Blogs" plain (file eli/capture-report-date-file)
 	 "#+TITLE: %?\n#+DATE: %<%Y-%m-%d>\n#+STARTUP: showall\n#+OPTIONS: toc:nil H:2 num:2\n"
 	 )
