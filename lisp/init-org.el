@@ -1032,6 +1032,8 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
 (use-package ox-timeline
   :ensure t
   :defer t
+  :commands
+  (org-timeline-export-to-html)
   :config
   (setq org-timeline-source-url "dist")
   )
