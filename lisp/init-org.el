@@ -510,6 +510,10 @@ This list represents a \"habit\" for the rest of this module."
         ("t" "Todo" entry (file org-agenda-file-inbox)
          "* TODO %?\n\n%i\n%U"
          :empty-lines 0)
+	("c" "Start-new" entry (file org-agenda-file-inbox)
+         "* TODO %i"
+         :empty-lines 0
+	 :immediate-finish t)
         ("p" "Project" entry (file org-agenda-file-projects)
          "* PROJECT %?"
          :empty-lines 0)
@@ -562,6 +566,8 @@ This list represents a \"habit\" for the rest of this module."
 	 :create-id t)
         ))
 
+(setq org-capture-templates-contexts
+      '(("c" (org-mru-clock-capturing))))
 
 (advice-add 'org-time-stamp :around
             (lambda (fn &rest args)
@@ -1129,6 +1135,7 @@ holding contextual information."
   :after embark
   :hook (minibuffer-setup . org-mru-clock-embark-minibuffer-hook)
   :custom
+  (org-mru-clock-capture-if-no-match '((".*" . "c")))
   (org-mru-clock-how-many 50)
   (org-mru-clock-files #'org-agenda-files))
 
