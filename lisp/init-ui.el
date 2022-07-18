@@ -170,7 +170,7 @@
   :custom (dashboard-startup-banner 'logo)
   :config
   (dashboard-setup-startup-hook)
-    (setq dashboard-set-init-info t)
+  (setq dashboard-set-init-info t)
   (setq dashboard-center-content t)
   (setq dashboard-startup-banner "~/Documents/images/ue-light.png")
   (setq dashboard-items '((recents  . 5)
@@ -179,6 +179,7 @@
                           ;; (agenda . 5)
                           ;; (registers . 5)
 			  ))
+  (setq dashboard-footer-messages '("少年辛苦终身事，莫向光阴惰寸功。"))
   )
 
 
