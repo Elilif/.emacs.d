@@ -505,6 +505,14 @@ This list represents a \"habit\" for the rest of this module."
     (org-fill-paragraph nil t)))
 (add-hook 'org-capture-prepare-finalize-hook 'eli/fill-region)
 
+
+;; dedicated to "event" template
+(defun eli-org-capture-template-goto-today ()
+  (org-capture-put :target (list 'file+headline
+				 (nth 1 (org-capture-get :target))
+				 (format-time-string "* %Y-%m-%d")))
+  (org-capture-set-target-location))
+
 (setq org-capture-templates
       '(
         ("t" "Todo" entry (file org-agenda-file-inbox)
@@ -531,8 +539,8 @@ This list represents a \"habit\" for the rest of this module."
 	 :clock-resume t
 	 :clock-in t
 	 )
-	("e" "Events" entry (file "~/Elilif.github.io/2021-07-20-Eli's timeline.org")
-	 "* %<%Y-%m-%d>\n%?"
+	("e" "Events" entry (file+function "~/Elilif.github.io/Eli's timeline.org"  eli-org-capture-template-goto-today 
+	 "** %?"
 	 :prepend t)
 	("B" "Blogs" plain (file eli/capture-report-date-file)
 	 "#+TITLE: %?\n#+DATE: %<%Y-%m-%d>\n#+STARTUP: showall\n#+OPTIONS: toc:nil H:2 num:2\n"
