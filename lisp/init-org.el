@@ -751,8 +751,8 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
 	  (setq eli/prefer-English t))
       (progn
        (setq rime-disable-predicates
-	    (seq-difference rime-disable-predicates '(rime-predicate-space-after-ascii-p
-				       +rime-predicate-punctuation-line-begin-p)))
+	     (seq-difference rime-disable-predicates '(rime-predicate-space-after-ascii-p
+						       +rime-predicate-punctuation-line-begin-p)))
        (setq eli/prefer-English nil)
        )))
   (defun +rime-convert-string-at-point (&optional return-cregexp)
@@ -1147,6 +1147,7 @@ holding contextual information."
        ((org-element-link-interpreter link contents)))))
   )
 
+
 (use-package org-mru-clock
   :ensure t
   :hook (minibuffer-setup . org-mru-clock-embark-minibuffer-hook)
@@ -1156,7 +1157,7 @@ holding contextual information."
   (org-mru-clock-files #'org-agenda-files)
   :config
   (setq org-capture-templates-contexts
-      '(("c" (org-mru-clock-capturing)))))
+	'(("c" (org-mru-clock-capturing)))))
 
 (use-package org-clock-convenience
   :ensure t
