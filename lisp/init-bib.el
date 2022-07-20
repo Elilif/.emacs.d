@@ -78,13 +78,44 @@
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
   :config
+  (defun eli-citar-org-format-note (key entry)
+    "Format a note from KEY and ENTRY."
+    (let* ((template (citar--get-template 'note))
+           (note-meta (when template
+			(citar-format--entry template entry)))
+           (filepath (expand-file-name
+                      (concat key ".org")
+                      (car citar-notes-paths)))
+           (buffer (find-file filepath)))
+      (with-current-buffer buffer
+	(setq eli-tes note-meta)
+	;; This just overrides other template insertion.
+	(erase-buffer)
+	(citar-org-roam-make-preamble key)
+	(insert "#+title: ")
+	(when template (insert (replace-regexp-in-string ":/home.*:PDF" (car (citar-get-files key)) note-meta)))
+	)))
   (setq org-cite-global-bibliography eli/bibliography)
   (setq citar-at-point-function 'citar-dwim)
-  (setq citar-open-note-function 'orb-citar-edit-note)
+  (setq citar-note-format-function #'eli-citar-org-format-note)
   (setq citar-notes-paths '("~/Dropbox/org/roam/references"))
-  (setq citar-file-parser-functions
-	'(citar-file--parser-default
-	  citar-file--parser-triplet))
+  (setq citar-templates
+	'((main . "${author:30}     ${date year issued:4}     ${title:48}")
+	 (suffix . "          ${=key= id:15}    ${=type=:12}    ${tags keywords keywords:*}")
+	 (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
+	 (note . "${title}
+- bibliography :: bibliography:/home/eli/Documents/Thesis/catalog.bib
+- tags :: ${tags}
+- keywords :: ${keywords}
+
+* Notes
+:PROPERTIES:
+:Custom_ID: ${=key=}
+:URL: ${url}
+:AUTHOR: ${author}
+:NOTER_DOCUMENT: ${file}
+:NOTER_PAGE:
+:END:")))
   )
 
 
