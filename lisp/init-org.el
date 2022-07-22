@@ -81,6 +81,7 @@
     :defer t)
   (setq org-src-fontify-natively t)
   (setq org-agenda-span 'day)
+  (setq org-agenda-show-inherited-tags nil)
   (setq org-use-fast-todo-selection 'expert)
   (setq org-agenda-window-setup 'only-window)
   ;; Change task state to STARTED when clocking in
@@ -781,7 +782,7 @@ Can be used in `rime-disable-predicates' and `rime-inline-predicates'."
                      (append (listify-key-sequence code)
                              unread-command-events))))
             (t (message "`+rime-convert-string-at-point' did nothing.")))))
-  
+
   (setq rime-show-candidate 'nil)
   (setq mode-line-mule-info '((:eval (rime-lighter))))
   (setq rime-inline-ascii-trigger 'shift-l)
