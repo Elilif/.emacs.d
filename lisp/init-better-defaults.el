@@ -57,7 +57,7 @@
 (ad-activate 'custom-buffer-create)
 ;; disable ad-like warning
 (setq ad-redefinition-action 'accept)
-;; disable ring bell when cussor at bottom 
+;; disable ring bell when cussor at bottom
 (setq ring-bell-function 'ignore)
 
 
@@ -243,7 +243,7 @@
   :hook (after-init . auto-save-enable)
   :config
   (setq auto-save-silent t)   ; quietly save
-  (setq auto-save-delete-trailing-whitespace nil)
+  (setq auto-save-delete-trailing-whitespace t)
   (setq auto-save-idle 2)
   )
 
