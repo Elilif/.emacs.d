@@ -135,6 +135,9 @@
 
 (setq load-prefer-newer t)
 
+;; show minibuffer depth
+(setq minibuffer-depth-indicate-mode t)
+
 (defun occur-dwim ()
   "Call `occur' with a sane default."
   (interactive)
